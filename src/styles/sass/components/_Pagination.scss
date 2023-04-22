@@ -1,0 +1,42 @@
+.pagination-div {
+    height: 105px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination {
+    height: 45px;
+    border: 1px solid $secondaryColour;
+    border-radius: 50px;
+    justify-content: space-between;
+    align-items: center;
+    @include paddingHorizontal(20px);
+
+    & h6 {
+        margin: 0;
+    }
+
+    &__buttons-div {
+        margin: 0 15px;
+    }
+
+    &__button {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        border: 1px solid $secondaryColour;
+        margin: 0 5px;
+        font-size: 0.9em;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: $secondaryColour;
+            color: $lightFont;
+        }
+    }
+}
