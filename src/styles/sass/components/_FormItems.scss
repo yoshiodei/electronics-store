@@ -1,0 +1,78 @@
+.new-item-form {
+    &__input-div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        color: $secondaryColour;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    &__input {
+        height: 2.5em;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid $secondaryColour;
+        @include paddingHorizontal(1em);
+    }
+
+    &__radio-outer-div {
+        justify-content: flex-start;
+        flex-direction: column;
+
+        &--promote {
+            flex-direction: row;
+        }
+    }
+
+    &__radio-inner-div {
+        display: flex;
+        align-items: center;
+        margin-right: 50px;
+        margin-bottom: 8px;
+        height: 2em;
+    }
+
+    &__radio-input {
+        margin-right: 8px;
+        width: 15px;
+        height: 15px;
+    }
+
+    &__textarea-div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__textarea {
+        border-radius: 5px;
+        border: 1px solid $secondaryColour;
+        padding: 0.5em;
+        width: 100%;
+        height: 120px;
+    }
+
+    &__radio-label {
+        font-weight: 600;
+        color: $secondaryColour;
+    }
+
+    &__upload-image-div {
+        flex-direction: column;
+    }
+
+    &__promote-item-div {
+        flex-direction: column;
+    }
+
+    &__post-item-button {
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 50px;
+        font-weight: 700;
+        color: white;
+        background-color: $primaryColour;
+    }
+}
