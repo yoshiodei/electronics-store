@@ -133,6 +133,7 @@
     }
 
     &__button-div {
+        display: block;
         border-radius: 5px;
         background-color: $secondaryColour;
         @include paddingVertical(8px);
