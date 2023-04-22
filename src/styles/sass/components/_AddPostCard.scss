@@ -1,0 +1,35 @@
+.add-post-card{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid $secondaryColour;
+    background-color: lighten($primaryColour, 20%);
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: lighten($primaryColour, 15%); 
+    }
+
+    &__icon-div {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__icon {
+        padding: 1em;
+        border-radius: 50px;
+        border: 2px solid $secondaryColour;
+        color: $secondaryColour;
+        margin-bottom: 0.5em;
+    }
+
+    &__text {
+        margin: 0;
+        color: $secondaryColour;
+        text-align: center;
+    }
+}
