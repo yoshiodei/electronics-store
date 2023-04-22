@@ -1,0 +1,17 @@
+.sell-now {
+    background-color: $primaryColour; 
+    border-radius: 50px;
+    padding: 0.5em 1.5em; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+
+    & h6 {
+        margin-bottom: 0;
+        color: $lightFont;
+    }
+
+    &:hover {
+        background-color: darken($primaryColour, 5%); 
+    }
+}
