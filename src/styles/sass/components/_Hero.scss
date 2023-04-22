@@ -1,0 +1,95 @@
+.hero {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 30px;
+
+    &__main-div {
+        border-radius: 5px;
+        border: 1px solid $secondaryColour;
+        height: 265px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        padding: 20px 50px;
+        position: relative;
+
+        &__image {
+            position: absolute;
+            bottom: 0;
+            right: 100px;
+            height: 230px;
+        }
+
+        & h1 {
+            width: 60%;
+            font-weight: 700;
+            color: $secondaryColour;
+            margin-bottom: 20px;
+        }
+
+        & p {
+            width: 40%;
+            font-weight: 500;
+        }
+    }
+
+    &__search-div {
+        border-radius: 5px;
+        border: 1px solid $secondaryColour;
+        height: 120px;
+        background-color: lighten($primaryColour, 20%);
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        &__image {
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            height: 200px;
+            left: 230px;
+        }
+
+        &__input {
+            border: none;
+            height: 2.5em;
+            width: 80%;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border: 1px solid $secondaryColour;
+            @include paddingHorizontal(1em);
+
+            &:focus {
+                outline: 2px solid lighten($secondaryColour, 20%);
+            }
+        }
+
+        &__button {
+            border: none;
+            outline: none;
+            height: 2.5em;
+            width: 20%;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;    
+            color: $lightFont;
+            background-color: $secondaryColour;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+    }
+
+    &__form {
+        width: 600px;
+        background-color: white;
+        height: 2.5em;
+        z-index: 2;
+        border-radius: 5px;
+    }
+
+    &__search-box {
+        border: none;
+        width: 100%;
+        height: 2.5em;
+        @include paddingHorizontal(1em);
+        border-start-start-radius: 5px;
+    }
+}
