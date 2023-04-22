@@ -1,0 +1,24 @@
+@mixin marginHorizontal ($size){
+    margin-left: $size;
+    margin-right: $size;
+}
+
+@mixin marginVertical ($size){
+    margin-top: $size;
+    margin-bottom: $size;
+}
+
+@mixin paddingHorizontal ($size){
+    padding-left: $size;
+    padding-right: $size;
+}
+
+@mixin paddingVertical ($size){
+    padding-top: $size;
+    padding-bottom: $size;
+}
+
+@mixin square ($size){
+    height: $size;
+    width: $size;
+}
