@@ -1,0 +1,63 @@
+.categories-box {
+    width: 100%;
+    height: 400px;
+    border-radius: 5px;
+    border: 1px solid $secondaryColour; 
+    overflow: hidden;
+    margin-bottom: 30px;
+
+    &__title {
+        color: $lightFont;
+        margin: 0;
+    }
+
+    &__title-div {
+        background-color: $secondaryColour;
+        @include paddingHorizontal(1em);
+        height: 50px;
+    }
+
+    &__lines-div {
+        width: 1em;
+        height: 0.8em;
+        margin-right: 1em;
+    }
+
+    &__lines {
+        width: 100%;
+        height: 2px;
+        background-color: $lightFont;
+    }
+
+    &__list {
+        padding: 0;
+        margin: 0;
+        height: 350px;
+
+        &-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8em 1em;
+            border-bottom: 1px solid #00000010;
+            transition: background-color 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: lighten($primaryColour, 20%);
+            }
+
+            &:last-child {
+             border-bottom: none;
+            }
+
+            &-icon {
+                font-size: 0.8em;
+            }
+        }
+
+        &-item p {
+            margin: 0;
+        }
+    }
+}
