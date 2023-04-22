@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function VendorDetails() {
   return (
@@ -13,9 +14,9 @@ export default function VendorDetails() {
           <h5 className="vendor-details__profile-name">John Doe</h5>
         </div>
       </div>
-      <div className="vendor-details__button-div ">
+      <Link to="/chat-room" className="vendor-details__button-div ">
         <h5>Start Chat</h5>
-      </div>
+      </Link>
     </div>
   );
 }
