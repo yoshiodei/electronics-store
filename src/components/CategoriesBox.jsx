@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function CategoriesBox() {
   return (
@@ -13,32 +14,46 @@ export default function CategoriesBox() {
       </div>
       <ul className="categories-box__list d-flex flex-column justify-content-between">
         <li className="categories-box__list-item">
-          <p>Phones</p>
-          <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          <Link to="/search">
+            <p>Phones</p>
+            <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          </Link>
         </li>
         <li className="categories-box__list-item categories-box__list-item">
-          <p>Televisions</p>
-          <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          <Link to="/search">
+            <p>Televisions</p>
+            <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          </Link>
         </li>
         <li className="categories-box__list-item">
-          <p>Desktops</p>
-          <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          <Link to="/search">
+            <p>Desktops</p>
+            <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          </Link>
         </li>
         <li className="categories-box__list-item">
-          <p>Laptops</p>
-          <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          <Link to="/search">
+            <p>Laptops</p>
+            <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          </Link>
         </li>
         <li className="categories-box__list-item">
-          <p>Game Consoles</p>
-          <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          <Link to="/search">
+            <p>Game Consoles</p>
+            <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          </Link>
         </li>
         <li className="categories-box__list-item">
-          <p>Headphones & Speakers</p>
-          <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          <Link to="/search">
+            <p>Headphones & Speakers</p>
+            <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          </Link>
         </li>
         <li className="categories-box__list-item">
-          <p>Accessories</p>
-          <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          <Link to="/search">
+            <p>Accessories</p>
+            <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
+          </Link>
         </li>
       </ul>
     </div>
