@@ -1,0 +1,21 @@
+.main-section-div {
+    background-color: $backgroundColour;
+    height: auto;
+    padding: 30px 0;
+}
+
+.main-section {
+    margin: 0 auto;
+    width: $largeDeviceWidth;
+    height: 100%;
+
+    &__left-div {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    &__right-div {
+        flex: 3;    
+        margin-left: 10px;
+    }
+}
