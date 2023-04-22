@@ -1,0 +1,101 @@
+.user-detail-box {
+    border-radius: 5px;
+    border: 1px solid $secondaryColour;
+    padding: 15px;
+    background-color: lighten($primaryColour, 20%);
+
+    &__image-div {
+        border: 1px solid $secondaryColour;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        background-color: lightgrey;
+        position: relative;
+        margin: 0 auto 8px;
+        justify-content: center;
+    }
+
+    &__online-indicator {
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background-color: $onlineColour;
+        left: 8px;
+        top: 8px;
+        border: 1px solid $secondaryColour;
+    }
+
+    &__user-name {
+        text-align: center;
+        font-weight: 700;
+    }
+
+    &__user-info-div {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #FFFFFF;
+        @include paddingVertical(0.5em);
+
+        &--bio {
+            display: block;
+            justify-content: unset;
+
+            & h6 {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    &__user-info-title, &__user-info-value {
+        font-weight: 700;
+        color: $secondaryColour;
+        margin: 0;
+    }
+
+    &__user-info-value--bio {
+        font-weight: 400;
+        line-height: 1.2;
+        font-size: 0.9em; 
+    }
+
+    &__start-chat-div {
+        border-radius: 5px;
+        background-color: $secondaryColour;
+        @include paddingVertical(8px);
+        margin-top: 8px;
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        & h5 {
+           color: $lightFont;
+           margin: 0;
+           font-weight: 700;
+           text-align: center;
+           letter-spacing: 0.8px;
+        }
+    }
+
+    &__report-user-div {
+        align-items: center;
+        cursor: pointer;
+
+        &:hover .user-detail-box__report-user{
+            text-decoration: underline;
+        }
+    }
+
+    &__report-user-icon {
+        height: 1em;
+        width: 1em;
+        background-color: grey;
+        border-radius: 50%;
+        margin-right: 10px;    
+    }
+
+    &__report-user {
+        margin: 0;
+        line-height: 1;
+        font-size: 0.9em;
+    }
+}
