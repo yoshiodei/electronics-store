@@ -1,0 +1,42 @@
+.search-bar {
+    margin-bottom: 15px;
+    justify-content: center;
+    
+    &__input-div {
+        width: 65%;
+        height: 2.5em;
+        border-radius: 5px;
+        background-color: aqua;
+    }
+
+    &__input {
+        border: none;
+        height: 100%;
+        width: 80%;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border: 1px solid $secondaryColour;
+        @include paddingHorizontal(1em);
+    
+        &:focus {
+            outline: 2px solid lighten($secondaryColour, 20%);
+        }
+    }
+
+    &__button {
+        border: none;
+        outline: none;
+        height: 100%;
+        flex: 1;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;    
+        color: $lightFont;
+        background-color: $secondaryColour;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+}
+
+
+
