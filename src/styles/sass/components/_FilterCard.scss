@@ -1,0 +1,38 @@
+.filter-card {
+    padding: 15px;
+    border: 1px solid $secondaryColour;
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+
+    &__location-select {
+        width: 100%;
+        height: 2.5em;
+        display: inline-block;
+    }
+
+    &__location-div {
+        margin-bottom: 15px;
+    }
+
+    &__price-range-div {
+        margin-bottom: 15px;
+    }
+
+    &__item-condition-div {
+        margin-bottom: 15px;
+    }
+
+    &__category-div {
+        margin-bottom: 15px;
+    }
+
+    &__item-condition-inner-div {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    &__reset-button {
+        margin: 0;
+    }
+}
