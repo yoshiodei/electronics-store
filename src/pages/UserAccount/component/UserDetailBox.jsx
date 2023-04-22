@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function UserDetailBox() {
   return (
@@ -45,9 +46,9 @@ export default function UserDetailBox() {
           holoi ini sai uni yulrai. Oni talim salmoni rahim lil ipsum.
         </p>
       </div>
-      <div className="user-detail-box__start-chat-div">
+      <Link to="/chat-room" className="user-detail-box__start-chat-div">
         <h5 className="user-detail-box__start-chat">Start Chat</h5>
-      </div>
+      </Link>
       <div className="user-detail-box__report-user-div d-inline-flex">
         <i className="user-detail-box__report-user-icon" />
         <h6 className="user-detail-box__report-user">Report User</h6>
