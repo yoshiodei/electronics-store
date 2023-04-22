@@ -15,11 +15,14 @@
 
         & li {
             margin-left: 2.5em;
+            cursor: pointer;
+
+        }
+
+        & a {
             font-size: $smallFont;
             font-weight: 600;
             color: $lightFont;
-            cursor: pointer;
-
         }
     }
 

@@ -7,9 +7,15 @@ export default function Navbar() {
     <nav className="navbar-custom">
       <div className="navbar-custom__top-div">
         <ul className="d-flex justify-content-end align-items-center">
-          <li>notifications</li>
-          <li>my account</li>
-          <li>sign in</li>
+          <li>
+            <Link to="/notifications">notifications</Link>
+          </li>
+          <li>
+            <Link to="/user-account">my account</Link>
+          </li>
+          <li>
+            <Link to="/user-account">sign in</Link>
+          </li>
         </ul>
       </div>
       <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">

@@ -12,10 +12,12 @@
 }
 .navbar-custom__top-div li {
   margin-left: 2.5em;
+  cursor: pointer;
+}
+.navbar-custom__top-div a {
   font-size: 0.9em;
   font-weight: 600;
   color: #ffffff;
-  cursor: pointer;
 }
 .navbar-custom__bottom-div {
   width: 1200px;
@@ -580,6 +582,7 @@ a {
   top: 6px;
 }
 .vendor-details__button-div {
+  display: block;
   border-radius: 5px;
   background-color: #a18089;
   padding-top: 8px;
@@ -956,6 +959,7 @@ a {
   font-size: 0.9em;
 }
 .user-detail-box__start-chat-div {
+  display: block;
   border-radius: 5px;
   background-color: #a18089;
   padding-top: 8px;
