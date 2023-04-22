@@ -1,16 +1,52 @@
 .product-card {
     width: 100%;
     height: auto;
-    border-radius: 5px;
-    border: 1px solid $secondaryColour;
-    padding: 6px;
-    cursor: pointer;
     position: relative;
-    transition: background-color 0.3s;
 
-    &:hover {
-        background-color: lighten($primaryColour, 20%);
-        // background-color: #00000008;
+    &__add-to-wish-list {
+        background-color: white;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $secondaryColour; 
+        position: absolute;
+        top: 89px;
+        transition: all 0.3s;
+        right: 11px;
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+            background-color: $secondaryColour;
+        }
+
+        &:hover &__icon{
+            color: white;
+        }
+
+        &:hover .product-card__link{
+            background-color: lighten($primaryColour, 20%);
+        }
+
+        &__icon {
+            font-size: 0.9em;
+            color: $secondaryColour;
+            transition: all 0.3s;
+        }
+    }
+
+    &__link {
+        display: block;
+        border-radius: 5px;
+        border: 1px solid $secondaryColour;
+        transition: background-color 0.3s;
+        padding: 6px;
+
+        &:hover {
+            background-color: lighten($primaryColour, 20%);
+        }
     }
 
     &__image-div {
