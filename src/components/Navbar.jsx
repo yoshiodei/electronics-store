@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SellNowButton from './SellNowButton';
 
 export default function Navbar() {
@@ -12,7 +13,7 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
-        <h1 className="h2 navbar-custom__brand">Brand</h1>
+        <Link to="/" className="h2 navbar-custom__brand">Brand</Link>
         <SellNowButton />
       </div>
     </nav>
