@@ -1,0 +1,150 @@
+.product-detail {
+    border-radius: 5px;
+    border: 1px solid $secondaryColour;
+    padding: 15px;
+    background-color: lighten($primaryColour, 20%);
+
+    &__title {
+        color: $secondaryColour;
+        margin-bottom: 2px;
+        font-weight: 700;
+    }
+
+    &__name {
+        font-size: 1.4em;
+        font-weight: 700;
+        color:rgb(107, 107, 107);
+    }
+
+    &__price, &__condition {
+        font-size: 1.3em;
+        font-weight: 700;
+        color:rgb(107, 107, 107);
+    }
+
+    &__detail {
+        font-weight: 500;
+        line-height: 1.3;
+        color:rgb(107, 107, 107);
+        margin: 0;
+    }
+
+    & [class$='div'] {
+        border-bottom: 1px solid #FFFFFF;
+        margin-top: 8px;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+    } 
+}
+
+.product-location {
+    border-radius: 5px;
+    border: 1px solid $secondaryColour;
+    padding: 15px;
+    background-color: lighten($primaryColour, 20%);
+    margin-top: 15px;
+
+    &__title {
+        color: $secondaryColour;
+        margin-bottom: 2px;
+        font-weight: 700;
+    }
+
+    &__name, &__distance {
+        font-size: 1.4em;
+        font-weight: 700;
+        color:rgb(107, 107, 107);
+    }
+
+    &__distance {
+        margin: 0;
+    }
+
+    &__distance span {
+        font-size: 1.45em;
+        font-weight: 700;
+        color:rgb(107, 107, 107);
+    }
+
+    & [class$='div'] {
+        border-bottom: 1px solid #FFFFFF;
+        margin-top: 8px;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+    } 
+}
+
+.vendor-details {
+    border-radius: 5px;
+    border: 1px solid $secondaryColour;
+    padding: 15px;
+    background-color: lighten($primaryColour, 20%);
+    margin-top: 15px;
+
+    &__info-div {
+      align-content: center;
+      height: 70px;
+    }
+
+    &__profile-image-div {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        background-color: lightgrey;
+        margin-right: 15px;
+        position: relative;
+        border: 1px solid $secondaryColour;
+    }
+
+    &__profile-title {
+        color: $secondaryColour;
+        margin-bottom: 4px;
+        font-weight: 700;
+    }
+
+    &__profile-name {
+        font-size: 1.2em;
+        font-weight: 700;
+        color:rgb(107, 107, 107);
+        margin: 0;
+    }
+
+    &__online-indicator {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        position: absolute;
+        background-color: $onlineColour;
+        border: 1px solid $secondaryColour;
+        left: 3px;
+        top: 6px;
+    }
+
+    &__button-div {
+        border-radius: 5px;
+        background-color: $secondaryColour;
+        @include paddingVertical(8px);
+        margin-top: 8px;
+        cursor: pointer;
+
+        & h5 {
+           color: $lightFont;
+           margin: 0;
+           font-weight: 700;
+           text-align: center;
+           letter-spacing: 0.8px;
+        }
+    }
+}

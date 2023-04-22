@@ -1,0 +1,84 @@
+.product-card {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid $secondaryColour;
+    padding: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: lighten($primaryColour, 20%);
+        // background-color: #00000008;
+    }
+
+    &__image-div {
+        border-radius: 5px;
+        width: 100%;
+        height: 120px;
+        background-color: grey;
+        margin-bottom: 5px;
+    }
+
+    &__product-price {
+        color: $secondaryColour;
+        margin-bottom: 5px;
+    }
+
+    &__product-name {
+        line-height: 1.1;
+        height: 2.4em;
+        margin-bottom: 5px;
+    }
+
+    &__product-location-div {
+        margin-bottom: 10px;
+    }
+
+    &__product-location-icon {
+        font-size: 0.8em;
+        color: rgb(157, 157, 157);
+    }
+
+    &__product-location-name {
+        margin: 0 0 0 8px;
+        font-size: 0.85em;
+        line-height: 0.8;
+    }
+
+    &__product-condition-div {
+        display: inline-flex;
+        height: 1.1em;
+        background-color: $secondaryColour;
+        border-radius: 5px;
+        padding: 12px 8px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__product-condition {
+        margin: 0;
+        font-weight: 500;
+        color: $lightFont;
+        font-size: 0.8em;
+        line-height: 0.8;
+    }
+
+    &__promotion-div {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        padding: 3px 8px;
+        background-color: rgb(255, 179, 0);
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    &__promotion {
+        font-weight: 500;
+        font-size: 0.8em;
+        // color: $lightFont;
+        margin: 0;
+    }
+}
