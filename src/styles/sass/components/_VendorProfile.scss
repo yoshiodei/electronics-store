@@ -1,0 +1,42 @@
+.vendor-profile {
+    border: 1px solid $secondaryColour;
+    border-radius: 5px;
+    background-color: lighten($primaryColour, 20%);
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+
+    &__image-div {
+        border: 1px solid $secondaryColour;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        background-color: lightgrey;
+        position: relative;
+        margin-bottom: 8px;
+    }
+
+    &__online-indicator {
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background-color: $onlineColour;
+        left: 8px;
+        top: 8px;
+        border: 1px solid $secondaryColour;
+    }
+
+    &__user-name {
+        text-align: center;
+        font-weight: 700;
+    }
+
+    &__user-last-seen {
+        text-align: center;
+        margin: 0;
+        color: darkgrey;
+    }
+}
