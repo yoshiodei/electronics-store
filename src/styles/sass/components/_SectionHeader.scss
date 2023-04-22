@@ -1,0 +1,26 @@
+.section-header {
+    width: 100%;
+    height: 2em;
+    margin-bottom: 20px;
+
+    &__div {
+        height: 100%;
+        width: auto;
+        color: $lightFont;
+        @include paddingHorizontal(1em);
+        background-color: $secondaryColour;
+        border-radius: 5px;
+        border-bottom-right-radius: 0;
+
+        & h6 {
+            margin: 0;
+            letter-spacing: 0.8px;
+        }
+    }
+
+    &__line {
+        height: 3px;
+        background-color: $secondaryColour;
+        flex: 1;
+    }
+}
