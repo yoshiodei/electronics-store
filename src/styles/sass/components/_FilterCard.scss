@@ -16,7 +16,97 @@
     }
 
     &__price-range-div {
-        margin-bottom: 15px;
+        margin-bottom: 30px;
+    }
+
+    &__price-input{
+        width: 100%;
+        display: flex;
+        margin: 20px 0;
+    }
+
+    &__price-input &__field{
+         display: flex;
+         width: 100%;
+         height: 2em;
+         align-items: center;
+    }
+
+    &__field input{
+        width: 100%;
+        height: 100%;
+        outline: none;
+        font-size: 1em;
+        margin-left: 0.5em;
+        border-radius: 5px;
+        text-align: center;
+        border: 1px solid #999;
+        -moz-appearance: textfield;
+    }
+
+    &__price-input &__separator{
+        width: 100px;
+        display: flex;
+        font-size: 19px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__slider{
+        height: 5px;
+        position: relative;
+        background: #ddd;
+        border-radius: 5px;
+    }
+
+    &__slider &__progress{
+        height: 100%;
+        left: 25%;
+        right: 25%;
+        position: absolute;
+        border-radius: 5px;
+        background: #C99D9D;
+    }
+
+    &__range-input{
+        position: relative;
+    }
+
+    &__range-input input{
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        top: -5px;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    & input[type="number"]::-webkit-outer-spin-button,
+    & input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    & input[type="range"]::-webkit-slider-thumb{
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        background: #C99D9D;
+        pointer-events: auto;
+        -webkit-appearance: none;
+        box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    }
+
+    & input[type="range"]::-moz-range-thumb{
+        height: 17px;
+        width: 17px;
+        border: none;
+        border-radius: 50%;
+        background: #C99D9D;
+        pointer-events: auto;
+        -moz-appearance: none;
+        box-shadow: 0 0 6px rgba(0,0,0,0.05);
     }
 
     &__item-condition-div {
@@ -36,3 +126,4 @@
         margin: 0;
     }
 }
+
