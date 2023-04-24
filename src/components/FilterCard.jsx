@@ -1,6 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function FilterCard() {
+  const priceGap = 900;
+  const [minPrice, setMinPrice] = useState(2500);
+  const [maxPrice, setMaxPrice] = useState(7500);
+
+  const handleMinPriceChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (value >= 0 && value < (maxPrice - priceGap)) {
+      setMinPrice(value);
+    }
+  };
+
+  const handleMaxPriceChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (value > (minPrice + priceGap) && value <= 10000) {
+      setMaxPrice(value);
+    }
+  };
+
+  const handleMinTextChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (value >= 0 && value < maxPrice) {
+      setMinPrice(value);
+    } else {
+      setMinPrice(2500);
+    }
+  };
+
+  const handleMaxTextChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (value > minPrice && value <= 10000) {
+      setMaxPrice(value);
+    } else {
+      setMaxPrice(7500);
+    }
+  };
+
   return (
     <div className="filter-card">
       <div className="filter-card__location-div">
@@ -14,7 +50,26 @@ export default function FilterCard() {
       </div>
       <div className="filter-card__price-range-div">
         <h6>Price Range</h6>
-        <input type="range" />
+        <div className="filter-card__range-div">
+          <div className="filter-card__price-input">
+            <div className="filter-card__field">
+              <span>$</span>
+              <input type="number" className="filter-card__input" value={minPrice} onChange={handleMinTextChange} />
+            </div>
+            <div className="filter-card__separator">-</div>
+            <div className="filter-card__field">
+              <span>$</span>
+              <input type="number" className="filter-card__input" value={maxPrice} onChange={handleMaxTextChange} />
+            </div>
+          </div>
+          <div className="filter-card__slider">
+            <div className="filter-card__progress" style={{ left: `${minPrice / 100}%`, right: `${100 - (maxPrice / 100)}%` }} />
+          </div>
+          <div className="filter-card__range-input">
+            <input type="range" className="filter-card__range filter-card__range-min" min="0" max="10000" value={minPrice} step="100" onChange={handleMinPriceChange} />
+            <input type="range" className="filter-card__range filter-card__range-max" min="0" max="10000" value={maxPrice} step="100" onChange={handleMaxPriceChange} />
+          </div>
+        </div>
       </div>
       <div className="filter-card__item-condition-div">
         <h6>Item Condition</h6>
