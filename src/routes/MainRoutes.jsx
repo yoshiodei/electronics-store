@@ -7,6 +7,8 @@ import ChatRoom from '../pages/ChatRoom/ChatRoom';
 import SearchResult from '../pages/SearchResult/SearchResult';
 import UserAccount from '../pages/UserAccount/UserAccount';
 import NewItem from '../pages/NewItem/NewItem';
+import WishList from '../pages/WishList/WishList';
+import Notifications from '../pages/Notifications/Notifications';
 
 export default function MainRoutes() {
   return (
@@ -18,6 +20,8 @@ export default function MainRoutes() {
         <Route path="/chat-room" element={<ChatRoom />} />
         <Route path="/new-item" element={<NewItem />} />
         <Route path="/user-account" element={<UserAccount />} />
+        <Route path="/wish-list" element={<WishList />} />
+        <Route path="/notifications" element={<Notifications />} />
       </Routes>
     </BrowserRouter>
   );
