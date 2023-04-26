@@ -43,9 +43,7 @@ export default function FilterCard() {
         <h6>Location</h6>
         <select className="form-select" aria-label="Default select example">
           <option selected>All</option>
-          <option value="Texas">Boston</option>
-          <option value="Mississippi">Mississippi</option>
-          <option value="Denver">Denver</option>
+          <option value="Near">Items near me (within 5 miles)</option>
         </select>
       </div>
       <div className="filter-card__price-range-div">
