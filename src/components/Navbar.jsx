@@ -36,8 +36,8 @@ export default function Navbar() {
         <div className="navbar-custom__top-div">
           <ul className="d-flex justify-content-end align-items-center">
             <li>
-              <button className="navbar-custom__icon-button" title="wish list">
-                <i className="fa-regular fa-heart navbar-custom__icon" onClick={handleClickWishList} />
+              <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
+                <i className="fa-regular fa-heart navbar-custom__icon" />
               </button>
             </li>
             <li>
