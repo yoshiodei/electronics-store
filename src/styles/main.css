@@ -603,6 +603,7 @@ a {
   width: 100%;
   height: 450px;
   margin-bottom: 15px;
+  position: relative;
 }
 .item-image-box__bottom-div {
   display: flex;
@@ -1180,6 +1181,7 @@ a {
   border: 1px solid #a18089;
   padding: 15px;
   background-color: #eddfdf;
+  margin-bottom: 20px;
 }
 .user-detail-box__image-div {
   border: 1px solid #a18089;
@@ -1297,6 +1299,66 @@ a {
 }
 .wish-list__empty-div a:hover {
   background-color: rgb(203, 203, 203);
+}
+
+.start-chat-button {
+  padding: 0.5em 1.5em;
+  border-radius: 50px;
+  position: absolute;
+  z-index: 4;
+  bottom: 20px;
+  right: 20px;
+  background-color: #a18089;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+.start-chat-button * {
+  font-size: 1.2em;
+  color: #ffffff;
+  margin: 0;
+}
+.start-chat-button i {
+  margin-right: 10px;
+}
+.start-chat-button:hover {
+  background-color: #b79da4;
+}
+
+.buttons-box {
+  width: 100%;
+  height: 2.5em;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.buttons-box button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 100%;
+  flex: 1;
+  background-color: #a18089;
+  margin-right: 12px;
+  transition: background-color 0.3s;
+}
+.buttons-box button:hover {
+  background-color: #b79da4;
+}
+.buttons-box button:last-child {
+  margin-right: 0;
+}
+.buttons-box button h6, .buttons-box button i {
+  margin: 0;
+  font-size: 0.95em;
+  color: #ffffff;
+}
+.buttons-box button i {
+  margin-right: 10px;
 }
 
 .notifications__empty-div {

@@ -5,6 +5,7 @@ import ProductDetail from './components/ProductDetails';
 import ProductLocation from './components/ProductLocation';
 import SimilarItems from './components/SimilarItems';
 import VendorDetails from './components/VendorDetails';
+import ButtonsBox from './components/ButtonsBox';
 
 export default function Main() {
   return (
@@ -14,6 +15,7 @@ export default function Main() {
           <ProductDetail />
           <ProductLocation />
           <VendorDetails />
+          <ButtonsBox />
           <AdPanel />
         </div>
         <div className="main-section__right-div">
