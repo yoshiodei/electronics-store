@@ -14,7 +14,7 @@
         }
 
         & li {
-            margin-left: 2.5em;
+            margin-left: 1.5em;
             cursor: pointer;
 
         }
@@ -36,5 +36,91 @@
         color: $lightFont;
         cursor: pointer;
     }
+
+    &__pop-over{
+        position: absolute;
+        top: 25px;
+        border: 1px solid $secondaryColour;
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    &__user-account-div {
+        position: relative;
+
+        &__pop-over {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            border: 1px solid $secondaryColour;
+            border-radius: 5px;
+            background-color: white;
+            width: 180px !important;
+            min-height: 80px;
+            padding: 0;
+            overflow: hidden;
+            z-index: 5;
+
+            & li {
+                margin: 0; 
+                height: 2em;
+                border-bottom: 1px solid #00000030;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: lighten($primaryColour, 20%);
+                }
+
+                &:last-child {
+                    border-bottom: unset;
+                }
+            }
+
+            &-button {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+                outline: none;
+                border: none;
+                background-color: transparent;
+                @include paddingHorizontal(0.8em);
+
+                & i {
+                    color: $secondaryColour;
+                    font-size: 0.9em;
+                    margin-right: 12px;
+                }
+
+                & h6 {
+                    color: $secondaryColour;
+                    font-size: 0.9em;
+                    margin: 0;
+                }
+            }
+        }
+
+        & .pop-over-hidden {
+            display: none;
+        }
+    }
+
+    &__icon-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 30px;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        background-color: #FFFFFF30;
+    }
+
+    &__icon {
+        color: $lightFont;
+        font-size: 0.85em;
+    }
 }
+
 
