@@ -10,7 +10,7 @@ export default function SellNowButton() {
           <h6>Sell Now</h6>
         </Link>
         )}
-      <button type="button" className="btn btn-primary sell-now" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" className="btn btn-primary sell-now" data-bs-toggle="modal" data-bs-target="#SignInModal">
         Sell Now
       </button>
     </>
