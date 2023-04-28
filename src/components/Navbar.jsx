@@ -1,7 +1,9 @@
 /* eslint-disable */import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SellNowButton from './SellNowButton';
-import SigninModal from './SigninModal';
+import SigninModal from './SignInModal';
+import SignInModal from './SignInModal';
+import SignUpModal from './SignUpModal';
 
 export default function Navbar() {
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -36,6 +38,16 @@ export default function Navbar() {
         <div className="navbar-custom__top-div">
           <ul className="d-flex justify-content-end align-items-center">
             <li>
+              <button className="navbar-custom__icon-button" title="notifications" onClick={() => navigate("/notifications")}>
+                <i className="fa-regular fa-bell navbar-custom__icon" />
+              </button>
+            </li>
+            <li>
+              <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
+                <i className="fa-regular fa-message navbar-custom__icon" />
+              </button>
+            </li>
+            <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
               </button>
@@ -53,18 +65,6 @@ export default function Navbar() {
                     </button>
                   </li>
                   <li>
-                    <button name="notifications" onClick={() => handlePopOverClick("notifications")} role="button" className="navbar-custom__user-account-div__pop-over-button">
-                      <i className="fa-solid fa-bell" />
-                      <h6>notifications</h6>
-                    </button>
-                  </li>
-                  <li>
-                    <button name="sign-in" onClick={() => handlePopOverClick("sign-in")} role="button" className="navbar-custom__user-account-div__pop-over-button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <i className="fa-sharp fa-solid fa-arrow-right-to-bracket" />
-                      <h6>sign in</h6>
-                    </button>
-                  </li>
-                  <li>
                     <button name="log-out" onClick={() => handlePopOverClick("log-out")} role="button" className="navbar-custom__user-account-div__pop-over-button">
                       <i className="fa-sharp fa-solid fa-arrow-right-from-bracket" />
                       <h6>log out</h6>
@@ -73,6 +73,16 @@ export default function Navbar() {
                 </ul>
               </div>
             </li>
+            <li>
+              <button className="navbar-custom__text-button" data-bs-toggle="modal" data-bs-target="#SignInModal">
+                <h6>Sign In</h6>
+              </button>
+            </li>
+            <li>
+              <button className="navbar-custom__text-button" data-bs-toggle="modal" data-bs-target="#SignUpModal">
+                <h6>Register Now</h6>
+              </button>
+            </li>
           </ul>
         </div>
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
@@ -80,7 +90,8 @@ export default function Navbar() {
           <SellNowButton />
         </div>
       </nav>
-      <SigninModal />
+      <SignInModal />
+      <SignUpModal />
     </>
   );
 }

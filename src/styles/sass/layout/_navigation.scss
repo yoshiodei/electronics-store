@@ -51,12 +51,12 @@
         &__pop-over {
             position: absolute;
             top: 35px;
-            right: 0;
+            right: -60px;
             border: 1px solid $secondaryColour;
             border-radius: 5px;
             background-color: white;
-            width: 180px !important;
-            min-height: 80px;
+            width: 150px !important;
+            min-height: 50px;
             padding: 0;
             overflow: hidden;
             z-index: 5;
@@ -109,17 +109,40 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         border-radius: 50px;
         outline: none;
         border: none;
         background-color: #FFFFFF30;
     }
 
+    &__text-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 18px;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        border-right: 2px solid white;
+        padding-right: 25px;
+
+        & h6 {
+            color: $lightFont;
+            font-size: 0.85em;
+            margin: 0;
+        }
+    }
+
+    & li:last-child button {
+        border-right: none;
+        padding-right: 0;
+    }
+
     &__icon {
         color: $lightFont;
-        font-size: 0.85em;
+        font-size: 0.8em;
     }
 }
 
