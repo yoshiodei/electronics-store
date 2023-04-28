@@ -1,0 +1,38 @@
+.carousel__custom {
+    background-color: lightgrey;
+    position: relative;
+    height: 100%;
+    border-radius: 5px;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__button-prev {
+        height: 40px;
+        width: 40px;
+        border: 4px solid white;
+        border-radius: 50%;
+        padding: 0.5em;
+        background-color: $secondaryColour;
+        position: absolute;
+        opacity: 1;
+        left: -20px;
+        top: calc(50% - 20px);
+    }
+
+    &__button-next {
+        height: 40px;
+        width: 40px;
+        border: 4px solid white;
+        border-radius: 50%;
+        padding: 0.5em;
+        background-color: $secondaryColour;
+        position: absolute;
+        opacity: 1;
+        right: -20px;
+        top: calc(50% - 20px);
+    }
+}
