@@ -2,7 +2,8 @@ import React from 'react';
 import AdPanel from '../../components/AdPanel';
 import ContentInfoBox from '../../components/ContentInfoBox';
 import UserDetailBox from './component/UserDetailBox';
-import DisplayProductCard from '../../components/DisplayProductCard';
+import ProductsTab from './component/ProductsTab';
+import PremiumAccountBox from './component/PremiumAccountBox';
 
 export default function Main() {
   return (
@@ -10,11 +11,12 @@ export default function Main() {
       <main className="main-section d-flex justify-content-between">
         <div className="main-section__left-div">
           <UserDetailBox />
+          <PremiumAccountBox />
           <AdPanel />
         </div>
         <div className="main-section__right-div">
           <ContentInfoBox>All Posts</ContentInfoBox>
-          <DisplayProductCard />
+          <ProductsTab />
         </div>
       </main>
     </div>
