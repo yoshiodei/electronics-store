@@ -93,3 +93,90 @@
         border-start-start-radius: 5px;
     }
 }
+
+@include mobileScreen {
+    .hero {
+        width: 100%;
+        height: auto;
+
+        &__main-div {
+            width: 100%;
+            height: 280px;
+            margin-bottom: 15px;
+            padding: 15px;
+            position: relative;
+    
+            &__image {
+                position: absolute;
+                bottom: 0;
+                right: 20px;
+                height: 200px;
+            }
+    
+            & h1 {
+                width: 80%;
+                font-weight: 700;
+                font-size: 1.4em;
+                color: $secondaryColour;
+                margin-bottom: 10px;
+            }
+    
+            & p {
+                width: 60%;
+                font-weight: 500;
+            }
+        }
+    
+        &__search-div {
+            height: 90px;
+            @include paddingHorizontal(1em);
+    
+            &__image {
+                display: none;
+            }
+    
+            &__input {
+                border: none;
+                height: 2.5em;
+                width: 80%;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border: 1px solid $secondaryColour;
+                @include paddingHorizontal(1em);
+    
+                &:focus {
+                    outline: 2px solid lighten($secondaryColour, 20%);
+                }
+            }
+    
+            &__button {
+                border: none;
+                outline: none;
+                height: 2.5em;
+                width: 20%;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;    
+                color: $lightFont;
+                background-color: $secondaryColour;
+                font-weight: 700;
+                letter-spacing: 1px;
+            }
+        }
+    
+        &__form {
+            width: 600px;
+            background-color: white;
+            height: 2.5em;
+            z-index: 2;
+            border-radius: 5px;
+        }
+    
+        &__search-box {
+            border: none;
+            width: 100%;
+            height: 2.5em;
+            @include paddingHorizontal(1em);
+            border-start-start-radius: 5px;
+        }
+    }
+}
