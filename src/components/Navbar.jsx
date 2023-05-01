@@ -4,6 +4,7 @@ import SellNowButton from './SellNowButton';
 import SigninModal from './SignInModal';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
+import DrawerButton from './DrawerButton';
 
 export default function Navbar() {
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -88,6 +89,7 @@ export default function Navbar() {
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
           <Link to="/" className="h2 navbar-custom__brand">Brand</Link>
           <SellNowButton />
+          <DrawerButton />
         </div>
       </nav>
       <SignInModal />
