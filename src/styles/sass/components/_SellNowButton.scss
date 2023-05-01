@@ -22,3 +22,11 @@
         background-color: $secondaryColour !important;
     }
 }
+
+@include mobileScreen{
+    .navbar-custom{
+        & .sell-now {
+            display: none;
+        }
+    }
+}
