@@ -85,3 +85,80 @@
         }
     }
 }
+
+@include mobileScreen {
+    .footer {
+        padding-top: 0;
+
+        &__top-div {
+            width: 100%;
+            margin: 0 auto 20px;
+            padding: 0 1em;
+        }
+
+        &__heading {
+            font-size: 1.8em;
+            margin: 20px 0 10px;
+        }
+    
+        &__brand-info {
+            line-height: 1.1;
+            font-size: 1em;
+            width: 75%;
+            margin-bottom: 20px;
+        }
+    
+        &__category-list-item {
+            margin-bottom: 6px;
+            
+            & a {
+                font-size: 1.2em;
+            }
+        }
+
+        &__contact-div {
+            margin-bottom: 15px;
+        }
+
+        &__contact-icon {
+            height: 1.4em;
+            width: 1.4em;
+        }
+        
+        &__contact-info {
+            font-size: 1.1em; 
+            margin: 0;
+            line-height: 1;
+            font-weight: 500;
+            color: $lightFont;
+        }
+    
+        &__socials-inner-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: #FFFFFF80;
+            margin-right: 15px;
+        }
+    
+        &__social-icon {
+            font-size: 1.4em;
+            color: $secondaryColour;
+        }
+    
+        &__bottom-div {
+            height: 60px;
+            background-color: #FFFFFF20;
+            align-items: center;
+            justify-content: center;
+    
+            & h6 {
+                color: $lightFont;
+                margin: 0;
+            }
+        }
+    }
+}

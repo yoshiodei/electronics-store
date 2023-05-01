@@ -12,7 +12,7 @@ export default function Footer() {
             <SellNowButton />
           </div>
           <div className="col-md-3">
-            <h4 className="footer__heading">Categoires</h4>
+            <h4 className="footer__heading">Categories</h4>
             <ul className="footer__category-list">
               <li className="footer__category-list-item">
                 <a href="phone">Phones</a>
@@ -38,7 +38,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="col-md-3">
-            <h4 className="footer__heading ">Contacct Us</h4>
+            <h4 className="footer__heading ">Contact Us</h4>
             <div className="footer__contact-div d-flex">
               <i className="footer__contact-icon" />
               <p className="footer__contact-info">058-422-8123</p>
