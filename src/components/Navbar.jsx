@@ -1,13 +1,13 @@
 /* eslint-disable */import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SellNowButton from './SellNowButton';
-import SigninModal from './SignInModal';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
 import DrawerButton from './DrawerButton';
 
 export default function Navbar() {
   const [showAccountModal, setShowAccountModal] = useState(false);
+  const [toggleDrawer, setToggleDrawer] = useState(false);
   const navigate = useNavigate();
 
   const handleClickWishList = (e) => {
@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar-custom">
+      <nav className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
         <div className="navbar-custom__top-div">
           <ul className="d-flex justify-content-end align-items-center">
             <li>
@@ -89,7 +89,7 @@ export default function Navbar() {
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
           <Link to="/" className="h2 navbar-custom__brand">Brand</Link>
           <SellNowButton />
-          <DrawerButton />
+          <DrawerButton setToggleDrawer={setToggleDrawer} toggleDrawer={toggleDrawer} />
         </div>
       </nav>
       <SignInModal />
