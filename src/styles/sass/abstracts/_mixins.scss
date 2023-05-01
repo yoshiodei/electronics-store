@@ -22,3 +22,9 @@
     height: $size;
     width: $size;
 }
+
+@mixin mobileScreen {
+    @media (max-width: 430px){
+        @content;
+    }
+}
