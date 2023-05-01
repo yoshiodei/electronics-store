@@ -1,4 +1,5 @@
-/* eslint-disable */import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SellNowButton from './SellNowButton';
 import SignInModal from './SignInModal';
