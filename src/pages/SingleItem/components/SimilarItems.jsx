@@ -6,17 +6,17 @@ export default function SimilarItems() {
   return (
     <div>
       <SectionHeader>Similar Items</SectionHeader>
-      <div className="row">
-        <div className="col-md-3">
+      <div className="row g-2">
+        <div className="col-6 col-md-3">
           <ProductCard />
         </div>
-        <div className="col-md-3">
+        <div className="col-6 col-md-3">
           <ProductCard />
         </div>
-        <div className="col-md-3">
+        <div className="col-6 col-md-3">
           <ProductCard />
         </div>
-        <div className="col-md-3">
+        <div className="col-6 col-md-3">
           <ProductCard />
         </div>
       </div>
