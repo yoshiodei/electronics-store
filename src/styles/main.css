@@ -124,14 +124,14 @@
   color: #ffffff;
   font-size: 0.8em;
 }
-.navbar-custom .drawer-button, .navbar-custom .drawer-button__div {
+.navbar-custom .drawer-button, .navbar-custom .drawer-button__div, .navbar-custom .drawer-button__div__hide {
   display: none;
 }
 
 @media (max-width: 430px) {
   .navbar-custom.toggled {
     position: fixed;
-    z-index: 4;
+    z-index: 10;
     top: 0;
     right: 0;
     left: 0;
@@ -178,7 +178,7 @@
     background-color: #eddfdf;
     z-index: 6;
     padding: 0.8em;
-    transition: right 0.3s;
+    transition: right 0.2s;
   }
   .navbar-custom .drawer-button__div__hide {
     display: block;
@@ -196,7 +196,7 @@
   }
   .navbar-custom .drawer-button__input-button {
     position: absolute;
-    z-index: 2;
+    z-index: 10;
     top: 0;
     right: 0;
     height: 100%;
@@ -504,8 +504,8 @@ a {
   .hero__main-div__image {
     position: absolute;
     bottom: 0;
-    right: 20px;
-    height: 200px;
+    right: 15px;
+    height: 190px;
   }
   .hero__main-div h1 {
     width: 80%;
@@ -903,6 +903,23 @@ a {
   margin: 0;
 }
 
+@media (max-width: 430px) {
+  .item-image-box__top-div {
+    width: 100%;
+    height: 320px;
+    padding: 0.5em;
+  }
+  .item-image-box__bottom-div {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .item-image-box__bottom-div__image-div {
+    width: 60px;
+    height: 60px;
+    margin-right: 0;
+  }
+}
 .product-detail {
   border-radius: 5px;
   border: 1px solid #a18089;
@@ -1233,8 +1250,20 @@ a {
 }
 .search-info-box h4 {
   color: #a18089;
+  margin: 0;
 }
 
+@media (max-width: 430px) {
+  .search-info-box {
+    width: 100%;
+    height: auto;
+    padding: 20px 10px;
+  }
+  .search-info-box h4 {
+    font-size: 1.05em;
+    text-align: center;
+  }
+}
 .content-info-box {
   width: 100;
   height: auto;
@@ -1347,6 +1376,26 @@ a {
   background-color: #C99D9D;
 }
 
+@media (max-width: 430px) {
+  .new-item-form__radio-inner-div--promote {
+    flex-direction: column;
+    margin: 8px 0 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .new-item-form__promote-item-div {
+    flex-direction: column;
+  }
+  .new-item-form__post-item-button {
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 50px;
+    font-weight: 700;
+    color: white;
+    margin: 20px 0;
+    background-color: #C99D9D;
+  }
+}
 .modal {
   background-color: rgba(255, 255, 255, 0.5019607843);
 }
@@ -1463,6 +1512,115 @@ a {
   padding: 0;
 }
 
+@media (max-width: 430px) {
+  .modal-body {
+    min-height: 300px;
+  }
+  .modal__custom-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal__custom-content-left {
+    min-height: 10px;
+    flex: 1;
+    background-color: #a18089;
+    padding: 1.5em;
+  }
+  .modal__custom-content-left h2 {
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .modal__custom-content-left .line {
+    height: 3px;
+    width: 100px;
+    background-color: #C99D9D;
+    margin-bottom: 10px;
+  }
+  .modal__custom-content-left p {
+    line-height: 1.4;
+    color: #ffffff;
+    font-weight: 600;
+    width: 80%;
+  }
+  .modal__custom-content-right {
+    min-height: 300px;
+    flex: 8;
+    background-color: white;
+    padding: 3em 2.5em;
+    position: relative;
+  }
+  .modal__custom-content-right .button-close-custom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .modal__custom-content-right form input {
+    width: 100%;
+    height: 2.5em;
+    border-radius: 5px;
+    border: 1px solid #a18089;
+    margin-bottom: 10px;
+    padding: 0 1em;
+  }
+  .modal__custom-content-right form input:focus {
+    outline: 2px solid #C99D9D;
+  }
+  .modal__custom-content-right .check-box-div {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .modal__custom-content-right .check-box-div input[type=checkbox] {
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    margin-right: 12px;
+    border: 1px solid #a18089;
+  }
+  .modal__custom-content-right .check-box-div h6 {
+    margin: 0;
+    font-size: 0.9em;
+  }
+  .modal__custom-content-right .register-button {
+    height: 2.5em;
+    border-radius: 5px;
+    background-color: #a18089;
+    color: #ffffff;
+    display: block;
+    font-weight: 700;
+    text-align: center;
+    line-height: 2.5;
+    letter-spacing: 0.8px;
+    margin-bottom: 15px;
+  }
+  .modal__custom-content-right .register-button:hover {
+    background-color: #ac8f97;
+  }
+  .modal__custom-content-right .switch-to-signin {
+    font-size: 0.95em;
+    text-align: center;
+    margin: 0;
+  }
+  .modal__custom-content-right .switch-to-signin__button {
+    outline: none;
+    border: none;
+    color: #a18089;
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: 600;
+  }
+  .modal__custom-content-right .switch-to-signin__button:hover {
+    text-decoration: underline;
+  }
+  .modal-body__left-inner-div {
+    height: 100%;
+    width: 100%;
+    background-color: #a18089;
+  }
+  .modal-body__left, .modal-body__right {
+    padding: 0;
+  }
+}
 .user-detail-box {
   border-radius: 5px;
   border: 1px solid #a18089;
@@ -1615,6 +1773,18 @@ a {
   background-color: #b79da4;
 }
 
+@media (max-width: 430px) {
+  .start-chat-button {
+    bottom: 20px;
+    right: 20px;
+    height: 40px;
+    width: 40px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1882352941);
+  }
+  .start-chat-button * {
+    font-size: 1em;
+  }
+}
 .buttons-box {
   width: 100%;
   height: 2.5em;
@@ -1790,6 +1960,17 @@ a {
   font-size: 5em;
 }
 
+@media (max-width: 430px) {
+  .tabs-custom__empty-div {
+    width: 90%;
+    min-height: 250px;
+    margin: 30px auto;
+    padding: 2.5em;
+  }
+  .tabs-custom__empty-div i {
+    font-size: 5em;
+  }
+}
 .footer {
   height: auto;
   background-color: #a18089;
@@ -1874,7 +2055,7 @@ a {
     padding: 0 1em;
   }
   .footer__heading {
-    font-size: 1.8em;
+    font-size: 1.4em;
     margin: 20px 0 10px;
   }
   .footer__brand-info {
@@ -1887,7 +2068,7 @@ a {
     margin-bottom: 6px;
   }
   .footer__category-list-item a {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
   .footer__contact-div {
     margin-bottom: 15px;
@@ -1948,7 +2129,16 @@ a {
   margin-left: 10px;
 }
 
+.main-section__mobile-div {
+  display: none;
+}
+
 @media (max-width: 430px) {
+  .main-section-div {
+    background-color: #f5eff2;
+    height: auto;
+    padding: 15px 0;
+  }
   .main-section {
     margin: 0 auto;
     width: 100%;
@@ -1964,5 +2154,9 @@ a {
     width: 100vw;
     margin: 0;
     padding: 0 0.5em;
+  }
+  .main-section__mobile-div {
+    display: block;
+    margin-bottom: 30px;
   }
 }/*# sourceMappingURL=main.css.map */

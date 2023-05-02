@@ -20,6 +20,12 @@ export default function Main() {
         </div>
         <div className="main-section__right-div">
           <ItemImageBox />
+          <div className="main-section__mobile-div">
+            <ProductDetail />
+            <ProductLocation />
+            <VendorDetails />
+            <ButtonsBox />
+          </div>
           <SimilarItems />
         </div>
       </main>

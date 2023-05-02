@@ -15,6 +15,10 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
+          <div className="main-section__mobile-div">
+            <UserDetailBox />
+            <PremiumAccountBox />
+          </div>
           <ContentInfoBox>All Posts</ContentInfoBox>
           <ProductsTab />
         </div>

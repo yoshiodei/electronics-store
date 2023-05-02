@@ -20,7 +20,17 @@
     }
 }
 
+    .main-section__mobile-div{
+        display: none;
+    }
+
 @include mobileScreen {
+    .main-section-div {
+        background-color: $backgroundColour;
+        height: auto;
+        padding: 15px 0;
+    }
+
     .main-section {
         margin: 0 auto;
         width: 100%;
@@ -38,5 +48,10 @@
             margin: 0;
             padding: 0 0.5em;
         }
+    }
+
+    .main-section__mobile-div{
+        display: block;
+        margin-bottom: 30px;
     }
 }
