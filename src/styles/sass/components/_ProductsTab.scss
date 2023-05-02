@@ -48,3 +48,18 @@
         }
     }
 }
+
+@include mobileScreen {
+    .tabs-custom {
+        &__empty-div {
+            width: 90%;
+            min-height: 250px;
+            margin: 30px auto;
+            padding: 2.5em;
+    
+            & i {
+                font-size: 5em;
+            }
+        }
+    }
+}

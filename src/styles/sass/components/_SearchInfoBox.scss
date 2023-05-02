@@ -9,5 +9,19 @@
 
     & h4 {
         color: $secondaryColour;
+        margin: 0;
+    }
+}
+
+@include mobileScreen {
+    .search-info-box {
+        width: 100%;
+        height: auto;
+        padding: 20px 10px;
+    
+        & h4 {
+            font-size: 1.05em;
+            text-align: center;
+        }
     }
 }

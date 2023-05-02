@@ -76,3 +76,28 @@
         background-color: $primaryColour;
     }
 }
+
+@include mobileScreen{
+    .new-item-form {
+        &__radio-inner-div--promote {
+            flex-direction: column;
+            margin: 8px 0 15px;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        &__promote-item-div {
+            flex-direction: column;
+        }
+
+        &__post-item-button {
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 50px;
+            font-weight: 700;
+            color: white;
+            margin: 20px 0;
+            background-color: $primaryColour;
+        }
+    }
+}

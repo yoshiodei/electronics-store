@@ -143,7 +143,7 @@
         font-size: 0.8em;
     }
 
-    & .drawer-button, & .drawer-button__div {
+    & .drawer-button, & .drawer-button__div, & .drawer-button__div__hide {
         display: none;
     }
 }
@@ -155,7 +155,7 @@
         
         &.toggled {
             position: fixed;
-            z-index: 4;
+            z-index: 10;
             top:0;
             right: 0;
             left: 0;
@@ -207,7 +207,7 @@
                 background-color: lighten($primaryColour, 20%);
                 z-index: 6;
                 padding: 0.8em;
-                transition: right 0.3s;
+                transition: right 0.2s;
 
                 &__hide {
                     display: block;
@@ -228,7 +228,7 @@
 
             &__input-button {
                 position: absolute;
-                z-index: 2;
+                z-index: 10;
                 top: 0;
                 right:0;
                 height: 100%;
