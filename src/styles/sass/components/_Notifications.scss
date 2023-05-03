@@ -36,3 +36,19 @@
         }
     }
 }
+
+@include mobileScreen {
+    .notifications {
+        &__empty-div {
+            width: 90%;
+            min-height: 250px;
+            margin: 30px auto;
+            padding: 1.5em;
+
+            & i {
+                font-size: 5em;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
