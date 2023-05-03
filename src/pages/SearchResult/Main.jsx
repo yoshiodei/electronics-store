@@ -6,6 +6,7 @@ import SectionHeader from '../../components/SectionHeader';
 import SearchBar from './components/SearchBar';
 import SearchInfoBox from './components/SearchInfoBox';
 import SearchResultems from './components/SearchResultems';
+import CategoriesBox from './components/CategoriesBox';
 
 export default function Main() {
   return (
@@ -19,6 +20,9 @@ export default function Main() {
         <div className="main-section__right-div">
           <SearchInfoBox />
           <SearchBar />
+          <div className="main-section__mobile-div">
+            <CategoriesBox />
+          </div>
           <SearchResultems />
           <Pagination />
         </div>

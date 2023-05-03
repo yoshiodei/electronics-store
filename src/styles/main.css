@@ -1164,6 +1164,7 @@ a {
 }
 .chat-card--alt .chat-card__image-div {
   margin-left: 15px;
+  margin-right: 0;
 }
 .chat-card--alt .chat-card__message-div {
   border: 1px solid darkgrey;
@@ -1176,52 +1177,25 @@ a {
 @media (max-width: 430px) {
   .chat-wall__main {
     height: 60vh;
-    padding: 0.8em;
+    padding: 0.8em 10px;
   }
   .chat-wall__input-div {
     width: 100%;
   }
   .chat-wall__input {
-    border: none;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border: 1px solid #a18089;
-    padding-left: 1em;
-    padding-right: 1em;
     width: 80%;
-    height: 100%;
-  }
-  .chat-wall__input:focus {
-    outline: 2px solid #ccbbbf;
-  }
-  .chat-wall__button {
-    flex: 1;
-    height: 100%;
-    outline: none;
-    border: none;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    color: #ffffff;
-    background-color: #a18089;
-    font-weight: 700;
-    letter-spacing: 1px;
   }
   .chat-card {
-    min-height: 3em;
-    align-items: flex-start;
-    margin-bottom: 15px;
+    margin-bottom: 0.8em;
   }
   .chat-card__image-div {
-    height: 3.5em;
-    width: 3.5em;
-    border-radius: 50%;
-    border: 1px solid #a18089;
-    background-color: lightgrey;
-    margin-right: 15px;
+    height: 53px;
+    width: 53px;
+    margin-right: 8px;
   }
   .chat-card__message-div {
     min-height: 3em;
-    max-width: 380px;
+    max-width: 70vw;
     display: inline-block;
     padding: 1em;
     border: 1px solid #a18089;
@@ -1241,6 +1215,7 @@ a {
   }
   .chat-card--alt .chat-card__image-div {
     margin-left: 15px;
+    margin-right: 0;
   }
   .chat-card--alt .chat-card__message-div {
     border: 1px solid darkgrey;
@@ -2092,6 +2067,23 @@ a {
     font-size: 5em;
   }
 }
+.search__categories-box ul {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+.search__categories-box button {
+  border: none;
+  background-color: #eddfdf;
+  padding: 0.5em 1em;
+  border-radius: 50px;
+  color: #a18089;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  margin: 0.3em;
+}
+
 .footer {
   height: auto;
   background-color: #a18089;
