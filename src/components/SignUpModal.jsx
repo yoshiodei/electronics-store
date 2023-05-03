@@ -7,6 +7,7 @@ export default function SignUpModal() {
       <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-body">
+            <button type="button" className="btn-close button-close-custom" data-bs-dismiss="modal" aria-label="Close" />
             <div className="modal__custom-content d-flex">
               <div className="modal__custom-content-left">
                 <div>
@@ -16,7 +17,6 @@ export default function SignUpModal() {
                 </div>
               </div>
               <div className="modal__custom-content-right">
-                <button type="button" className="btn-close button-close-custom" data-bs-dismiss="modal" aria-label="Close" />
                 <form>
                   <input placeholder="Enter first name" />
                   <input placeholder="Enter last name" />
