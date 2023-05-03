@@ -105,6 +105,7 @@
 
         & .chat-card__image-div {
             margin-left: 15px;
+            margin-right: 0;
         }
 
         & .chat-card__message-div {
@@ -121,7 +122,7 @@
     .chat-wall { 
         &__main {
             height: 60vh;
-            padding: 0.8em;
+            padding: 0.8em 10px;
         }
     
         &__input-div {
@@ -129,50 +130,22 @@
         }
     
         &__input {
-            border: none;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            border: 1px solid $secondaryColour;
-            @include paddingHorizontal(1em);
             width: 80%;
-            height: 100%;
-    
-            &:focus {
-                outline: 2px solid lighten($secondaryColour, 20%);
-            }
-        }
-    
-        &__button {
-            flex: 1;
-            height: 100%;
-            outline: none;
-            border: none;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            color: $lightFont;
-            background-color: $secondaryColour;
-            font-weight: 700;
-            letter-spacing: 1px;
         }
     }
     
     .chat-card {
-        min-height: 3em;
-        align-items: flex-start;
-        margin-bottom: 15px;
+        margin-bottom: 0.8em;
         
         &__image-div {
-            height: 3.5em;
-            width: 3.5em;
-            border-radius: 50%;
-            border: 1px solid $secondaryColour;
-            background-color: lightgrey;
-            margin-right: 15px;
+            height: 53px;
+            width: 53px;
+            margin-right:8px;
         }
     
         &__message-div {
             min-height: 3em;
-            max-width: 380px;
+            max-width: 70vw;
             display: inline-block;
             padding: 1em;
             border: 1px solid $secondaryColour;
@@ -194,6 +167,7 @@
     
             & .chat-card__image-div {
                 margin-left: 15px;
+                margin-right: 0;
             }
     
             & .chat-card__message-div {
