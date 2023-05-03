@@ -259,7 +259,16 @@
                     background-color: transparent;
                     border: none;
                     padding: 0 0.5em !important;
+                }
 
+                &__button-div {
+                    display: flex;
+                    align-items: center;
+
+                    & i {
+                        font-size: 0.9em;
+                        margin-right: 10px;
+                    }
                 }
 
                 & h6 {
@@ -308,7 +317,9 @@
                 background-color: $secondaryColour;
                 color: white;
                 border: none;
-                flex: 1
+                flex: 1;
+                font-weight: 700;
+                letter-spacing: 0.8px;
             }
 
             &__register-button {
@@ -318,10 +329,12 @@
                 border: 1px solid $secondaryColour;
                 background-color: transparent;
                 color: $secondaryColour;
+                font-weight: 700;
+                letter-spacing: 0.8px;
             }
 
             &__sign-out-div {
-                height: 2em;
+                height: 2.5em;
                 width: 100%;
                 margin-top: 30px;
             }
@@ -333,6 +346,8 @@
                 background-color: $secondaryColour;
                 width: 100%;
                 border-radius: 5px;
+                font-weight: 700;
+                letter-spacing: 0.8px;
             }
         }
     }   
