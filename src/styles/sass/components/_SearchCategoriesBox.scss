@@ -1,0 +1,20 @@
+.search__categories-box {
+    ul {
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 25px;
+    }
+    
+    button {
+        border: none;
+        background-color: lighten($primaryColour, 20%);
+        padding: 0.5em 1em;
+        border-radius: 50px;
+        color: $secondaryColour;
+        font-weight:700;
+        letter-spacing: 0.8px;
+        margin: 0.3em;
+        
+    }
+}
