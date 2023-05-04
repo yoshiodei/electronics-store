@@ -7,7 +7,7 @@ export default function FormItems() {
         <div className="col-md-6">
           <div className="new-item-form__input-div">
             <label htmlFor="name-input" className="new-item-form__label">Item Name</label>
-            <input id="name-input" className="new-item-form__input" placeholder="eg. John Doe" />
+            <input id="name-input" className="new-item-form__input" placeholder="eg. Playstation 5S" />
           </div>
         </div>
         <div className="col-md-6">
@@ -17,28 +17,30 @@ export default function FormItems() {
           </div>
         </div>
         <div className="col-md-6">
-          <div className="new-item-form__textarea-div">
-            <label className="new-item-form__label">Item Detail</label>
-            <textarea className="new-item-form__textarea" />
+          <div className="new-item-form__input-div">
+            <label htmlFor="price-input" className="new-item-form__label">Item Category</label>
+            <select className="new-item-form__input" aria-label="Default select example">
+              <option selected>Laptops</option>
+              <option value="Phones">Phones</option>
+              <option value="Television">Televisions</option>
+              <option value="Denver">Desktops</option>
+            </select>
           </div>
         </div>
         <div className="col-md-6">
-          <div className="new-item-form__radio-div">
+          <div className="new-item-form__input-div">
             <label htmlFor="price-input" className="new-item-form__label">Item Condition</label>
-            <div className="new-item-form__radio-outer-div d-flex">
-              <div className="new-item-form__radio-inner-div">
-                <input id="brand-new" className="new-item-form__radio-input" name="condition" type="radio" />
-                <label htmlFor="brand-new" className="new-item-form__radio-label">Brand New</label>
-              </div>
-              <div className="new-item-form__radio-inner-div">
-                <input id="slightly-used" className="new-item-form__radio-input" name="condition" type="radio" />
-                <label htmlFor="slightly-used" className="new-item-form__radio-label">Slightly Used</label>
-              </div>
-              <div className="new-item-form__radio-inner-div">
-                <input id="used" className="new-item-form__radio-input" name="condition" type="radio" />
-                <label htmlFor="used" className="new-item-form__radio-label">Used</label>
-              </div>
-            </div>
+            <select className="new-item-form__input" aria-label="Default select example">
+              <option selected>Brand New</option>
+              <option value="Slightly Used">Slightly Used</option>
+              <option value="Used">Used</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-md-12">
+          <div className="new-item-form__textarea-div">
+            <label className="new-item-form__label">Item Detail</label>
+            <textarea className="new-item-form__textarea" />
           </div>
         </div>
         <div className="col-md-12">
