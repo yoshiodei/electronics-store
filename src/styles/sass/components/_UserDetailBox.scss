@@ -101,3 +101,107 @@
         font-size: 0.9em;
     }
 }
+
+@include mobileScreen{
+    .user-detail-box {
+        background-color: lighten($primaryColour, 20%);
+    
+        &__user-name {
+            font-size: 1.6em;
+        }
+    
+       &__user-info-outer-div {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+
+            & .user-detail-box__user-info-div{
+                border: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                flex: 1;  
+                height: 80px;
+                border-radius: 5px;
+                padding: 0.5em;
+                background-color: $secondaryColour;
+                margin-right: 10px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                & .user-detail-box__user-info-title {
+                    color: $lightFont;
+                }
+
+                & .user-detail-box__user-info-value {
+                    color: $lightFont;
+                    font-size: 1.8em;
+                }
+            }
+       }
+    
+        &__user-info-title, &__user-info-value {
+            font-weight: 700;
+            color: $secondaryColour;
+            margin: 0;
+        }
+
+        &__user-info-div--bio {
+            border: 1px solid $secondaryColour;
+            border-radius: 5px;
+            background-color: lighten($primaryColour, 20%);
+            padding: 0.5em;
+            margin: 15px 0;
+        }
+    
+        &__user-info-value--bio {
+            font-weight: 400;
+            line-height: 1.4;
+            font-size: 0.9em; 
+        }
+    
+        &__start-chat-div {
+            display: block;
+            border-radius: 5px;
+            background-color: $secondaryColour;
+            @include paddingVertical(8px);
+            margin-top: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+    
+            & h5 {
+               color: $lightFont;
+               margin: 0;
+               font-weight: 700;
+               text-align: center;
+               letter-spacing: 0.8px;
+            }
+        }
+    
+        &__report-user-div {
+            align-items: center;
+            cursor: pointer;
+    
+            &:hover .user-detail-box__report-user{
+                text-decoration: underline;
+            }
+        }
+    
+        &__report-user-icon {
+            height: 1em;
+            width: 1em;
+            background-color: grey;
+            border-radius: 50%;
+            margin-right: 10px;    
+        }
+    
+        &__report-user {
+            margin: 0;
+            line-height: 1;
+            font-size: 0.9em;
+        }
+    }
+}

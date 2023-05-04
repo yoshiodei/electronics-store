@@ -13,29 +13,31 @@ export default function UserDetailBox() {
           John Doe
         </h5>
       </div>
-      <div className="user-detail-box__user-info-div">
-        <h6 className="user-detail-box__user-info-title">
-          Followers
-        </h6>
-        <h6 className="user-detail-box__user-info-value">
-          28
-        </h6>
-      </div>
-      <div className="user-detail-box__user-info-div">
-        <h6 className="user-detail-box__user-info-title">
-          Total Posts
-        </h6>
-        <h6 className="user-detail-box__user-info-value">
-          11
-        </h6>
-      </div>
-      <div className="user-detail-box__user-info-div">
-        <h6 className="user-detail-box__user-info-title">
-          Rating
-        </h6>
-        <h6 className="user-detail-box__user-info-value">
-          4.5
-        </h6>
+      <div className="user-detail-box__user-info-outer-div">
+        <div className="user-detail-box__user-info-div">
+          <h6 className="user-detail-box__user-info-title">
+            Followers
+          </h6>
+          <h6 className="user-detail-box__user-info-value">
+            28
+          </h6>
+        </div>
+        <div className="user-detail-box__user-info-div">
+          <h6 className="user-detail-box__user-info-title">
+            Total Posts
+          </h6>
+          <h6 className="user-detail-box__user-info-value">
+            11
+          </h6>
+        </div>
+        <div className="user-detail-box__user-info-div">
+          <h6 className="user-detail-box__user-info-title">
+            Rating
+          </h6>
+          <h6 className="user-detail-box__user-info-value">
+            4.5
+          </h6>
+        </div>
       </div>
       <div className="user-detail-box__user-info-div user-detail-box__user-info-div--bio">
         <h6 className="user-detail-box__user-info-title">

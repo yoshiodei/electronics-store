@@ -1785,6 +1785,95 @@ a {
   font-size: 0.9em;
 }
 
+@media (max-width: 430px) {
+  .user-detail-box {
+    background-color: #eddfdf;
+  }
+  .user-detail-box__user-name {
+    font-size: 1.6em;
+  }
+  .user-detail-box__user-info-outer-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .user-detail-box__user-info-outer-div .user-detail-box__user-info-div {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    height: 80px;
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: #a18089;
+    margin-right: 10px;
+  }
+  .user-detail-box__user-info-outer-div .user-detail-box__user-info-div:last-child {
+    margin-right: 0;
+  }
+  .user-detail-box__user-info-outer-div .user-detail-box__user-info-div .user-detail-box__user-info-title {
+    color: #ffffff;
+  }
+  .user-detail-box__user-info-outer-div .user-detail-box__user-info-div .user-detail-box__user-info-value {
+    color: #ffffff;
+    font-size: 1.8em;
+  }
+  .user-detail-box__user-info-title, .user-detail-box__user-info-value {
+    font-weight: 700;
+    color: #a18089;
+    margin: 0;
+  }
+  .user-detail-box__user-info-div--bio {
+    border: 1px solid #a18089;
+    border-radius: 5px;
+    background-color: #eddfdf;
+    padding: 0.5em;
+    margin: 15px 0;
+  }
+  .user-detail-box__user-info-value--bio {
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 0.9em;
+  }
+  .user-detail-box__start-chat-div {
+    display: block;
+    border-radius: 5px;
+    background-color: #a18089;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .user-detail-box__start-chat-div h5 {
+    color: #ffffff;
+    margin: 0;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.8px;
+  }
+  .user-detail-box__report-user-div {
+    align-items: center;
+    cursor: pointer;
+  }
+  .user-detail-box__report-user-div:hover .user-detail-box__report-user {
+    text-decoration: underline;
+  }
+  .user-detail-box__report-user-icon {
+    height: 1em;
+    width: 1em;
+    background-color: grey;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .user-detail-box__report-user {
+    margin: 0;
+    line-height: 1;
+    font-size: 0.9em;
+  }
+}
 .wish-list__empty-div {
   width: 50%;
   min-height: 250px;
