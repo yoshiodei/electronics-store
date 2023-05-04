@@ -17,10 +17,10 @@ export default function CategoriesBox() {
           <button type="button">Laptop</button>
         </li>
         <li>
-          <button type="button">Gaming Consoles</button>
+          <button type="button">Headphones and Speakers</button>
         </li>
         <li>
-          <button type="button">Headphones and Speakers</button>
+          <button type="button">Gaming Consoles</button>
         </li>
         <li>
           <button type="button">Accessories</button>
