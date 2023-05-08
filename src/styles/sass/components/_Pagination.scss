@@ -6,7 +6,8 @@
 
 .pagination {
     height: 45px;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
+    background-color: $primaryMidGreyColour;
     border-radius: 50px;
     justify-content: space-between;
     align-items: center;
@@ -24,7 +25,7 @@
         height: 25px;
         width: 25px;
         border-radius: 50%;
-        border: 1px solid $secondaryColour;
+        border: 1px solid $primaryGreyColour;
         margin: 0 5px;
         font-size: 0.9em;
         font-weight: 600;
