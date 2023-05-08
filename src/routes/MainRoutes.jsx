@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import SingleItem from '../pages/SingleItem/SingleItem';
@@ -13,6 +14,18 @@ import Notifications from '../pages/Notifications/Notifications';
 export default function MainRoutes() {
   return (
     <BrowserRouter>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchResult />} />
