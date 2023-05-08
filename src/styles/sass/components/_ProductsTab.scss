@@ -1,6 +1,6 @@
 .tabs-custom {
     margin-bottom: 20px;
-    border-bottom: 1px solid $secondaryColour;
+    border-bottom: 1px solid $primaryGreyColour;
 
     &__tab-item {
         background-color: transparent;
@@ -9,16 +9,16 @@
     &__tab-item button{
 
         font-weight: 600;
-        color: $secondaryColour;
+        color: $darkFont;
 
         &:hover {
-            color: $primaryColour !important;
-            border-bottom: 1px solid $secondaryColour !important;
+            color: $darkFont !important;
+            border-bottom: 1px solid $primaryGreyColour !important;
         }
 
         &.active {
-            color: $secondaryColour !important;
-            border: 1px solid $secondaryColour !important;
+            color: $darkFont !important;
+            border: 1px solid $primaryGreyColour !important;
             border-bottom: 1px solid $backgroundColour !important;
             background-color:  transparent !important;
 

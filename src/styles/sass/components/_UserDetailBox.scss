@@ -1,16 +1,16 @@
 .user-detail-box {
     border-radius: 5px;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
     padding: 15px;
-    background-color: lighten($primaryColour, 20%);
+    background-color: $primaryMidGreyColour;
     margin-bottom: 20px;
 
     &__image-div {
-        border: 1px solid $secondaryColour;
+        border: 1px solid $primaryGreyColour;
         height: 120px;
         width: 120px;
         border-radius: 50%;
-        background-color: lightgrey;
+        background-color: #fff;
         position: relative;
         margin: 0 auto 8px;
         justify-content: center;
@@ -24,7 +24,7 @@
         background-color: $onlineColour;
         left: 8px;
         top: 8px;
-        border: 1px solid $secondaryColour;
+        border: 1px solid $primaryGreyColour;
     }
 
     &__user-name {
@@ -35,7 +35,7 @@
     &__user-info-div {
         display: flex;
         justify-content: space-between;
-        border-top: 1px solid #FFFFFF;
+        border-top: 1px solid $primaryGreyColour;
         @include paddingVertical(0.5em);
 
         &--bio {
@@ -50,7 +50,7 @@
 
     &__user-info-title, &__user-info-value {
         font-weight: 700;
-        color: $secondaryColour;
+        color: $darkFont;
         margin: 0;
     }
 

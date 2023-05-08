@@ -1,29 +1,29 @@
 .premium-account-box {
     border-radius: 5px;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
     padding: 15px;
-    background-color: lighten($primaryColour, 20%);
+    background-color: $primaryMidGreyColour;
     margin-bottom: 20px;
 
     & p {
         line-height: 1.3;
-        color: $secondaryColour;
+        color: $darkFont;
     }
 
     &__button {
         width: 100%;
         height: 2.5em;
         border-radius: 5px;
-        background-color: $secondaryColour;
+        background-color: $primaryYellowColour;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;                                    
 
         & h5 {
-            color: $lightFont;
+            color: $darkFont;
             margin: 0;
-            font-weight: 700;
+            font-weight: 600;
             text-align: center;
             letter-spacing: 0.8px;
         }

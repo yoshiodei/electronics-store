@@ -1,7 +1,7 @@
 .vendor-profile {
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
     border-radius: 5px;
-    background-color: lighten($primaryColour, 20%);
+    background-color: $primaryMidGreyColour;
     width: 100%;
     height: auto;
     padding: 15px;
@@ -10,11 +10,11 @@
     margin-bottom: 20px;
 
     &__image-div {
-        border: 1px solid $secondaryColour;
+        border: 1px solid $primaryGreyColour;
         height: 120px;
         width: 120px;
         border-radius: 50%;
-        background-color: lightgrey;
+        background-color: #fff;
         position: relative;
         margin-bottom: 8px;
     }
@@ -27,7 +27,7 @@
         background-color: $onlineColour;
         left: 8px;
         top: 8px;
-        border: 1px solid $secondaryColour;
+        border: 1px solid $primaryGreyColour;
     }
 
     &__user-name {
