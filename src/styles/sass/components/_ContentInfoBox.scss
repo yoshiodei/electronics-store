@@ -3,12 +3,13 @@
     height: auto;
     border-radius: 5px;
     padding: 15px;
-    border: 1px solid $secondaryColour;
-    background-color: lighten($primaryColour, 20%);
+    border: 1px solid $primaryGreyColour;
+    background-color: $primaryMidGreyColour;
     margin-bottom: 20px;
 
     &__text {
         color: $secondaryColour;
         margin: 0;
+        font-weight: 600;
     }
 }
