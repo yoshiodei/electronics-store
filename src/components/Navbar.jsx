@@ -5,14 +5,23 @@ import SellNowButton from './SellNowButton';
 import SignInModal from './SignInModal';
 import SignUpModal from './SignUpModal';
 import DrawerButton from './DrawerButton';
+import { signOut } from "firebase/auth";
+import { auth } from '../config/firebaseConfig';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_LOGIN_DETAIL, selectAuthState } from '../redux/slice/authSlice';
 
-export default function Navbar() {
+function Navbar() {
+  const dispatch = useDispatch();
+  const authState = useSelector(selectAuthState);
   const [showAccountModal, setShowAccountModal] = useState(false);
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const navigate = useNavigate();
 
+  console.log("this is the auth state", authState);
+
   const handleClickWishList = (e) => {
-    navigate('/wish-list')
+    navigate('/wish-list');
   }
 
   const handlePopOverClick = (name) => {
@@ -25,7 +34,30 @@ export default function Navbar() {
       case 'notifications':
         navigate('/notifications');
         break;
-      case 'sign-in':
+      case 'log-out':
+        signOut(auth).then(() => {
+          toast.success('Logout Successful', {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }).catch((error) => {
+          toast.error(error.message, {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        });
         break;
       default:
         navigate('/');
@@ -88,7 +120,7 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
-          <Link to="/" className="h2 navbar-custom__brand">Brand</Link>
+          <Link to="/" className="h2 navbar-custom__brand">Tektoss</Link>
           <SellNowButton />
           <DrawerButton setToggleDrawer={setToggleDrawer} toggleDrawer={toggleDrawer} />
         </div>
@@ -98,3 +130,11 @@ export default function Navbar() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    name: state.reducer.products[0].name
+  }
+}
+
+export default Navbar;

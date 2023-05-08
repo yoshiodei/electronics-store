@@ -1,5 +1,6 @@
 .navbar-custom {
     background-color: $secondaryColour;
+    // background-color: white;
     position: relative;
 
     &__top-div{
@@ -196,6 +197,10 @@
                 height: 3px;
             }
 
+            &__line:last-child {
+                width: 60%;
+            }
+
             &__div {
                 display: block;
                 position: absolute;
@@ -204,7 +209,7 @@
                 right: 0;
                 height: calc(100vh - 80px);
                 overflow-y: scroll;
-                background-color: lighten($primaryColour, 20%);
+                background-color: $backgroundColour;
                 z-index: 6;
                 padding: 0.8em;
                 transition: right 0.2s;
@@ -217,7 +222,7 @@
                     right: 105vw;
                     height: calc(100vh - 80px);
                     overflow-y: scroll;
-                    background-color: lighten($primaryColour, 20%);
+                    background-color: $backgroundColour;
                     z-index: 6;
                     padding: 0.8em;
                     transition: right 0.3s;
@@ -248,7 +253,7 @@
             &__menu-item {
                 height: 2.8em;
                 width: 100%;
-                border-bottom: 1px solid #FFFFFF80;
+                border-bottom: 1px solid $primaryGreyColour;
 
                 & button {
                     height: 100%;
