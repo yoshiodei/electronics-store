@@ -1,25 +1,28 @@
 .sell-now {
-    background-color: $primaryColour; 
+    background-color: $primaryYellowColour; 
     border-radius: 50px;
     padding: 0.5em 1.5em; 
     cursor: pointer;
     transition: all 0.3s;
     display: inline-block;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryYellowColour;
+    color: $darkFont;
+    font-weight: 700;
 
     & h6 {
         margin-bottom: 0;
-        color: $lightFont;
+        color: $darkFont;
     }
 
     &:hover {
-        background-color: darken($primaryColour, 5%); 
-        border: 1px solid darken($primaryColour, 5%);
+        background-color: darken($primaryYellowColour, 2%); 
+        border: 1px solid darken($primaryYellowColour, 2%);
+        color: $darkFont;
     }
 
     &:active {
-        border: 1px solid $secondaryColour !important;
-        background-color: $secondaryColour !important;
+        border: 1px solid $primaryYellowColour !important;
+        background-color: $primaryYellowColour !important;
     }
 }
 
