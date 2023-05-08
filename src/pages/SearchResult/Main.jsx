@@ -19,10 +19,8 @@ export default function Main() {
         </div>
         <div className="main-section__right-div">
           <SearchInfoBox />
+          <CategoriesBox />
           <SearchBar />
-          <div className="main-section__mobile-div">
-            <CategoriesBox />
-          </div>
           <SearchResultems />
           <Pagination />
         </div>
