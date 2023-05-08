@@ -1,5 +1,9 @@
 .modal {
     background-color: #FFFFFF80;
+
+    &.hide {
+        display: none !important;
+    }
 }
 
 .modal-body {
@@ -84,6 +88,8 @@
         }
 
         & .register-button {
+            border: none;
+            width: 100%;
             height: 2.5em;
             border-radius: 5px;
             background-color: $secondaryColour;
@@ -116,6 +122,29 @@
                 &:hover {
                     text-decoration: underline;
                 }
+            }
+        }
+
+        &__or-separator {
+            text-align: center;
+        }
+
+        &__google-signin-button {
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            display: block;
+            width: 100%;
+            height: 2.5em;
+            background-color: orangered;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+
+            & i {
+                color: white;
+                margin-right: 10px;
             }
         }
     }
