@@ -1,14 +1,17 @@
 .search-info-box {
     width: 100%;
     height: auto;
-    padding: 25px 15px;
+    padding: 20px 15px;
     border-radius: 5px;
     border: 1px solid $secondaryColour;
-    background-color: lighten($primaryColour, 20%);
+    border: 1px solid $primaryGreyColour;
+    // background-color: lighten($primaryColour, 20%);
+    background-color: $primaryMidGreyColour;
     margin-bottom: 15px;
 
     & h4 {
         color: $secondaryColour;
+        font-size: 1.3em;
         margin: 0;
     }
 }
