@@ -1,8 +1,8 @@
 .product-detail {
     border-radius: 5px;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
     padding: 15px;
-    background-color: lighten($primaryColour, 20%);
+    background-color: $primaryMidGreyColour;
 
     &__title {
         color: $secondaryColour;
@@ -30,7 +30,7 @@
     }
 
     & [class$='div'] {
-        border-bottom: 1px solid #FFFFFF;
+        border-bottom: 1px solid $primaryGreyColour;
         margin-top: 8px;
 
         &:last-child {
@@ -45,9 +45,9 @@
 
 .product-location {
     border-radius: 5px;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
     padding: 15px;
-    background-color: lighten($primaryColour, 20%);
+    background-color: $primaryMidGreyColour;
     margin-top: 20px;
 
     &__title {
@@ -73,7 +73,7 @@
     }
 
     & [class$='div'] {
-        border-bottom: 1px solid #FFFFFF;
+        border-bottom: 1px solid $primaryGreyColour;
         margin-top: 8px;
 
         &:last-child {
@@ -88,9 +88,9 @@
 
 .vendor-details {
     border-radius: 5px;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
     padding: 15px;
-    background-color: lighten($primaryColour, 20%);
+    background-color: $primaryMidGreyColour;
     margin-top: 20px;
     margin-bottom: 20px;
 
@@ -103,10 +103,10 @@
         height: 70px;
         width: 70px;
         border-radius: 50%;
-        background-color: lightgrey;
+        background-color: #fff;
         margin-right: 15px;
         position: relative;
-        border: 1px solid $secondaryColour;
+        border: 1px solid $primaryGreyColour;
     }
 
     &__profile-title {
@@ -149,4 +149,8 @@
            letter-spacing: 0.8px;
         }
     }
+}
+
+.modal-90w {
+    width: 65vw;
 }
