@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer__top-div">
         <div className="row">
           <div className="col-md-3">
-            <h4 className="footer__heading">Brand</h4>
+            <h4 className="footer__heading">Tektoss</h4>
             <p className="footer__brand-info">lorem ipsum imei ini dolor lehm suraj kan ini mei lahim sural kamal</p>
             <SellNowButton />
           </div>
