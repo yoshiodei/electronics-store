@@ -1,6 +1,6 @@
 .filter-card {
     padding: 15px;
-    border: 1px solid $secondaryColour;
+    border: 1px solid $primaryGreyColour;
     border-radius: 5px;
     width: 100%;
     height: auto;
@@ -66,7 +66,7 @@
         right: 25%;
         position: absolute;
         border-radius: 5px;
-        background: #C99D9D;
+        background: $secondaryColour;
     }
 
     &__range-input{
@@ -93,7 +93,7 @@
         height: 17px;
         width: 17px;
         border-radius: 50%;
-        background: #C99D9D;
+        background: $secondaryColour;
         pointer-events: auto;
         -webkit-appearance: none;
         box-shadow: 0 0 6px rgba(0,0,0,0.05);
@@ -104,7 +104,7 @@
         width: 17px;
         border: none;
         border-radius: 50%;
-        background: #C99D9D;
+        background: $secondaryColour;
         pointer-events: auto;
         -moz-appearance: none;
         box-shadow: 0 0 6px rgba(0,0,0,0.05);
@@ -124,7 +124,29 @@
     }
 
     &__reset-button {
+        height: 2em;
+        background-color: $primaryGreyColour;
+        color: $darkFont;
+        border-radius: 5px;
+        text-align: center;
+        border: none;
+        outline: none;
         margin: 0;
+        font-weight: 600;
+        width: 80px;
     }
+    &__filter-button {
+        height: 2em;
+        background-color: $secondaryColour;
+        color: $lightFont;
+        border-radius: 5px;
+        text-align: center;
+        border: none;
+        outline: none;
+        flex: 1;
+        font-weight: 600;
+        margin-right: 10px;
+    }
+    
 }
 

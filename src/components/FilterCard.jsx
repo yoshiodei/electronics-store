@@ -107,8 +107,9 @@ export default function FilterCard() {
           <option value="Denver">Desktop</option>
         </select>
       </div>
-      <div className="filter-card__reset-div d-flex justify-content-end">
-        <h6 className="filter-card__reset-button">Reset</h6>
+      <div className="filter-card__reset-div d-flex justify-content-between">
+        <button type="button" className="filter-card__filter-button">Filter</button>
+        <button type="button" className="filter-card__reset-button">Reset</button>
       </div>
     </div>
   );
