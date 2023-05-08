@@ -11,6 +11,7 @@
         justify-content: center;
         align-items: center;
         border: 1px solid $secondaryColour; 
+        border: 1px solid $primaryGreyColour; 
         position: absolute;
         top: 89px;
         transition: all 0.3s;
@@ -20,6 +21,7 @@
         &:hover {
             color: white;
             background-color: $secondaryColour;
+            background-color: $primaryYellowColour;
         }
 
         &:hover &__icon{
@@ -32,7 +34,7 @@
 
         &__icon {
             font-size: 0.9em;
-            color: $secondaryColour;
+            color: $darkFont;
             transition: all 0.3s;
         }
     }
@@ -40,12 +42,17 @@
     &__link {
         display: block;
         border-radius: 5px;
-        border: 1px solid $secondaryColour;
-        transition: background-color 0.3s;
+        border: 1px solid $primaryGreyColour;
+        transition: all 0.3s;
         padding: 6px;
 
         &:hover {
-            background-color: lighten($primaryColour, 20%);
+            border: 1px solid lighten($secondaryColour, 10%);
+            background-color: $primaryMidGreyColour;
+        }
+
+        &:focus {
+            outline: 2px solid lighten($secondaryColour, 10%);
         }
     }
 
@@ -86,7 +93,7 @@
     &__product-condition-div {
         display: inline-flex;
         height: 1.1em;
-        background-color: $secondaryColour;
+        background-color: $primaryGreyColour;
         border-radius: 5px;
         padding: 12px 8px;
         justify-content: center;
@@ -96,17 +103,17 @@
     &__product-condition {
         margin: 0;
         font-weight: 500;
-        color: $lightFont;
+        color: $darkFont;
         font-size: 0.8em;
         line-height: 0.8;
     }
 
     &__promotion-div {
         position: absolute;
-        top: 6px;
-        right: 6px;
+        top: 7px;
+        right: 7px;
         padding: 3px 8px;
-        background-color: rgb(255, 179, 0);
+        background-color: rgb(209, 91, 109);
         border-top-right-radius: 5px;
         border-bottom-left-radius: 5px;
     }
@@ -114,7 +121,7 @@
     &__promotion {
         font-weight: 500;
         font-size: 0.8em;
-        // color: $lightFont;
+        color: $lightFont;
         margin: 0;
     }
 }
