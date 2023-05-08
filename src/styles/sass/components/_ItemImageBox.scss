@@ -2,8 +2,8 @@
     width: 100%;
     min-height: 100px;
     border-radius: 5px;
-    border: 1px solid $secondaryColour;
-    background-color: lighten($primaryColour, 20%);
+    border: 1px solid $primaryGreyColour;
+    background-color: $primaryMidGreyColour;
     padding: 15px;
     margin-bottom: 20px;
 
