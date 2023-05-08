@@ -3,12 +3,13 @@
         padding: 0;
         display: flex;
         flex-wrap: wrap;
-        margin-top: 25px;
+        margin-top: 0;
     }
     
     button {
         border: none;
-        background-color: lighten($primaryColour, 20%);
+        background-color: $primaryMidGreyColour;
+        border: 1px solid $primaryGreyColour;
         padding: 0.5em 1em;
         border-radius: 50px;
         color: $secondaryColour;

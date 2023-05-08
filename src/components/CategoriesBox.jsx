@@ -15,43 +15,64 @@ export default function CategoriesBox() {
       <ul className="categories-box__list d-flex flex-column justify-content-between">
         <li className="categories-box__list-item">
           <Link to="/search">
-            <p>Phones</p>
+            <div className="d-flex align-items-center">
+              <i className="fa-solid fa-mobile me-2" />
+              <p>Phones</p>
+            </div>
             <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
           </Link>
         </li>
         <li className="categories-box__list-item categories-box__list-item">
           <Link to="/search">
-            <p>Televisions</p>
+            <div className="d-flex align-items-center">
+              <i className="fa-solid fa-tv me-2" />
+              <p>Televisions</p>
+            </div>
             <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
           </Link>
         </li>
         <li className="categories-box__list-item">
           <Link to="/search">
-            <p>Desktops</p>
+            <div className="d-flex align-items-center">
+              <i className="fa-solid fa-desktop me-2" />
+              <p>Desktops</p>
+            </div>
             <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
           </Link>
         </li>
         <li className="categories-box__list-item">
           <Link to="/search">
-            <p>Laptops</p>
+            <div className="d-flex align-items-center">
+              <i className="fa-solid fa-laptop me-2" />
+              <p>Laptops</p>
+            </div>
             <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
           </Link>
         </li>
         <li className="categories-box__list-item">
           <Link to="/search">
-            <p>Game Consoles</p>
+            <div className="d-flex align-items-center">
+              <i className="fa-solid fa-gamepad me-2" />
+              <p>Game Consoles</p>
+            </div>
             <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
           </Link>
         </li>
         <li className="categories-box__list-item">
           <Link to="/search">
-            <p>Headphones & Speakers</p>
+            <div className="d-flex align-items-center">
+              <i className="fa-solid fa-headphones me-2" />
+              <p>Headphones & Speakers</p>
+            </div>
             <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
           </Link>
         </li>
         <li className="categories-box__list-item">
           <Link to="/search">
-            <p>Accessories</p>
+            <div className="d-flex align-items-center">
+              <i className="fa-solid fa-puzzle-piece me-2" />
+              <p>Accessories</p>
+            </div>
             <i className="categories-box__list-item-icon fa-solid fa-chevron-right" />
           </Link>
         </li>
