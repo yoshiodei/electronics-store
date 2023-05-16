@@ -20,7 +20,7 @@ export default function FormItems() {
           <div className="new-item-form__input-div">
             <label htmlFor="price-input" className="new-item-form__label">Item Category</label>
             <select className="new-item-form__input" aria-label="Default select example">
-              <option selected>Laptops</option>
+              <option value="Laptops">Laptops</option>
               <option value="Phones">Phones</option>
               <option value="Television">Televisions</option>
               <option value="Denver">Desktops</option>
@@ -31,7 +31,7 @@ export default function FormItems() {
           <div className="new-item-form__input-div">
             <label htmlFor="price-input" className="new-item-form__label">Item Condition</label>
             <select className="new-item-form__input" aria-label="Default select example">
-              <option selected>Brand New</option>
+              <option value="Brand New">Brand New</option>
               <option value="Slightly Used">Slightly Used</option>
               <option value="Used">Used</option>
             </select>
