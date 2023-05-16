@@ -1,12 +1,13 @@
 import React from 'react';
 import AdPanel from '../../components/AdPanel';
 import FilterCard from '../../components/FilterCard';
-import Pagination from '../../components/Pagination';
 import SectionHeader from '../../components/SectionHeader';
-import SearchBar from './components/SearchBar';
-import SearchInfoBox from './components/SearchInfoBox';
-import CategoriesBox from './components/CategoriesBox';
-import DisplaySearchItems from './components/DisplaySearchItems';
+// import SearchInfoBox from '../SearchResult/components/SearchInfoBox';
+import CategoriesBox from '../SearchResult/components/CategoriesBox';
+import SearchBar from '../SearchResult/components/SearchBar';
+import Pagination from '../../components/Pagination';
+import DispalyCategoryProducts from './components/DispalyCategoryProducts';
+import CategoryInfoBox from './components/CategoryInfoBox';
 
 export default function Main() {
   return (
@@ -18,10 +19,10 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
-          <SearchInfoBox />
+          <CategoryInfoBox />
           <CategoriesBox />
           <SearchBar />
-          <DisplaySearchItems />
+          <DispalyCategoryProducts />
           <Pagination />
         </div>
       </main>
