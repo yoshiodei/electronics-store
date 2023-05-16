@@ -1,16 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import profile from '../../../assets/images/profile.jpg';
+import { selectAuthState } from '../../../redux/slice/authSlice';
 
 export default function UserDetailBox() {
+  const {
+    displayName, userImage, followers, bio, rating,
+  } = useSelector(selectAuthState);
+
   return (
     <div className="user-detail-box">
       <div className="user-detail-box__image-div">
-        {/* <img alt="user" /> */}
+        { !userImage && <img src={profile} alt="user" /> }
+        { userImage && <img src={userImage} alt="user" /> }
         <div className="user-detail-box__online-indicator" />
       </div>
       <div className="user-detail-box__user-name-div">
         <h5 className="user-detail-box__user-name">
-          John Doe
+          {displayName}
         </h5>
       </div>
       <div className="user-detail-box__user-info-outer-div">
@@ -19,7 +27,7 @@ export default function UserDetailBox() {
             Followers
           </h6>
           <h6 className="user-detail-box__user-info-value">
-            28
+            {followers}
           </h6>
         </div>
         <div className="user-detail-box__user-info-div">
@@ -35,7 +43,7 @@ export default function UserDetailBox() {
             Rating
           </h6>
           <h6 className="user-detail-box__user-info-value">
-            4.5
+            {rating}
           </h6>
         </div>
       </div>
@@ -44,8 +52,7 @@ export default function UserDetailBox() {
           Bio
         </h6>
         <p className="user-detail-box__user-info-value user-detail-box__user-info-value--bio">
-          Lorem ipsum imei dolor kan mahal kal ipsalam
-          holoi ini sai uni yulrai. Oni talim salmoni rahim lil ipsum.
+          {bio}
         </p>
       </div>
       <Link to="/chat-room" className="user-detail-box__start-chat-div">
