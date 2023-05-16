@@ -99,7 +99,13 @@
             text-align: center;
             line-height: 2.5;
             letter-spacing: 0.8px;
-            margin-bottom: 15px;
+            margin-bottom: 3px;
+
+            &__error-message {
+                font-size: 0.95em;
+                color: red;
+                text-align: center;
+            } 
 
             &:hover {
                 background-color: lighten($secondaryColour, 5%);

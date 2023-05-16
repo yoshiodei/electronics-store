@@ -1,45 +1,81 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
-import { toast } from 'react-toastify';
+import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
-import { auth } from '../config/firebaseConfig';
+import { toast } from 'react-toastify';
+import {
+  collection, query, where, getDocs,
+} from '@firebase/firestore';
+import { auth, db } from '../config/firebaseConfig';
+import Toast from './Toast';
+import { SET_LOGIN_DETAIL } from '../redux/slice/authSlice';
 
-export default function SignInModal() {
+export default function SignInModal({
+  showSignInModal,
+  handleCloseSignInModal,
+  handleShowRegisterModal,
+}) {
+  const provider = new GoogleAuthProvider();
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const signInModal = useRef();
 
   const dispatch = useDispatch();
 
-  const provider = new GoogleAuthProvider();
+  const handleModalSwitch = () => {
+    handleCloseSignInModal();
+    handleShowRegisterModal();
+  };
 
   const handleEmailPasswordSignIn = (e) => {
     e.preventDefault();
-    // signInModal.current.classList.toggle('show');
+    setIsLoading(true);
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const { user } = userCredential;
-        console.log('user detail:', user);
-        toast.success('Sign in successful!', {
+
+        const q = query(collection(db, 'vendors'), where('userId', '==', user.uid));
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          dispatch(SET_LOGIN_DETAIL({
+            userId: user.uid,
+            followers: data.followers,
+            displayName: data.displayName,
+            userImage: user.photoURL,
+            rating: data.rating,
+            bio: data.bio,
+          }));
+        });
+
+        setIsLoading(false);
+
+        handleCloseSignInModal();
+
+        toast.success('Sign In Successful!', {
           position: 'top-center',
-          autoClose: 3000,
+          autoClose: 2500,
           hideProgressBar: true,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: 'light',
         });
       })
       .catch((error) => {
-        console.log('access denied:', error.message);
+        setIsLoading(false);
+
+        handleCloseSignInModal();
+
         toast.error(error.message, {
           position: 'top-center',
-          autoClose: 3000,
+          autoClose: 2500,
           hideProgressBar: true,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: 'light',
@@ -47,77 +83,128 @@ export default function SignInModal() {
       });
   };
 
+  // const handleEmailPasswordSignIn = (e) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   console.log('before sign in');
+  //   signInWithEmailAndPassword(auth, email, password)
+  //     .then(async (userCredential) => {
+  //       console.log('after sign in');
+  //       const { user } = userCredential;
+  //       console.log(user.uid);
+
+  //       try {
+  //         const q = query(collection(db, 'vendors'), where('userId', '==', user.uid));
+  //         const querySnapshot = await getDocs(q);
+
+  //         querySnapshot.forEach((doc) => {
+  //           const data = doc.data();
+  //           dispatch(SET_LOGIN_DETAIL({
+  //             userId: user.uid,
+  //             followers: data.followers,
+  //             displayName: user.displayName,
+  //             userImage: user.photoURL,
+  //             rating: data.rating,
+  //             bio: data.bio,
+  //           }));
+  //         });
+  //       } catch (error) {
+  //         console.log(error.message);
+  //       }
+
+  //       setIsLoading(false);
+
+  //       handleCloseSignInModal();
+
+  //       toast.success('Sign In Successful!', {
+  //         position: 'top-center',
+  //         autoClose: 2500,
+  //         hideProgressBar: true,
+  //         closeOnClick: true,
+  //         pauseOnHover: false,
+  //         draggable: true,
+  //         progress: undefined,
+  //         theme: 'light',
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       <Toast type="error" text={error.message} />;
+  //     });
+  // };
+
   const handleGoogleSignIn = () => {
-    console.log('cliqued');
     signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
+      .then(async (result) => {
         const { user } = result;
-        toast.success('Sign in successful!', {
+
+        const q = query(collection(db, 'vendors'), where('userId', '==', user.uid));
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          dispatch(SET_LOGIN_DETAIL({
+            userId: user.uid,
+            followers: data.followers,
+            displayName: user.displayName,
+            userImage: user.photoURL,
+            rating: data.rating,
+            bio: data.bio,
+          }));
+        });
+
+        handleCloseSignInModal();
+
+        toast.success('Sign In Successful!', {
           position: 'top-center',
-          autoClose: 3000,
+          autoClose: 2500,
           hideProgressBar: true,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: 'light',
         });
-        console.log('token info', token, 'user detail!!', user.uid);
-        dispatch(user.uid);
       }).catch((error) => {
-        console.log('access denied', error.message);
-        toast.error(error.message, {
-          position: 'top-center',
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        <Toast type="error" text={error.message} />;
       });
   };
 
   return (
-    <div ref={signInModal} className="modal fade" id="SignInModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div className="modal-dialog modal-lg">
-        <div className="modal-content">
-          <div className="modal-body">
-            <button type="button" className="btn-close button-close-custom" data-bs-dismiss="modal" aria-label="Close" />
-            <div className="modal__custom-content d-flex">
-              <div className="modal__custom-content-left">
-                <div>
-                  <h2>Welcome Back</h2>
-                  <div className="line" />
-                  <p>Lorem ipsum ini dolor kalaam sai imei hasman kanal ini sur.</p>
-                </div>
-              </div>
-              <div className="modal__custom-content-right">
-                <form onSubmit={handleEmailPasswordSignIn}>
-                  <input placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                  <input placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                  <button type="submit" className="register-button">Sign In</button>
-                </form>
-                <p className="modal__custom-content-right__or-separator">-- or --</p>
-                <button type="button" className="modal__custom-content-right__google-signin-button" onClick={handleGoogleSignIn}>
-                  <i className="fa-brands fa-google" />
-                  Sign In With Google
-                </button>
-                <h6 className="switch-to-signin">
-                  Don&apos;t have an account?
-                  {' '}
-                  <button className="switch-to-signin__button" type="button" data-bs-toggle="modal" data-bs-target="#SignUpModal">Register</button>
-                </h6>
-              </div>
+    <Modal
+      show={showSignInModal}
+      size="lg"
+      onHide={handleCloseSignInModal}
+      aria-labelledby="example-custom-modal-styling-title"
+    >
+      <Modal.Body>
+        <button type="button" className="btn-close button-close-custom" aria-label="Close" onClick={handleCloseSignInModal} />
+        <div className="modal__custom-content d-flex">
+          <div className="modal__custom-content-left">
+            <div>
+              <h2>Welcome Back</h2>
+              <div className="line" />
+              <p>Lorem ipsum ini dolor kalaam sai imei hasman kanal ini sur.</p>
             </div>
           </div>
+          <div className="modal__custom-content-right">
+            <form onSubmit={handleEmailPasswordSignIn}>
+              <input required placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input required placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <button type="submit" className="register-button">{isLoading ? 'Loading...' : 'Sign In'}</button>
+            </form>
+            <p className="modal__custom-content-right__or-separator">-- or --</p>
+            <button type="button" className="modal__custom-content-right__google-signin-button" onClick={handleGoogleSignIn}>
+              <i className="fa-brands fa-google" />
+              Sign In With Google
+            </button>
+            <h6 className="switch-to-signin">
+              Don&apos;t have an account?
+              {' '}
+              <button className="switch-to-signin__button" type="button" onClick={handleModalSwitch}>Register</button>
+            </h6>
+          </div>
         </div>
-      </div>
-    </div>
+      </Modal.Body>
+    </Modal>
   );
 }
