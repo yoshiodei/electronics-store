@@ -4,7 +4,7 @@
     position: relative;
 
     &__add-to-wish-list {
-        background-color: white;
+        background-color: #fff;
         border-radius: 50%;
         width: 35px;
         height: 35px;
@@ -13,9 +13,9 @@
         border: 1px solid $secondaryColour; 
         border: 1px solid $primaryGreyColour; 
         position: absolute;
-        top: 89px;
+        top: 100px;
         transition: all 0.3s;
-        right: 11px;
+        right: 5px;
         cursor: pointer;
 
         &:hover {
@@ -42,12 +42,12 @@
     &__link {
         display: block;
         border-radius: 5px;
-        border: 1px solid $primaryGreyColour;
+        // border: 1px solid $primaryGreyColour;
         transition: all 0.3s;
-        padding: 6px;
+        padding: 0;
 
         &:hover {
-            border: 1px solid lighten($secondaryColour, 10%);
+            // border: 1px solid lighten($secondaryColour, 10%);
             background-color: $primaryMidGreyColour;
         }
 
@@ -59,20 +59,31 @@
     &__image-div {
         border-radius: 5px;
         width: 100%;
-        height: 120px;
-        background-color: grey;
+        height: 140px;
+        background-color: rgba(128, 128, 128, 0.101);
         margin-bottom: 5px;
+        border: 1px solid $primaryMidGreyColour;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        object-fit: cover;
     }
 
     &__product-price {
         color: $secondaryColour;
+        font-size: 1em;
         margin-bottom: 5px;
     }
 
     &__product-name {
         line-height: 1.1;
         height: 2.4em;
+        font-size: 1em;
         margin-bottom: 5px;
+        text-transform: capitalize;
     }
 
     &__product-location-div {
@@ -110,12 +121,12 @@
 
     &__promotion-div {
         position: absolute;
-        top: 7px;
-        right: 7px;
+        top: 1px;
+        right: 1px;
         padding: 3px 8px;
-        background-color: rgb(209, 91, 109);
+        background-color: rgba(209, 91, 109, 0.8);
         border-top-right-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-bottom-left-radius: 5px; 
     }
 
     &__promotion {
@@ -124,4 +135,79 @@
         color: $lightFont;
         margin: 0;
     }
+}
+
+.product-card-loading {
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    background-color: $primaryMidGreyColour;
+
+    &__image {
+        border-radius: 5px;
+        width: 100%;
+        height: 140px;
+        background-color: $primaryGreyColour;
+        margin-bottom: 5px;
+    }
+
+    &__price {
+        height: 1em;
+        width: 40%;
+        background-color: $primaryGreyColour;
+        margin-bottom: 5px;
+    }
+
+    &__text-div {
+        height: 2.4em;
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & div {
+            height: 1em;
+            border-radius: 5px;
+            background-color: $primaryGreyColour;
+            width: 80%;
+
+            &:last-child {
+                width: 60%;
+            }
+        }
+    }
+
+    &__location {
+        height: 0.85em;
+        border-radius: 5px;
+        background-color: $primaryGreyColour;
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    &__condition {
+        height: 1.1em;
+        background-color: $primaryGreyColour;
+        border-radius: 5px;
+        width: 40%;
+        align-items: center;
+    }
+
+    & .loading {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+            background-image: linear-gradient(to left , transparent , rgba(255,255,255,0.5), transparent);
+            animation: loading 1.5s infinite;
+        }
+}
 }
