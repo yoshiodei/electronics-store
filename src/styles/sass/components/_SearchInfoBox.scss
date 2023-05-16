@@ -9,6 +9,10 @@
     background-color: $primaryMidGreyColour;
     margin-bottom: 15px;
 
+    &__capitalize {
+        text-transform: capitalize;
+    }
+
     & h4 {
         color: $secondaryColour;
         font-size: 1.3em;

@@ -62,6 +62,10 @@
         color:rgb(107, 107, 107);
     }
 
+    &__name {
+        text-transform: capitalize;
+    }
+
     &__distance {
         margin: 0;
     }
@@ -151,6 +155,115 @@
     }
 }
 
-.modal-90w {
-    width: 65vw;
+.product-detail-loading {
+    border-radius: 5px;
+    border: 1px solid $primaryGreyColour;
+    padding: 15px;
+    background-color: $primaryMidGreyColour;
+    margin-bottom: 20px;
+
+    &__vendor-image {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: $primaryGreyColour;
+        margin-right: 15px;
+    }
+
+    &__vendor-info-div {
+        flex: 1;
+    }
+
+    &__inner-div {
+        margin-bottom: 20px;
+
+        &--alt {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__Loader-top {
+        border-radius: 2.5px;
+        height: 18px;
+        width: 40%;
+        background-color: $primaryGreyColour;
+        margin-bottom: 8px;
+    }
+
+    &__Loader-bottom {
+        border-radius: 2.5px;
+        height: 18px;
+        width: 100%;
+        background-color: $primaryGreyColour;
+        margin-bottom: 8px;
+
+        &--alt {
+            width: 60%;
+        }
+    }
+
+    & .loading {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+            background-image: linear-gradient(to left , transparent , rgba(255,255,255,0.5), transparent);
+            animation: loading 1.5s infinite;
+        }
+    }
+}
+
+.buttons-box-loading {
+    width: 100%;
+    height: 2.5em;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0;
+
+
+    &__button {
+        height: 100%;
+        flex: 1;
+        border-radius: 5px;
+        background-color: $primaryGreyColour;
+        margin-right: 12px;
+
+        &:last-child {
+        margin-right: 0;
+        }
+
+        &.loading {
+            position: relative;
+            overflow: hidden;
+    
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform: translateX(-100%);
+                background-image: linear-gradient(to left , transparent , rgba(255,255,255,0.5), transparent);
+                animation: loading 1.5s infinite;
+            }
+        }
+    }
+}
+
+@keyframes loading {
+    100% {
+        transform: translateX(100%);
+    }
 }
