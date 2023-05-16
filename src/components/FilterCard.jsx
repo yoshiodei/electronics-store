@@ -42,7 +42,7 @@ export default function FilterCard() {
       <div className="filter-card__location-div">
         <h6>Location</h6>
         <select className="form-select" aria-label="Default select example">
-          <option selected>All</option>
+          <option value="All">All</option>
           <option value="Near">Items near me (within 5 miles)</option>
         </select>
       </div>
@@ -101,7 +101,7 @@ export default function FilterCard() {
       <div className="filter-card__category-div">
         <h6>Category</h6>
         <select className="form-select" aria-label="Default select example">
-          <option selected>All</option>
+          <option value="All">All</option>
           <option value="Phones">Phones</option>
           <option value="Television">Television</option>
           <option value="Denver">Desktop</option>
