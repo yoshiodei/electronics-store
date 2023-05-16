@@ -3,6 +3,12 @@
     height: auto;
     margin-bottom: 30px;
 
+    &__form-element {
+        width: 100%;
+        height: 2.5em;
+        position: relative;
+    }
+
     &__main-div {
         border-radius: 5px;
         border: 1px solid $primaryGreyColour;
@@ -55,11 +61,10 @@
         &__input {
             border: none;
             height: 2.5em;
-            width: 80%;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
+            width: 100%;
+            border-radius: 5px;
             border: 1px solid $secondaryColour;
-            @include paddingHorizontal(1em);
+            padding: 0 8em 0 1em;
 
             &:focus {
                 outline: 2px solid lighten($secondaryColour, 20%);
@@ -71,8 +76,10 @@
             outline: none;
             height: 2.5em;
             width: 20%;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;    
+            right: 0;
+            z-index: 1;
+            position: absolute;
+            border-radius: 5px;  
             color: $lightFont;
             background-color: $secondaryColour;
             font-weight: 700;
