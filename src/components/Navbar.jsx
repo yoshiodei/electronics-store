@@ -3,22 +3,28 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SellNowButton from './SellNowButton';
 import SignInModal from './SignInModal';
-import SignUpModal from './SignUpModal';
 import DrawerButton from './DrawerButton';
 import { signOut } from "firebase/auth";
 import { auth } from '../config/firebaseConfig';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_LOGIN_DETAIL, selectAuthState } from '../redux/slice/authSlice';
+import { RESET_LOGIN_DETAIL, selectAuthState } from '../redux/slice/authSlice';
+import RegisterModal from './RegisterModal';
 
 function Navbar() {
   const dispatch = useDispatch();
-  const authState = useSelector(selectAuthState);
+  const navigate = useNavigate();
+  const { isLoggedIn } = useSelector(selectAuthState);
+
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const navigate = useNavigate();
-
-  console.log("this is the auth state", authState);
+  
+  const handleCloseRegisterModal = () => setShowRegisterModal(false);
+  const handleShowRegisterModal = () => setShowRegisterModal(true);
+  const handleCloseSignInModal = () => setShowSignInModal(false);
+  const handleShowSignInModal = () => setShowSignInModal(true);
 
   const handleClickWishList = (e) => {
     navigate('/wish-list');
@@ -36,6 +42,8 @@ function Navbar() {
         break;
       case 'log-out':
         signOut(auth).then(() => {
+          dispatch(RESET_LOGIN_DETAIL());
+          navigate('/');
           toast.success('Logout Successful', {
             position: "top-center",
             autoClose: 2500,
@@ -71,22 +79,22 @@ function Navbar() {
       <nav className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
         <div className="navbar-custom__top-div">
           <ul className="d-flex justify-content-end align-items-center">
-            <li>
+            { isLoggedIn && <li>
               <button className="navbar-custom__icon-button" title="notifications" onClick={() => navigate("/notifications")}>
                 <i className="fa-regular fa-bell navbar-custom__icon" />
               </button>
-            </li>
-            <li>
+            </li>}
+            { isLoggedIn && <li>
               <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
                 <i className="fa-regular fa-message navbar-custom__icon" />
               </button>
-            </li>
-            <li>
+            </li>}
+            { isLoggedIn && <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
               </button>
-            </li>
-            <li>
+            </li>}
+            { isLoggedIn && <li>
               <div className="navbar-custom__user-account-div">
                 <button className="navbar-custom__icon-button" title="user account" onClick={() => setShowAccountModal(!showAccountModal)}>
                   <i className="fa-regular fa-user navbar-custom__icon" />
@@ -106,17 +114,17 @@ function Navbar() {
                   </li>
                 </ul>
               </div>
-            </li>
-            <li>
-              <button className="navbar-custom__text-button" data-bs-toggle="modal" data-bs-target="#SignInModal">
+            </li>}
+            { !isLoggedIn && <li>
+              <button className="navbar-custom__text-button" onClick={handleShowSignInModal}>
                 <h6>Sign In</h6>
               </button>
-            </li>
-            <li>
-              <button className="navbar-custom__text-button" data-bs-toggle="modal" data-bs-target="#SignUpModal">
+            </li>}
+            { !isLoggedIn && <li>
+              <button className="navbar-custom__text-button" onClick={handleShowRegisterModal}>
                 <h6>Register Now</h6>
               </button>
-            </li>
+            </li>}
           </ul>
         </div>
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
@@ -125,12 +133,12 @@ function Navbar() {
           <DrawerButton setToggleDrawer={setToggleDrawer} toggleDrawer={toggleDrawer} />
         </div>
       </nav>
-      <SignInModal />
-      <SignUpModal />
+      <RegisterModal handleCloseRegisterModal={handleCloseRegisterModal} showRegisterModal={showRegisterModal} handleShowSignInModal={handleShowSignInModal} />
+      <SignInModal handleCloseSignInModal={handleCloseSignInModal} showSignInModal={showSignInModal} handleShowRegisterModal={handleShowRegisterModal} />
     </>
   );
 }
-
+ 
 const mapStateToProps = (state) => {
   return {
     name: state.reducer.products[0].name
