@@ -5,8 +5,8 @@ import SearchCategoriesBox from '../pages/SearchResult/components/CategoriesBox'
 import FilterCard from '../components/FilterCard';
 import Hero from '../components/Hero';
 import Pagination from '../components/Pagination';
-import ProductCard from '../components/ProductCard';
 import SectionHeader from '../components/SectionHeader';
+import DisplayProductCards from '../pages/Home/components/DisplayProductCards';
 
 export default function HomeMain() {
   return (
@@ -22,29 +22,7 @@ export default function HomeMain() {
           <SearchCategoriesBox />
           <Hero />
           <SectionHeader>Popular Products</SectionHeader>
-          <div className="row g-2">
-            <div className="col-6 col-md-3">
-              <ProductCard />
-            </div>
-            <div className="col-6 col-md-3">
-              <ProductCard />
-            </div>
-            <div className="col-6 col-md-3">
-              <ProductCard />
-            </div>
-            <div className="col-6 col-md-3">
-              <ProductCard />
-            </div>
-            <div className="col-6 col-md-3">
-              <ProductCard />
-            </div>
-            <div className="col-6 col-md-3">
-              <ProductCard />
-            </div>
-            <div className="col-6 col-md-3">
-              <ProductCard />
-            </div>
-          </div>
+          <DisplayProductCards />
           <Pagination />
         </div>
       </main>

@@ -14,7 +14,7 @@ export default function CategoriesBox() {
       </div>
       <ul className="categories-box__list d-flex flex-column justify-content-between">
         <li className="categories-box__list-item">
-          <Link to="/search">
+          <Link to="/category/phones">
             <div className="d-flex align-items-center">
               <i className="fa-solid fa-mobile me-2" />
               <p>Phones</p>
@@ -23,7 +23,7 @@ export default function CategoriesBox() {
           </Link>
         </li>
         <li className="categories-box__list-item categories-box__list-item">
-          <Link to="/search">
+          <Link to="/category/televisions">
             <div className="d-flex align-items-center">
               <i className="fa-solid fa-tv me-2" />
               <p>Televisions</p>
@@ -32,7 +32,7 @@ export default function CategoriesBox() {
           </Link>
         </li>
         <li className="categories-box__list-item">
-          <Link to="/search">
+          <Link to="/category/desktops">
             <div className="d-flex align-items-center">
               <i className="fa-solid fa-desktop me-2" />
               <p>Desktops</p>
@@ -41,7 +41,7 @@ export default function CategoriesBox() {
           </Link>
         </li>
         <li className="categories-box__list-item">
-          <Link to="/search">
+          <Link to="/category/laptops">
             <div className="d-flex align-items-center">
               <i className="fa-solid fa-laptop me-2" />
               <p>Laptops</p>
@@ -50,7 +50,7 @@ export default function CategoriesBox() {
           </Link>
         </li>
         <li className="categories-box__list-item">
-          <Link to="/search">
+          <Link to="/category/game-consoles">
             <div className="d-flex align-items-center">
               <i className="fa-solid fa-gamepad me-2" />
               <p>Game Consoles</p>
@@ -59,7 +59,7 @@ export default function CategoriesBox() {
           </Link>
         </li>
         <li className="categories-box__list-item">
-          <Link to="/search">
+          <Link to="/category/headphones-and-speakers">
             <div className="d-flex align-items-center">
               <i className="fa-solid fa-headphones me-2" />
               <p>Headphones & Speakers</p>
@@ -68,7 +68,7 @@ export default function CategoriesBox() {
           </Link>
         </li>
         <li className="categories-box__list-item">
-          <Link to="/search">
+          <Link to="/category/accessories">
             <div className="d-flex align-items-center">
               <i className="fa-solid fa-puzzle-piece me-2" />
               <p>Accessories</p>
