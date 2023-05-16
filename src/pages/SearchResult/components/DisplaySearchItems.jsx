@@ -1,0 +1,57 @@
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import {
+  collection, query, where, getDocs,
+} from '@firebase/firestore';
+import { db } from '../../../config/firebaseConfig';
+import ProductCard from '../../../components/ProductCard';
+
+export default function DisplaySearchItems() {
+  const [products, setProducts] = useState([]);
+  const { searchName } = useParams();
+
+  const fetchData = async () => {
+    try {
+      const q = query(collection(db, 'products'), where('isPromoted', '==', true));
+      const querySnapshot = await getDocs(q);
+      const allProducts = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        allProducts.push({ ...data, id: doc.id });
+      });
+
+      const q2 = query(collection(db, 'products'), where('isPromoted', '==', false));
+      const querySnapshot2 = await getDocs(q2);
+      querySnapshot2.forEach((doc) => {
+        const data = doc.data();
+        allProducts.push({ ...data, id: doc.id });
+      });
+
+      const filteredProducts = allProducts
+        .filter((product) => (
+          product.name.toLowerCase().includes(searchName.toLowerCase())
+          || product.category.includes(searchName.toLowerCase())
+        ));
+
+      setProducts(filteredProducts);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <div className="row g-2">
+      {
+      products.map((product) => (
+        <div className="col-6 col-md-3">
+          <ProductCard product={product} />
+        </div>
+      ))
+      }
+    </div>
+  );
+}
