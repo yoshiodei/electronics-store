@@ -27,8 +27,12 @@
   padding-bottom: 0.5em;
 }
 .navbar-custom__brand {
+  font-family: "Mogra", cursive;
+  letter-spacing: 0.5px;
   color: #ffffff;
+  margin: 0;
   cursor: pointer;
+  margin-top: 8px;
 }
 .navbar-custom__pop-over {
   position: absolute;
@@ -1236,6 +1240,9 @@ a {
   left: 3px;
   top: 6px;
 }
+.vendor-details a:hover {
+  text-decoration: underline;
+}
 .vendor-details__button-div {
   display: block;
   border-radius: 5px;
@@ -2213,6 +2220,70 @@ a {
     font-size: 0.9em;
   }
 }
+.wish-list__item {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.wish-list__item:last-child {
+  margin-bottom: 0;
+}
+.wish-list__item a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(243, 243, 243);
+  border-radius: 5px;
+  padding: 10px;
+  padding-right: 40px;
+  transition: background-color 0.3s;
+}
+.wish-list__item a:hover {
+  background-color: rgb(243, 243, 243);
+}
+.wish-list__item:hover {
+  background-color: rgb(243, 243, 243);
+}
+.wish-list__image-div {
+  width: 220px;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px solid rgb(243, 243, 243);
+  background-color: lightgrey;
+  margin-right: 10px;
+}
+.wish-list__image-div img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.wish-list__info-div {
+  margin-right: 10px;
+  flex: 1;
+}
+.wish-list__button-div {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  right: 10px;
+}
+.wish-list__button-div button {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 8px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: rgb(195, 80, 80);
+}
 .wish-list__empty-div {
   width: 50%;
   min-height: 250px;
@@ -2244,6 +2315,23 @@ a {
 }
 .wish-list__empty-div a:hover {
   background-color: rgb(203, 203, 203);
+}
+.wish-list__remove-all-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wish-list__remove-all-button {
+  padding: 0.25em 1em;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: rgb(156, 156, 156);
+  color: #fff;
+  margin-top: 15px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
 }
 
 @media (max-width: 430px) {
