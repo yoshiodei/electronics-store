@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoggedIn: false,
+  docId: '',
   userId: '',
   followers: 0,
   displayName: '',
@@ -17,6 +18,7 @@ const authSlice = createSlice({
     SET_LOGIN_DETAIL(state, action) {
       state.isLoggedIn = true;
       state.userId = action.payload.userId;
+      state.docId = action.payload.docId;
       state.followers = action.payload.followers;
       state.rating = action.payload.rating;
       state.displayName = action.payload.displayName;
@@ -26,6 +28,7 @@ const authSlice = createSlice({
     RESET_LOGIN_DETAIL(state) {
       state.isLoggedIn = false;
       state.userId = '';
+      state.docId = '';
       state.followers = 0;
       state.displayName = '';
       state.userImage = '';
