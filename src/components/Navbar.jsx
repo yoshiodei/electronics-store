@@ -14,7 +14,7 @@ import RegisterModal from './RegisterModal';
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector(selectAuthState);
+  const { isLoggedIn, userId } = useSelector(selectAuthState);
 
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
@@ -35,7 +35,7 @@ function Navbar() {
 
     switch (name) {
       case 'my-account':
-        navigate('/user-account');
+        navigate(`/user-account/${userId}`);
         break;
       case 'notifications':
         navigate('/notifications');
