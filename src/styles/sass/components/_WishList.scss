@@ -1,4 +1,79 @@
 .wish-list {
+    &__item {
+        width: 100%;
+        height: 150px;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 8px;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        & a{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            border: 1px solid $primaryMidGreyColour;
+            border-radius: 5px;
+            padding: 10px;
+            padding-right: 40px;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: $primaryMidGreyColour;
+            }
+        }
+
+        &:hover {
+            background-color: $primaryMidGreyColour;
+        }
+    }
+
+    &__image-div {
+        width: 220px;
+        height: 100%;
+        border-radius: 5px;
+        border: 1px solid $primaryMidGreyColour;
+        background-color: $primaryGreyColour;
+        margin-right: 10px;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+
+        & img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            object-fit: cover;
+        }
+    }
+
+    &__info-div {
+        margin-right: 10px;
+        flex: 1;
+    }
+
+    &__button-div {
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        z-index: 3;
+        top: 10px;
+        right: 10px;
+
+        & button {
+            height: 100%;
+            width: 100%;
+            margin-bottom: 8px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: rgb(195, 80, 80);
+        }
+    }
+
     &__empty-div {
         width: 50%;
         min-height: 250px;
@@ -35,6 +110,25 @@
                 background-color: rgb(203, 203, 203);
             }
         }
+    }
+
+    &__remove-all-div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__remove-all-button {
+        padding: 0.25em 1em;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        background-color: $secondaryGreyColour;
+        color: #fff;
+        margin-top: 15px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
     }
 }
 
