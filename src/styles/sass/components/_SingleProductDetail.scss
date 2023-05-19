@@ -137,6 +137,10 @@
         top: 6px;
     }
 
+    & a:hover {
+        text-decoration: underline;
+    }
+
     &__button-div {
         display: block;
         border-radius: 5px;
