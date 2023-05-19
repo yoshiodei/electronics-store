@@ -44,7 +44,7 @@ export default function ProductDetail() {
       <div className="product-detail__product-price-div">
         <h6 className="product-detail__title">Price</h6>
         <h3 className="product-detail__price">
-          {product.price}
+          {`$ ${product.price}.00`}
         </h3>
       </div>
       <div className="product-detail__product-condition-div">
