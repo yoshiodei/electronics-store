@@ -40,7 +40,10 @@ export default function SignInModal({
 
         querySnapshot.forEach((doc) => {
           const data = doc.data();
+          const docRef = doc.id;
+
           dispatch(SET_LOGIN_DETAIL({
+            docId: docRef,
             userId: user.uid,
             followers: data.followers,
             displayName: data.displayName,
@@ -83,55 +86,6 @@ export default function SignInModal({
       });
   };
 
-  // const handleEmailPasswordSignIn = (e) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   console.log('before sign in');
-  //   signInWithEmailAndPassword(auth, email, password)
-  //     .then(async (userCredential) => {
-  //       console.log('after sign in');
-  //       const { user } = userCredential;
-  //       console.log(user.uid);
-
-  //       try {
-  //         const q = query(collection(db, 'vendors'), where('userId', '==', user.uid));
-  //         const querySnapshot = await getDocs(q);
-
-  //         querySnapshot.forEach((doc) => {
-  //           const data = doc.data();
-  //           dispatch(SET_LOGIN_DETAIL({
-  //             userId: user.uid,
-  //             followers: data.followers,
-  //             displayName: user.displayName,
-  //             userImage: user.photoURL,
-  //             rating: data.rating,
-  //             bio: data.bio,
-  //           }));
-  //         });
-  //       } catch (error) {
-  //         console.log(error.message);
-  //       }
-
-  //       setIsLoading(false);
-
-  //       handleCloseSignInModal();
-
-  //       toast.success('Sign In Successful!', {
-  //         position: 'top-center',
-  //         autoClose: 2500,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: false,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: 'light',
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       <Toast type="error" text={error.message} />;
-  //     });
-  // };
-
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
       .then(async (result) => {
@@ -142,7 +96,9 @@ export default function SignInModal({
 
         querySnapshot.forEach((doc) => {
           const data = doc.data();
+          const docRef = doc.id;
           dispatch(SET_LOGIN_DETAIL({
+            docId: docRef,
             userId: user.uid,
             followers: data.followers,
             displayName: user.displayName,

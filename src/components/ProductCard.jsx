@@ -1,10 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  doc, updateDoc, arrayUnion,
+} from 'firebase/firestore';
+import { useSelector } from 'react-redux';
+import { db } from '../config/firebaseConfig';
+import { selectAuthState } from '../redux/slice/authSlice';
 
 export default function ProductCard({ product }) {
   const {
     id, price, name, location, condition, isPromoted, image,
   } = product;
+
+  const { docId, isLoggedIn } = useSelector(selectAuthState);
+
+  const handleAddToWishList = async (wishListProduct) => {
+    if (isLoggedIn) {
+      try {
+        const vendorRef = doc(db, 'vendors', docId);
+        await updateDoc(vendorRef, {
+          wishlist: arrayUnion(wishListProduct),
+        });
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+  };
 
   return (
     <div className="product-card" key={id}>
@@ -29,9 +50,9 @@ export default function ProductCard({ product }) {
         </div>
         )}
       </Link>
-      <div className="product-card__add-to-wish-list d-flex">
+      <button type="button" className="product-card__add-to-wish-list d-flex" onClick={() => handleAddToWishList(product)}>
         <i className="fa-sharp fa-regular fa-heart product-card__add-to-wish-list__icon" />
-      </div>
+      </button>
     </div>
   );
 }
