@@ -1,6 +1,7 @@
 import React from 'react';
-import DisplayProductCard from '../../../components/DisplayProductCard';
+// import DisplayProductCard from '../../../components/DisplayProductCard';
 import EmptyTab from './EmptyTab';
+import AllItemsTab from './AllItemsTab';
 
 export default function ProductsTab() {
   return (
@@ -18,7 +19,9 @@ export default function ProductsTab() {
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabIndex="0">
-          <DisplayProductCard />
+          {/* <DisplayProductCard /> */}
+          <AllItemsTab />
+          {/* <EmptyTab /> */}
         </div>
         <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabIndex="0">
           <EmptyTab />
