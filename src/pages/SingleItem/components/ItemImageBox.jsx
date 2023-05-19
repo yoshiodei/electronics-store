@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
 import StartChatButton from './StartChatButton';
+import { selectAuthState } from '../../../redux/slice/authSlice';
 import Carousel from './Carousel';
 import dummyImage from '../../../assets/images/dummy-image.jpg';
 import ItemImageBoxLoading from './ItemImageBoxLoading';
@@ -10,6 +12,7 @@ import ItemImageBoxLoading from './ItemImageBoxLoading';
 export default function ItemImageBox() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
+  const { isLoggedIn } = useSelector(selectAuthState);
 
   const fetchData = () => {
     const docRef = doc(db, 'products', id);
@@ -40,7 +43,7 @@ export default function ItemImageBox() {
     <div className="item-image-box">
       <div className="item-image-box__top-div">
         <Carousel image={product.image} />
-        <StartChatButton />
+        {isLoggedIn && <StartChatButton />}
       </div>
       <div className="item-image-box__bottom-div">
         <div className="item-image-box__bottom-div__image-div active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
