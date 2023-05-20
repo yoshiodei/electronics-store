@@ -1,57 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import {
-  doc, getDoc, updateDoc,
-} from '@firebase/firestore';
+/* eslint-disable react/react-in-jsx-scope */
 import { useSelector } from 'react-redux';
-import { db } from '../../config/firebaseConfig';
 import ContentInfoBox from '../../components/ContentInfoBox';
 import WishListItem from './components/WishListItem';
 import AdPanel from '../../components/AdPanel';
-import { selectAuthState } from '../../redux/slice/authSlice';
 import WishListEmpty from './components/WishListEmpty';
 import RemoveAllButton from './components/RemoveAllButton';
+import { selectWishListState } from '../../redux/slice/wishListSlice';
+// import { selectAuthState } from '../../redux/slice/authSlice';
 
 export default function Main() {
-  const [wishList, setWishList] = useState([]);
-  const { docId } = useSelector(selectAuthState);
-  let newList = [];
+  const { wishList } = useSelector(selectWishListState);
+  // const { docId } = useSelector(selectAuthState);
 
-  const fetchData = () => {
-    const docRef = doc(db, 'vendors', docId);
-    getDoc(docRef)
-      .then((itemDoc) => {
-        if (itemDoc.exists()) {
-          const data = itemDoc.data();
-          console.log('product in details ==>', data, docId);
-          setWishList(data.wishlist);
-        }
-      })
-      .catch(
-        (err) => {
-          console.log('No such document!', err.message);
-        },
-      );
-  };
+  // useEffect(() => {
 
-  const removeItem = async (deletedItemId) => {
-    newList = wishList.filter((item) => (
-      item.id !== deletedItemId
-    ));
-    try {
-      const vendorRef = doc(db, 'vendors', docId);
-
-      await updateDoc(vendorRef, {
-        wishlist: newList,
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-    console.log('wish list value ==>', wishList);
-  }, []);
+  // });
 
   return (
     <div className="main-section-div">
@@ -66,7 +29,7 @@ export default function Main() {
              && <WishListEmpty />}
             { (wishList.length > 0)
               && wishList.map((item) => (
-                <WishListItem item={item} removeItem={removeItem} />
+                <WishListItem item={item} />
               ))}
             {(wishList.length > 1)
              && <RemoveAllButton />}

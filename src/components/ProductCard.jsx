@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import {
   doc, updateDoc, arrayUnion,
 } from 'firebase/firestore';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../config/firebaseConfig';
 import { selectAuthState } from '../redux/slice/authSlice';
+import { ADD_TO_WISHLIST, selectWishListState } from '../redux/slice/wishListSlice';
 
 export default function ProductCard({ product }) {
   const {
@@ -13,9 +14,11 @@ export default function ProductCard({ product }) {
   } = product;
 
   const { docId, isLoggedIn } = useSelector(selectAuthState);
+  const { wishList } = useSelector(selectWishListState);
+  const dispatch = useDispatch();
 
   const handleAddToWishList = async (wishListProduct) => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       try {
         const vendorRef = doc(db, 'vendors', docId);
         await updateDoc(vendorRef, {
@@ -23,6 +26,18 @@ export default function ProductCard({ product }) {
         });
       } catch (err) {
         console.log(err.message);
+      }
+    } else {
+      const isFound = wishList.some((item, index) => {
+        console.log(`test ${index} => ${item.id} vs ${wishListProduct.id}`);
+        return item.id === wishListProduct.id;
+      });
+      console.log(`is found is ${isFound}`);
+      if (!isFound) {
+        dispatch(ADD_TO_WISHLIST(wishListProduct));
+        console.log(wishList);
+      } else {
+        console.log('item is already in list');
       }
     }
   };
