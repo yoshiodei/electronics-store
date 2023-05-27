@@ -43,7 +43,7 @@ export default function ItemImageBox() {
     <div className="item-image-box">
       <div className="item-image-box__top-div">
         <Carousel image={product.image} />
-        {isLoggedIn && <StartChatButton />}
+        {isLoggedIn && <StartChatButton recipientData={product} />}
       </div>
       <div className="item-image-box__bottom-div">
         <div className="item-image-box__bottom-div__image-div active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">

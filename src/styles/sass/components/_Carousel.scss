@@ -47,3 +47,52 @@
         top: calc(50% - 20px);
     }
 }
+
+@include mobileScreen{
+    .carousel__custom {
+        height: 305px;
+    
+        & .carousel-item__custom {
+            border-radius: 5px;
+            width: 100%;
+            height: 305px;
+            overflow: hidden;
+    
+            & img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    
+        &__dummy-image {
+            object-fit: cover !important;
+        }
+    
+        &__button-prev {
+            height: 40px;
+            width: 40px;
+            border: 4px solid white;
+            border-radius: 50%;
+            padding: 0.5em;
+            background-color: $secondaryColour;
+            position: absolute;
+            opacity: 1;
+            left: -20px;
+            top: calc(50% - 20px);
+        }
+    
+        &__button-next {
+            height: 40px;
+            width: 40px;
+            border: 4px solid white;
+            border-radius: 50%;
+            padding: 0.5em;
+            background-color: $secondaryColour;
+            position: absolute;
+            opacity: 1;
+            right: -20px;
+            top: calc(50% - 20px);
+        }
+    }
+}
