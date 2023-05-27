@@ -4,10 +4,10 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
-  collection, query, where, getDocs,
+  collection, query, where, getDocs, doc, setDoc, getDoc,
 } from '@firebase/firestore';
 import { auth, db } from '../config/firebaseConfig';
-import Toast from './Toast';
+// import Toast from './Toast';
 import { SET_LOGIN_DETAIL } from '../redux/slice/authSlice';
 
 export default function SignInModal({
@@ -38,12 +38,11 @@ export default function SignInModal({
         const q = query(collection(db, 'vendors'), where('userId', '==', user.uid));
         const querySnapshot = await getDocs(q);
 
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const docRef = doc.id;
+        querySnapshot.forEach((docData) => {
+          const data = docData.data();
 
           dispatch(SET_LOGIN_DETAIL({
-            docId: docRef,
+            docId: user.uid,
             userId: user.uid,
             followers: data.followers,
             displayName: data.displayName,
@@ -86,27 +85,19 @@ export default function SignInModal({
       });
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const { user } = result;
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
 
-        const q = query(collection(db, 'vendors'), where('userId', '==', user.uid));
-        const querySnapshot = await getDocs(q);
+      const { displayName, photoURL, uid } = result.user;
 
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const docRef = doc.id;
-          dispatch(SET_LOGIN_DETAIL({
-            docId: docRef,
-            userId: user.uid,
-            followers: data.followers,
-            displayName: user.displayName,
-            userImage: user.photoURL,
-            rating: data.rating,
-            bio: data.bio,
-          }));
-        });
+      const vendorDocRef = doc(db, 'vendors', uid);
+
+      const docSnap = await getDoc(vendorDocRef);
+
+      if (docSnap.exists()) {
+        const existingVendorObject = docSnap.data();
+        dispatch(SET_LOGIN_DETAIL({ ...existingVendorObject, docId: uid, userImage: photoURL }));
 
         handleCloseSignInModal();
 
@@ -120,9 +111,49 @@ export default function SignInModal({
           progress: undefined,
           theme: 'light',
         });
-      }).catch((error) => {
-        <Toast type="error" text={error.message} />;
-      });
+      } else {
+        const vendorData = {
+          displayName,
+          bio: 'Hi there, this is my Tektoss shop page.',
+          followers: 0,
+          image: photoURL || '',
+          isPremium: false,
+          rating: 1,
+          userId: uid,
+          wishlist: [],
+          chatList: [],
+          messages: [],
+        };
+
+        const setLoginDetail = {
+          userId: uid,
+          docId: uid,
+          followers: 0,
+          rating: 1,
+          displayName,
+          bio: 'Hi there, this is my Tektoss shop page.',
+          userImage: photoURL,
+        };
+
+        await setDoc(vendorDocRef, vendorData);
+        dispatch(SET_LOGIN_DETAIL(setLoginDetail));
+
+        handleCloseSignInModal();
+
+        toast.success('Sign In Successful!', {
+          position: 'top-center',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    } catch (error) {
+      console.log('Error signing in with Google:', error);
+    }
   };
 
   return (

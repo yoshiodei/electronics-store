@@ -66,11 +66,15 @@ export default function RegisterModal({
               isPremium: false,
               rating: 1,
               userId: user.uid,
+              wishlist: [],
+              chatList: [],
+              messages: [],
             });
             console.log('Document written with ID: ', docRef.id);
 
             dispatch(SET_LOGIN_DETAIL({
               userId: user.uid,
+              docId: user.uid,
               followers: 0,
               displayName: `${fname} ${lname}`,
               userImage: user.photoURL,
