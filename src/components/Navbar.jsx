@@ -138,11 +138,5 @@ function Navbar() {
     </>
   );
 }
- 
-const mapStateToProps = (state) => {
-  return {
-    name: state.reducer.products[0].name
-  }
-}
 
 export default Navbar;
