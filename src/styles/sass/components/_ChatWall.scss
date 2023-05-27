@@ -10,6 +10,29 @@
         border-top-left-radius: 5px;
         padding: 15px;
         background-color: $primaryMidGreyColour;
+        display: flex;
+        align-items: center;
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        &-image-div {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            background-color: $secondaryGreyColour;
+            margin-right: 15px;
+        }
+
+        &-user-info {
+            & h4, & p {
+                margin: 0;
+            }
+        }
 
         & h3 {
             font-weight: 700;
@@ -20,6 +43,7 @@
     &__main {
         height: 60vh;
         padding: 15px;
+        overflow-y: scroll;
     }
 
     &__footer {
@@ -48,8 +72,12 @@
         width: 80%;
         height: 100%;
 
+        &.disabled {
+          border: 1px solid rgb(179, 180, 181);
+        }
+
         &:focus {
-            outline: 2px solid lighten($secondaryColour, 20%);
+            outline: none;
         }
     }
 
@@ -64,6 +92,12 @@
         background-color: $secondaryColour;
         font-weight: 700;
         letter-spacing: 1px;
+        cursor: pointer;
+
+        &.disabled {
+          cursor: not-allowed;
+          background-color: rgb(179, 180, 181);
+        }
     }
 }
 
@@ -79,6 +113,13 @@
         border: 1px solid $primaryGreyColour;
         background-color: $primaryMidGreyColour;
         margin-right: 15px;
+    }
+
+    &__image {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
     }
 
     &__message-div {
