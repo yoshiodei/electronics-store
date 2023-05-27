@@ -13,7 +13,7 @@ import { selectAuthState } from '../../../redux/slice/authSlice';
 export default function AllItemsTab() {
   const [products, setProducts] = useState([]);
   const { id } = useParams({});
-  const { isLoggedIn } = useSelector(selectAuthState);
+  const { userId } = useSelector(selectAuthState);
 
   const fetchData = async () => {
     try {
@@ -42,7 +42,7 @@ export default function AllItemsTab() {
   return (
     <div className="display-product-card">
       <div className="row g-2">
-        { isLoggedIn
+        { (userId === id)
             && (
             <div className="col-6 col-md-3">
               <AddPostCard />
