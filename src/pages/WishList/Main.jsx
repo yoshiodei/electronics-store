@@ -1,20 +1,35 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ContentInfoBox from '../../components/ContentInfoBox';
 import WishListItem from './components/WishListItem';
 import AdPanel from '../../components/AdPanel';
 import WishListEmpty from './components/WishListEmpty';
-import RemoveAllButton from './components/RemoveAllButton';
-import { selectWishListState } from '../../redux/slice/wishListSlice';
-// import { selectAuthState } from '../../redux/slice/authSlice';
+// import RemoveAllButton from './components/RemoveAllButton';
+import { getWishList, removeFromWishList, selectWishListState } from '../../redux/slice/wishListSlice';
+import { selectAuthState } from '../../redux/slice/authSlice';
 
 export default function Main() {
-  const { wishList } = useSelector(selectWishListState);
-  // const { docId } = useSelector(selectAuthState);
+  const { wishList, isLoading } = useSelector(selectWishListState);
+  const { docId } = useSelector(selectAuthState);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
+  const removeItem = (itemId) => {
+    const listArray = wishList.filter((item) => (
+      item.id !== itemId
+    ));
 
-  // });
+    dispatch(removeFromWishList({ listArray, docId }));
+  };
+
+  useEffect(() => {
+    dispatch(getWishList(docId));
+    console.log('dispatch runs');
+  }, [dispatch]);
+
+  if (isLoading) {
+    return ('loading...');
+  }
 
   return (
     <div className="main-section-div">
@@ -29,10 +44,10 @@ export default function Main() {
              && <WishListEmpty />}
             { (wishList.length > 0)
               && wishList.map((item) => (
-                <WishListItem item={item} />
+                <WishListItem item={item} removeItem={removeItem} />
               ))}
-            {(wishList.length > 1)
-             && <RemoveAllButton />}
+            {/* {(wishList.length > 1)
+             && <RemoveAllButton />}  */}
           </div>
         </div>
       </main>
