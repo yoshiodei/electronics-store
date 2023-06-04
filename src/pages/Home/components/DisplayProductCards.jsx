@@ -10,17 +10,25 @@ import { db } from '../../../config/firebaseConfig';
 import ProductCard from '../../../components/ProductCard';
 import DisplayProductLoader from './DisplayProductLoader';
 import {
-  SET_PRODUCTS_LIST,
+  fillProductsList,
   selectProductsState,
 } from '../../../redux/slice/productsSlice';
 
 export default function DisplayProductCards() {
   const [products, setProducts] = useState([]);
-  const { productsList } = useSelector(selectProductsState);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
+  const {
+    productsList,
+    filterObject,
+  } = useSelector(selectProductsState);
+  const {
+    maxPrice, minPrice, condition, category, location, updateTime,
+  } = filterObject;
   const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
+      setIsLoadingProducts(true);
       const q = query(collection(db, 'products'), where('isPromoted', '==', true));
       const querySnapshot = await getDocs(q);
       const allProducts = [];
@@ -36,25 +44,39 @@ export default function DisplayProductCards() {
         allProducts.push({ ...data, id: doc.id });
       });
 
-      setProducts(allProducts);
-      dispatch(SET_PRODUCTS_LIST(products));
+      const filteredList = allProducts.filter((item) => (
+        item.price >= minPrice
+        && item.price <= maxPrice
+        && (item.condition === condition || condition === 'all')
+        && (item.location === location || location === 'all')
+        && (item.category === category || category === 'all')
+      ));
+
+      setProducts(filteredList);
+      dispatch(fillProductsList(products));
+      setIsLoadingProducts(false);
     } catch (err) {
+      setIsLoadingProducts(false);
       console.log(err.message);
     }
   };
 
   useEffect(() => {
     if (productsList.length === 0) {
-      console.log('is loaded');
+      console.log('is not loaded', productsList);
       fetchData();
     } else {
-      console.log('not loaded');
+      console.log('is loaded');
       setProducts(productsList);
     }
-  }, []);
+  }, [updateTime]);
 
-  if (!products.length > 0) {
+  if (isLoadingProducts) {
     return (<DisplayProductLoader />);
+  }
+
+  if (!isLoadingProducts && products.length === 0) {
+    return (<div>Items are empty!</div>);
   }
 
   return (
