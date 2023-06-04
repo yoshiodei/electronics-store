@@ -1,48 +1,80 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { emptyProductsList, resetFilter, setFilter } from '../redux/slice/productsSlice';
 
 export default function FilterCard() {
+  const initialFilter = {
+    maxPrice: 10000,
+    minPrice: 0,
+    location: 'all',
+    category: 'all',
+    condition: 'all',
+  };
+
+  const dispatch = useDispatch();
+  const [filterObj, setFilterObj] = useState(initialFilter);
+
   const priceGap = 900;
-  const [minPrice, setMinPrice] = useState(2500);
-  const [maxPrice, setMaxPrice] = useState(7500);
 
   const handleMinPriceChange = (e) => {
     const value = parseInt(e.target.value);
-    if (value >= 0 && value < (maxPrice - priceGap)) {
-      setMinPrice(value);
+    if (value >= 0 && value < (filterObj.maxPrice - priceGap)) {
+      setFilterObj({ ...filterObj, minPrice: value });
     }
   };
 
   const handleMaxPriceChange = (e) => {
     const value = parseInt(e.target.value);
-    if (value > (minPrice + priceGap) && value <= 10000) {
-      setMaxPrice(value);
+    if (value > (filterObj.minPrice + priceGap) && value <= 10000) {
+      setFilterObj({ ...filterObj, maxPrice: value });
     }
   };
 
   const handleMinTextChange = (e) => {
     const value = parseInt(e.target.value);
-    if (value >= 0 && value < maxPrice) {
-      setMinPrice(value);
+    if (value >= 0 && value < filterObj.maxPrice) {
+      setFilterObj({ ...filterObj, minPrice: value });
     } else {
-      setMinPrice(2500);
+      setFilterObj({ ...filterObj, minPrice: 0 });
     }
   };
 
   const handleMaxTextChange = (e) => {
     const value = parseInt(e.target.value);
-    if (value > minPrice && value <= 10000) {
-      setMaxPrice(value);
+    if (value > filterObj.minPrice && value <= 10000) {
+      setFilterObj({ ...filterObj, maxPrice: value });
     } else {
-      setMaxPrice(7500);
+      setFilterObj({ ...filterObj, maxPrice: 10000 });
     }
   };
 
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    setFilterObj({ ...filterObj, [name]: value });
+  };
+
+  const handleFilter = () => {
+    dispatch(emptyProductsList());
+    dispatch(setFilter({ ...filterObj, updateTime: Date.now() }));
+  };
+
+  const handleResetFilter = (e) => {
+    e.preventDefault();
+    dispatch(resetFilter());
+    e.target.reset();
+  };
+
   return (
-    <div className="filter-card">
+    <form className="filter-card" onSubmit={handleResetFilter}>
       <div className="filter-card__location-div">
         <h6>Location</h6>
-        <select className="form-select" aria-label="Default select example">
-          <option value="All">All</option>
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          name="location"
+          onChange={handleSelectChange}
+        >
+          <option value="all">All</option>
           <option value="Near">Items near me (within 5 miles)</option>
         </select>
       </div>
@@ -52,65 +84,69 @@ export default function FilterCard() {
           <div className="filter-card__price-input">
             <div className="filter-card__field">
               <span>$</span>
-              <input type="number" className="filter-card__input" value={minPrice} onChange={handleMinTextChange} />
+              <input type="number" className="filter-card__input" value={filterObj.minPrice} onChange={handleMinTextChange} />
             </div>
             <div className="filter-card__separator">-</div>
             <div className="filter-card__field">
               <span>$</span>
-              <input type="number" className="filter-card__input" value={maxPrice} onChange={handleMaxTextChange} />
+              <input type="number" className="filter-card__input" value={filterObj.maxPrice} onChange={handleMaxTextChange} />
             </div>
           </div>
           <div className="filter-card__slider">
-            <div className="filter-card__progress" style={{ left: `${minPrice / 100}%`, right: `${100 - (maxPrice / 100)}%` }} />
+            <div className="filter-card__progress" style={{ left: `${filterObj.minPrice / 100}%`, right: `${100 - (filterObj.maxPrice / 100)}%` }} />
           </div>
           <div className="filter-card__range-input">
-            <input type="range" className="filter-card__range filter-card__range-min" min="0" max="10000" value={minPrice} step="100" onChange={handleMinPriceChange} />
-            <input type="range" className="filter-card__range filter-card__range-max" min="0" max="10000" value={maxPrice} step="100" onChange={handleMaxPriceChange} />
-          </div>
-        </div>
-      </div>
-      <div className="filter-card__item-condition-div">
-        <h6>Item Condition</h6>
-        <div className="filter-card__item-condition-outer-div">
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="condition" id="condition2" />
-            <label className="form-check-label" htmlFor="condition2">
-              All
-            </label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="condition" id="condition2" />
-            <label className="form-check-label" htmlFor="condition2">
-              Brand New
-            </label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="condition" id="condition2" />
-            <label className="form-check-label" htmlFor="condition2">
-              Slightly Used
-            </label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="condition" id="condition2" />
-            <label className="form-check-label" htmlFor="condition2">
-              Used
-            </label>
+            <input type="range" className="filter-card__range filter-card__range-min" min="0" max="10000" value={filterObj.minPrice} step="100" onChange={handleMinPriceChange} />
+            <input type="range" className="filter-card__range filter-card__range-max" min="0" max="10000" value={filterObj.maxPrice} step="100" onChange={handleMaxPriceChange} />
           </div>
         </div>
       </div>
       <div className="filter-card__category-div">
+        <h6>Item Condition</h6>
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          name="condition"
+          onChange={handleSelectChange}
+        >
+          <option value="all">All</option>
+          <option value="brand new">Brand New</option>
+          <option value="slightly used">Slightly Used</option>
+          <option value="used">Used</option>
+        </select>
+      </div>
+      <div className="filter-card__category-div">
         <h6>Category</h6>
-        <select className="form-select" aria-label="Default select example">
-          <option value="All">All</option>
-          <option value="Phones">Phones</option>
-          <option value="Television">Television</option>
-          <option value="Denver">Desktop</option>
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          name="category"
+          onChange={handleSelectChange}
+        >
+          <option value="all">All</option>
+          <option value="phones">Phones</option>
+          <option value="televisions">Televisions</option>
+          <option value="desktops">Desktops</option>
+          <option value="laptops">Laptops</option>
+          <option value="game consoles">Game Consoles</option>
+          <option value="headphones and speakers">Headphones and Speakers</option>
         </select>
       </div>
       <div className="filter-card__reset-div d-flex justify-content-between">
-        <button type="button" className="filter-card__filter-button">Filter</button>
-        <button type="button" className="filter-card__reset-button">Reset</button>
+        <button
+          type="button"
+          className="filter-card__filter-button"
+          onClick={handleFilter}
+        >
+          Filter
+        </button>
+        <button
+          type="submit"
+          className="filter-card__reset-button"
+        >
+          Reset
+        </button>
       </div>
-    </div>
+    </form>
   );
 }
