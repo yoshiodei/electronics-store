@@ -8,6 +8,119 @@
         color: $secondaryColour;
         font-weight: 700;
         margin-bottom: 5px;
+
+        &--alt {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & h6 {
+                font-size: 1em;
+                font-weight: 700;
+                margin-bottom: 0;
+            }
+        }
+
+        & span {
+            font-weight: 500;
+            margin-left: 10px;
+            color: $secondaryColour;
+        }
+
+        & span.new-item-form__span--alt {
+            font-weight: 500;
+            margin-bottom: 0;
+            color: rgb(223, 26, 26);
+        }
+    }
+
+    &__file-input-outer-div {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    &__file-input-div {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        position: relative;
+
+        &:first-child {
+            & label {
+              & div {
+                padding-top: 15px;
+              }
+            }
+        }
+
+        & label {
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            & div{
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                background-color: $primaryMidGreyColour;
+                border: 3px dashed $primaryGreyColour;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 5px;
+                cursor: pointer;
+
+            }
+
+            & i, & h6 {
+                font-size: 0.9em;
+                color: $secondaryColour;
+            }
+
+            & h6 span {
+                display: block;
+                color: $secondaryColour;
+                margin-top: 1px;
+                font-size: 0.75em;
+            }
+        }
+    }
+
+    &__preview-div {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background-color: $primaryMidGreyColour;
+        position: relative;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+
+        }
+
+        & button {
+            position: absolute;
+            width: 2em;
+            height: 2em;
+            border: none;
+            top: -0.4em;
+            right: -0.4em;
+            background-color: rgba(176, 12, 12, 0.955);
+            color: #fff;
+            font-size: 0.6em;
+            border-radius: 50%;
+            z-index: 5;
+        }
+    }
+
+    &__upload-image-input {
+        display: none;
     }
 
     &__input {
