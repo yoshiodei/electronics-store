@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import { db } from '../config/firebaseConfig';
+import { toast } from 'react-toastify';
 import { selectAuthState } from '../redux/slice/authSlice';
 import { addToWhishList } from '../redux/slice/wishListSlice';
 
@@ -19,6 +20,16 @@ export default function ProductCard({ product }) {
       console.log('Log in to add items to wish list');
     } else {
       dispatch(addToWhishList({ ...wishListProduct, docId }));
+      toast.success('Item added successfully!', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   };
 
