@@ -1,7 +1,7 @@
 import React from 'react';
 import AdPanel from '../../components/AdPanel';
 import FilterCard from '../../components/FilterCard';
-import Pagination from '../../components/Pagination';
+// import Pagination from '../../components/Pagination';
 import SectionHeader from '../../components/SectionHeader';
 import SearchBar from './components/SearchBar';
 import SearchInfoBox from './components/SearchInfoBox';
@@ -22,7 +22,7 @@ export default function Main() {
           <CategoriesBox />
           <SearchBar />
           <DisplaySearchItems />
-          <Pagination />
+          {/* <Pagination /> */}
         </div>
       </main>
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import AdPanel from '../../components/AdPanel';
 import ItemImageBox from './components/ItemImageBox';
 import { db } from '../../config/firebaseConfig';
@@ -9,10 +10,12 @@ import ProductLocation from './components/ProductLocation';
 // import SimilarItems from './components/SimilarItems';
 import VendorDetails from './components/VendorDetails';
 import ButtonsBox from './components/ButtonsBox';
+import { selectAuthState } from '../../redux/slice/authSlice';
 
 export default function Main() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
+  const { isLoggedIn } = useSelector(selectAuthState);
 
   const fetchData = () => {
     const docRef = doc(db, 'products', id);
@@ -33,7 +36,7 @@ export default function Main() {
 
   useEffect(() => {
     fetchData();
-    console.log('this is the product dataa', product);
+    console.log('this is the product data', product);
   }, []);
 
   return (
@@ -43,7 +46,7 @@ export default function Main() {
           <ProductDetail />
           <ProductLocation />
           <VendorDetails />
-          <ButtonsBox />
+          {isLoggedIn && <ButtonsBox product={product} />}
           <AdPanel />
         </div>
         <div className="main-section__right-div">
@@ -52,7 +55,7 @@ export default function Main() {
             <ProductDetail />
             <ProductLocation />
             <VendorDetails />
-            <ButtonsBox />
+            {isLoggedIn && <ButtonsBox product={product} />}
           </div>
           {/* <SimilarItems /> */}
         </div>

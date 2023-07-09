@@ -4,9 +4,8 @@ import CategoriesBox from '../components/CategoriesBox';
 import SearchCategoriesBox from '../pages/SearchResult/components/CategoriesBox';
 import FilterCard from '../components/FilterCard';
 import Hero from '../components/Hero';
-import Pagination from '../components/Pagination';
 import SectionHeader from '../components/SectionHeader';
-import DisplayProductCards from '../pages/Home/components/DisplayProductCards';
+import DisplayCards from '../pages/Home/components/DisplayCards';
 
 export default function HomeMain() {
   return (
@@ -22,8 +21,7 @@ export default function HomeMain() {
           <SearchCategoriesBox />
           <Hero />
           <SectionHeader>Popular Products</SectionHeader>
-          <DisplayProductCards />
-          <Pagination />
+          <DisplayCards />
         </div>
       </main>
     </div>

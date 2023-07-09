@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home';
+import Home from '../pages/Home/Home';
 import SingleItem from '../pages/SingleItem/SingleItem';
 import '../styles/main.css';
 import ChatRoom from '../pages/ChatRoom/ChatRoom';
@@ -11,6 +11,9 @@ import NewItem from '../pages/NewItem/NewItem';
 import WishList from '../pages/WishList/WishList';
 import Notifications from '../pages/Notifications/Notifications';
 import Category from '../pages/Category/Category';
+import Checkout from '../pages/CheckoutPage/CheckoutForm';
+import EditProfile from '../pages/EditProfile/EditProfile';
+import PaymentSuccess from '../pages/PaymentSucess/PaymentSuccess';
 
 export default function MainRoutes() {
   return (
@@ -37,6 +40,9 @@ export default function MainRoutes() {
         <Route path="/user-account/:id" element={<UserAccount />} />
         <Route path="/wish-list" element={<WishList />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/checkoutform" element={<Checkout />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
       </Routes>
     </BrowserRouter>
   );
