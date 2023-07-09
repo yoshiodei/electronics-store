@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { emptyProductsList, resetFilter, setFilter } from '../redux/slice/productsSlice';
+import { emptyProductsList, setCoordinate, setFilter } from '../redux/slice/productsSlice';
 
 export default function FilterCard() {
   const initialFilter = {
@@ -53,15 +53,28 @@ export default function FilterCard() {
     setFilterObj({ ...filterObj, [name]: value });
   };
 
+  const fetchCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        dispatch(setCoordinate({ latitude, longitude }));
+      });
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  };
+
   const handleFilter = () => {
+    if (filterObj.location !== 'all') { fetchCurrentLocation(); }
     dispatch(emptyProductsList());
     dispatch(setFilter({ ...filterObj, updateTime: Date.now() }));
   };
 
   const handleResetFilter = (e) => {
     e.preventDefault();
-    dispatch(resetFilter());
     e.target.reset();
+    setFilterObj(initialFilter);
+    dispatch(setFilter({ ...initialFilter, updateTime: Date.now() }));
   };
 
   return (
