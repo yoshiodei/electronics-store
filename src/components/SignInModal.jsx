@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, FacebookAuthProvider, getAuth,
+} from 'firebase/auth';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -15,6 +17,7 @@ export default function SignInModal({
   handleCloseSignInModal,
   handleShowRegisterModal,
 }) {
+  const providerFB = new FacebookAuthProvider();
   const provider = new GoogleAuthProvider();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -88,7 +91,7 @@ export default function SignInModal({
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-
+      console.log('user data', result.user);
       const { displayName, photoURL, uid } = result.user;
 
       const vendorDocRef = doc(db, 'vendors', uid);
@@ -156,6 +159,20 @@ export default function SignInModal({
     }
   };
 
+  const handleFacebookSignIn = async () => {
+    const authFB = getAuth();
+    signInWithPopup(authFB, providerFB)
+      .then((resultFB) => {
+        const userFB = resultFB.user;
+
+        console.log('FB logged in user', userFB);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
   return (
     <Modal
       show={showSignInModal}
@@ -183,6 +200,10 @@ export default function SignInModal({
             <button type="button" className="modal__custom-content-right__google-signin-button" onClick={handleGoogleSignIn}>
               <i className="fa-brands fa-google" />
               Sign In With Google
+            </button>
+            <button type="button" className="modal__custom-content-right__facebook-signin-button" onClick={handleFacebookSignIn}>
+              <i className="fa-brands fa-facebook" />
+              Sign In With Facebook
             </button>
             <h6 className="switch-to-signin">
               Don&apos;t have an account?
