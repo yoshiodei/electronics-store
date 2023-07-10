@@ -16,8 +16,12 @@ export default function Hero() {
   return (
     <div className="hero">
       <div className="hero__main-div">
-        <h1>Lorem ipsum imei dolor ini kalam ilaan yaman.</h1>
-        <p>Find all the latest and trending electronic products right here.</p>
+        <h1>Your One-Stop Electronic Gadget Marketplace.</h1>
+        <p>
+          Discover the Best Deals, Connect with Sellers,
+          {' '}
+          and Trade Gadgets with Ease right here on Tektoss.
+        </p>
         <SellNowButton />
         <img src={womanHoldingLaptop} className="hero__main-div__image" alt="woman holding laptop" />
       </div>
