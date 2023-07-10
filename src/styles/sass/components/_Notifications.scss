@@ -1,4 +1,14 @@
 .notifications {
+    &__list-heading {
+        padding: 8px;
+        border-radius: 4px;
+        display: inline-block;
+        background-color: rgb(132, 132, 132);
+        // position: sticky;
+        // top: 20px;
+        color: #fff;
+    }
+
     &__empty-div {
         width: 50%;
         min-height: 250px;
@@ -35,6 +45,58 @@
             }
         }
     }
+
+    &__list {
+        padding: 0;
+    }
+
+    &__list-div {
+        background-color: #fff;
+        padding: 15px 0;
+        margin: 0 auto;
+    }
+
+    &__card {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        border: 1px solid $primaryGreyColour;
+        margin-right: 20px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+
+        &__message-text {
+            font-weight: 400;
+        }
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &__heading-div {
+            display: flex;
+            gap: 15px;
+        }
+
+        &__time {
+            text-align: right;
+            color: rgb(169, 169, 169);
+        }
+
+        &__heading-icon-div {
+            background-color: $primaryGreyColour;
+            height: 1.7em;
+            width: 1.7em;
+            border-radius: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & i {
+                color: rgb(243, 243, 243)
+            }
+        }
+    }
 }
 
 @include mobileScreen {
@@ -49,6 +111,13 @@
                 font-size: 5em;
                 margin-bottom: 10px;
             }
+        }
+
+        &__list-div {
+            position: initial;
+            top: unset;
+            padding: 15px 0;
+            margin: 0 auto;
         }
     }
 }
