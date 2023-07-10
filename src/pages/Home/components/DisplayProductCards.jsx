@@ -13,10 +13,13 @@ import {
   fillProductsList,
   selectProductsState,
 } from '../../../redux/slice/productsSlice';
+import Pagination from '../../../components/Pagination';
 
 export default function DisplayProductCards() {
   const [products, setProducts] = useState([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const {
     productsList,
     filterObject,
@@ -53,20 +56,20 @@ export default function DisplayProductCards() {
       ));
 
       setProducts(filteredList);
-      dispatch(fillProductsList(products));
+      dispatch(fillProductsList(filteredList));
       setIsLoadingProducts(false);
     } catch (err) {
       setIsLoadingProducts(false);
+      setIsError(true);
       console.log(err.message);
     }
   };
 
   useEffect(() => {
     if (productsList.length === 0) {
-      console.log('is not loaded', productsList);
       fetchData();
     } else {
-      console.log('is loaded');
+      console.log('is loaded', productsList);
       setProducts(productsList);
     }
   }, [updateTime]);
@@ -75,19 +78,26 @@ export default function DisplayProductCards() {
     return (<DisplayProductLoader />);
   }
 
-  if (!isLoadingProducts && products.length === 0) {
+  if (!isLoadingProducts && isError) {
+    return (<div>Loading error, please reload.</div>);
+  }
+
+  if (!isLoadingProducts && products.length === 0 && !isError) {
     return (<div>Items are empty!</div>);
   }
 
   return (
-    <div className="row g-2">
-      {
+    <>
+      <div className="row g-2">
+        {
       products.map((product) => (
         <div className="col-6 col-md-3">
           <ProductCard product={product} />
         </div>
       ))
       }
-    </div>
+      </div>
+      {(products.lenght > 0) && <Pagination products={products} />}
+    </>
   );
 }
