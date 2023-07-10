@@ -6,28 +6,61 @@ import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import {
   addDoc,
   collection,
-  // doc, setDoc,
 } from '@firebase/firestore';
-// import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { db, storage } from '../../../config/firebaseConfig';
-import states from './states';
+// import states from './states';
 import brands from './brands';
+import { selectAuthState } from '../../../redux/slice/authSlice';
+import GeoGetter from '../../../components/GeoGetter';
 
 export default function FormItems() {
+  const initialLocation = {
+    country: '',
+    state: '',
+    town: '',
+    longitude: '',
+    latitude: '',
+    locationIsSet: false,
+  };
+
+  const [location, setLocation] = useState(initialLocation);
+
+  const navigate = useNavigate();
+
   const initialState = {
     name: '',
     price: '',
     category: 'laptops',
-    brand: '',
+    brand: 'sony',
+    city: '',
+    state: 'alabama',
     details: '',
     images: [],
     condition: 'brand new',
     isPromoted: false,
+    location: {
+      locationIsSet: false,
+      country: '',
+      state: '',
+      town: '',
+      coordinates: {
+        longitude: '',
+        latitude: '',
+      },
+    },
+  };
+
+  const redirectToCheckout = () => {
+    navigate('/checkoutform');
   };
 
   const [newItem, setNewItem] = useState(initialState);
-  // const [uuId, setUuId] = useState('');
   const [isPosting, setIsPosting] = useState(false);
+  const {
+    userId, docId, displayName, userImage,
+  } = useSelector(selectAuthState);
 
   const handleRemoveImage = (index) => {
     const updatedImages = [...newItem.images];
@@ -75,13 +108,13 @@ export default function FormItems() {
     }
   };
 
-  const handleSubmitNewItem = async (e) => {
+  const handleSubmitNewItemTest = async (e) => {
     e.preventDefault();
 
     setIsPosting(true);
 
     const {
-      name, price, details, images, condition, isPromoted,
+      name, price, details, images, condition, isPromoted, brand, category,
     } = newItem;
 
     if (!name.trim() || !price.trim() || !details.trim()) {
@@ -127,18 +160,42 @@ export default function FormItems() {
         imageUrls.push(downloadUrl);
       }
 
-      // setUuId(uuidv4());
+      const collectionRef = collection(db, 'pendingItems');
 
-      // const productsDocRef = doc(db, 'products', uuId);
-      const collectionRef = collection(db, 'products');
+      const vendorData = {
+        displayName,
+        image: userImage,
+        userId,
+      };
+
       const productsData = {
         name: name.trim(),
         details: details.trim(),
         condition,
         isPromoted,
+        category,
+        brand,
         price: price.trim(),
         images: imageUrls,
+        vendor: vendorData,
+        vendorDocId: docId,
+        vendorId: userId,
+        location: {
+          locationIsSet: location.locationIsSet,
+          locationName: `${location.town}, ${location.state}`,
+          country: location.country,
+          state: location.state,
+          town: location.town,
+          coordinates: {
+            longitude: location.longitude,
+            latitude: location.latitude,
+          },
+        },
       };
+
+      setLocation(initialLocation);
+      setNewItem(initialState);
+      e.target.reset();
 
       await addDoc(collectionRef, productsData);
 
@@ -152,6 +209,8 @@ export default function FormItems() {
         progress: undefined,
         theme: 'light',
       });
+
+      console.log('new item', productsData);
 
       setIsPosting(false);
     } catch (error) {
@@ -171,7 +230,7 @@ export default function FormItems() {
   };
 
   return (
-    <form className="new-item-form" onSubmit={handleSubmitNewItem}>
+    <form className="new-item-form" onSubmit={handleSubmitNewItemTest}>
       <div className="row g-4">
         <div className="col-md-12">
           <div className="new-item-form__input-div">
@@ -203,12 +262,12 @@ export default function FormItems() {
         </div>
         <div className="col-md-6">
           <div className="new-item-form__input-div">
-            <label htmlFor="price-input" className="new-item-form__label">Item Brand</label>
+            <label htmlFor="brand" className="new-item-form__label">Item Brand</label>
             <select
               className="new-item-form__input"
               aria-label="Default select example"
-              name="category"
-              value={newItem.category}
+              name="brand"
+              value={newItem.brand}
               onChange={handleFormChange}
             >
               {
@@ -229,10 +288,13 @@ export default function FormItems() {
               value={newItem.category}
               onChange={handleFormChange}
             >
-              <option value="Laptops">Laptops</option>
-              <option value="Phones">Phones</option>
-              <option value="Television">Televisions</option>
-              <option value="Desktops">Desktops</option>
+              <option value="laptops">Laptops</option>
+              <option value="phones">Phones</option>
+              <option value="televisions">Televisions</option>
+              <option value="desktops">Desktops</option>
+              <option value="game consoles">Game Consoles</option>
+              <option value="headphones and speakers">Headphones and Speakers</option>
+              <option value="accessories">Accessories</option>
             </select>
           </div>
         </div>
@@ -252,36 +314,7 @@ export default function FormItems() {
             </select>
           </div>
         </div>
-        <div className="col-md-6">
-          <div className="new-item-form__input-div">
-            <label htmlFor="price-input" className="new-item-form__label">State</label>
-            <select
-              className="new-item-form__input"
-              aria-label="Default select example"
-              name="condition"
-              // onChange={handleFormChange}
-            >
-              {
-               states.map((state, index) => (
-                 <option value={state} key={index}>{state}</option>
-               ))
-            }
-            </select>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="new-item-form__input-div">
-            <label htmlFor="price-input" className="new-item-form__label">City / Town</label>
-            <input
-              id="price-input"
-              className="new-item-form__input"
-              placeholder="Please enter corresponding city/town name"
-              name="price"
-              // value={newItem.price}
-              // onChange={handleFormChange}
-            />
-          </div>
-        </div>
+        <GeoGetter location={location} setLocation={setLocation} />
         <div className="col-md-12">
           <div className="new-item-form__textarea-div">
             <label className="new-item-form__label new-item-form__label--alt">
@@ -500,36 +533,10 @@ export default function FormItems() {
             </div>
           </div>
         </div>
-        <div className="new-item-form__input-div">
-          <label htmlFor="price-input" className="new-item-form__label">Card Transation Details</label>
-          <div className="row">
-            <div className="col-md-6">
-              <label htmlFor="price-input" className="new-item-form__label">Item Price</label>
-              <input
-                id="price-input"
-                className="new-item-form__input"
-                placeholder="eg. $ 150"
-                name="price"
-                value={newItem.price}
-                onChange={handleFormChange}
-              />
-            </div>
-            <div className="col-md-6">
-              <label htmlFor="price-input" className="new-item-form__label">Item Price</label>
-              <input
-                id="price-input"
-                className="new-item-form__input"
-                placeholder="eg. $ 150"
-                name="price"
-                value={newItem.price}
-                onChange={handleFormChange}
-              />
-            </div>
-          </div>
-        </div>
         <div className="col-md-12">
           <div className="new-item-form__post-item-div">
-            <button className="new-item-form__post-item-button" type="submit">{isPosting ? '...Posting' : 'Post Item'}</button>
+            {(!newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="submit">{isPosting ? '...Posting' : 'Post Item'}</button>)}
+            {(newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="button" onClick={redirectToCheckout}>checkout</button>)}
           </div>
         </div>
       </div>

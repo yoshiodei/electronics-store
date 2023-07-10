@@ -2,6 +2,17 @@
     &__input-div {
         display: flex;
         flex-direction: column;
+        height: auto;
+        overflow: hidden;
+        transition: height 0.3s;
+
+        & option, & select {
+            text-transform: capitalize;
+        }
+
+        &--none {
+            display: none;
+        }
     }
 
     &__label {
@@ -184,6 +195,15 @@
         border: none;
         padding: 0.5em 1em;
         border-radius: 50px;
+        font-weight: 700;
+        color: white;
+        background-color: $secondaryColour;
+    }
+
+    &__search-location-button {
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 5px;
         font-weight: 700;
         color: white;
         background-color: $secondaryColour;
