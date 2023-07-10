@@ -1,6 +1,7 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 
 export const setFilter = createAction('setFilter');
+export const setCoordinate = createAction('setCoordinate');
 export const resetFilter = createAction('resetFilter');
 export const emptyProductsList = createAction('emptyProductsList');
 export const fillProductsList = createAction('fillProductsList');
@@ -18,6 +19,7 @@ const initialState = {
   isLoading: false,
   productsList: [],
   filterObject: initialFilter,
+  userCoordinates: { longitude: 0, latitude: 0 },
   error: null,
 };
 
@@ -35,6 +37,9 @@ const productsSlice = createSlice({
       })
       .addCase(emptyProductsList, (state) => {
         state.productsList = [];
+      })
+      .addCase(setCoordinate, (state, action) => {
+        state.userCoordinates = action.payload;
       })
       .addCase(fillProductsList, (state, action) => {
         state.productsList = action.payload;
