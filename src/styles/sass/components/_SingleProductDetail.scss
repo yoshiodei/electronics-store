@@ -76,6 +76,10 @@
         color:rgb(107, 107, 107);
     }
 
+    &__distance p {
+        color:rgb(107, 107, 107);
+    }
+
     & [class$='div'] {
         border-bottom: 1px solid $primaryGreyColour;
         margin-top: 8px;
@@ -111,6 +115,13 @@
         margin-right: 15px;
         position: relative;
         border: 1px solid $primaryGreyColour;
+
+        & img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
     }
 
     &__profile-title {
