@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-md-3">
             <h4 className="footer__heading">Tektoss</h4>
-            <p className="footer__brand-info">lorem ipsum imei ini dolor lehm suraj kan ini mei lahim sural kamal</p>
+            <p className="footer__brand-info">Connect, Buy, and Sell Your Favorite Gadgets right here on Tektoss.</p>
             <SellNowButton />
           </div>
           <div className="col-md-3">
