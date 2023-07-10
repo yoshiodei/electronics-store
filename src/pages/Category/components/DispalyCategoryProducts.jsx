@@ -5,6 +5,7 @@ import {
 import { useParams } from 'react-router-dom';
 import { db } from '../../../config/firebaseConfig';
 import ProductCard from '../../../components/ProductCard';
+// import Pagination from '../../../components/Pagination';
 
 export default function DispalyCategoryProducts() {
   const [products, setProducts] = useState([]);
@@ -31,16 +32,19 @@ export default function DispalyCategoryProducts() {
   }, [category]);
 
   return (
-    <div className="search-result-items">
-      <div className="row g-2">
-        {
+    <>
+      <div className="search-result-items">
+        <div className="row g-2">
+          {
       products.map((product) => (
         <div className="col-6 col-md-3">
           <ProductCard product={product} />
         </div>
       ))
       }
+        </div>
       </div>
-    </div>
+      {(products.length > 0) && <div />}
+    </>
   );
 }
