@@ -135,7 +135,7 @@
             text-align: center;
         }
 
-        &__google-signin-button {
+        &__google-signin-button, &__facebook-signin-button {
             border: none;
             outline: none;
             border-radius: 5px;
@@ -152,6 +152,10 @@
                 color: white;
                 margin-right: 10px;
             }
+        }
+
+        &__facebook-signin-button {
+            background-color: rgb(65, 84, 181);
         }
     }
 }
