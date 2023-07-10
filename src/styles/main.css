@@ -1239,6 +1239,9 @@ a {
   font-weight: 700;
   color: rgb(107, 107, 107);
 }
+.product-location__distance p {
+  color: rgb(107, 107, 107);
+}
 .product-location [class$=div] {
   border-bottom: 1px solid lightgrey;
   margin-top: 8px;
