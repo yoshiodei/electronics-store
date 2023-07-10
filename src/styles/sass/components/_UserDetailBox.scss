@@ -84,20 +84,48 @@
         }
     }
 
-    &__report-user-div {
-        align-items: center;
+    &__edit-user-button {
+        width: 100%;
+        padding: 5px 10px;
+        color: #fff;
+        border-radius: 5px;
+        background-color: $secondaryColour;
+        @include paddingVertical(8px);
+        margin-top: 8px;
+        margin-bottom: 10px;
+        border: none;
         cursor: pointer;
+        justify-content: center;
+        align-items: center;
 
-        &:hover .user-detail-box__report-user{
-            text-decoration: underline;
+        & i {
+           color: $lightFont;
+           margin-right: 10px;
+           font-weight: 700;
+           text-align: center;
+           letter-spacing: 0.8px;
+        }
+    }
+
+    &__report-user-button {
+        align-items: center;
+        border: none;
+        background-color: transparent;
+        border-radius: 4px;
+        padding: 5px 10px;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: rgba(116, 116, 116, 0.167); 
         }
     }
 
     &__report-user-icon {
         height: 1em;
         width: 1em;
-        background-color: grey;
-        border-radius: 50%;
+        // background-color: grey;
+        color: grey;
+        // border-radius: 50%;
         margin-right: 10px;    
     }
 
@@ -106,6 +134,76 @@
         line-height: 1;
         font-size: 0.9em;
     }
+}
+
+.edit-profile {
+  &__form-image-div {
+    height: 100%;
+    width: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid $primaryGreyColour;
+
+    & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+  }
+
+  &__edit-image-buttons-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  &__edit-image-div {
+    height: 150px;
+    display: flex;
+    gap: 15px;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__update-image-button, &__remove-image-button {
+    height: 2.2em;
+    width: 170px;
+    border-radius: 4px;
+    background-color: $primaryGreyColour;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    // color: #fff;
+
+    &:hover {
+        background-color: darken($primaryGreyColour, 5%);
+    }
+
+    & * {
+        margin: 0;
+    }
+  }
+
+  &__remove-image-button {
+    background-color: $dangerRed;
+    color: #fff;
+
+    &:hover {
+        background-color: darken($dangerRed, 5%);
+    }
+    
+    & i {
+        color: #fff;
+    }
+  }
 }
 
 @include mobileScreen{
@@ -184,15 +282,6 @@
                font-weight: 700;
                text-align: center;
                letter-spacing: 0.8px;
-            }
-        }
-    
-        &__report-user-div {
-            align-items: center;
-            cursor: pointer;
-    
-            &:hover .user-detail-box__report-user{
-                text-decoration: underline;
             }
         }
     
