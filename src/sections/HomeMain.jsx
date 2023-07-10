@@ -18,8 +18,8 @@ export default function HomeMain() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
-          <SearchCategoriesBox />
           <Hero />
+          <SearchCategoriesBox />
           <SectionHeader>Popular Products</SectionHeader>
           <DisplayCards />
         </div>
