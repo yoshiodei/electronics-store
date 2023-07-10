@@ -5,13 +5,16 @@ import {
 } from '@firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
 import ProductCard from '../../../components/ProductCard';
+// import Pagination from '../../../components/Pagination';
 
 export default function DisplaySearchItems() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { searchName } = useParams();
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const q = query(collection(db, 'products'), where('isPromoted', '==', true));
       const querySnapshot = await getDocs(q);
       const allProducts = [];
@@ -27,14 +30,21 @@ export default function DisplaySearchItems() {
         allProducts.push({ ...data, id: doc.id });
       });
 
+      console.log('display all', allProducts);
+
       const filteredProducts = allProducts
         .filter((product) => (
-          product.name.toLowerCase().includes(searchName.toLowerCase())
-          || product.category.includes(searchName.toLowerCase())
+          product.name?.toLowerCase().includes(searchName.toLowerCase())
+          || product?.brand?.toLowerCase().includes(searchName.toLowerCase())
+          || product?.category?.toLowerCase().includes(searchName.toLowerCase())
         ));
 
+      console.log('display all filtered', filteredProducts);
+
       setProducts(filteredProducts);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err.message);
     }
   };
@@ -43,15 +53,22 @@ export default function DisplaySearchItems() {
     fetchData();
   }, []);
 
+  if (isLoading) {
+    return (<div>...Loading</div>);
+  }
+
   return (
-    <div className="row g-2">
-      {
+    <>
+      <div className="row g-2">
+        {
       products.map((product) => (
         <div className="col-6 col-md-3">
           <ProductCard product={product} />
         </div>
       ))
       }
-    </div>
+      </div>
+      {(products.length > 0) && <div />}
+    </>
   );
 }
