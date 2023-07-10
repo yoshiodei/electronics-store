@@ -21,6 +21,7 @@
         "import/no-extraneous-dependencies": "off",
         "jsx-a11y/label-has-associated-control": "off",
         "no-param-reassign": "off",
+        "no-restricted-globals": "off",
         "radix": "off"
     }
 }
