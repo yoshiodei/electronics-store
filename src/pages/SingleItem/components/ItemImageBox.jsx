@@ -6,7 +6,7 @@ import { db } from '../../../config/firebaseConfig';
 import StartChatButton from './StartChatButton';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import Carousel from './Carousel';
-import dummyImage from '../../../assets/images/dummy-image.jpg';
+// import dummyImage from '../../../assets/images/dummy-image.jpg';
 import ItemImageBoxLoading from './ItemImageBoxLoading';
 
 export default function ItemImageBox() {
@@ -35,32 +35,30 @@ export default function ItemImageBox() {
     fetchData();
   }, []);
 
-  if (!product.image) {
+  if (!product?.name) {
     return (<ItemImageBoxLoading />);
   }
 
   return (
     <div className="item-image-box">
       <div className="item-image-box__top-div">
-        <Carousel image={product.image} />
+        <Carousel images={product?.images} />
         {isLoggedIn && <StartChatButton recipientData={product} />}
       </div>
       <div className="item-image-box__bottom-div">
-        <div className="item-image-box__bottom-div__image-div active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
-          <img src={product.image} alt="product" />
-        </div>
-        <div className="item-image-box__bottom-div__image-div" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">
-          <img src={dummyImage} alt="product" />
-        </div>
-        <div className="item-image-box__bottom-div__image-div" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">
-          <img src={dummyImage} alt="product" />
-        </div>
-        <div className="item-image-box__bottom-div__image-div" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4">
-          <img src={dummyImage} alt="product" />
-        </div>
-        <div className="item-image-box__bottom-div__image-div" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5">
-          <img src={dummyImage} alt="product" />
-        </div>
+        {
+              product.images.map((itemImage, index) => (
+                <div
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to={index}
+                  aria-current="true"
+                  aria-label={`Slide ${index + 1}`}
+                  className={index === 0 ? 'item-image-box__bottom-div__image-div active' : 'item-image-box__bottom-div__image-div'}
+                >
+                  <img src={itemImage} alt="product" />
+                </div>
+              ))
+            }
       </div>
     </div>
   );
