@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function WishListItem({ item, removeItem }) {
   const {
-    name, price, image, location, condition, id,
+    name, price, location, condition, id,
   } = item;
 
   const handleCloseItem = () => {
@@ -14,12 +14,12 @@ export default function WishListItem({ item, removeItem }) {
     <div className="wish-list__item" key={id}>
       <Link to={`/single-item/${id}`}>
         <div className="wish-list__image-div">
-          <img src={image} alt="..." />
+          <img src={item?.image || item?.images[0]} alt="..." />
         </div>
         <div className="wish-list__info-div">
           <h6>{name}</h6>
           <h6>{`$ ${price}.00`}</h6>
-          <h6>{location}</h6>
+          <h6>{location?.locationIsSet ? `${location?.town}, ${location?.state}` : 'location is unknown'}</h6>
           <h6>{condition}</h6>
         </div>
       </Link>
