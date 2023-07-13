@@ -1,16 +1,46 @@
 import React, { useState } from 'react';
 import {
-  signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, FacebookAuthProvider, getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  FacebookAuthProvider,
+  getAuth,
 } from 'firebase/auth';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
-  collection, query, where, getDocs, doc, setDoc, getDoc,
+  doc, setDoc, getDoc,
 } from '@firebase/firestore';
 import { auth, db } from '../config/firebaseConfig';
 // import Toast from './Toast';
-import { SET_LOGIN_DETAIL } from '../redux/slice/authSlice';
+// import { SET_LOGIN_DETAIL } from '../redux/slice/authSlice';
+
+const successToast = () => {
+  toast.success('Sign In Successful!', {
+    position: 'top-center',
+    autoClose: 2500,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });
+};
+
+const errorToast = (err) => {
+  toast.error(err.message, {
+    position: 'top-center',
+    autoClose: 2500,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });
+};
 
 export default function SignInModal({
   showSignInModal,
@@ -23,7 +53,7 @@ export default function SignInModal({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleModalSwitch = () => {
     handleCloseSignInModal();
@@ -35,56 +65,15 @@ export default function SignInModal({
     setIsLoading(true);
 
     signInWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        const { user } = userCredential;
-
-        const q = query(collection(db, 'vendors'), where('userId', '==', user.uid));
-        const querySnapshot = await getDocs(q);
-
-        querySnapshot.forEach((docData) => {
-          const data = docData.data();
-
-          dispatch(SET_LOGIN_DETAIL({
-            docId: user.uid,
-            userId: user.uid,
-            followers: data.followers,
-            displayName: data.displayName,
-            userImage: user.photoURL,
-            rating: data.rating,
-            bio: data.bio,
-          }));
-        });
-
+      .then(() => {
         setIsLoading(false);
-
         handleCloseSignInModal();
-
-        toast.success('Sign In Successful!', {
-          position: 'top-center',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        successToast();
       })
       .catch((error) => {
         setIsLoading(false);
-
         handleCloseSignInModal();
-
-        toast.error(error.message, {
-          position: 'top-center',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        errorToast(error);
       });
   };
 
@@ -92,70 +81,43 @@ export default function SignInModal({
     try {
       const result = await signInWithPopup(auth, provider);
       console.log('user data', result.user);
-      const { displayName, photoURL, uid } = result.user;
+      const {
+        displayName, photoURL, uid, phoneNumber, emailVerified, email: userEmail,
+      } = result.user;
 
       const vendorDocRef = doc(db, 'vendors', uid);
-
       const docSnap = await getDoc(vendorDocRef);
 
       if (docSnap.exists()) {
-        const existingVendorObject = docSnap.data();
-        dispatch(SET_LOGIN_DETAIL({ ...existingVendorObject, docId: uid, userImage: photoURL }));
-
         handleCloseSignInModal();
-
-        toast.success('Sign In Successful!', {
-          position: 'top-center',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        successToast();
       } else {
         const vendorData = {
           displayName,
           bio: 'Hi there, this is my Tektoss shop page.',
           followers: 0,
-          image: photoURL || '',
+          status: 'active',
+          photoURL: photoURL || '',
           isPremium: false,
           rating: 1,
-          userId: uid,
+          uid,
+          userEmail,
+          emailVerified,
+          phoneNumber: phoneNumber || '',
+          createdAt: Date.now(),
           wishlist: [],
           chatList: [],
           messages: [],
         };
 
-        const setLoginDetail = {
-          userId: uid,
-          docId: uid,
-          followers: 0,
-          rating: 1,
-          displayName,
-          bio: 'Hi there, this is my Tektoss shop page.',
-          userImage: photoURL,
-        };
-
         await setDoc(vendorDocRef, vendorData);
-        dispatch(SET_LOGIN_DETAIL(setLoginDetail));
-
         handleCloseSignInModal();
-
-        toast.success('Sign In Successful!', {
-          position: 'top-center',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        successToast();
       }
     } catch (error) {
-      console.log('Error signing in with Google:', error);
+      setIsLoading(false);
+      handleCloseSignInModal();
+      errorToast(error);
     }
   };
 
@@ -187,7 +149,11 @@ export default function SignInModal({
             <div>
               <h2>Welcome Back</h2>
               <div className="line" />
-              <p>Lorem ipsum ini dolor kalaam sai imei hasman kanal ini sur.</p>
+              <p>
+                Log in to access your account and explore
+                {' '}
+                the amazing experience our website has to offer.
+              </p>
             </div>
           </div>
           <div className="modal__custom-content-right">

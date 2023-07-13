@@ -1,18 +1,43 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { auth, db } from '../config/firebaseConfig';
-import { SET_LOGIN_DETAIL } from '../redux/slice/authSlice';
+
+const successToast = () => {
+  toast.success('Registration Successful!', {
+    position: 'top-center',
+    autoClose: 2500,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });
+};
+
+const errorToast = (err) => {
+  toast.error(err.message, {
+    position: 'top-center',
+    autoClose: 2500,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });
+};
 
 export default function RegisterModal({
   showRegisterModal,
   handleCloseRegisterModal,
   handleShowSignInModal,
 }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +45,7 @@ export default function RegisterModal({
     fname: '',
     lname: '',
     email: '',
-    mobile: '',
+    phoneNumber: '',
     password: '',
     cPassword: '',
   });
@@ -39,10 +64,10 @@ export default function RegisterModal({
     e.preventDefault();
 
     const {
-      password, cPassword, fname, lname, email, mobile,
+      password, cPassword, fname, lname, email, phoneNumber,
     } = inputValue;
 
-    if (password === '' || fname === '' || lname === '' || email === '' || mobile === '') {
+    if (password === '' || fname === '' || lname === '' || email === '' || phoneNumber === '') {
       setErrorMessage('fields cannot be left empty');
     }
     if (password !== cPassword) {
@@ -56,76 +81,40 @@ export default function RegisterModal({
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const { user } = userCredential;
+          const { emailVerified, uid } = user;
 
           try {
-            const docRef = await addDoc(collection(db, 'vendors'), {
+            await setDoc(doc(db, 'vendors', uid), {
               displayName: `${fname} ${lname}`,
+              email: user.email,
+              emailVerified,
               bio: 'Hi there, this is my Tektoss shop page.',
               followers: 0,
-              image: '',
+              photoURL: '',
               isPremium: false,
               rating: 1,
-              userId: user.uid,
+              uid,
+              status: 'active',
+              createdAt: Date.now(),
+              phoneNumber,
               wishlist: [],
               chatList: [],
               messages: [],
             });
-            console.log('Document written with ID: ', docRef.id);
-
-            dispatch(SET_LOGIN_DETAIL({
-              userId: user.uid,
-              docId: user.uid,
-              followers: 0,
-              displayName: `${fname} ${lname}`,
-              userImage: user.photoURL,
-              rating: 1,
-              bio: 'Hi there, this is my Tektoss shop page.',
-            }));
           } catch (err) {
-            console.error('Error adding document: ', e);
             setIsLoading(false);
             handleCloseRegisterModal();
-
-            toast.error(err.message, {
-              position: 'top-center',
-              autoClose: 2500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            });
+            errorToast(err);
           }
 
           setIsLoading(false);
           handleCloseRegisterModal();
-
-          toast.success('Registration Successful!', {
-            position: 'top-center',
-            autoClose: 2500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-          });
+          successToast();
         })
         .catch((error) => {
-          console.log('error:', error.message);
           setIsLoading(false);
           handleCloseRegisterModal();
-          toast.error(error.message, {
-            position: 'top-center',
-            autoClose: 2500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-          });
+          errorToast(error);
         });
     }
   };
@@ -152,7 +141,7 @@ export default function RegisterModal({
               <input required placeholder="Enter first name" name="fname" value={inputValue.fname} onChange={handleChange} />
               <input required placeholder="Enter last name" name="lname" value={inputValue.lname} onChange={handleChange} />
               <input required placeholder="Enter your email" name="email" value={inputValue.email} onChange={handleChange} />
-              <input required placeholder="Enter your mobile number" name="mobile" value={inputValue.mobile} onChange={handleChange} />
+              <input required placeholder="Enter your phone number number" name="phoneNumber" value={inputValue.phonNumber} onChange={handleChange} />
               <input required placeholder="Enter password" name="password" value={inputValue.password} onChange={handleChange} />
               <input required placeholder="Confirm password" name="cPassword" value={inputValue.cPassword} onChange={handleChange} />
               <div className="check-box-div">
