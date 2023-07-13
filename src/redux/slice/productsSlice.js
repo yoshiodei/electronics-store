@@ -12,6 +12,7 @@ const initialFilter = {
   location: 'all',
   category: 'all',
   condition: 'all',
+  brand: 'all',
   updateTime: 0,
 };
 
