@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SellNowButton from '../components/SellNowButton';
 
 export default function Footer() {
@@ -15,40 +16,40 @@ export default function Footer() {
             <h4 className="footer__heading">Categories</h4>
             <ul className="footer__category-list">
               <li className="footer__category-list-item">
-                <a href="phone">Phones</a>
+                <Link to="/category/phones">Phones</Link>
               </li>
               <li className="footer__category-list-item">
-                <a href="phone">Television</a>
+                <Link to="/category/televisions">Televisions</Link>
               </li>
               <li className="footer__category-list-item">
-                <a href="phone">Desktop</a>
+                <Link to="/category/desktops">Desktops</Link>
               </li>
               <li className="footer__category-list-item">
-                <a href="phone">Laptops</a>
+                <Link to="/category/laptops">Laptops</Link>
               </li>
               <li className="footer__category-list-item">
-                <a href="phone">Gaming Consoles</a>
+                <Link to="/category/game consoles">Game Consoles</Link>
               </li>
               <li className="footer__category-list-item">
-                <a href="phone">Headphones &amp; Speakers</a>
+                <Link to="/category/headphones and speakers">Headphones and Speakers</Link>
               </li>
               <li className="footer__category-list-item">
-                <a href="phone">Accessories</a>
+                <Link to="/category/accessories">Accessories</Link>
               </li>
             </ul>
           </div>
           <div className="col-md-3">
             <h4 className="footer__heading ">Contact Us</h4>
             <div className="footer__contact-div d-flex">
-              <i className="footer__contact-icon" />
+              <i className="footer__contact-icon fa-solid fa-phone" />
               <p className="footer__contact-info">058-422-8123</p>
             </div>
             <div className="footer__contact-div d-flex">
-              <i className="footer__contact-icon" />
+              <i className="footer__contact-icon fa-solid fa-envelope" />
               <p className="footer__contact-info">brand@email.co.us</p>
             </div>
             <div className="footer__contact-div d-flex">
-              <i className="footer__contact-icon" />
+              <i className="footer__contact-icon fa-solid fa-location-dot" />
               <p className="footer__contact-info">Kingsford street, Auston, Texas</p>
             </div>
           </div>
