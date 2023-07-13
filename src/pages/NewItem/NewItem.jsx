@@ -8,10 +8,10 @@ import Main from './Main';
 import { selectAuthState } from '../../redux/slice/authSlice';
 
 export default function NewItem() {
-  const { userId } = useSelector(selectAuthState);
+  const { isAnonymous } = useSelector(selectAuthState);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!userId) {
+    if (isAnonymous) {
       navigate('/');
       toast.error('Access Denied: Unauthorized Page', {
         position: 'top-center',
