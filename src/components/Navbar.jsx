@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SellNowButton from './SellNowButton';
 import SignInModal from './SignInModal';
@@ -7,14 +7,15 @@ import DrawerButton from './DrawerButton';
 import { signOut } from "firebase/auth";
 import { auth } from '../config/firebaseConfig';
 import { toast } from 'react-toastify';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
-import { RESET_LOGIN_DETAIL, selectAuthState } from '../redux/slice/authSlice';
+import { RESET_LOGIN_DETAIL, SET_LOGIN_USER, selectAuthState } from '../redux/slice/authSlice';
 import RegisterModal from './RegisterModal';
 
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn, userId } = useSelector(selectAuthState);
+  const { userId, isAnonymous } = useSelector(selectAuthState);
 
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
@@ -30,6 +31,20 @@ function Navbar() {
     navigate('/wish-list');
   }
 
+  useEffect(() => {
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("user from auth changed", user);
+        dispatch(SET_LOGIN_USER(uid));
+      } else {
+        dispatch(RESET_LOGIN_DETAIL());
+      }
+    });
+
+  },[]);
+
   const handlePopOverClick = (name) => {
     setShowAccountModal(false);
 
@@ -42,7 +57,7 @@ function Navbar() {
         break;
       case 'log-out':
         signOut(auth).then(() => {
-          dispatch(RESET_LOGIN_DETAIL());
+          // dispatch(RESET_LOGIN_DETAIL());
           navigate('/');
           toast.success('Logout Successful', {
             position: "top-center",
@@ -79,22 +94,22 @@ function Navbar() {
       <nav className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
         <div className="navbar-custom__top-div">
           <ul className="d-flex justify-content-end align-items-center">
-            { isLoggedIn && <li>
+            { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="notifications" onClick={() => navigate("/notifications")}>
                 <i className="fa-regular fa-bell navbar-custom__icon" />
               </button>
             </li>}
-            { isLoggedIn && <li>
+            { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
                 <i className="fa-regular fa-message navbar-custom__icon" />
               </button>
             </li>}
-            { isLoggedIn && <li>
+            { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
               </button>
             </li>}
-            { isLoggedIn && <li>
+            { !isAnonymous && <li>
               <div className="navbar-custom__user-account-div">
                 <button className="navbar-custom__icon-button" title="user account" onClick={() => setShowAccountModal(!showAccountModal)}>
                   <i className="fa-regular fa-user navbar-custom__icon" />
@@ -115,12 +130,12 @@ function Navbar() {
                 </ul>
               </div>
             </li>}
-            { !isLoggedIn && <li>
+            { isAnonymous && <li>
               <button className="navbar-custom__text-button" onClick={handleShowSignInModal}>
                 <h6>Sign In</h6>
               </button>
             </li>}
-            { !isLoggedIn && <li>
+            { isAnonymous && <li>
               <button className="navbar-custom__text-button" onClick={handleShowRegisterModal}>
                 <h6>Register Now</h6>
               </button>
