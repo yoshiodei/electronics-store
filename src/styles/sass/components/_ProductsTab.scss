@@ -47,6 +47,16 @@
             font-size: 5em;
         }
     }
+
+    &__reload {
+        background-color: $secondaryColour;
+        margin-top: 30px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        padding: 8px 15px;
+        font-weight: 600;
+    }
 }
 
 @include mobileScreen {
