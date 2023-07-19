@@ -10,7 +10,9 @@ export default function Hero() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/search/${search}`);
+    if (search.trim().length > 0) {
+      navigate(`/search/${search}`);
+    }
   };
 
   return (
