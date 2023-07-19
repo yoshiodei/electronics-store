@@ -14,10 +14,10 @@ const initialState = {
 export const addToWhishList = createAsyncThunk(
   'wishList/addToWishList',
   async (object, { rejectWithValue }) => {
-    const { docId, ...objectData } = object;
+    const { uid, ...objectData } = object;
 
     try {
-      const wishListRef = doc(db, 'vendors', docId);
+      const wishListRef = doc(db, 'vendors', uid);
 
       await updateDoc(wishListRef, {
         wishlist: arrayUnion(objectData),
@@ -32,9 +32,9 @@ export const addToWhishList = createAsyncThunk(
 
 export const getWishList = createAsyncThunk(
   'wishList/getWishList',
-  async (docId, { rejectWithValue }) => {
+  async (uid, { rejectWithValue }) => {
     try {
-      const docRef = doc(db, 'vendors', docId);
+      const docRef = doc(db, 'vendors', uid);
       const docSnap = await getDoc(docRef);
 
       const wishlist = docSnap.data()?.wishlist || [];
@@ -50,8 +50,8 @@ export const removeFromWishList = createAsyncThunk(
   'wishList/removeFromWishList',
   async (objectData, { rejectWithValue }) => {
     try {
-      const { docId, listArray } = objectData;
-      const docRef = doc(db, 'vendors', docId);
+      const { uid, listArray } = objectData;
+      const docRef = doc(db, 'vendors', uid);
 
       await updateDoc(docRef, {
         wishlist: listArray,
@@ -83,27 +83,27 @@ const wishListSlice = createSlice({
         },
       )
       .addCase(getWishList.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(getWishList.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.wishList = action.payload;
       })
       .addCase(getWishList.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(removeFromWishList.pending, (state) => {
-        state.loading = true;
+        state.isLoading = false;
         state.error = null;
       })
       .addCase(removeFromWishList.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.wishList = action.payload;
       })
       .addCase(removeFromWishList.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       });
   },

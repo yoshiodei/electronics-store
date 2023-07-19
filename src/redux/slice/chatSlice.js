@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoading: false,
-  recipientDocId: '',
   recipientId: '',
   recipientImage: '',
   recipientName: '',
@@ -15,7 +14,6 @@ const chatSlice = createSlice({
   reducers: {
     SET_RECIPIENT_CHAT_DETAILS(state, action) {
       state.isLoading = false;
-      state.recipientDocId = action.payload.vendorDocId;
       state.recipientId = action.payload.vendorId;
       state.recipientImage = action.payload.vendor.image;
       state.recipientName = action.payload.vendor.displayName;
@@ -23,7 +21,6 @@ const chatSlice = createSlice({
     },
     SET_CHAT_DETAILS(state, action) {
       state.isLoading = false;
-      state.recipientDocId = action.payload.recipientDocId;
       state.recipientId = action.payload.recipientId;
       state.recipientImage = action.payload.recipientImage;
       state.recipientName = action.payload.recipientName;
