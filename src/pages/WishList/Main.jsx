@@ -5,13 +5,11 @@ import ContentInfoBox from '../../components/ContentInfoBox';
 import WishListItem from './components/WishListItem';
 import AdPanel from '../../components/AdPanel';
 import WishListEmpty from './components/WishListEmpty';
-// import RemoveAllButton from './components/RemoveAllButton';
 import { getWishList, removeFromWishList, selectWishListState } from '../../redux/slice/wishListSlice';
-import { selectAuthState } from '../../redux/slice/authSlice';
+import Loader from '../../components/Loader';
 
-export default function Main() {
+export default function Main({ uid }) {
   const { wishList, isLoading } = useSelector(selectWishListState);
-  const { docId } = useSelector(selectAuthState);
   const dispatch = useDispatch();
 
   const removeItem = (itemId) => {
@@ -19,17 +17,12 @@ export default function Main() {
       item.id !== itemId
     ));
 
-    dispatch(removeFromWishList({ listArray, docId }));
+    dispatch(removeFromWishList({ listArray, uid }));
   };
 
   useEffect(() => {
-    dispatch(getWishList(docId));
-    console.log('dispatch runs');
+    dispatch(getWishList(uid));
   }, [dispatch]);
-
-  if (isLoading) {
-    return ('loading...');
-  }
 
   return (
     <div className="main-section-div">
@@ -39,16 +32,17 @@ export default function Main() {
         </div>
         <div className="main-section__right-div">
           <ContentInfoBox>My Wish List</ContentInfoBox>
+          {isLoading && (<Loader />)}
+          {!isLoading && (
           <div className="wish-list__item-div">
-            {(wishList.length === 0)
+              {(wishList.length === 0)
              && <WishListEmpty />}
-            { (wishList.length > 0)
+              { (wishList.length > 0)
               && wishList.map((item) => (
                 <WishListItem item={item} removeItem={removeItem} />
               ))}
-            {/* {(wishList.length > 1)
-             && <RemoveAllButton />}  */}
           </div>
+          )}
         </div>
       </main>
     </div>

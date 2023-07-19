@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import AdPanel from '../../components/AdPanel';
 import SectionHeader from '../../components/SectionHeader';
-import CategoriesBox from '../SearchResult/components/CategoriesBox';
 import SearchBar from '../SearchResult/components/SearchBar';
+import CategoriesBox from '../SearchResult/components/CategoriesBox';
 import DisplayCategoryProducts from './components/DisplayCategoryProducts';
 import CategoryInfoBox from './components/CategoryInfoBox';
 import CategoryFilterCard from './components/CategoryFilterCard';
+import { setCategoryFilter } from '../../redux/slice/productsSlice';
 
 export default function Main() {
   const { category } = useParams();
-  console.log(category);
+  const dispatch = useDispatch();
+
+  const initialFilter = {
+    maxPrice: 10000,
+    minPrice: 0,
+    location: 'all',
+    brand: 'all',
+    category: 'all',
+    condition: 'all',
+  };
+
+  useEffect(() => () => {
+    dispatch(setCategoryFilter(initialFilter));
+  }, []);
 
   return (
     <div className="main-section-div">

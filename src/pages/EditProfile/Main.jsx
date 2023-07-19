@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import { doc, updateDoc } from '@firebase/firestore';
 import AdPanel from '../../components/AdPanel';
 import ContentInfoBox from '../../components/ContentInfoBox';
 import profile from '../../assets/images/profile.jpg';
-import { selectAuthState } from '../../redux/slice/authSlice';
+import { selectAuthState, setUserInfo } from '../../redux/slice/authSlice';
 import { db, storage } from '../../config/firebaseConfig';
 
 export default function Main() {
+  const dispatch = useDispatch();
   const [isPosting, setIsPosting] = useState(false);
   const {
-    isLoggedIn, displayName, userImage, bio, docId,
+    userInfo, loginInfo,
   } = useSelector(selectAuthState);
+  const { uid, isAnonymous } = loginInfo;
+  const { bio, displayName, photoURL } = userInfo;
 
   const initialData = {
     bio,
     displayName,
-    userImage,
+    photoURL,
     previewImage: '',
-    docId,
-    isLoggedIn,
+    uid,
+    isAnonymous,
   };
   const [data, setData] = useState(initialData);
 
@@ -78,13 +81,17 @@ export default function Main() {
         imageUrl = downloadUrl;
       }
 
-      const vendorRef = doc(db, 'vendors', docId);
+      const vendorRef = doc(db, 'vendors', uid);
 
-      await updateDoc(vendorRef, {
+      const updatedData = {
         bio: data.bio,
         displayName: data.displayName,
-        image: imageUrl,
-      });
+        photoURL: imageUrl,
+      };
+
+      await updateDoc(vendorRef, updatedData);
+
+      dispatch(setUserInfo(updatedData));
 
       toast.success('Vendor updated successfully!', {
         position: 'top-center',
@@ -127,7 +134,7 @@ export default function Main() {
               <div className="col-md-12">
                 <div className="edit-profile__edit-image-div mb-4">
                   <div className="edit-profile__form-image-div">
-                    <img src={data.previewImage?.preview || data.userImage || profile} alt="user" />
+                    <img src={data.previewImage?.preview || data.photoURL || profile} alt="user" />
                   </div>
                   <div className="edit-profile__edit-image-buttons-div">
                     <input

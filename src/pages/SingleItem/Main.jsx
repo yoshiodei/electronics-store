@@ -7,7 +7,6 @@ import ItemImageBox from './components/ItemImageBox';
 import { db } from '../../config/firebaseConfig';
 import ProductDetail from './components/ProductDetails';
 import ProductLocation from './components/ProductLocation';
-// import SimilarItems from './components/SimilarItems';
 import VendorDetails from './components/VendorDetails';
 import ButtonsBox from './components/ButtonsBox';
 import { selectAuthState } from '../../redux/slice/authSlice';
@@ -15,7 +14,8 @@ import { selectAuthState } from '../../redux/slice/authSlice';
 export default function Main() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
-  const { isLoggedIn } = useSelector(selectAuthState);
+  const { loginInfo } = useSelector(selectAuthState);
+  const { isAnonymous } = loginInfo;
 
   const fetchData = () => {
     const docRef = doc(db, 'products', id);
@@ -46,7 +46,7 @@ export default function Main() {
           <ProductDetail />
           <ProductLocation />
           <VendorDetails />
-          {isLoggedIn && <ButtonsBox product={product} />}
+          {!isAnonymous && <ButtonsBox product={product} />}
           <AdPanel />
         </div>
         <div className="main-section__right-div">
@@ -55,7 +55,7 @@ export default function Main() {
             <ProductDetail />
             <ProductLocation />
             <VendorDetails />
-            {isLoggedIn && <ButtonsBox product={product} />}
+            {!isAnonymous && <ButtonsBox product={product} />}
           </div>
           {/* <SimilarItems /> */}
         </div>
