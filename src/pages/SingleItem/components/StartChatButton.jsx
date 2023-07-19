@@ -9,18 +9,18 @@ import { db } from '../../../config/firebaseConfig';
 export default function StartChatButton({ recipientData }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { docId } = useSelector(selectAuthState);
+  const { loginInfo } = useSelector(selectAuthState);
+  const { uid } = loginInfo;
 
   const handleButtonClick = () => {
     dispatch(SET_RECIPIENT_CHAT_DETAILS(recipientData));
 
-    const vendorRef = doc(db, 'vendors', docId);
+    const vendorRef = doc(db, 'vendors', uid);
 
     updateDoc(vendorRef, {
       chatList: arrayUnion({
         recipientName: recipientData.vendor.displayName,
         recipientId: recipientData.vendorId,
-        recipientDocId: recipientData.vendorDocId,
         recipientImage: recipientData.vendor.image,
       }),
     })

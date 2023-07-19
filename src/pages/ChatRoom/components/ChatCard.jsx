@@ -4,8 +4,9 @@ import profile from '../../../assets/images/profile.jpg';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 
 export default function ChatCard({ mssg }) {
-  const { userId } = useSelector(selectAuthState);
-  const isMe = userId === mssg.senderId;
+  const { loginInfo } = useSelector(selectAuthState);
+  const { uid } = loginInfo;
+  const isMe = uid === mssg.senderId;
   const ref = useRef();
 
   useEffect(() => {

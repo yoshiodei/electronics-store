@@ -27,21 +27,30 @@ export default function UserDetailBox() {
   const [userData, setUserData] = useState({});
   const { id } = useParams();
   const {
-    isLoggedIn, userId, displayName, docId, userImage,
+    loginInfo, userInfo,
   } = useSelector(selectAuthState);
+
+  const { displayName, photoURL } = userInfo;
+  const { isAnonymous, uid } = loginInfo;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const fetchData = async () => {
-    const q = query(collection(db, 'vendors'), where('userId', '==', id));
+    const q = query(collection(db, 'vendors'), where('uid', '==', id));
     const querySnapshot = await getDocs(q);
-
+    let allData = {};
     querySnapshot.forEach((doc2) => {
       const data = doc2.data();
-      setUserData(data);
+      // setUserData(data);
+      allData = data;
       console.log('user data', userData);
     });
+
+    const q2 = query(collection(db, 'products'), where('vendorId', '==', id));
+    const querySnapshot2 = await getDocs(q2);
+    const numberOfProducts = querySnapshot2.docs.length;
+    setUserData({ ...allData, numberOfProducts });
   };
 
   const handleSendReport = async () => {
@@ -58,15 +67,15 @@ export default function UserDetailBox() {
       });
     } else {
       try {
-        const vendorRef = doc(db, 'vendors', docId);
+        const vendorRef = doc(db, 'vendors', id);
 
         const reportData = {
           ...report,
           reportedVendorId: id,
           reporterName: displayName,
-          reporterId: docId,
+          reporterId: uid,
           reportedVendorName: userData.displayName,
-          reporterImage: userImage,
+          reporterImage: photoURL,
           reportDate: Date.now(),
         };
 
@@ -114,8 +123,7 @@ export default function UserDetailBox() {
     <>
       <div className="user-detail-box">
         <div className="user-detail-box__image-div">
-          <img src={userImage || profile} alt="user" />
-          {/* <div className="user-detail-box__online-indicator" /> */}
+          <img src={userData.photoURL || profile} alt="user" />
         </div>
         <div className="user-detail-box__user-name-div">
           <h5 className="user-detail-box__user-name">
@@ -136,7 +144,7 @@ export default function UserDetailBox() {
               Total Posts
             </h6>
             <h6 className="user-detail-box__user-info-value">
-              11
+              {userData.numberOfProducts}
             </h6>
           </div>
           <div className="user-detail-box__user-info-div">
@@ -156,19 +164,19 @@ export default function UserDetailBox() {
             {userData.bio}
           </p>
         </div>
-        { isLoggedIn && (id !== userId)
+        { !isAnonymous && (id !== uid)
       && (
       <Link to="/chat-room" className="user-detail-box__start-chat-div">
         <h5 className="user-detail-box__start-chat">Start Chat</h5>
       </Link>
       )}
-        {(id === docId) && (
+        {(id === uid) && (
         <button className="user-detail-box__edit-user-button d-flex" type="button" onClick={() => { navigate('/edit-profile'); }}>
           <i className="user-detail-box__report-user-icon fa-solid fa-pen-to-square" />
           <h6 className="user-detail-box__report-user">Edit</h6>
         </button>
         )}
-        {(id !== docId) && (
+        {(id !== uid) && (
         <button className="user-detail-box__report-user-button d-inline-flex" type="button" onClick={handleShow}>
           <i className="user-detail-box__report-user-icon fa-solid fa-flag" />
           <h6 className="user-detail-box__report-user">Report User</h6>
@@ -179,7 +187,7 @@ export default function UserDetailBox() {
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>
-            <h6>{`Report user ${userData?.displayName}`}</h6>
+            <h6>{`Report user ${displayName}`}</h6>
           </Modal.Title>
         </Modal.Header>
         <div className="buttons-box__modal">

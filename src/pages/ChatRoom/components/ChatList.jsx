@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { doc, onSnapshot } from 'firebase/firestore';
 import ChatListButton from './ChatListButton';
 import { db } from '../../../config/firebaseConfig';
-import { selectAuthState } from '../../../redux/slice/authSlice';
 
-export default function ChatList() {
+export default function ChatList({ uid }) {
   const [chatList, setChatList] = useState([]);
-  const { docId } = useSelector(selectAuthState);
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, 'vendors', docId), (docItem) => {
+    const unsub = onSnapshot(doc(db, 'vendors', uid), (docItem) => {
       setChatList(docItem.data().chatList);
     });
 

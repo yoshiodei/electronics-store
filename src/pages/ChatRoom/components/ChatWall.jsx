@@ -9,14 +9,15 @@ import ChatCard from './ChatCard';
 import { selectChatState } from '../../../redux/slice/chatSlice';
 import { db } from '../../../config/firebaseConfig';
 
-export default function ChatWall() {
+export default function ChatWall({ uid }) {
   const [message, setMessage] = useState('');
   const [chats, setChats] = useState([]);
   const {
-    userId, docId, displayName, userImage,
+    userInfo,
   } = useSelector(selectAuthState);
+  const { photoURL, displayName } = userInfo;
   const {
-    recipientName, recipientId, recipientDocId, recipientImage,
+    recipientName, recipientId, recipientImage,
   } = useSelector(selectChatState);
 
   const handleSetMessage = (e) => {
@@ -28,28 +29,31 @@ export default function ChatWall() {
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    const combinedId = (userId > recipientId) ? `${userId}${recipientId}` : `${recipientId}${userId}`;
+    const combinedId = (uid > recipientId) ? `${uid}${recipientId}` : `${recipientId}${uid}`;
+    console.log('combineId is ==>', combinedId);
 
     const messageObject = {
       message,
-      senderId: userId,
+      senderId: uid,
       recipientId,
-      recipientDocId,
-      senderImage: userImage,
+      senderImage: photoURL,
       roomId: combinedId,
       timeStamp: Date.now(),
     };
 
-    const recipientChatList = {
-      recipientDocId: docId,
-      recipientId: userId,
-      recipientImage: userImage,
+    console.log('message object is ==>', messageObject);
+
+    const senderChatList = {
+      recipientId: uid,
+      recipientImage: photoURL,
       recipientName: displayName,
     };
 
+    console.log('recipient chat list is ==>', senderChatList);
+
     try {
-      const senderRef = doc(db, 'vendors', docId);
-      const recipientRef = doc(db, 'vendors', recipientDocId);
+      const senderRef = doc(db, 'vendors', uid);
+      const recipientRef = doc(db, 'vendors', recipientId);
 
       setMessage('');
       e.target.reset();
@@ -59,7 +63,7 @@ export default function ChatWall() {
       });
 
       await updateDoc(recipientRef, {
-        chatList: arrayUnion(recipientChatList),
+        chatList: arrayUnion(senderChatList),
       });
 
       await updateDoc(recipientRef, {
@@ -71,8 +75,8 @@ export default function ChatWall() {
   };
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, 'vendors', docId), (docItem) => {
-      const combinedId = userId > recipientId ? `${userId}${recipientId}` : `${recipientId}${userId}`;
+    const unsub = onSnapshot(doc(db, 'vendors', uid), (docItem) => {
+      const combinedId = uid > recipientId ? `${uid}${recipientId}` : `${recipientId}${uid}`;
       const messageList = docItem.data().messages.filter((messageItem) => (
         messageItem.roomId === combinedId
       ));
@@ -99,7 +103,6 @@ export default function ChatWall() {
           </div>
           <div className="chat-wall__header-user-info">
             <h4>{recipientName}</h4>
-            {/* <p>last seen 10:35 am</p> */}
           </div>
         </>
         )

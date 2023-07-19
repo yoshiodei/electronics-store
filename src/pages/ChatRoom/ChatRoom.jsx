@@ -8,11 +8,12 @@ import Footer from '../../sections/Footer';
 import Main from './Main';
 
 export default function ChatRoom() {
-  const { userId } = useSelector(selectAuthState);
-  const navigate = useNavigate();
+  const { loginInfo } = useSelector(selectAuthState);
+  const { isAnonymous, uid } = loginInfo;
 
+  const navigate = useNavigate();
   useEffect(() => {
-    if (!userId) {
+    if (isAnonymous) {
       navigate('/');
       toast.error('Access Denied: Unauthorized Page', {
         position: 'top-center',
@@ -30,7 +31,7 @@ export default function ChatRoom() {
   return (
     <>
       <Navbar />
-      <Main />
+      <Main uid={uid} />
       <Footer />
     </>
   );
