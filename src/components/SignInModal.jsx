@@ -7,14 +7,13 @@ import {
   getAuth,
 } from 'firebase/auth';
 import Modal from 'react-bootstrap/Modal';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
   doc, setDoc, getDoc,
 } from '@firebase/firestore';
 import { auth, db } from '../config/firebaseConfig';
-// import Toast from './Toast';
-// import { SET_LOGIN_DETAIL } from '../redux/slice/authSlice';
+import { setUserInfo } from '../redux/slice/authSlice';
 
 const successToast = () => {
   toast.success('Sign In Successful!', {
@@ -53,11 +52,30 @@ export default function SignInModal({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleModalSwitch = () => {
     handleCloseSignInModal();
     handleShowRegisterModal();
+  };
+
+  const fetchUserInfo = async (uid) => {
+    const docRef = doc(db, 'vendors', uid);
+    const docSnapData = await getDoc(docRef);
+    const userData = docSnapData.data();
+
+    const userInfo = {
+      userInfoIsSet: true,
+      displayName: userData.displayName,
+      bio: userData.bio,
+      email: userData.email,
+      followers: userData.followers,
+      rating: userData.rating,
+      phoneNumber: userData.phoneNumber,
+      photoURL: userData.photoURL,
+    };
+
+    dispatch(setUserInfo(userInfo));
   };
 
   const handleEmailPasswordSignIn = (e) => {
@@ -65,8 +83,10 @@ export default function SignInModal({
     setIsLoading(true);
 
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((userCredential) => {
         setIsLoading(false);
+        const { uid } = userCredential.user;
+        fetchUserInfo(uid);
         handleCloseSignInModal();
         successToast();
       })
@@ -90,6 +110,7 @@ export default function SignInModal({
 
       if (docSnap.exists()) {
         handleCloseSignInModal();
+        fetchUserInfo(uid);
         successToast();
       } else {
         const vendorData = {
@@ -108,10 +129,25 @@ export default function SignInModal({
           wishlist: [],
           chatList: [],
           messages: [],
+          notifications: [],
         };
 
         await setDoc(vendorDocRef, vendorData);
         handleCloseSignInModal();
+
+        const userInfo = {
+          userInfoIsSet: true,
+          displayName,
+          bio: 'Hi there, this is my Tektoss shop page.',
+          userEmail,
+          followers: 0,
+          rating: 1,
+          phoneNumber: phoneNumber || '',
+          photoURL: photoURL || '',
+        };
+
+        dispatch(setUserInfo(userInfo));
+
         successToast();
       }
     } catch (error) {

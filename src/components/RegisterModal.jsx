@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { auth, db } from '../config/firebaseConfig';
+import { setUserInfo } from '../redux/slice/authSlice';
 
 const successToast = () => {
   toast.success('Registration Successful!', {
@@ -37,7 +38,7 @@ export default function RegisterModal({
   handleCloseRegisterModal,
   handleShowSignInModal,
 }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -86,7 +87,7 @@ export default function RegisterModal({
           try {
             await setDoc(doc(db, 'vendors', uid), {
               displayName: `${fname} ${lname}`,
-              email: user.email,
+              email,
               emailVerified,
               bio: 'Hi there, this is my Tektoss shop page.',
               followers: 0,
@@ -100,7 +101,21 @@ export default function RegisterModal({
               wishlist: [],
               chatList: [],
               messages: [],
+              notifications: [],
             });
+
+            const userInfo = {
+              userInfoIsSet: true,
+              displayName: `${fname} ${lname}`,
+              bio: 'Hi there, this is my Tektoss shop page.',
+              email,
+              followers: 0,
+              rating: 1,
+              phoneNumber: '',
+              photoURL: '',
+            };
+
+            dispatch(setUserInfo(userInfo));
           } catch (err) {
             setIsLoading(false);
             handleCloseRegisterModal();
