@@ -12,7 +12,8 @@ import ItemImageBoxLoading from './ItemImageBoxLoading';
 export default function ItemImageBox() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
-  const { isLoggedIn } = useSelector(selectAuthState);
+  const { loginInfo } = useSelector(selectAuthState);
+  const { isAnonymous } = loginInfo;
 
   const fetchData = () => {
     const docRef = doc(db, 'products', id);
@@ -43,7 +44,7 @@ export default function ItemImageBox() {
     <div className="item-image-box">
       <div className="item-image-box__top-div">
         <Carousel images={product?.images} />
-        {isLoggedIn && <StartChatButton recipientData={product} />}
+        {!isAnonymous && <StartChatButton recipientData={product} />}
       </div>
       <div className="item-image-box__bottom-div">
         {
