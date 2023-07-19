@@ -8,6 +8,7 @@ import { db } from '../../../config/firebaseConfig';
 import ProductCard from '../../../components/ProductCard';
 import Loader from '../../../components/Loader';
 import EmptyDisplay from '../../../components/EmptyDisplay';
+import UserOffline from '../../../components/UserOffline';
 
 export default function DisplayCards() {
   const [isLoading, setIsLoading] = useState(false);
@@ -122,6 +123,10 @@ export default function DisplayCards() {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  if (!navigator.onLine) {
+    return (<UserOffline />);
+  }
 
   if (isLoading === true || data.length === 0) {
     return (<Loader />);

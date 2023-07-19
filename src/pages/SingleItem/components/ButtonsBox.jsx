@@ -29,9 +29,9 @@ export default function ButtonsBox() {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-  const {
-    isLoggedIn, docId, displayName, userImage,
-  } = useSelector(selectAuthState);
+  const { userInfo, loginInfo } = useSelector(selectAuthState);
+  const { displayName, photoURL } = userInfo;
+  const { isAnonymous, uid } = loginInfo;
 
   const fetchData = () => {
     const docRef = doc(db, 'products', id);
@@ -51,10 +51,11 @@ export default function ButtonsBox() {
   };
 
   const handleAddToWishList = (wishListProduct) => {
-    if (!isLoggedIn) {
+    if (isAnonymous) {
       console.log('Log in to add items to wish list');
     } else {
-      dispatch(addToWhishList({ ...wishListProduct, docId }));
+      const image = wishListProduct.images[0];
+      dispatch(addToWhishList({ ...wishListProduct, image, uid }));
       toast.success('Item added successfully!', {
         position: 'top-center',
         autoClose: 1500,
@@ -82,17 +83,17 @@ export default function ButtonsBox() {
       });
     } else {
       try {
-        const vendorRef = doc(db, 'vendors', docId);
+        const vendorRef = doc(db, 'vendors', uid);
 
         const reportData = {
           ...report,
           reportedItemId: id,
           reporterName: displayName,
-          reporterId: docId,
+          reporterId: uid,
           reportedItemName: product?.name,
           reportedItemVendorId: product?.vendorId,
           reportedItemVendorName: product?.vendor.displayName,
-          reporterImage: userImage,
+          reporterImage: photoURL,
           reportDate: Date.now(),
         };
 

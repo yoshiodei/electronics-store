@@ -14,10 +14,10 @@ import useWithin5Miles from '../../../Hooks/useWithin5Miles';
 export default function DisplayCategoryProducts() {
   const [data, setData] = useState([]);
   const itemIsWithin5Miles = useWithin5Miles();
-  const { filterObject, userCoordinates } = useSelector(selectProductsState);
+  const { filterCategoryObject, userCoordinates } = useSelector(selectProductsState);
   const {
-    updateTime: time, maxPrice, minPrice, location, condition,
-  } = filterObject;
+    updateTime: time, maxPrice, minPrice, location, condition, brand,
+  } = filterCategoryObject;
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(32);
   const [filteredData, setFilteredData] = useState([]);
@@ -68,7 +68,7 @@ export default function DisplayCategoryProducts() {
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
         && (itemIsWithin5Miles(item, userCoordinates) || location === 'all')
-        // && (item.category === category || category === 'all')
+        && (item.brand === brand || brand === 'all')
           ),
         );
         setFilteredData(filtered);
