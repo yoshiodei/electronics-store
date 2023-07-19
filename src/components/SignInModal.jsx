@@ -3,8 +3,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  FacebookAuthProvider,
-  getAuth,
+  // FacebookAuthProvider,
+  // getAuth,
 } from 'firebase/auth';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
@@ -46,7 +46,7 @@ export default function SignInModal({
   handleCloseSignInModal,
   handleShowRegisterModal,
 }) {
-  const providerFB = new FacebookAuthProvider();
+  // const providerFB = new FacebookAuthProvider();
   const provider = new GoogleAuthProvider();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -157,19 +157,19 @@ export default function SignInModal({
     }
   };
 
-  const handleFacebookSignIn = async () => {
-    const authFB = getAuth();
-    signInWithPopup(authFB, providerFB)
-      .then((resultFB) => {
-        const userFB = resultFB.user;
+  // const handleFacebookSignIn = async () => {
+  //   const authFB = getAuth();
+  //   signInWithPopup(authFB, providerFB)
+  //     .then((resultFB) => {
+  //       const userFB = resultFB.user;
 
-        console.log('FB logged in user', userFB);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
-  };
+  //       console.log('FB logged in user', userFB);
+  //     })
+  //     .catch((error) => {
+  //       const errorMessage = error.message;
+  //       console.log(errorMessage);
+  //     });
+  // };
 
   return (
     <Modal
@@ -203,10 +203,11 @@ export default function SignInModal({
               <i className="fa-brands fa-google" />
               Sign In With Google
             </button>
-            <button type="button" className="modal__custom-content-right__facebook-signin-button" onClick={handleFacebookSignIn}>
+            {/* <button type="button" className="modal__
+            custom-content-right__facebook-signin-button" onClick={handleFacebookSignIn}>
               <i className="fa-brands fa-facebook" />
               Sign In With Facebook
-            </button>
+            </button> */}
             <h6 className="switch-to-signin">
               Don&apos;t have an account?
               {' '}
