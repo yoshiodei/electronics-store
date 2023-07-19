@@ -6,7 +6,8 @@ import SignInModal from './SignInModal';
 import { selectAuthState } from '../redux/slice/authSlice';
 
 export default function SellNowButton() {
-  const { isAnonymous } = useSelector(selectAuthState);
+  const { loginInfo } = useSelector(selectAuthState);
+  const { isAnonymous } = loginInfo;
 
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
