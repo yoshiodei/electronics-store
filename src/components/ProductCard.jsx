@@ -5,30 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { selectAuthState } from '../redux/slice/authSlice';
 import { addToWhishList } from '../redux/slice/wishListSlice';
-import { setFilter } from '../redux/slice/productsSlice';
 
 export default function ProductCard({ product }) {
   const {
-    id, price, name, location, condition, isPromoted, image, images,
+    id, price, vendor, name, location, condition, isPromoted, images,
   } = product;
 
-  const initialFilter = {
-    maxPrice: 10000,
-    minPrice: 0,
-    location: 'all',
-    category: 'all',
-    condition: 'all',
-  };
+  const image = images[0];
 
-  const { isLoggedIn, docId } = useSelector(selectAuthState);
-  // const { wishList } = useSelector(selectWishListState);
+  const { loginInfo } = useSelector(selectAuthState);
+  const { isAnonymous, uid } = loginInfo;
+
   const dispatch = useDispatch();
 
   const handleAddToWishList = async (wishListProduct) => {
-    if (!isLoggedIn) {
-      console.log('Log in to add items to wish list');
+    if (isAnonymous || vendor.userId === uid) {
+      console.log('did not add to wishlist');
     } else {
-      dispatch(addToWhishList({ ...wishListProduct, docId }));
+      dispatch(addToWhishList({ ...wishListProduct, uid, image }));
+      console.log('your id is', uid);
       toast.success('Item added successfully!', {
         position: 'top-center',
         autoClose: 1500,
@@ -42,15 +37,11 @@ export default function ProductCard({ product }) {
     }
   };
 
-  const handleClearFilter = () => {
-    dispatch(setFilter({ ...initialFilter, updateTime: Date.now() }));
-  };
-
   return (
     <div className="product-card" key={id}>
-      <Link to={`/single-item/${id}`} className="product-card__link" onClick={handleClearFilter}>
+      <Link to={`/single-item/${id}`} className="product-card__link">
         <div className="product-card__image-div">
-          <img src={image || images[0]} alt="product" className="product-card__image" />
+          <img src={image || ''} alt="product" className="product-card__image" />
         </div>
         <h5 className="product-card__product-price">{`$ ${price}`}</h5>
         <p className="product-card__product-name">{name}</p>
