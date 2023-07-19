@@ -10,6 +10,31 @@
       gap: 15px;
     }
 
+    &__success-message {
+      width: 80%;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 5px;
+      border: 1px solid $primaryGreyColour;
+      padding: 20px;
+
+      & h3 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    &__success-button {
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: block;
+      margin: 0 auto;
+      background-color: $secondaryColour;
+      color: white;
+      font-weight: 700;
+    }
+
     &__layout {
       display: flex;
       justify-content: center;
