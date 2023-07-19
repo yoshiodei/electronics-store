@@ -5,7 +5,8 @@ import { selectAuthState } from '../redux/slice/authSlice';
 
 export default function DrawerButton({ toggleDrawer, setToggleDrawer }) {
   const navigate = useNavigate();
-  const { isLoggedIn, docId } = useSelector(selectAuthState);
+  const { loginInfo } = useSelector(selectAuthState);
+  const { isAnonymous, uid } = loginInfo;
 
   const handleCategoryClick = (category) => {
     navigate(`/category/${category}`);
@@ -15,7 +16,7 @@ export default function DrawerButton({ toggleDrawer, setToggleDrawer }) {
   const handleMenuButtonClick = (title) => {
     switch (title) {
       case 'my-account':
-        navigate(`/user-account/${docId}`);
+        navigate(`/user-account/${uid}`);
         break;
       case 'notifications':
         navigate('/notifications');
@@ -43,13 +44,13 @@ export default function DrawerButton({ toggleDrawer, setToggleDrawer }) {
           <input className="drawer-button__input" placeholder="Search item" />
           <button type="button" className="drawer-button__input-button">Search</button>
         </div>
-        {!isLoggedIn && (
+        {isAnonymous && (
         <div className="drawer-button__sign-in-div">
           <button type="button" className="drawer-button__sign-in-button" onClick={() => {}}>Sign In</button>
           <button type="button" className="drawer-button__register-button" onClick={() => {}}>Register</button>
         </div>
         )}
-        {isLoggedIn
+        {!isAnonymous
          && (
          <div className="drawer-button__menu-div">
            <h5>Profile Menu</h5>
@@ -152,7 +153,7 @@ export default function DrawerButton({ toggleDrawer, setToggleDrawer }) {
             </li>
           </ul>
         </div>
-        { isLoggedIn && (
+        { !isAnonymous && (
         <div className="drawer-button__sign-out-div">
           <button type="button" className="drawer-button__sign-out-button" onClick={() => handleMenuButtonClick('')}>Sign Out</button>
         </div>
