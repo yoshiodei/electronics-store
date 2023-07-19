@@ -3,72 +3,166 @@ import { useParams } from 'react-router-dom';
 import {
   collection, query, where, getDocs,
 } from '@firebase/firestore';
+import { useSelector } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
 import ProductCard from '../../../components/ProductCard';
+import { selectProductsState } from '../../../redux/slice/productsSlice';
+import useWithin5Miles from '../../../Hooks/useWithin5Miles';
+import Loader from '../../../components/Loader';
+import EmptyDisplay from '../../../components/EmptyDisplay';
 // import Pagination from '../../../components/Pagination';
 
 export default function DisplaySearchItems() {
-  const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [itemsPerPage] = useState(32);
   const [isLoading, setIsLoading] = useState(false);
-  const { searchName } = useParams();
+  const { searchName } = useParams('');
+  const itemIsWithin5Miles = useWithin5Miles();
 
-  const fetchData = async () => {
-    try {
-      setIsLoading(true);
-      const q = query(collection(db, 'products'), where('isPromoted', '==', true));
-      const querySnapshot = await getDocs(q);
-      const allProducts = [];
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        allProducts.push({ ...data, id: doc.id });
-      });
+  const [currentPage, setCurrentPage] = useState(1);
+  const {
+    filterObject,
+    userCoordinates,
+  } = useSelector(selectProductsState);
 
-      const q2 = query(collection(db, 'products'), where('isPromoted', '==', false));
-      const querySnapshot2 = await getDocs(q2);
-      querySnapshot2.forEach((doc) => {
-        const data = doc.data();
-        allProducts.push({ ...data, id: doc.id });
-      });
-
-      console.log('display all', allProducts);
-
-      const filteredProducts = allProducts
-        .filter((product) => (
-          product.name?.toLowerCase().includes(searchName.toLowerCase())
-          || product?.brand?.toLowerCase().includes(searchName.toLowerCase())
-          || product?.category?.toLowerCase().includes(searchName.toLowerCase())
-        ));
-
-      console.log('display all filtered', filteredProducts);
-
-      setProducts(filteredProducts);
-      setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      console.log(err.message);
-    }
-  };
+  const {
+    updateTime: time, minPrice, maxPrice, condition, location, category,
+  } = filterObject;
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const fetchData = async () => {
+      const loading = true;
+      setIsLoading(loading);
 
-  if (isLoading) {
-    return (<div>...Loading</div>);
+      try {
+        const q = query(collection(db, 'products'), where('isPromoted', '==', true));
+        const querySnapshot = await getDocs(q);
+        const allProducts = [];
+        querySnapshot.forEach((doc) => {
+          const queryData = doc.data();
+          allProducts.push({ ...queryData, id: doc.id });
+        });
+
+        const q2 = query(collection(db, 'products'), where('isPromoted', '==', false));
+        const querySnapshot2 = await getDocs(q2);
+        querySnapshot2.forEach((doc) => {
+          const queryData = doc.data();
+          allProducts.push({ ...queryData, id: doc.id });
+        });
+
+        const filteredSearch = allProducts
+          .filter((product) => (
+            product.name?.toLowerCase().includes(searchName.toLowerCase())
+          || product?.brand?.toLowerCase().includes(searchName.toLowerCase())
+          || product?.category?.toLowerCase().includes(searchName.toLowerCase())
+          ));
+
+        setData(filteredSearch);
+        setFilteredData(filteredSearch);
+      } catch (error) {
+        console.log(error.message);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [searchName]);
+
+  useEffect(() => {
+    const filterData = async () => {
+      const loading = true;
+      setIsLoading(loading);
+
+      try {
+        const filtered = data.filter(
+          (item) => (
+            item.price >= minPrice
+        && item.price <= maxPrice
+        && (item.condition === condition || condition === 'all')
+        && (itemIsWithin5Miles(item, userCoordinates) || location === 'all')
+        && (item.category === category || category === 'all')
+          ),
+        );
+
+        setFilteredData(filtered);
+        setIsLoading(!loading);
+        setCurrentPage(1);
+      } catch (error) {
+        console.log(error.message);
+        setIsLoading(false);
+      }
+    };
+
+    filterData();
+  }, [data, time]);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  if (isLoading === true || data.length === 0) {
+    return (<Loader />);
+  }
+
+  if (filteredData.length === 0) {
+    return (<EmptyDisplay />);
   }
 
   return (
     <>
       <div className="row g-2">
         {
-      products.map((product) => (
+      currentItems.map((product) => (
         <div className="col-6 col-md-3">
           <ProductCard product={product} />
         </div>
       ))
       }
       </div>
-      {(products.length > 0) && <div />}
+      <div className="d-flex justify-content-center mt-5">
+        <ul className="pagination">
+          <li className="page-item pagination__prev-page-item">
+            <button
+              className="page-link"
+              type="button"
+              disabled={currentPage === 1}
+              onClick={() => paginate(currentPage - 1)}
+            >
+              Prev
+            </button>
+          </li>
+          {
+            Array.from({ length: Math.ceil(filteredData.length / itemsPerPage) })
+              .map((_, index) => (
+                <li className="page-item pagination__page-item">
+                  <button
+                    type="button"
+                    className={currentPage === (index + 1) ? 'page-link active' : 'page-link'}
+                    onClick={() => paginate(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+
+                </li>
+              ))
+           }
+          <li className="page-item pagination__next-page-item">
+            <button
+              className="page-link"
+              type="button"
+              disabled={currentPage === Math.ceil(filteredData.length / itemsPerPage)}
+              onClick={() => paginate(currentPage + 1)}
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }
