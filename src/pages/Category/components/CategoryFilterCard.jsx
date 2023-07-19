@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { emptyProductsList, setCoordinate, setFilter } from '../../../redux/slice/productsSlice';
+import { emptyProductsList, setCoordinate, setCategoryFilter } from '../../../redux/slice/productsSlice';
 
 export default function CategoryFilterCard({ category }) {
   const initialFilter = {
@@ -16,6 +16,7 @@ export default function CategoryFilterCard({ category }) {
   const [filterObj, setFilterObj] = useState(initialFilter);
 
   const priceGap = 900;
+
   const brandArray = {
     phones: ['all', 'apple', 'samsung', 'nokia', 'google', 'tecno', 'infinix', 'motorola', 'itel'],
     computers: ['all', 'apple', 'dell', 'toshiba', 'asus', 'lenovo', 'alienware', 'hp'],
@@ -101,14 +102,14 @@ export default function CategoryFilterCard({ category }) {
   const handleFilter = () => {
     if (filterObj.location !== 'all') { fetchCurrentLocation(); }
     dispatch(emptyProductsList());
-    dispatch(setFilter({ ...filterObj, updateTime: Date.now() }));
+    dispatch(setCategoryFilter({ ...filterObj, updateTime: Date.now() }));
   };
 
   const handleResetFilter = (e) => {
     e.preventDefault();
     e.target.reset();
     setFilterObj(initialFilter);
-    dispatch(setFilter({ ...initialFilter, updateTime: Date.now() }));
+    dispatch(setCategoryFilter({ ...initialFilter, updateTime: Date.now() }));
   };
 
   return (
@@ -167,7 +168,7 @@ export default function CategoryFilterCard({ category }) {
         <select
           className="form-select"
           aria-label="Default select example"
-          name="category"
+          name="brand"
           onChange={handleSelectChange}
         >
           {
