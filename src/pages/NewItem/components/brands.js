@@ -13,6 +13,7 @@ const brands = [
   'toshiba',
   'nokia',
   'motorola',
+  'nintendo',
   'other',
 ];
 

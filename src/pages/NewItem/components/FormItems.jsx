@@ -8,12 +8,12 @@ import {
   collection,
 } from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { db, storage } from '../../../config/firebaseConfig';
-// import states from './states';
 import brands from './brands';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
+import { setPromotedItem } from '../../../redux/slice/productsSlice';
 
 export default function FormItems() {
   const initialLocation = {
@@ -26,6 +26,7 @@ export default function FormItems() {
   };
 
   const [location, setLocation] = useState(initialLocation);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -34,12 +35,11 @@ export default function FormItems() {
     price: '',
     category: 'laptops',
     brand: 'sony',
-    city: '',
-    state: 'alabama',
-    details: '',
+    details: 'Write a suitable description for your item, such as color, brand, model and other useful information.',
     images: [],
     condition: 'brand new',
     isPromoted: false,
+    datePosted: '',
     location: {
       locationIsSet: false,
       country: '',
@@ -52,15 +52,11 @@ export default function FormItems() {
     },
   };
 
-  const redirectToCheckout = () => {
-    navigate('/checkoutform');
-  };
-
   const [newItem, setNewItem] = useState(initialState);
   const [isPosting, setIsPosting] = useState(false);
-  const {
-    userId, docId, displayName, userImage,
-  } = useSelector(selectAuthState);
+  const { userInfo, loginInfo } = useSelector(selectAuthState);
+  const { uid } = loginInfo;
+  const { displayName, photoURL } = userInfo;
 
   const handleRemoveImage = (index) => {
     const updatedImages = [...newItem.images];
@@ -108,17 +104,91 @@ export default function FormItems() {
     }
   };
 
-  const handleSubmitNewItemTest = async (e) => {
-    e.preventDefault();
-
+  const redirectToCheckout = () => {
     setIsPosting(true);
+
+    const {
+      name, price, details, images,
+    } = newItem;
+
+    if (!name.trim() || !price.trim() || !details.trim()) {
+      toast.error('Found empty text fields', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+      return;
+    }
+
+    if (!location.locationIsSet) {
+      toast.error('Location has not been set', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+      return;
+    }
+
+    if (images.length === 0) {
+      toast.error('No item image selected', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+    } else {
+      dispatch(setPromotedItem({ ...newItem, datePosted: Date.now() }));
+      navigate('/checkoutform');
+    }
+  };
+
+  const handleSubmitNewItem = async (e) => {
+    e.preventDefault();
 
     const {
       name, price, details, images, condition, isPromoted, brand, category,
     } = newItem;
 
+    setIsPosting(true);
+
     if (!name.trim() || !price.trim() || !details.trim()) {
       toast.error('Found empty text fields', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+      return;
+    }
+
+    if (!location.locationIsSet) {
+      toast.error('Location has not been set', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -164,8 +234,8 @@ export default function FormItems() {
 
       const vendorData = {
         displayName,
-        image: userImage,
-        userId,
+        image: photoURL,
+        userId: uid,
       };
 
       const productsData = {
@@ -178,8 +248,8 @@ export default function FormItems() {
         price: price.trim(),
         images: imageUrls,
         vendor: vendorData,
-        vendorDocId: docId,
-        vendorId: userId,
+        datePosted: Date.now(),
+        vendorId: uid,
         location: {
           locationIsSet: location.locationIsSet,
           locationName: `${location.town}, ${location.state}`,
@@ -199,7 +269,7 @@ export default function FormItems() {
 
       await addDoc(collectionRef, productsData);
 
-      toast.success('Form submitted successfully!', {
+      toast.success('Item Posted successfully!', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -230,7 +300,7 @@ export default function FormItems() {
   };
 
   return (
-    <form className="new-item-form" onSubmit={handleSubmitNewItemTest}>
+    <form className="new-item-form" onSubmit={handleSubmitNewItem}>
       <div className="row g-4">
         <div className="col-md-12">
           <div className="new-item-form__input-div">

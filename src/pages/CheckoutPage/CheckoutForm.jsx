@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from './components/PaymentForm';
+import Loader from '../../components/Loader';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -32,12 +33,13 @@ export default function CheckoutForm() {
 
   return (
     <div className="checkout__layout">
-      <h2>Comfirm Payment</h2>
+      <h2>Comfirm Payment For Product Promotion</h2>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <PaymentForm />
         </Elements>
       )}
+      {!clientSecret && (<Loader />)}
     </div>
   );
 }
