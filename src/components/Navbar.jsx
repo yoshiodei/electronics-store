@@ -5,17 +5,19 @@ import SellNowButton from './SellNowButton';
 import SignInModal from './SignInModal';
 import DrawerButton from './DrawerButton';
 import { signOut } from "firebase/auth";
-import { auth } from '../config/firebaseConfig';
+import { auth, db } from '../config/firebaseConfig';
 import { toast } from 'react-toastify';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
-import { RESET_LOGIN_DETAIL, SET_LOGIN_USER, selectAuthState } from '../redux/slice/authSlice';
+import { selectAuthState, setUserId, setUserInfo } from '../redux/slice/authSlice';
 import RegisterModal from './RegisterModal';
+import { doc, getDoc } from '@firebase/firestore';
 
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userId, isAnonymous } = useSelector(selectAuthState);
+  const { loginInfo, userInfo } = useSelector(selectAuthState);
+  const { isAnonymous, uid } = loginInfo;
 
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
@@ -33,13 +35,31 @@ function Navbar() {
 
   useEffect(() => {
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         const uid = user.uid;
         console.log("user from auth changed", user);
-        dispatch(SET_LOGIN_USER(uid));
+        dispatch(setUserId({ uid, isAnonymous: false }));
+
+        if ( !userInfo.userInfoIsSet ){
+
+          const docRef = doc(db, 'vendors', uid);
+          const docSnapData = await getDoc(docRef);
+          const userData = docSnapData.data();
+
+          const userInfo = {
+            displayName: userData.displayName,
+            bio: userData.bio,
+            email: userData.email,
+            followers: userData.followers,
+            rating: userData.rating,
+            phoneNumber: userData.phoneNumber,
+            photoURL: userData.photoURL,
+          };
+          dispatch(setUserInfo(userInfo));
+        }
       } else {
-        dispatch(RESET_LOGIN_DETAIL());
+        dispatch(setUserId({ uid, isAnonymous: true }));
       }
     });
 
@@ -50,14 +70,24 @@ function Navbar() {
 
     switch (name) {
       case 'my-account':
-        navigate(`/user-account/${userId}`);
+        navigate(`/user-account/${uid}`);
         break;
       case 'notifications':
         navigate('/notifications');
         break;
       case 'log-out':
         signOut(auth).then(() => {
-          // dispatch(RESET_LOGIN_DETAIL());
+          const userInfo = {
+            userInfoIsSet: false,
+            displayName:'',
+            bio: '',
+            email: '',
+            followers: '',
+            rating: '',
+            phoneNumber: '',
+            photoURL: '',
+          };
+          dispatch(setUserInfo(userInfo));
           navigate('/');
           toast.success('Logout Successful', {
             position: "top-center",
