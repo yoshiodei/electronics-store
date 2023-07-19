@@ -3,18 +3,40 @@ import { Link } from 'react-router-dom';
 
 export default function WishListItem({ item, removeItem }) {
   const {
-    name, price, location, condition, id,
+    name, price, location, condition, id, image,
   } = item;
+
+  // const itemObject = {
+  //   itemObjectIsSet: false,
+  //   name: '',
+  //   price: '',
+  //   location: { locationIsSet: false },
+  //   condition: '',
+  //   id: '',
+  //   image: '',
+  // };
+
+  // const [obj, setObj] = useState(itemObject);
 
   const handleCloseItem = () => {
     removeItem(id);
   };
 
+  // useEffect(() => {
+  //   setObj({
+  //     itemObjectIsSet: true,
+  //   });
+  // },[]);
+
+  // if (!obj.itemObjectIsSet) {
+  //   return '';
+  // }
+
   return (
     <div className="wish-list__item" key={id}>
       <Link to={`/single-item/${id}`}>
         <div className="wish-list__image-div">
-          <img src={item?.image || item?.images[0]} alt="..." />
+          <img src={image || ''} alt="..." />
         </div>
         <div className="wish-list__info-div">
           <h6>{name}</h6>

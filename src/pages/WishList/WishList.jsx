@@ -8,10 +8,12 @@ import Main from './Main';
 import Footer from '../../sections/Footer';
 
 export default function WishList() {
-  const { userId } = useSelector(selectAuthState);
+  const { loginInfo } = useSelector(selectAuthState);
+  const { isAnonymous, uid } = loginInfo;
+
   const navigate = useNavigate();
   useEffect(() => {
-    if (!userId) {
+    if (isAnonymous) {
       navigate('/');
       toast.error('Access Denied: Unauthorized Page', {
         position: 'top-center',
@@ -29,7 +31,7 @@ export default function WishList() {
   return (
     <>
       <Navbar />
-      <Main />
+      <Main uid={uid} />
       <Footer />
     </>
   );
