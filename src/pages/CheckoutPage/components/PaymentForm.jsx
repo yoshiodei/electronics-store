@@ -1,24 +1,56 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import {
   PaymentElement,
-  //   LinkAuthenticationElement,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { addDoc, collection } from '@firebase/firestore';
+import { selectProductsState } from '../../../redux/slice/productsSlice';
+import { db } from '../../../config/firebaseConfig';
+
+const ToastSuccess = () => (
+  toast.success('Your Item has been posted successfully!', {
+    position: 'top-center',
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  })
+);
 
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
+  const { promotedItem } = useSelector(selectProductsState);
 
   //   const [email, setEmail] = useState('');
   //   console.log('your email', email);
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const addToPending = async () => {
+    try {
+      const productRef = collection(db, 'pendingItems');
+      await addDoc(productRef, promotedItem);
+      console.log('item was successfully added to pending Items');
+    } catch (err) {
+      console.log(err.message, 'item was not added to pending Items');
+    }
+  };
+
   useEffect(() => {
     if (!stripe) {
       return;
     }
+
+    console.log('item to post', promotedItem);
 
     const clientSecret = new URLSearchParams(window.location.search).get(
       'payment_intent_client_secret',
@@ -61,24 +93,35 @@ export default function PaymentForm() {
 
     setIsLoading(true);
 
-    const { error } = await stripe.confirmPayment({
+    stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
+        // Return URL where the customer should be redirected after the PaymentIntent is confirmed.
         return_url: 'http://localhost:3000/payment-success',
       },
-    });
-
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
-    if (error.type === 'card_error' || error.type === 'validation_error') {
-      setMessage(error.message);
-    } else {
-      setMessage('An unexpected error occurred.');
-    }
+      redirect: 'if_required',
+    })
+      .then((result) => {
+        setIsLoading(true);
+        if (result.error) {
+          setMessage(result.error.message);
+          setIsLoading(false);
+        } else if (result?.paymentIntent && result?.paymentIntent.status === 'succeeded') {
+          setMessage('Payment Successful');
+          addToPending();
+          navigate('/payment-success');
+          ToastSuccess();
+          setIsLoading(false);
+        } else {
+          setMessage('An unexpected error occurred.');
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        setMessage(error);
+        console.log(error?.message);
+        setIsLoading(false);
+      });
 
     setIsLoading(false);
   };

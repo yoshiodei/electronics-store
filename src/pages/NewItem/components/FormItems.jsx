@@ -104,7 +104,7 @@ export default function FormItems() {
     }
   };
 
-  const redirectToCheckout = () => {
+  const redirectToCheckout = async () => {
     setIsPosting(true);
 
     const {
@@ -157,8 +157,40 @@ export default function FormItems() {
 
       setIsPosting(false);
     } else {
-      dispatch(setPromotedItem({ ...newItem, datePosted: Date.now() }));
-      navigate('/checkoutform');
+      setIsPosting(false);
+
+      try {
+        const storageRef = sRef(storage, 'product_images');
+        const imageUrls = [];
+
+        for (let i = 0; i < newItem.images.length; i += 1) {
+          const image = images[i];
+          const fileRef = sRef(storageRef, image.file.name);
+          await uploadBytes(fileRef, image.file);
+          const downloadUrl = await getDownloadURL(fileRef);
+          imageUrls.push(downloadUrl);
+        }
+
+        const promotedItem = {
+          ...newItem, location, datePosted: Date.now(), images: imageUrls,
+        };
+        dispatch(setPromotedItem(promotedItem));
+        console.log(promotedItem);
+        navigate('/checkoutform');
+      } catch (error) {
+        setIsPosting(false);
+        console.log('cannot submit form', error.message);
+        toast.error('Error submitting form. Please try again.', {
+          position: 'top-center',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
     }
   };
 

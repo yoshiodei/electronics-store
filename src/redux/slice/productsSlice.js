@@ -1,4 +1,6 @@
-import { createAction, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction, createSlice } from '@reduxjs/toolkit';
+import { addDoc, collection } from '@firebase/firestore';
+import { db } from '../../config/firebaseConfig';
 
 export const setFilter = createAction('setFilter');
 export const setCategoryFilter = createAction('setCategoryFilter');
@@ -8,6 +10,21 @@ export const resetCategoryFilter = createAction('resetCategoryFilter');
 export const emptyProductsList = createAction('emptyProductsList');
 export const fillProductsList = createAction('fillProductsList');
 export const setPromotedItem = createAction('setPromotedItem');
+
+export const addToProductsPending = createAsyncThunk(
+  'products/addToProductsPending',
+  async (promotedItem, { rejectWithValue }) => {
+    try {
+      const productRef = collection(db, 'pendingItems');
+
+      await addDoc(productRef, promotedItem);
+
+      return promotedItem;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
 const initialFilter = {
   maxPrice: 10000,
@@ -59,6 +76,12 @@ const productsSlice = createSlice({
       .addCase(fillProductsList, (state, action) => {
         state.productsList = action.payload;
       });
+    // .addCase(
+    //   addToProductsPending.fulfilled,
+    //   (state) => {
+    //     state.promotedItem = {};
+    //   },
+    // );
   },
 });
 
