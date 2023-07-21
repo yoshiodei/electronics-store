@@ -11,7 +11,7 @@ import { selectAuthState } from '../../redux/slice/authSlice';
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
-const stripePromise = loadStripe('pk_test_51NL0smEToS1NHjVdeKZbkaymPwXJt4MJ4GxObmUOtk91LvfrJai8WiLYL0vvZGwk6qD7hCKnAoc2iYsyXg2gBlkA00sQp1I7rf');
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 export default function CheckoutForm() {
   const [clientSecret, setClientSecret] = useState('');
