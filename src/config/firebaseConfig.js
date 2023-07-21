@@ -5,13 +5,13 @@ import { getStorage } from 'firebase/storage';
 import { getDatabase } from 'firebase/database';
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyAkUWg1AWJdR1OK48zUbnXrpUI2tfJTVX4',
-  authDomain: 'electronics-shop-82ad4.firebaseapp.com',
-  projectId: 'electronics-shop-82ad4',
-  storageBucket: 'electronics-shop-82ad4.appspot.com',
-  messagingSenderId: '97497925549',
-  appId: '1:97497925549:web:b61eb9e6a551b35574c324',
-  databaseURL: 'https://electronics-shop-82ad4-default-rtdb.firebaseio.com/',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: 'tektoss-d83df.appspot.com',
+  messagingSenderId: '897386202691',
+  appId: '1:897386202691:web:8ec147d26f9ca63777f6f6',
+  measurementId: 'G-E54BY8C0GE',
 };
 
 export const app = initializeApp(firebaseConfig);
