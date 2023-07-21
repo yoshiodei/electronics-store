@@ -30,8 +30,8 @@ export default function PaymentForm() {
   const navigate = useNavigate();
   const { promotedItem } = useSelector(selectProductsState);
 
-  //   const [email, setEmail] = useState('');
-  //   console.log('your email', email);
+  const baseUrl = window.location.origin;
+
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -97,7 +97,7 @@ export default function PaymentForm() {
       elements,
       confirmParams: {
         // Return URL where the customer should be redirected after the PaymentIntent is confirmed.
-        return_url: 'http://localhost:3000/payment-success',
+        return_url: `${baseUrl}/payment-success`,
       },
       redirect: 'if_required',
     })
