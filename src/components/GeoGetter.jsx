@@ -10,7 +10,7 @@ function GeoGetter({ location, setLocation }) {
         const { latitude, longitude } = position.coords;
         try {
           const response = await fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDaWRTaYJC-3xnE31x5USdKKh1sG518LOs`,
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
           );
           const data = await response.json();
           const { results } = data;
