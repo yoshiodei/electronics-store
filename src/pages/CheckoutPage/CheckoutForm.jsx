@@ -13,6 +13,8 @@ import { selectAuthState } from '../../redux/slice/authSlice';
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
+const stripeServer = 'https://tektoss-server-8bc33ee92a1f.herokuapp.com';
+
 export default function CheckoutForm() {
   const [clientSecret, setClientSecret] = useState('');
   const { loginInfo } = useSelector(selectAuthState);
@@ -37,7 +39,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch('http://localhost:3003/create-payment-intent', {
+    fetch(`${stripeServer}/create-payment-intent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items: [{ id: 'product_promotion' }] }),
