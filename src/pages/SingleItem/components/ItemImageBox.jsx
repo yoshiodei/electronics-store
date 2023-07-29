@@ -13,7 +13,7 @@ export default function ItemImageBox() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   const { loginInfo } = useSelector(selectAuthState);
-  const { isAnonymous } = loginInfo;
+  const { isAnonymous, uid } = loginInfo;
 
   const fetchData = () => {
     const docRef = doc(db, 'products', id);
@@ -44,7 +44,7 @@ export default function ItemImageBox() {
     <div className="item-image-box">
       <div className="item-image-box__top-div">
         <Carousel images={product?.images} />
-        {!isAnonymous && <StartChatButton recipientData={product} />}
+        {(!isAnonymous && uid !== product?.vendorId) && <StartChatButton recipientData={product} />}
       </div>
       <div className="item-image-box__bottom-div">
         {
