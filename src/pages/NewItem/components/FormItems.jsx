@@ -10,10 +10,10 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { db, storage } from '../../../config/firebaseConfig';
-import brands from './brands';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
 import { setPromotedItem } from '../../../redux/slice/productsSlice';
+import categoryObj from './categoryObj';
 
 export default function FormItems() {
   const initialLocation = {
@@ -26,6 +26,20 @@ export default function FormItems() {
   };
 
   const [location, setLocation] = useState(initialLocation);
+
+  const [selectedCategory, setSelectedCategory] = useState('phones');
+  const [selectedBrand, setSelectedBrand] = useState(categoryObj.phones[0]);
+
+  const handleCategoryChange = (event) => {
+    const category = event.target.value;
+    setSelectedCategory(category);
+    setSelectedBrand(categoryObj[category][0]);
+  };
+
+  const handleBrandChange = (event) => {
+    setSelectedBrand(event.target.value);
+  };
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -35,7 +49,7 @@ export default function FormItems() {
     price: '',
     category: 'laptops',
     brand: 'sony',
-    details: 'Write a suitable description for your item, such as color, brand, model and other useful information.',
+    details: '',
     images: [],
     condition: 'brand new',
     isPromoted: false,
@@ -86,6 +100,16 @@ export default function FormItems() {
       reader.readAsDataURL(file);
     } else {
       console.log('Please select an image less than 1MB.');
+      toast.error('Selected image size is more than 1MB.', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   };
 
@@ -113,6 +137,22 @@ export default function FormItems() {
 
     if (!name.trim() || !price.trim() || !details.trim()) {
       toast.error('Found empty text fields', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+      return;
+    }
+
+    if (isNaN(price.trim())) {
+      toast.error('Price must be a number', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -172,8 +212,14 @@ export default function FormItems() {
         }
 
         const promotedItem = {
-          ...newItem, location, datePosted: Date.now(), images: imageUrls,
+          ...newItem,
+          location,
+          datePosted: Date.now(),
+          images: imageUrls,
+          category: selectedCategory,
+          brand: selectedBrand,
         };
+
         dispatch(setPromotedItem(promotedItem));
         console.log(promotedItem);
         navigate('/checkoutform');
@@ -198,13 +244,29 @@ export default function FormItems() {
     e.preventDefault();
 
     const {
-      name, price, details, images, condition, isPromoted, brand, category,
+      name, price, details, images, condition, isPromoted,
     } = newItem;
 
     setIsPosting(true);
 
     if (!name.trim() || !price.trim() || !details.trim()) {
       toast.error('Found empty text fields', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+      return;
+    }
+
+    if (isNaN(price.trim())) {
+      toast.error('Price must be a number', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -275,8 +337,8 @@ export default function FormItems() {
         details: details.trim(),
         condition,
         isPromoted,
-        category,
-        brand,
+        category: selectedCategory,
+        brand: selectedBrand,
         price: price.trim(),
         images: imageUrls,
         vendor: vendorData,
@@ -364,44 +426,6 @@ export default function FormItems() {
         </div>
         <div className="col-md-6">
           <div className="new-item-form__input-div">
-            <label htmlFor="brand" className="new-item-form__label">Item Brand</label>
-            <select
-              className="new-item-form__input"
-              aria-label="Default select example"
-              name="brand"
-              value={newItem.brand}
-              onChange={handleFormChange}
-            >
-              {
-               brands.map((state, index) => (
-                 <option value={state} key={index}>{state}</option>
-               ))
-              }
-            </select>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="new-item-form__input-div">
-            <label htmlFor="price-input" className="new-item-form__label">Item Category</label>
-            <select
-              className="new-item-form__input"
-              aria-label="Default select example"
-              name="category"
-              value={newItem.category}
-              onChange={handleFormChange}
-            >
-              <option value="laptops">Laptops</option>
-              <option value="phones">Phones</option>
-              <option value="televisions">Televisions</option>
-              <option value="desktops">Desktops</option>
-              <option value="game consoles">Game Consoles</option>
-              <option value="headphones and speakers">Headphones and Speakers</option>
-              <option value="accessories">Accessories</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="new-item-form__input-div">
             <label htmlFor="price-input" className="new-item-form__label">Item Condition</label>
             <select
               className="new-item-form__input"
@@ -416,6 +440,42 @@ export default function FormItems() {
             </select>
           </div>
         </div>
+        <div className="col-md-6">
+          <div className="new-item-form__input-div">
+            <label htmlFor="category2" className="new-item-form__label">Item Category</label>
+            <select
+              className="new-item-form__input"
+              aria-label="Default select example"
+              name="category2"
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+            >
+              {Object.keys(categoryObj).map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="new-item-form__input-div">
+            <label htmlFor="brand2" className="new-item-form__label">Item Brand</label>
+            <select
+              className="new-item-form__input"
+              aria-label="Default select example"
+              name="brand2"
+              value={selectedBrand}
+              onChange={handleBrandChange}
+            >
+              {categoryObj[selectedCategory].map((brand) => (
+                <option key={brand} value={brand}>
+                  {brand}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <GeoGetter location={location} setLocation={setLocation} />
         <div className="col-md-12">
           <div className="new-item-form__textarea-div">
@@ -423,8 +483,17 @@ export default function FormItems() {
               <h6>Item Detail</h6>
               <span className={(newItem.details.length <= 300) ? '' : 'new-item-form__label new-item-form__span--alt'}>{`( ${newItem.details.length} / 300 )`}</span>
             </label>
+            {/* <input
+              id="name-input"
+              className="new-item-form__input"
+              placeholder=
+              name="details"
+              value={newItem.details}
+              onChange={handleFormChange}
+            /> */}
             <textarea
               className="new-item-form__textarea"
+              placeholder="Write a suitable description for your item, such as color, brand, model and other useful information."
               name="details"
               value={newItem.details}
               onChange={handleFormChange}
