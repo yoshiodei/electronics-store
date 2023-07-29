@@ -24,7 +24,7 @@ export default function DisplayProducts() {
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        allProducts.push(data);
+        allProducts.push({ ...data, id: doc.id });
       });
       setIsLoading(false);
       setProducts(allProducts);
@@ -40,6 +40,7 @@ export default function DisplayProducts() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
+  console.log('current Items ===>', currentItems);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
