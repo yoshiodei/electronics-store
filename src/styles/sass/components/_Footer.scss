@@ -13,6 +13,12 @@
         font-weight: 700;
     }
 
+    &__sub-heading {
+        text-decoration: underline;
+        color: $lightFont;
+        font-weight: 700;
+    }
+
     &__brand-info {
         line-height: 1.3;
         font-size: 0.9em;
@@ -67,6 +73,7 @@
         border-radius: 50%;
         background-color: #FFFFFF80;
         margin-right: 15px;
+        cursor: pointer;
     }
 
     &__social-icon {
@@ -81,7 +88,7 @@
         justify-content: center;
 
         & h6 {
-            color: $lightFont;
+            color: rgba(255, 255, 255, 0.236);
             margin: 0;
         }
     }
