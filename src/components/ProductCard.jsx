@@ -60,7 +60,7 @@ export default function ProductCard({ product }) {
         </div>
         )}
       </Link>
-      <button type="button" className="product-card__add-to-wish-list d-flex" onClick={() => handleAddToWishList(product)}>
+      <button type="button" className="product-card__add-to-wish-list d-flex" onClick={() => handleAddToWishList({ ...product, id })}>
         <i className="fa-sharp fa-regular fa-heart product-card__add-to-wish-list__icon" />
       </button>
     </div>
