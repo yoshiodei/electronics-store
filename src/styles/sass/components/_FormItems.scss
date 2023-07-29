@@ -193,11 +193,12 @@
 
     &__post-item-button {
         border: none;
-        padding: 0.5em 1em;
-        border-radius: 50px;
+        padding: 0.5em 5em;
+        border-radius: 5px;
         font-weight: 700;
         color: white;
         background-color: $secondaryColour;
+        text-transform: capitalize;
     }
 
     &__search-location-button {
