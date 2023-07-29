@@ -11,6 +11,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthState, setUserId, setUserInfo } from '../redux/slice/authSlice';
 import RegisterModal from './RegisterModal';
+import appName from '../Constants/constantVariables';
 import { doc, getDoc } from '@firebase/firestore';
 
 function Navbar() {
@@ -173,7 +174,7 @@ function Navbar() {
           </ul>
         </div>
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
-          <Link to="/" className="h2 navbar-custom__brand">Tektoss</Link>
+          <Link to="/" className="h2 navbar-custom__brand">{ appName }</Link>
           <SellNowButton />
           <DrawerButton setToggleDrawer={setToggleDrawer} toggleDrawer={toggleDrawer} />
         </div>

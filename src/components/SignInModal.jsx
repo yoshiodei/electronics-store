@@ -78,6 +78,15 @@ export default function SignInModal({
     dispatch(setUserInfo(userInfo));
   };
 
+  // const fetchUserLocation = () => {
+  //   const { coords, isGeolocationAvailable, isGeolocationEnabled } = useGeolocated({
+  //     positionOptions: {
+  //       enableHighAccuracy: false,
+  //     },
+  //     userDecisionTimeout: 5000,
+  //   });
+  // };
+
   const handleEmailPasswordSignIn = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -115,7 +124,7 @@ export default function SignInModal({
       } else {
         const vendorData = {
           displayName,
-          bio: 'Hi there, this is my Tektoss shop page.',
+          bio: 'Hi there, this is my Electrotoss shop page.',
           followers: 0,
           status: 'active',
           photoURL: photoURL || '',
@@ -138,7 +147,7 @@ export default function SignInModal({
         const userInfo = {
           userInfoIsSet: true,
           displayName,
-          bio: 'Hi there, this is my Tektoss shop page.',
+          bio: 'Hi there, this is my Electrotoss shop page.',
           userEmail,
           followers: 0,
           rating: 1,
@@ -195,7 +204,7 @@ export default function SignInModal({
           <div className="modal__custom-content-right">
             <form onSubmit={handleEmailPasswordSignIn}>
               <input required placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <input required placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <input type="password" required placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
               <button type="submit" className="register-button">{isLoading ? 'Loading...' : 'Sign In'}</button>
             </form>
             <p className="modal__custom-content-right__or-separator">-- or --</p>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import guyPointingDown from '../assets/images/guyPointingDown.png';
 import womanHoldingLaptop from '../assets/images/womanHoldingLaptop.png';
 import SellNowButton from './SellNowButton';
+import appName from '../Constants/constantVariables';
 
 export default function Hero() {
   const [search, setSearch] = useState('');
@@ -20,9 +21,7 @@ export default function Hero() {
       <div className="hero__main-div">
         <h1>Your One-Stop Electronic Gadget Marketplace.</h1>
         <p>
-          Discover the Best Deals, Connect with Sellers,
-          {' '}
-          and Trade Gadgets with Ease right here on Tektoss.
+          {`Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
         </p>
         <SellNowButton />
         <img src={womanHoldingLaptop} className="hero__main-div__image" alt="woman holding laptop" />

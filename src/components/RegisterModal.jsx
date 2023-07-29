@@ -89,7 +89,7 @@ export default function RegisterModal({
               displayName: `${fname} ${lname}`,
               email,
               emailVerified,
-              bio: 'Hi there, this is my Tektoss shop page.',
+              bio: 'Hi there, this is my Electrotoss shop page.',
               followers: 0,
               photoURL: '',
               isPremium: false,
@@ -107,7 +107,7 @@ export default function RegisterModal({
             const userInfo = {
               userInfoIsSet: true,
               displayName: `${fname} ${lname}`,
-              bio: 'Hi there, this is my Tektoss shop page.',
+              bio: 'Hi there, this is my Electrotoss shop page.',
               email,
               followers: 0,
               rating: 1,
