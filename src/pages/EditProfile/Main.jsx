@@ -40,6 +40,7 @@ export default function Main() {
       ...prevState,
       userImage: '',
       previewImage: '',
+      photoURL: '',
     }));
   };
 
