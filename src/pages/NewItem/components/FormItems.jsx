@@ -84,7 +84,7 @@ export default function FormItems() {
   const handleChangeImage = (e, index) => {
     const file = e.target.files[0];
 
-    if (file && file.size <= 1048576) {
+    if (file && file.size <= 5242880) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const updatedImages = [...newItem.images];
@@ -99,8 +99,8 @@ export default function FormItems() {
       };
       reader.readAsDataURL(file);
     } else {
-      console.log('Please select an image less than 1MB.');
-      toast.error('Selected image size is more than 1MB.', {
+      console.log('Please select an image less than 5MB.');
+      toast.error('Selected image size is more than 5MB.', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -505,7 +505,7 @@ export default function FormItems() {
             <label className="new-item-form__label">
               Upload Image
               {' '}
-              <span>(Upload up to 5 images)</span>
+              <span>(Upload up to 5 images of 5mb or less in size)</span>
             </label>
             <div className="new-item-form__file-input-outer-div">
 
@@ -675,7 +675,7 @@ export default function FormItems() {
         </div>
         <div className="col-md-12">
           <div className="new-item-form__promote-item-div d-flex">
-            <label className="new-item-form__label">Promote Item</label>
+            <label className="new-item-form__label">Promote Item (Current charge for promoting an item is $40 for 30 days)</label>
             <div className="new-item-form__radio-inner-div new-item-form__radio-inner-div--promote">
               <div className="new-item-form__radio-inner-div">
                 <input
