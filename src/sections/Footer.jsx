@@ -9,9 +9,19 @@ export default function Footer() {
       <div className="footer__top-div">
         <div className="row">
           <div className="col-md-3">
-            <h4 className="footer__heading">{appName}</h4>
+            <Link to="/">
+              <h4 className="footer__heading">{appName}</h4>
+            </Link>
             <p className="footer__brand-info">{`Connect, Buy, and Sell Your Favorite Gadgets right here on ${appName}.`}</p>
             <SellNowButton />
+            <div className="footer__info-div">
+              <div className="footer__info">
+                <Link to="/about">About Us</Link>
+              </div>
+              <div className="footer__info">
+                <Link to="/termsAndConditions">Terms and Conditions</Link>
+              </div>
+            </div>
           </div>
           <div className="col-md-3">
             <h4 className="footer__heading">Categories</h4>

@@ -92,6 +92,18 @@
             margin: 0;
         }
     }
+
+    &__info-div {
+        margin-top: 20px;
+    }
+
+    &__info {
+        // margin: 0.25em 0;
+
+        & a {
+          color: $lightFont;
+        }
+    }
 }
 
 @include mobileScreen {
