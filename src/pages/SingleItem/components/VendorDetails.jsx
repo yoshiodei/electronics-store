@@ -38,7 +38,7 @@ export default function VendorDetails() {
     <div className="vendor-details">
       <div className="vendor-details__info-div d-flex">
         <div className="vendor-details__profile-image-div">
-          <img src={product?.vendor?.image || profile} alt="user" />
+          <img src={product?.image || profile} alt={product?.displayName} />
         </div>
         <div className="vendor-details__profile-info-div">
           <h6 className="vendor-details__profile-title">Vendor</h6>
