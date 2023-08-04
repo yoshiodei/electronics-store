@@ -1,4 +1,4 @@
-const appName = 'Electrotoss';
+const appName = 'ElectroToss';
 
 export const helpEmail = 'admhelp@electrotoss.com';
 export const marketingAndPartnershipEmail = 'market-ad@electrotoss.com';
