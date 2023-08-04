@@ -29,6 +29,10 @@ export default function Main({ uid }) {
         </div>
         <div className="main-section__right-div">
           <ChatWall uid={uid} />
+          <div className="main-section__mobile-div">
+            <br />
+            <ChatList uid={uid} />
+          </div>
         </div>
       </main>
     </div>

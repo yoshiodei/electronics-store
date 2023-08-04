@@ -14,6 +14,9 @@ import Category from '../pages/Category/Category';
 import Checkout from '../pages/CheckoutPage/CheckoutForm';
 import EditProfile from '../pages/EditProfile/EditProfile';
 import PaymentSuccess from '../pages/PaymentSucess/PaymentSuccess';
+import About from '../pages/AboutPage/About';
+import TermsAndConditions from '../pages/TermsAndConditions/TermsAndConditions';
+import Test from '../pages/Test';
 
 export default function MainRoutes() {
   return (
@@ -42,7 +45,10 @@ export default function MainRoutes() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/checkoutform" element={<Checkout />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/termsAndConditions" element={<TermsAndConditions />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );

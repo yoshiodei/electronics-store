@@ -27,6 +27,14 @@ export default function Main() {
     dispatch(setCategoryFilter(initialFilter));
   }, []);
 
+  useEffect(() => {
+    const scrollToTop = () => {
+      top.location.href = '#page-top';
+    };
+
+    scrollToTop();
+  }, [category]);
+
   return (
     <div className="main-section-div">
       <main className="main-section d-flex justify-content-between">
