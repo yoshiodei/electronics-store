@@ -1,9 +1,9 @@
 import React from 'react';
 import AdPanel from '../../components/AdPanel';
-import ContentInfoBox from '../../components/ContentInfoBox';
+// import ContentInfoBox from '../../components/ContentInfoBox';
 import UserDetailBox from './component/UserDetailBox';
-// import ProductsTab from './component/ProductsTab';
-import DisplayProducts from './component/DisplayProducts';
+import ProductsTab from './component/ProductsTab';
+// import DisplayProducts from './component/DisplayProducts';
 // import PremiumAccountBox from './component/PremiumAccountBox';
 
 export default function Main() {
@@ -20,9 +20,9 @@ export default function Main() {
             <UserDetailBox />
             {/* <PremiumAccountBox /> */}
           </div>
-          <ContentInfoBox>All Posts</ContentInfoBox>
-          <DisplayProducts />
-          {/* <ProductsTab /> */}
+          {/* <ContentInfoBox>All Posts</ContentInfoBox>
+          <DisplayProducts /> */}
+          <ProductsTab />
         </div>
       </main>
     </div>

@@ -10,12 +10,13 @@ import ProductLocation from './components/ProductLocation';
 import VendorDetails from './components/VendorDetails';
 import ButtonsBox from './components/ButtonsBox';
 import { selectAuthState } from '../../redux/slice/authSlice';
+import RemoveItemButtonsBox from './components/RemoveItemButtonsBox';
 
 export default function Main() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   const { loginInfo } = useSelector(selectAuthState);
-  const { isAnonymous } = loginInfo;
+  const { isAnonymous, uid } = loginInfo;
 
   const fetchData = () => {
     const docRef = doc(db, 'products', id);
@@ -47,6 +48,8 @@ export default function Main() {
           <ProductLocation />
           <VendorDetails />
           {!isAnonymous && <ButtonsBox product={product} />}
+          {(!isAnonymous && uid === product?.vendorId)
+          && <RemoveItemButtonsBox product={product} />}
           <AdPanel />
         </div>
         <div className="main-section__right-div">
