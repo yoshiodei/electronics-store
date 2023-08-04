@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   doc,
-  getDoc,
   updateDoc,
   arrayUnion,
 } from 'firebase/firestore';
@@ -13,18 +12,23 @@ import { db } from '../../../config/firebaseConfig';
 import ButtonsBoxLoading from './ButtonsBoxLoading';
 import { addToWhishList } from '../../../redux/slice/wishListSlice';
 import { selectAuthState } from '../../../redux/slice/authSlice';
+import ShareModal from './ShareModal';
 
-export default function ButtonsBox() {
+export default function ButtonsBox({ product }) {
   const initialReport = {
     reportType: 'This is illegal/Fraudulent',
     reportDetail: '',
   };
   const [report, setReport] = useState(initialReport);
-  const [product, setProduct] = useState({});
+  // const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseShareModal = () => setShowShareModal(false);
+  const handleShowShareModal = () => setShowShareModal(true);
 
   const dispatch = useDispatch();
 
@@ -33,22 +37,22 @@ export default function ButtonsBox() {
   const { displayName, photoURL } = userInfo;
   const { isAnonymous, uid } = loginInfo;
 
-  const fetchData = () => {
-    const docRef = doc(db, 'products', id);
-    getDoc(docRef)
-      .then((itemDoc) => {
-        if (itemDoc.exists()) {
-          const data = itemDoc.data();
-          console.log('product in details ==>', data);
-          setProduct(data);
-        }
-      })
-      .catch(
-        (err) => {
-          console.log('No such document!', err.message);
-        },
-      );
-  };
+  // const fetchData = () => {
+  //   const docRef = doc(db, 'products', id);
+  //   getDoc(docRef)
+  //     .then((itemDoc) => {
+  //       if (itemDoc.exists()) {
+  //         const data = itemDoc.data();
+  //         console.log('product in details ==>', data);
+  //         setProduct(data);
+  //       }
+  //     })
+  //     .catch(
+  //       (err) => {
+  //         console.log('No such document!', err.message);
+  //       },
+  //     );
+  // };
 
   const handleAddToWishList = (wishListProduct) => {
     if (isAnonymous) {
@@ -129,25 +133,6 @@ export default function ButtonsBox() {
     }
   };
 
-  const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
-
-    toast.success('Item URL Copied to Clipbaord', {
-      position: 'top-center',
-      autoClose: 1500,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   if (!product.name) {
     return (<ButtonsBoxLoading />);
   }
@@ -155,19 +140,29 @@ export default function ButtonsBox() {
   return (
     <>
       <div className="buttons-box">
+        { (uid !== product?.vendorId) && (
         <button type="button" onClick={() => handleAddToWishList(product)}>
           <i className="fa-regular fa-heart" />
           <h6>Save</h6>
         </button>
+        )}
+        { (uid !== product?.vendorId) && (
         <button type="button" onClick={handleShow}>
           <i className="fa-regular fa-flag" />
           <h6>Report</h6>
         </button>
-        <button type="button" onClick={handleShare}>
+        )}
+        <button type="button" onClick={handleShowShareModal}>
           <i className="fa-solid fa-arrow-up-right-from-square" />
           <h6>Share</h6>
         </button>
       </div>
+
+      <ShareModal
+        handleClose={handleCloseShareModal}
+        show={showShareModal}
+        itemName={product?.name}
+      />
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>

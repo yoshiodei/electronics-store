@@ -5,9 +5,157 @@
     justify-content: space-between;
     margin-bottom: 20px;
 
+    &__delete {
+        background-color: $dangerRed !important;
+
+        &:hover {
+            background-color: lighten($dangerRed, 3%) !important;
+        }
+    }
+
+    &__sold {
+        background-color: $primaryMidGreyColour !important;
+        border: 1px solid $primaryGreyColour !important;
+
+        & h6, & i {
+          color: rgb(148, 148, 148) !important;
+        }
+
+        &:hover {
+            background-color: darken($primaryGreyColour, 2%) !important;
+        }
+    }
+
     &__modal {
         & .modal-body {
             border: none;
+            min-height: 100px !important;
+        }
+    }
+
+    &__share-modal {
+        &__social-inner-div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+
+            & h6 {
+                font-size: 0.7em;
+            }
+        }
+
+        &__whatsapp {
+            background-color: #21cc62;
+
+            & i {
+                font-size: 2.3em !important;
+            }
+        }
+
+        &__facebook {
+            background-color: #1874ee;
+        }
+
+        &__twitter {
+            background-color: #1c9cea;
+
+            & i {
+                font-size: 2.3em !important;
+            }
+        }
+
+        &__instagram {
+            background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);;
+
+            & i {
+                font-size: 2.3em !important;
+            }
+        }
+
+        &__copy-link-div {
+            display: flex;
+            justify-content: center;
+
+            &:last-child {
+            margin-bottom: 40px;
+            }
+        }
+
+        &__social-link-div {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 3.5em 0 2em;
+
+            & button {
+                height: 60px;
+                width: 60px;
+                border-radius: 5px;
+                border: none;
+            }
+
+            & i {
+                color: white;
+                font-weight: 500;
+                font-size: 2em;
+            }
+        }
+
+        &__copy-link-input {
+            margin-top: 8px;
+            width:65%;
+            border-radius: 5px;
+            padding: 0.5em 2em;
+            border: 1px solid $primaryGreyColour;
+            font-weight: 600;
+            color: rgb(195, 195, 195);
+
+            &:focus {
+                border: 1px solid $primaryGreyColour;
+                outline: none;
+            }
+        }
+
+        &__copy-link-button {
+            border-radius: 5px;
+            background-color: $secondaryColour;
+            color: $lightFont;
+            border: none;
+            padding: 0.5em 2em;
+            font-weight: 600;
+        }
+    }
+
+    &__sold-button {
+        background-color: $secondaryColour;
+        color: $lightFont;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        font-weight: 600;
+    }
+
+    &__discard-button {
+        background-color: $dangerRed;
+        color: $lightFont;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        font-weight: 600;
+    }
+
+    &__inner-modal-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 2em 1em;
+        min-height: 100px;
+
+        & h4 {
+            text-align: center;
+            color: rgb(99, 99, 99);
         }
     }
 
