@@ -2,6 +2,10 @@
   background-color: #1c5d85;
   position: relative;
 }
+.navbar-custom__app-logo {
+  width: 50px;
+  margin-right: 10px;
+}
 .navbar-custom__top-div {
   background-color: rgba(255, 255, 255, 0.1254901961);
   padding-top: 0.25em;
@@ -27,12 +31,17 @@
   padding-bottom: 0.5em;
 }
 .navbar-custom__brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-custom__brand-text {
   font-family: "Mogra", cursive;
   letter-spacing: 0.5px;
   color: #ffffff;
+  font-size: 1.8em;
   margin: 0;
   cursor: pointer;
-  margin-top: 8px;
+  padding-top: 5px;
 }
 .navbar-custom__pop-over {
   position: absolute;
@@ -76,6 +85,7 @@
   width: 100%;
   outline: none;
   border: none;
+  padding: 0 12.8px !important;
   background-color: transparent;
   padding-left: 0.8em;
   padding-right: 0.8em;
@@ -112,17 +122,17 @@
   outline: none;
   border: none;
   background-color: transparent;
-  border-right: 2px solid white;
-  padding-right: 25px;
+  border-left: 2px solid white;
+  padding-left: 25px;
 }
 .navbar-custom__text-button h6 {
   color: #ffffff;
   font-size: 0.85em;
   margin: 0;
 }
-.navbar-custom li:last-child button {
-  border-right: none;
-  padding-right: 0;
+.navbar-custom li:first-child button {
+  border-left: none;
+  padding-left: 0;
 }
 .navbar-custom__icon {
   color: #ffffff;
@@ -1092,10 +1102,7 @@ a {
   height: 160px;
   border-radius: 5px;
   background-color: lightgrey;
-  margin-right: 15px;
-}
-.item-image-box-loading__bottom-div div:last-child {
-  margin-right: 0;
+  gap: 15px;
 }
 .item-image-box-loading .loading {
   position: relative;
@@ -1121,7 +1128,7 @@ a {
   }
   .item-image-box__bottom-div {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 60px;
   }
   .item-image-box__bottom-div__image-div {
@@ -1594,6 +1601,8 @@ a {
     padding: 1em;
     border: 1px solid #1c5d85;
     background-color: rgba(255, 255, 102, 0);
+    border: 1px solid #1c5d85;
+    background-color: #1c5d85;
     border-radius: 30px;
     border-top-left-radius: 10px;
     box-sizing: border-box;
@@ -2255,6 +2264,10 @@ a {
     top: 10px;
     right: 10px;
   }
+  .modal__custom-content-right form {
+    width: 100%;
+    padding: none;
+  }
   .modal__custom-content-right form input {
     width: 100%;
     height: 2.5em;
@@ -2715,6 +2728,103 @@ a {
     font-size: 5em;
     margin-bottom: 10px;
   }
+  .wish-list__item {
+    width: 100%;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .wish-list__item:last-child {
+    margin-bottom: 0;
+  }
+  .wish-list__item a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(243, 243, 243);
+    border-radius: 5px;
+    padding: 5px;
+    padding-right: 20px;
+    transition: background-color 0.3s;
+  }
+  .wish-list__item a:hover {
+    background-color: rgb(243, 243, 243);
+  }
+  .wish-list__item:hover {
+    background-color: rgb(243, 243, 243);
+  }
+  .wish-list__image-div {
+    width: 120px;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid rgb(243, 243, 243);
+    background-color: lightgrey;
+    margin-right: 10px;
+  }
+  .wish-list__image-div img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .wish-list__info-div {
+    margin-right: 10px;
+    flex: 1;
+  }
+  .wish-list__button-div {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    z-index: 3;
+    top: 5px;
+    right: 5px;
+  }
+  .wish-list__button-div button {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 8px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: rgb(195, 80, 80);
+    font-size: 0.8em;
+  }
+  .wish-list__empty-div {
+    width: 50%;
+    min-height: 250px;
+    border-radius: 5px;
+    margin: 50px auto 30px;
+    background-color: rgb(232, 232, 232);
+    border: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3em;
+  }
+  .wish-list__empty-div * {
+    color: rgb(158, 158, 158);
+    text-align: center;
+  }
+  .wish-list__empty-div i {
+    font-size: 5em;
+  }
+  .wish-list__empty-div h6 {
+    margin: 0;
+  }
+  .wish-list__empty-div a {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    background-color: rgb(219, 219, 219);
+    transition: background-color 0.3s;
+  }
+  .wish-list__empty-div a:hover {
+    background-color: rgb(203, 203, 203);
+  }
 }
 .start-chat-button {
   border-radius: 50%;
@@ -2762,8 +2872,128 @@ a {
   justify-content: space-between;
   margin-bottom: 20px;
 }
+.buttons-box__delete {
+  background-color: rgb(223, 64, 64) !important;
+}
+.buttons-box__delete:hover {
+  background-color: #e14d4d !important;
+}
+.buttons-box__sold {
+  background-color: rgb(243, 243, 243) !important;
+  border: 1px solid lightgrey !important;
+}
+.buttons-box__sold h6, .buttons-box__sold i {
+  color: rgb(148, 148, 148) !important;
+}
+.buttons-box__sold:hover {
+  background-color: #cecece !important;
+}
 .buttons-box__modal .modal-body {
   border: none;
+  min-height: 100px !important;
+}
+.buttons-box__share-modal__social-inner-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.buttons-box__share-modal__social-inner-div h6 {
+  font-size: 0.7em;
+}
+.buttons-box__share-modal__whatsapp {
+  background-color: #21cc62;
+}
+.buttons-box__share-modal__whatsapp i {
+  font-size: 2.3em !important;
+}
+.buttons-box__share-modal__facebook {
+  background-color: #1874ee;
+}
+.buttons-box__share-modal__twitter {
+  background-color: #1c9cea;
+}
+.buttons-box__share-modal__twitter i {
+  font-size: 2.3em !important;
+}
+.buttons-box__share-modal__instagram {
+  background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+}
+.buttons-box__share-modal__instagram i {
+  font-size: 2.3em !important;
+}
+.buttons-box__share-modal__copy-link-div {
+  display: flex;
+  justify-content: center;
+}
+.buttons-box__share-modal__copy-link-div:last-child {
+  margin-bottom: 40px;
+}
+.buttons-box__share-modal__social-link-div {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 3.5em 0 2em;
+}
+.buttons-box__share-modal__social-link-div button {
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+  border: none;
+}
+.buttons-box__share-modal__social-link-div i {
+  color: white;
+  font-weight: 500;
+  font-size: 2em;
+}
+.buttons-box__share-modal__copy-link-input {
+  margin-top: 8px;
+  width: 65%;
+  border-radius: 5px;
+  padding: 0.5em 2em;
+  border: 1px solid lightgrey;
+  font-weight: 600;
+  color: rgb(195, 195, 195);
+}
+.buttons-box__share-modal__copy-link-input:focus {
+  border: 1px solid lightgrey;
+  outline: none;
+}
+.buttons-box__share-modal__copy-link-button {
+  border-radius: 5px;
+  background-color: #1c5d85;
+  color: #ffffff;
+  border: none;
+  padding: 0.5em 2em;
+  font-weight: 600;
+}
+.buttons-box__sold-button {
+  background-color: #1c5d85;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+}
+.buttons-box__discard-button {
+  background-color: rgb(223, 64, 64);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+}
+.buttons-box__inner-modal-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em 1em;
+  min-height: 100px;
+}
+.buttons-box__inner-modal-div h4 {
+  text-align: center;
+  color: rgb(99, 99, 99);
 }
 .buttons-box button {
   display: flex;
@@ -3239,6 +3469,12 @@ a {
   color: rgba(255, 255, 255, 0.236);
   margin: 0;
 }
+.footer__info-div {
+  margin-top: 20px;
+}
+.footer__info a {
+  color: #ffffff;
+}
 
 @media (max-width: 430px) {
   .footer {
@@ -3501,5 +3737,37 @@ button.checkout__buttom:disabled {
   form {
     width: 80vw;
     min-width: initial;
+  }
+}
+.about__image-div {
+  width: 50%;
+  height: 300px;
+  float: left;
+}
+.about__image-div img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.about__heading {
+  color: #1c5d85;
+}
+.about__button {
+  margin: 2.5em 0;
+  border: none;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+  font-weight: 700;
+  color: white;
+  background-color: #1c5d85;
+  text-transform: capitalize;
+}
+
+@media (max-width: 430px) {
+  .about__image-div {
+    width: 100%;
+    height: 250px;
+    float: unset;
   }
 }/*# sourceMappingURL=main.css.map */

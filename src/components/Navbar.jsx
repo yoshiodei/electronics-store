@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthState, setUserId, setUserInfo } from '../redux/slice/authSlice';
 import RegisterModal from './RegisterModal';
 import appName from '../Constants/constantVariables';
+import appLogo from '../assets/images/electrotossLogoWhite.png';
 import { doc, getDoc } from '@firebase/firestore';
 
 function Navbar() {
@@ -91,7 +92,7 @@ function Navbar() {
           dispatch(setUserInfo(userInfo));
           navigate('/');
           toast.success('Logout Successful', {
-            position: "top-center",
+            position: 'top-center',
             autoClose: 2500,
             hideProgressBar: true,
             closeOnClick: true,
@@ -102,7 +103,7 @@ function Navbar() {
             });
         }).catch((error) => {
           toast.error(error.message, {
-            position: "top-center",
+            position: 'top-center',
             autoClose: 2500,
             hideProgressBar: true,
             closeOnClick: true,
@@ -122,7 +123,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
+      <nav id="page-top" className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
         <div className="navbar-custom__top-div">
           <ul className="d-flex justify-content-end align-items-center">
             { !isAnonymous && <li>
@@ -171,12 +172,29 @@ function Navbar() {
                 <h6>Register Now</h6>
               </button>
             </li>}
+            <li>
+              <button className="navbar-custom__icon-button" title="about" onClick={() => navigate("/about")}>
+                  <i className="fa-solid fa-info navbar-custom__icon" />
+              </button>
+            </li>
           </ul>
         </div>
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
-          <Link to="/" className="h2 navbar-custom__brand">{ appName }</Link>
+          <Link to="/" className="navbar-custom__brand">
+            <span>
+              <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
+            </span>
+            <span className="h2 navbar-custom__brand-text">
+            { appName }
+            </span>
+          </Link>
           <SellNowButton />
-          <DrawerButton setToggleDrawer={setToggleDrawer} toggleDrawer={toggleDrawer} />
+          <DrawerButton
+            setToggleDrawer={setToggleDrawer}
+            toggleDrawer={toggleDrawer}
+            handleShowRegisterModal={handleShowRegisterModal}
+            handleShowSignInModal={handleShowSignInModal}
+          />
         </div>
       </nav>
       <RegisterModal handleCloseRegisterModal={handleCloseRegisterModal} showRegisterModal={showRegisterModal} handleShowSignInModal={handleShowSignInModal} />

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthState } from '../redux/slice/authSlice';
 
-export default function DrawerButton({ toggleDrawer, setToggleDrawer }) {
+export default function DrawerButton({
+  toggleDrawer, setToggleDrawer, handleShowSignInModal, handleShowRegisterModal,
+}) {
   const navigate = useNavigate();
+  const [search, setSearch] = useState('');
   const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous, uid } = loginInfo;
 
@@ -32,6 +35,14 @@ export default function DrawerButton({ toggleDrawer, setToggleDrawer }) {
     setToggleDrawer(false);
   };
 
+  const handleSearch = () => {
+    if (search.trim().length > 0) {
+      navigate(`/search/${search}`);
+    }
+    setSearch('');
+    setToggleDrawer(false);
+  };
+
   return (
     <>
       <button type="button" className="drawer-button" onClick={() => setToggleDrawer(!toggleDrawer)}>
@@ -41,13 +52,24 @@ export default function DrawerButton({ toggleDrawer, setToggleDrawer }) {
       </button>
       <div className={toggleDrawer ? 'drawer-button__div' : 'drawer-button__div__hide'}>
         <div className="drawer-button__input-div">
-          <input className="drawer-button__input" placeholder="Search item" />
-          <button type="button" className="drawer-button__input-button">Search</button>
+          <input
+            value={search}
+            className="drawer-button__input"
+            placeholder="Search item"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button
+            type="button"
+            className="drawer-button__input-button"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
         </div>
         {isAnonymous && (
         <div className="drawer-button__sign-in-div">
-          <button type="button" className="drawer-button__sign-in-button" onClick={() => {}}>Sign In</button>
-          <button type="button" className="drawer-button__register-button" onClick={() => {}}>Register</button>
+          <button type="button" className="drawer-button__sign-in-button" onClick={handleShowSignInModal}>Sign In</button>
+          <button type="button" className="drawer-button__register-button" onClick={handleShowRegisterModal}>Register</button>
         </div>
         )}
         {!isAnonymous

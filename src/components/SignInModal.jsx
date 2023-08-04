@@ -202,7 +202,7 @@ export default function SignInModal({
             </div>
           </div>
           <div className="modal__custom-content-right">
-            <form onSubmit={handleEmailPasswordSignIn}>
+            <form onSubmit={handleEmailPasswordSignIn} className="modal__custom-content-right-form">
               <input required placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
               <input type="password" required placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
               <button type="submit" className="register-button">{isLoading ? 'Loading...' : 'Sign In'}</button>
