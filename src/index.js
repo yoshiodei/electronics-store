@@ -9,6 +9,7 @@ import store from './redux/store';
 import 'react-toastify/dist/ReactToastify.css';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json';
+import { HelmetProvider } from 'react-helmet-async';
 
 TimeAgo.addDefaultLocale(en);
 
@@ -16,7 +17,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <MainRoutes />
+      <HelmetProvider>
+       <MainRoutes />
+      </HelmetProvider>
     </Provider>
   </React.StrictMode>
 );
