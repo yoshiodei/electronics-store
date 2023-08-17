@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import ChatListButton from './ChatListButton';
 import { db } from '../../../config/firebaseConfig';
 
 export default function ChatList({ uid }) {
   const [chatList, setChatList] = useState([]);
+
+  const resetNewMessages = async () => {
+    try {
+      const vendorRef = doc(db, 'vendors', uid);
+
+      await updateDoc(vendorRef, {
+        newMessages: [],
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    resetNewMessages();
+  }, []);
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, 'vendors', uid), (docItem) => {

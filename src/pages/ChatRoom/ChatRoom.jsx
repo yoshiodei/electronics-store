@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-toastify';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import Navbar from '../../components/Navbar';
 import Footer from '../../sections/Footer';
 import Main from './Main';
+import appName from '../../Constants/constantVariables';
 
 export default function ChatRoom() {
   const { loginInfo } = useSelector(selectAuthState);
@@ -30,6 +32,14 @@ export default function ChatRoom() {
 
   return (
     <>
+      <Helmet>
+        <title>{`Chat Room | ${appName}`}</title>
+        <meta
+          name="description"
+          content={`You can easy interact with buyers and sellers in our in built chat system right here on ${appName}`}
+        />
+        <link rel="canonical" href="/chat-room" />
+      </Helmet>
       <Navbar />
       <Main uid={uid} />
       <Footer />

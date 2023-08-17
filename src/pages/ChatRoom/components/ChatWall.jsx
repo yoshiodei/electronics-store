@@ -69,6 +69,10 @@ export default function ChatWall({ uid }) {
       await updateDoc(recipientRef, {
         messages: arrayUnion(messageObject),
       });
+
+      await updateDoc(recipientRef, {
+        newMessages: arrayUnion(recipientId),
+      });
     } catch (err) {
       console.log(err.message);
     }

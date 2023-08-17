@@ -4,22 +4,6 @@ import ChatWall from './components/ChatWall';
 import ChatList from './components/ChatList';
 
 export default function Main({ uid }) {
-  // const dispatch = useDispatch();
-  // const initialState = {
-  //   isLoading: false,
-  //   recipientId: '',
-  //   recipientImage: '',
-  //   recipientName: '',
-  //   error: null,
-  // };
-
-  // useEffect(
-  //   () => () => {
-  //     dispatch(SET_RECIPIENT_CHAT_DETAILS(initialState));
-  //   },
-  //   [],
-  // );
-
   return (
     <div className="main-section-div">
       <main className="main-section d-flex justify-content-between">
