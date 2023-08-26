@@ -3716,6 +3716,7 @@ form input:focus-visible, form textarea:focus-visible {
 .footer__heading {
   color: #ffffff;
   font-weight: 700;
+  margin: 0 !important;
 }
 .footer__sub-heading {
   text-decoration: underline;
@@ -3735,6 +3736,7 @@ form input:focus-visible, form textarea:focus-visible {
   display: flex;
   align-self: center;
   gap: 8px;
+  margin-bottom: 15px;
 }
 .footer__app-logo {
   height: 1.1em;
@@ -3814,6 +3816,12 @@ form input:focus-visible, form textarea:focus-visible {
   .footer__heading {
     font-size: 1.4em;
     margin: 20px 0 10px;
+  }
+  .footer__brand {
+    display: flex;
+    align-self: center;
+    gap: 8px;
+    margin: 12px 0;
   }
   .footer__brand-info {
     line-height: 1.1;

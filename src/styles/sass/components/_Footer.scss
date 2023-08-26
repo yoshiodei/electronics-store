@@ -11,6 +11,7 @@
     &__heading {
         color: $lightFont;
         font-weight: 700;
+        margin: 0 !important;
     }
 
     &__sub-heading {
@@ -34,6 +35,8 @@
         display: flex;
         align-self: center;
         gap: 8px;
+        margin-bottom: 15px;
+        
     }
 
     &__app-logo {
@@ -135,6 +138,15 @@
             font-size: 1.4em;
             margin: 20px 0 10px;
         }
+
+        &__brand {
+            display: flex;
+            align-self: center;
+            gap: 8px;
+            margin: 12px 0;
+            
+        }
+    
     
         &__brand-info {
             line-height: 1.1;

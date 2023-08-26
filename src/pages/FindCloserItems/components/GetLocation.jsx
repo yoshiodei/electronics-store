@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export default function GetLocation() {
+  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [locationMessage, setLocationMessage] = useState('');
+
   const handleGetLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
-        console.log(latitude, longitude);
+        dispatch({ coordinates: { longitude, latitude }, isLocationAvailable: true });
+        setLocationMessage({ latitude, longitude });
       });
+    } else {
+      setErrorMessage('Unable to find your location');
     }
   };
 
@@ -21,6 +29,8 @@ export default function GetLocation() {
       >
         Get Your Location
       </button>
+      <h6 className="tabs-custom__error-message">{errorMessage}</h6>
+      <h6 className="tabs-custom__location-message">{`longitude: ${locationMessage.longitude} and latitude: ${locationMessage.latitude}`}</h6>
     </div>
   );
 }
