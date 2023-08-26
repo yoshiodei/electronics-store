@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-toastify';
 import Navbar from '../../components/Navbar';
 import Footer from '../../sections/Footer';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import Main from './Main';
+import appName from '../../Constants/constantVariables';
 
 export default function Notifications() {
   const { loginInfo } = useSelector(selectAuthState);
@@ -30,6 +32,15 @@ export default function Notifications() {
 
   return (
     <>
+      <Helmet>
+        <title>{`Notifications | ${appName}`}</title>
+        <meta
+          name="description"
+          content={`Your One-Stop Electronic Gadget Marketplace.
+          Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
+        />
+        <link rel="canonical" href="/notifications" />
+      </Helmet>
       <Navbar />
       <Main uid={uid} />
       <Footer />

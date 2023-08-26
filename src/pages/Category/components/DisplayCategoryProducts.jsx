@@ -9,14 +9,12 @@ import ProductCard from '../../../components/ProductCard';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
 import Loader from '../../../components/Loader';
 import EmptyDisplay from '../../../components/EmptyDisplay';
-import useWithin5Miles from '../../../Hooks/useWithin5Miles';
 
 export default function DisplayCategoryProducts() {
   const [data, setData] = useState([]);
-  const itemIsWithin5Miles = useWithin5Miles();
-  const { filterCategoryObject, userCoordinates } = useSelector(selectProductsState);
+  const { filterCategoryObject } = useSelector(selectProductsState);
   const {
-    updateTime: time, maxPrice, minPrice, location, condition, brand,
+    updateTime: time, maxPrice, minPrice, condition, brand,
   } = filterCategoryObject;
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(32);
@@ -67,7 +65,6 @@ export default function DisplayCategoryProducts() {
             item.price >= minPrice
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
-        && (itemIsWithin5Miles(item, userCoordinates) || location === 'all')
         && (item.brand === brand || brand === 'all')
           ),
         );

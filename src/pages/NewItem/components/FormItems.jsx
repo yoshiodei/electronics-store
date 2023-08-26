@@ -29,6 +29,7 @@ export default function FormItems() {
 
   const [selectedCategory, setSelectedCategory] = useState('phones');
   const [selectedBrand, setSelectedBrand] = useState(categoryObj.phones[0]);
+  const [otherBrand, setOtherBrand] = useState('');
 
   const handleCategoryChange = (event) => {
     const category = event.target.value;
@@ -38,6 +39,7 @@ export default function FormItems() {
 
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
+    setOtherBrand('');
   };
 
   const dispatch = useDispatch();
@@ -332,13 +334,20 @@ export default function FormItems() {
         userId: uid,
       };
 
+      let itemBrand;
+      if (selectedBrand === 'other') {
+        itemBrand = otherBrand;
+      } else {
+        itemBrand = selectedBrand;
+      }
+
       const productsData = {
         name: name.trim(),
         details: details.trim(),
         condition,
         isPromoted,
         category: selectedCategory,
-        brand: selectedBrand,
+        brand: itemBrand,
         price: price.trim(),
         images: imageUrls,
         vendor: vendorData,
@@ -476,6 +485,23 @@ export default function FormItems() {
             </select>
           </div>
         </div>
+        {(selectedBrand === 'other') && (
+        <div className="col-md-12">
+          <div className="new-item-form__input-div">
+            <label htmlFor="other-brand-input" className="new-item-form__label">
+              Please Specify the Item Brand
+            </label>
+            <input
+              id="other-brand-input"
+              className="new-item-form__input"
+              placeholder="please type the name of your brand"
+              name="other"
+              value={otherBrand}
+              onChange={(e) => setOtherBrand(e.target.value)}
+            />
+          </div>
+        </div>
+        )}
         <GeoGetter location={location} setLocation={setLocation} />
         <div className="col-md-12">
           <div className="new-item-form__textarea-div">
@@ -483,14 +509,6 @@ export default function FormItems() {
               <h6>Item Detail</h6>
               <span className={(newItem.details.length <= 300) ? '' : 'new-item-form__label new-item-form__span--alt'}>{`( ${newItem.details.length} / 300 )`}</span>
             </label>
-            {/* <input
-              id="name-input"
-              className="new-item-form__input"
-              placeholder=
-              name="details"
-              value={newItem.details}
-              onChange={handleFormChange}
-            /> */}
             <textarea
               className="new-item-form__textarea"
               placeholder="Write a suitable description for your item, such as color, brand, model and other useful information."

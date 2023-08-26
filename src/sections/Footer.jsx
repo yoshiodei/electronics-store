@@ -1,23 +1,37 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SellNowButton from '../components/SellNowButton';
 import appName, { helpEmail, marketingAndPartnershipEmail } from '../Constants/constantVariables';
+import appLogo from '../assets/images/electrotossLogoWhite.png';
 
 export default function Footer() {
+  const handleEmailClick = (emailAddress) => {
+    const subject = `Hello from ${appName}!`;
+    const body = 'Write your message here.';
+
+    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const emailWindow = window.open(mailtoLink, '_blank');
+    emailWindow.opener = null; // Prevent the opened window from accessing the current window
+  };
+
   return (
     <div className="footer">
       <div className="footer__top-div">
         <div className="row">
           <div className="col-md-3">
-            <Link to="/">
-              <h4 className="footer__heading">{appName}</h4>
+            <Link to="/" className="footer__brand">
+              <span>
+                <img className="footer__app-logo" src={appLogo} alt={appName} />
+              </span>
+              <h4 className="footer__heading">
+                { appName }
+              </h4>
             </Link>
             <p className="footer__brand-info">{`Connect, Buy, and Sell Your Favorite Gadgets right here on ${appName}.`}</p>
             <SellNowButton />
             <div className="footer__info-div">
-              <div className="footer__info">
-                <Link to="/about">About Us</Link>
-              </div>
               <div className="footer__info">
                 <Link to="/termsAndConditions">Terms and Conditions</Link>
               </div>
@@ -51,24 +65,18 @@ export default function Footer() {
           </div>
           <div className="col-md-3">
             <h4 className="footer__heading">Contact Us</h4>
-            {/* <div className="footer__contact-div d-flex">
-              <i className="footer__contact-icon fa-solid fa-phone" />
-              <p className="footer__contact-info">058-422-8123</p>
-            </div> */}
+
             <h6 className="footer__sub-heading mb-3">Reach out to our help desk</h6>
-            <div className="footer__contact-div d-flex">
+            <div className="footer__contact-div d-flex" role="button" onClick={() => handleEmailClick({ helpEmail })}>
               <i className="footer__contact-icon fa-solid fa-envelope" />
               <p className="footer__contact-info">{helpEmail}</p>
             </div>
             <h6 className="footer__sub-heading mb-3">For marketing and partnerships</h6>
-            <div className="footer__contact-div d-flex">
+            <div className="footer__contact-div d-flex" role="button" onClick={() => handleEmailClick({ marketingAndPartnershipEmail })}>
               <i className="footer__contact-icon fa-solid fa-envelope" />
               <p className="footer__contact-info">{marketingAndPartnershipEmail}</p>
             </div>
-            {/* <div className="footer__contact-div d-flex">
-              <i className="footer__contact-icon fa-solid fa-location-dot" />
-              <p className="footer__contact-info">Kingsford street, Auston, Texas</p>
-            </div> */}
+
           </div>
           <div className="col-md-3">
             <h4 className="footer__heading">Follow Us</h4>

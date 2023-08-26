@@ -37,23 +37,6 @@ export default function ButtonsBox({ product }) {
   const { displayName, photoURL } = userInfo;
   const { isAnonymous, uid } = loginInfo;
 
-  // const fetchData = () => {
-  //   const docRef = doc(db, 'products', id);
-  //   getDoc(docRef)
-  //     .then((itemDoc) => {
-  //       if (itemDoc.exists()) {
-  //         const data = itemDoc.data();
-  //         console.log('product in details ==>', data);
-  //         setProduct(data);
-  //       }
-  //     })
-  //     .catch(
-  //       (err) => {
-  //         console.log('No such document!', err.message);
-  //       },
-  //     );
-  // };
-
   const handleAddToWishList = (wishListProduct) => {
     if (isAnonymous) {
       console.log('Log in to add items to wish list');

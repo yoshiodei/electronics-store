@@ -1,120 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 
 function Test() {
-  const [states, setStates] = useState([]);
-  const [selectedState, setSelectedState] = useState('');
-  const [towns, setTowns] = useState([]);
-  const [selectedTown, setSelectedTown] = useState('');
-  const [coordinates, setCoordinates] = useState({});
+  const coordinates2 = { latitude: 6.666600, longitude: -1.616271 };
+  const coordinates1 = { latitude: 5.614818, longitude: -0.205874 };
 
-  useEffect(() => {
-    // Fetch the list of US states from the Google API
-    const fetchStates = async () => {
-      try {
-        const response = await axios.get(
-          'https://maps.googleapis.com/maps/api/geocode/json',
-          {
-            params: {
-              address: 'United States',
-              key: 'AIzaSyDaWRTaYJC-3xnE31x5USdKKh1sG518LOs',
-            },
-          },
-        );
+  const getDistance = () => {
+    const R = 6371; // Earth's radius in kilometers
 
-        const stateList = response.data.results[0].address_components.filter(
-          (component) => component.types.includes('administrative_area_level_1'),
-        );
+    const lat1 = coordinates1.latitude;
+    const lon1 = coordinates1.longitude;
+    const lat2 = coordinates2.latitude;
+    const lon2 = coordinates2.longitude;
 
-        setStates(stateList);
-      } catch (error) {
-        console.error('Error fetching states:', error);
-      }
-    };
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
 
-    fetchStates();
-  }, []);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+            + Math.cos(lat1 * (Math.PI / 180))
+              * Math.cos(lat2 * (Math.PI / 180))
+              * Math.sin(dLon / 2)
+              * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
 
-  useEffect(() => {
-    // Fetch the towns in the selected state from the Google API
-    const fetchTowns = async () => {
-      try {
-        const response = await axios.get(
-          'https://maps.googleapis.com/maps/api/geocode/json',
-          {
-            params: {
-              address: selectedState,
-              key: 'AIzaSyDaWRTaYJC-3xnE31x5USdKKh1sG518LOs',
-            },
-          },
-        );
+    const distanceInMiles = distance / 1.60934;
 
-        const townsList = response.data.results.map(
-          (result) => result.formatted_address,
-        );
-
-        setTowns(townsList);
-      } catch (error) {
-        console.error('Error fetching towns:', error);
-      }
-    };
-
-    if (selectedState) {
-      fetchTowns();
-    }
-  }, [selectedState]);
-
-  const handleStateChange = (event) => {
-    setSelectedState(event.target.value);
-    setSelectedTown('');
-    setCoordinates({});
-  };
-
-  const handleTownChange = (event) => {
-    setSelectedTown(event.target.value);
-    setCoordinates({});
-    // You can fetch coordinates using the Google API as well,
-    // but let's leave it empty for simplicity in this example
+    return distanceInMiles;
   };
 
   return (
     <div>
-      <label>
-        Select a state:
-        <select value={selectedState} onChange={handleStateChange}>
-          <option value="">-- Select a state --</option>
-          {states.map((state) => (
-            <option value={state.long_name}>
-              {state.long_name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Select a town:
-        <select value={selectedTown} onChange={handleTownChange}>
-          <option value="">-- Select a town --</option>
-          {towns.map((town) => (
-            <option value={town}>
-              {town}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <pre>
-        Selected State:
-        {selectedState}
-      </pre>
-      <pre>
-        Selected Town:
-        {selectedTown}
-      </pre>
-      <pre>
-        Coordinates:
-        {JSON.stringify(coordinates, null, 2)}
-      </pre>
+      the distance is
+      {' '}
+      {getDistance()}
+      {' '}
+      miles.
     </div>
   );
 }

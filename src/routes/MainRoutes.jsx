@@ -16,7 +16,10 @@ import EditProfile from '../pages/EditProfile/EditProfile';
 import PaymentSuccess from '../pages/PaymentSucess/PaymentSuccess';
 import About from '../pages/AboutPage/About';
 import TermsAndConditions from '../pages/TermsAndConditions/TermsAndConditions';
+import FindCloserItems from '../pages/FindCloserItems/FindCloserItems';
 import Test from '../pages/Test';
+import EditItem from '../pages/EditItem/EditItem';
+import UserNotVerified from '../pages/UserNotVerified/UserNotVerified';
 
 export default function MainRoutes() {
   return (
@@ -48,6 +51,9 @@ export default function MainRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/find-closer-items" element={<FindCloserItems />} />
+        <Route path="/edit-single-item/:id" element={<EditItem />} />
+        <Route path="/verify-user" element={<UserNotVerified />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>

@@ -114,7 +114,7 @@ export default function CategoryFilterCard({ category }) {
 
   return (
     <form className="filter-card" onSubmit={handleResetFilter}>
-      <div className="filter-card__location-div">
+      {/* <div className="filter-card__location-div">
         <h6>Location</h6>
         <select
           className="form-select"
@@ -125,7 +125,7 @@ export default function CategoryFilterCard({ category }) {
           <option value="all">All</option>
           <option value="Near">Items near me (within 5 miles)</option>
         </select>
-      </div>
+      </div> */}
       <div className="filter-card__price-range-div">
         <h6>Price Range</h6>
         <div className="filter-card__range-div">

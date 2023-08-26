@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, createAction } from '@reduxjs/toolkit';
 import {
   doc, updateDoc, arrayUnion,
   getDoc,
@@ -8,8 +8,11 @@ import { db } from '../../config/firebaseConfig';
 const initialState = {
   isLoading: false,
   wishList: [],
+  wishListCount: 0,
   error: null,
 };
+
+export const resetWishListCount = createAction('resetWishListCount');
 
 export const addToWhishList = createAsyncThunk(
   'wishList/addToWishList',
@@ -78,8 +81,13 @@ const wishListSlice = createSlice({
       .addCase(
         addToWhishList.fulfilled,
         (state, action) => {
+          const newList = [state.wishList, action.payload];
+          const oldList = state.wishList;
           state.isLoading = false;
-          state.wishList = [state.wishList, action.payload];
+          state.wishList = newList;
+          if (state.wishList.length > oldList) {
+            state.wishListCount += 1;
+          }
         },
       )
       .addCase(getWishList.pending, (state) => {
@@ -101,6 +109,9 @@ const wishListSlice = createSlice({
       .addCase(removeFromWishList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.wishList = action.payload;
+      })
+      .addCase(resetWishListCount, (state) => {
+        state.wishListCount = 0;
       })
       .addCase(removeFromWishList.rejected, (state, action) => {
         state.isLoading = false;

@@ -49,6 +49,10 @@
         padding: 3em 2.5em;
         position: relative;
 
+        &.reset-password form {
+            padding-top: 3em;
+        }
+
         & .button-close-custom {
             position: absolute;
             top: 10px;
@@ -157,6 +161,13 @@
         &__facebook-signin-button {
             background-color: rgb(65, 84, 181);
         }
+
+        &__forgot-password {
+            border: none;
+            background-color: transparent;
+            font-weight: 600;
+            color: $secondaryColour;
+        }
     }
 }
 
@@ -212,6 +223,10 @@
             flex: 1;
             padding: 1.5em 1em;
             position: relative;
+
+            &.reset-password form{
+                padding: 1.5em 1em;
+            }
     
             & .button-close-custom {
                 position: absolute;
@@ -310,4 +325,15 @@
     .modal-body__left, .modal-body__right {
         padding: 0;
     }    
+}
+
+
+.terms-and-conditions {
+    text-transform: capitalize;
+    font-weight: 600;
+    color: $secondaryColour;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }

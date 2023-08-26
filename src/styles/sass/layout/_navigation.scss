@@ -121,6 +121,7 @@
     }
 
     &__icon-button {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -130,6 +131,24 @@
         outline: none;
         border: none;
         background-color: #FFFFFF30;
+    }
+
+    &__data-count {
+        min-width: 15px;
+        height: 15px;
+        padding: 2px 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        background-color: $dangerRed;
+        position: absolute;
+        top: -3px;
+        right: -10px;
+        font-size: 0.65em;
+        font-weight: 700;
+        color: $lightFont;
+
     }
 
     &__text-button {

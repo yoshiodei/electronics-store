@@ -42,7 +42,6 @@ export default function UserDetailBox() {
     let allData = {};
     querySnapshot.forEach((doc2) => {
       const data = doc2.data();
-      // setUserData(data);
       allData = data;
       console.log('user data', userData);
     });

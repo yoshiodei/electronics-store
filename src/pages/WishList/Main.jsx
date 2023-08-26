@@ -5,7 +5,9 @@ import ContentInfoBox from '../../components/ContentInfoBox';
 import WishListItem from './components/WishListItem';
 import AdPanel from '../../components/AdPanel';
 import WishListEmpty from './components/WishListEmpty';
-import { getWishList, removeFromWishList, selectWishListState } from '../../redux/slice/wishListSlice';
+import {
+  getWishList, removeFromWishList, resetWishListCount, selectWishListState,
+} from '../../redux/slice/wishListSlice';
 import Loader from '../../components/Loader';
 
 export default function Main({ uid }) {
@@ -22,6 +24,7 @@ export default function Main({ uid }) {
 
   useEffect(() => {
     dispatch(getWishList(uid));
+    dispatch(resetWishListCount());
   }, [dispatch]);
 
   return (

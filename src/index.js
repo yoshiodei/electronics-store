@@ -15,12 +15,12 @@ TimeAgo.addDefaultLocale(en);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <HelmetProvider>
        <MainRoutes />
       </HelmetProvider>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 

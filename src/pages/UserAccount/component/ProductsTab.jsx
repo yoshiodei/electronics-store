@@ -2,6 +2,7 @@ import React from 'react';
 import AllItemsTab from './AllItemsTab';
 import ActiveItemsTab from './ActiveItemsTab';
 import SoldItemsTab from './SoldItemsTab';
+import PendingItemsTab from './PendingItemsTab';
 
 export default function ProductsTab() {
   return (
@@ -16,6 +17,9 @@ export default function ProductsTab() {
         <li className="nav-item tabs-custom__tab-item" role="presentation">
           <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Sold Items</button>
         </li>
+        <li className="nav-item tabs-custom__tab-item" role="presentation">
+          <button className="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending-tab-pane" type="button" role="tab" aria-controls="pending-tab-pane" aria-selected="false">Pending Items</button>
+        </li>
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabIndex="0">
@@ -26,6 +30,9 @@ export default function ProductsTab() {
         </div>
         <div className="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabIndex="0">
           <SoldItemsTab />
+        </div>
+        <div className="tab-pane fade" id="pending-tab-pane" role="tabpanel" aria-labelledby="pending-tab" tabIndex="0">
+          <PendingItemsTab />
         </div>
       </div>
 

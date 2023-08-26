@@ -5,22 +5,30 @@ import SellNowButton from './SellNowButton';
 import SignInModal from './SignInModal';
 import DrawerButton from './DrawerButton';
 import { signOut } from "firebase/auth";
-import { auth, db } from '../config/firebaseConfig';
-import { toast } from 'react-toastify';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { selectAuthState, setUserId, setUserInfo } from '../redux/slice/authSlice';
 import RegisterModal from './RegisterModal';
 import appName from '../Constants/constantVariables';
 import appLogo from '../assets/images/electrotossLogoWhite.png';
-import { doc, getDoc } from '@firebase/firestore';
+import { doc, getDoc, onSnapshot } from '@firebase/firestore';
+import { auth, db } from '../config/firebaseConfig';
+import { selectWishListState } from '../redux/slice/wishListSlice';
+import { selectNotificationState, setNotifications } from '../redux/slice/notificationSlice';
+import ChatList from '../pages/ChatRoom/components/ChatList';
+import ForgotPasswordModal from './ForgotPasswordModal';
 
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { wishListCount } = useSelector(selectWishListState);
   const { loginInfo, userInfo } = useSelector(selectAuthState);
+  const { notificationCount, messageCount } = useSelector(selectNotificationState);
   const { isAnonymous, uid } = loginInfo;
-
+  const { emailVerified } = userInfo;
+  
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -30,13 +38,33 @@ function Navbar() {
   const handleShowRegisterModal = () => setShowRegisterModal(true);
   const handleCloseSignInModal = () => setShowSignInModal(false);
   const handleShowSignInModal = () => setShowSignInModal(true);
+  const handleShowForgotPasswordModal = () => setShowForgotPasswordModal(true);
+  const handleCloseForgotPasswordModal = () => setShowForgotPasswordModal(false);
 
   const handleClickWishList = (e) => {
     navigate('/wish-list');
   }
+  
+  const initialCountObject = { notificationCount: 0, messageCount: 0 };
+
+  const [countObject, setCountObject] = useState(initialCountObject);
 
   useEffect(() => {
+    if(uid){
+    const unsub = onSnapshot(doc(db, 'vendors', uid), (doc) => {
+    const notificationCount = doc.data()?.newNotifications?.length || 0;
+    const messageCount = doc.data()?.newMessages?.length || 0;
+    setCountObject({ messageCount, notificationCount });
+    dispatch(setNotifications({ messageCount, notificationCount }));
+  });
 
+    return () => {
+      unsub();
+    };
+  }
+  }, []);
+
+  useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const uid = user.uid;
@@ -50,6 +78,7 @@ function Navbar() {
           const userData = docSnapData.data();
 
           const userInfo = {
+            emailVerified: user?.emailVerified ? user.emailVerified  : '',
             displayName: userData.displayName,
             bio: userData.bio,
             email: userData.email,
@@ -64,7 +93,6 @@ function Navbar() {
         dispatch(setUserId({ uid, isAnonymous: true }));
       }
     });
-
   },[]);
 
   const handlePopOverClick = (name) => {
@@ -80,6 +108,7 @@ function Navbar() {
       case 'log-out':
         signOut(auth).then(() => {
           const userInfo = {
+            emailVerified: false,
             userInfoIsSet: false,
             displayName:'',
             bio: '',
@@ -129,16 +158,19 @@ function Navbar() {
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="notifications" onClick={() => navigate("/notifications")}>
                 <i className="fa-regular fa-bell navbar-custom__icon" />
+                { notificationCount > 0 && (<div className="navbar-custom__data-count">{ notificationCount }</div>)}
               </button>
             </li>}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
                 <i className="fa-regular fa-message navbar-custom__icon" />
+                {  messageCount > 0 && (<div className="navbar-custom__data-count">{ messageCount }</div>)}
               </button>
             </li>}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
+                { wishListCount > 0 && (<div className="navbar-custom__data-count">{ wishListCount }</div>) }
               </button>
             </li>}
             { !isAnonymous && <li>
@@ -172,11 +204,11 @@ function Navbar() {
                 <h6>Register Now</h6>
               </button>
             </li>}
-            <li>
+            {/* <li>
               <button className="navbar-custom__icon-button" title="about" onClick={() => navigate("/about")}>
                   <i className="fa-solid fa-info navbar-custom__icon" />
               </button>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
@@ -198,7 +230,8 @@ function Navbar() {
         </div>
       </nav>
       <RegisterModal handleCloseRegisterModal={handleCloseRegisterModal} showRegisterModal={showRegisterModal} handleShowSignInModal={handleShowSignInModal} />
-      <SignInModal handleCloseSignInModal={handleCloseSignInModal} showSignInModal={showSignInModal} handleShowRegisterModal={handleShowRegisterModal} />
+      <SignInModal handleCloseSignInModal={handleCloseSignInModal} showSignInModal={showSignInModal} handleShowRegisterModal={handleShowRegisterModal} setForgotPasswordModal={setShowForgotPasswordModal} />
+      <ForgotPasswordModal showModal={showForgotPasswordModal} handleShowSignInModal={handleShowSignInModal} handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}/>
     </>
   );
 }

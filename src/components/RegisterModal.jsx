@@ -1,10 +1,16 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-import { auth, db } from '../config/firebaseConfig';
+import {
+  auth,
+  db,
+} from '../config/firebaseConfig';
 import { setUserInfo } from '../redux/slice/authSlice';
 
 const successToast = () => {
@@ -41,15 +47,17 @@ export default function RegisterModal({
   const dispatch = useDispatch();
 
   const [errorMessage, setErrorMessage] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [inputValue, setInputValue] = useState({
+  const initialValue = {
     fname: '',
     lname: '',
     email: '',
     phoneNumber: '',
     password: '',
     cPassword: '',
-  });
+  };
+  const [inputValue, setInputValue] = useState(initialValue);
 
   const handleSwitch = () => {
     handleCloseRegisterModal();
@@ -76,12 +84,16 @@ export default function RegisterModal({
     }
     if (password.length < 8) {
       setErrorMessage('password must at least have 8 characters');
+    }
+    if (!(isChecked)) {
+      setErrorMessage('you must agree to terms and conditions to proceed');
     } else {
       setIsLoading(true);
 
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const { user } = userCredential;
+
           const { emailVerified, uid } = user;
 
           try {
@@ -105,6 +117,7 @@ export default function RegisterModal({
             });
 
             const userInfo = {
+              emailVerified,
               userInfoIsSet: true,
               displayName: `${fname} ${lname}`,
               bio: 'Hi there, this is my Electrotoss shop page.',
@@ -125,11 +138,13 @@ export default function RegisterModal({
           setIsLoading(false);
           handleCloseRegisterModal();
           successToast();
+          setInputValue(initialValue);
         })
         .catch((error) => {
           setIsLoading(false);
           handleCloseRegisterModal();
           errorToast(error);
+          setInputValue(initialValue);
         });
     }
   };
@@ -157,11 +172,15 @@ export default function RegisterModal({
               <input required placeholder="Enter last name" name="lname" value={inputValue.lname} onChange={handleChange} />
               <input required placeholder="Enter your email" name="email" value={inputValue.email} onChange={handleChange} />
               <input required placeholder="Enter your phone number number" name="phoneNumber" value={inputValue.phonNumber} onChange={handleChange} />
-              <input required placeholder="Enter password" name="password" value={inputValue.password} onChange={handleChange} />
-              <input required placeholder="Confirm password" name="cPassword" value={inputValue.cPassword} onChange={handleChange} />
+              <input required placeholder="Enter password" name="password" type="password" value={inputValue.password} onChange={handleChange} />
+              <input required placeholder="Confirm password" name="cPassword" type="password" value={inputValue.cPassword} onChange={handleChange} />
               <div className="check-box-div">
-                <input type="checkbox" />
-                <h6>By checking this box I agree to all the terms and conditions</h6>
+                <input type="checkbox" checked={isChecked} onChange={() => { setIsChecked(!isChecked); }} />
+                <h6>
+                  By checking this box I agree to all the
+                  {' '}
+                  <Link to="/termsAndConditions"><span className="terms-and-conditions" role="button" onClick={handleCloseRegisterModal}>Terms and Conditions</span></Link>
+                </h6>
               </div>
               <button type="submit" className="register-button">{isLoading ? 'Loading...' : 'Register'}</button>
               <p className="register-button__error-message">{errorMessage}</p>

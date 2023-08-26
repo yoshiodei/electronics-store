@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
 import ProductCard from '../../../components/ProductCard';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
-import useWithin5Miles from '../../../Hooks/useWithin5Miles';
 import Loader from '../../../components/Loader';
 import EmptyDisplay from '../../../components/EmptyDisplay';
 // import Pagination from '../../../components/Pagination';
@@ -18,16 +17,14 @@ export default function DisplaySearchItems() {
   const [itemsPerPage] = useState(32);
   const [isLoading, setIsLoading] = useState(false);
   const { searchName } = useParams('');
-  const itemIsWithin5Miles = useWithin5Miles();
 
   const [currentPage, setCurrentPage] = useState(1);
   const {
     filterObject,
-    userCoordinates,
   } = useSelector(selectProductsState);
 
   const {
-    updateTime: time, minPrice, maxPrice, condition, location, category,
+    updateTime: time, minPrice, maxPrice, condition, category,
   } = filterObject;
 
   useEffect(() => {
@@ -80,7 +77,6 @@ export default function DisplaySearchItems() {
             item.price >= minPrice
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
-        && (itemIsWithin5Miles(item, userCoordinates) || location === 'all')
         && (item.category === category || category === 'all')
           ),
         );

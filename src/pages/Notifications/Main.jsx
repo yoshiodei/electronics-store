@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import AdPanel from '../../components/AdPanel';
 import ContentInfoBox from '../../components/ContentInfoBox';
 import NotificationsEmpty from './components/NotificationsEmpty';
@@ -34,8 +34,21 @@ export default function Main({ uid }) {
     }
   };
 
+  const resetNewNotifications = async () => {
+    try {
+      const vendorRef = doc(db, 'vendors', uid);
+
+      await updateDoc(vendorRef, {
+        newNotifications: [],
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    resetNewNotifications();
     console.log('data after fetch', notificationsList);
   }, []);
 

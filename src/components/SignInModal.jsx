@@ -3,8 +3,6 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  // FacebookAuthProvider,
-  // getAuth,
 } from 'firebase/auth';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
@@ -44,11 +42,12 @@ const errorToast = (err) => {
 export default function SignInModal({
   showSignInModal,
   handleCloseSignInModal,
+  setForgotPasswordModal,
   handleShowRegisterModal,
 }) {
-  // const providerFB = new FacebookAuthProvider();
   const provider = new GoogleAuthProvider();
   const [isLoading, setIsLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -59,12 +58,18 @@ export default function SignInModal({
     handleShowRegisterModal();
   };
 
+  const handleForgotPasswordSwitch = () => {
+    handleCloseSignInModal();
+    setForgotPasswordModal(true);
+  };
+
   const fetchUserInfo = async (uid) => {
     const docRef = doc(db, 'vendors', uid);
     const docSnapData = await getDoc(docRef);
     const userData = docSnapData.data();
 
     const userInfo = {
+      emailVerified: userData.emailVerified,
       userInfoIsSet: true,
       displayName: userData.displayName,
       bio: userData.bio,
@@ -77,15 +82,6 @@ export default function SignInModal({
 
     dispatch(setUserInfo(userInfo));
   };
-
-  // const fetchUserLocation = () => {
-  //   const { coords, isGeolocationAvailable, isGeolocationEnabled } = useGeolocated({
-  //     positionOptions: {
-  //       enableHighAccuracy: false,
-  //     },
-  //     userDecisionTimeout: 5000,
-  //   });
-  // };
 
   const handleEmailPasswordSignIn = (e) => {
     e.preventDefault();
@@ -104,12 +100,16 @@ export default function SignInModal({
         handleCloseSignInModal();
         errorToast(error);
       });
+
+    setEmail('');
+    setPassword('');
   };
 
   const handleGoogleSignIn = async () => {
     try {
+      setGoogleLoading(true);
       const result = await signInWithPopup(auth, provider);
-      console.log('user data', result.user);
+
       const {
         displayName, photoURL, uid, phoneNumber, emailVerified, email: userEmail,
       } = result.user;
@@ -120,6 +120,7 @@ export default function SignInModal({
       if (docSnap.exists()) {
         handleCloseSignInModal();
         fetchUserInfo(uid);
+        setGoogleLoading(false);
         successToast();
       } else {
         const vendorData = {
@@ -145,6 +146,7 @@ export default function SignInModal({
         handleCloseSignInModal();
 
         const userInfo = {
+          emailVerified,
           userInfoIsSet: true,
           displayName,
           bio: 'Hi there, this is my Electrotoss shop page.',
@@ -158,27 +160,15 @@ export default function SignInModal({
         dispatch(setUserInfo(userInfo));
 
         successToast();
+        setGoogleLoading(false);
       }
     } catch (error) {
       setIsLoading(false);
       handleCloseSignInModal();
       errorToast(error);
+      setGoogleLoading(false);
     }
   };
-
-  // const handleFacebookSignIn = async () => {
-  //   const authFB = getAuth();
-  //   signInWithPopup(authFB, providerFB)
-  //     .then((resultFB) => {
-  //       const userFB = resultFB.user;
-
-  //       console.log('FB logged in user', userFB);
-  //     })
-  //     .catch((error) => {
-  //       const errorMessage = error.message;
-  //       console.log(errorMessage);
-  //     });
-  // };
 
   return (
     <Modal
@@ -206,17 +196,13 @@ export default function SignInModal({
               <input required placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
               <input type="password" required placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
               <button type="submit" className="register-button">{isLoading ? 'Loading...' : 'Sign In'}</button>
+              <button type="button" className="modal__custom-content-right__forgot-password" onClick={handleForgotPasswordSwitch}>Forgot Password</button>
             </form>
             <p className="modal__custom-content-right__or-separator">-- or --</p>
             <button type="button" className="modal__custom-content-right__google-signin-button" onClick={handleGoogleSignIn}>
               <i className="fa-brands fa-google" />
-              Sign In With Google
+              {googleLoading ? '...Loading' : 'Sign In With Google'}
             </button>
-            {/* <button type="button" className="modal__
-            custom-content-right__facebook-signin-button" onClick={handleFacebookSignIn}>
-              <i className="fa-brands fa-facebook" />
-              Sign In With Facebook
-            </button> */}
             <h6 className="switch-to-signin">
               Don&apos;t have an account?
               {' '}

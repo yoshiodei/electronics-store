@@ -5,8 +5,9 @@ import {
 } from '@firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
 import DisplayProductLoader from '../../Home/components/DisplayProductLoader';
-import ProductCard from '../../../components/ProductCard';
+// import ProductCard from '../../../components/ProductCard';
 import EmptyTab from './EmptyTab';
+import InactiveItemProductCard from './InactiveItemProductCard';
 
 export default function SoldItemsTab() {
   const [products, setProducts] = useState([]);
@@ -49,7 +50,7 @@ export default function SoldItemsTab() {
         {
           products.map((product) => (
             <div className="col-6 col-md-3">
-              <ProductCard product={product} />
+              <InactiveItemProductCard sold pending={false} product={product} />
             </div>
           ))
           }

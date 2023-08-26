@@ -11,6 +11,7 @@ import VendorDetails from './components/VendorDetails';
 import ButtonsBox from './components/ButtonsBox';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import RemoveItemButtonsBox from './components/RemoveItemButtonsBox';
+import EditItemButton from './components/EditItemButton';
 
 export default function Main() {
   const [product, setProduct] = useState({});
@@ -37,7 +38,6 @@ export default function Main() {
 
   useEffect(() => {
     fetchData();
-    console.log('this is the product data', product);
   }, []);
 
   return (
@@ -49,6 +49,8 @@ export default function Main() {
           <VendorDetails />
           {!isAnonymous && <ButtonsBox product={product} />}
           {(!isAnonymous && uid === product?.vendorId)
+          && <EditItemButton product={product} id={id} />}
+          {(!isAnonymous && uid === product?.vendorId)
           && <RemoveItemButtonsBox product={product} />}
           <AdPanel />
         </div>
@@ -58,7 +60,12 @@ export default function Main() {
             <ProductDetail />
             <ProductLocation />
             <VendorDetails />
-            {!isAnonymous && <ButtonsBox product={product} />}
+            {!isAnonymous
+            && <ButtonsBox product={product} />}
+            {(!isAnonymous && uid === product?.vendorId)
+          && <EditItemButton id={id} />}
+            {(!isAnonymous && uid === product?.vendorId)
+          && <RemoveItemButtonsBox product={product} />}
           </div>
           {/* <SimilarItems /> */}
         </div>

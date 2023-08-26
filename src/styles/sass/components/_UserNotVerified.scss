@@ -1,0 +1,89 @@
+.verification-box {
+    border: 1px solid lighten($dangerRed, 15%);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: lighten($dangerRed, 35%);
+    margin-bottom: 100px;
+
+    &--success {
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 100px;
+        border: 1px solid lighten($successGreen, 25%);
+        background-color: lighten($successGreen, 45%);
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__text {
+        text-align: center;
+    }
+
+    &__buttons-div {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &__send-verification-button {
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        background-color: lighten($dangerRed, 8%);
+        color: white;
+        border: none;
+        font-weight: 600;
+
+        &--success {
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            font-weight: 600;
+            background-color: lighten($successGreen, 12%);
+        }
+    }
+
+    &__countdown {
+        color: lighten($dangerRed, 8%);
+        text-align: center;
+    }
+
+    &__approve-verification-button {
+        background-color: transparent;
+        color: lighten($dangerRed, 8%);
+        font-weight: 600;
+        border: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.verification-card {
+    border: 1px solid lighten($dangerRed, 15%);
+    border-radius: 5px;
+    padding: 15px;
+    background-color: lighten($dangerRed, 35%);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+        margin: 0;
+    }
+
+    &__button {
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        background-color: lighten($dangerRed, 8%);
+        color: white;
+        border: none;
+        font-weight: 600;
+    }
+}

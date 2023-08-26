@@ -30,8 +30,18 @@
         padding: 0;
     }
 
+    &__brand {
+        display: flex;
+        align-self: center;
+        gap: 8px;
+    }
+
+    &__app-logo {
+        height: 1.1em;
+    }
+
     &__category-list-item {
-        margin-bottom: 6px;
+        margin-bottom: 3px;
         
         & a {
             color: white;
@@ -45,6 +55,11 @@
 
     &__contact-div {
         margin-bottom: 15px;
+        cursor: pointer; 
+        
+        & p:hover {
+            text-decoration: underline;
+        }
     }
 
     &__contact-icon {

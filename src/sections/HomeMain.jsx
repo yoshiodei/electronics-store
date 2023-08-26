@@ -8,6 +8,7 @@ import Hero from '../components/Hero';
 import SectionHeader from '../components/SectionHeader';
 import DisplayCards from '../pages/Home/components/DisplayCards';
 import { setFilter } from '../redux/slice/productsSlice';
+// import FindCloserItemsButton from '../components/FindCloserItemsButton';
 
 export default function HomeMain() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ export default function HomeMain() {
           <CategoriesBox />
           <SectionHeader>Filter</SectionHeader>
           <FilterCard />
+          {/* <FindCloserItemsButton /> */}
           <AdPanel />
         </div>
         <div className="main-section__right-div">

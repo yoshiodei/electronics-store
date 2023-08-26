@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import Navbar from '../../components/Navbar';
 import Main from './Main';
 import Footer from '../../sections/Footer';
+import appName from '../../Constants/constantVariables';
 
 export default function WishList() {
   const { loginInfo } = useSelector(selectAuthState);
@@ -30,6 +32,15 @@ export default function WishList() {
 
   return (
     <>
+      <Helmet>
+        <title>{`Wish List | ${appName}`}</title>
+        <meta
+          name="description"
+          content={`Your One-Stop Electronic Gadget Marketplace.
+          Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
+        />
+        <link rel="canonical" href="/wish-list" />
+      </Helmet>
       <Navbar />
       <Main uid={uid} />
       <Footer />

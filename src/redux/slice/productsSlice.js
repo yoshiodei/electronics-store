@@ -10,6 +10,7 @@ export const resetCategoryFilter = createAction('resetCategoryFilter');
 export const emptyProductsList = createAction('emptyProductsList');
 export const fillProductsList = createAction('fillProductsList');
 export const setPromotedItem = createAction('setPromotedItem');
+export const setProductToEdit = createAction('setProductToEdit');
 
 export const addToProductsPending = createAsyncThunk(
   'products/addToProductsPending',
@@ -39,6 +40,7 @@ const initialFilter = {
 const initialState = {
   isLoading: false,
   productsList: [],
+  productToEdit: {},
   filterObject: initialFilter,
   filterCategoryObject: initialFilter,
   userCoordinates: { longitude: 0, latitude: 0 },
@@ -54,6 +56,9 @@ const productsSlice = createSlice({
     builder
       .addCase(setFilter, (state, action) => {
         state.filterObject = action.payload;
+      })
+      .addCase(setProductToEdit, (state, action) => {
+        state.productToEdit = action.payload;
       })
       .addCase(resetFilter, (state) => {
         state.filterObject = initialFilter;
@@ -76,12 +81,6 @@ const productsSlice = createSlice({
       .addCase(fillProductsList, (state, action) => {
         state.productsList = action.payload;
       });
-    // .addCase(
-    //   addToProductsPending.fulfilled,
-    //   (state) => {
-    //     state.promotedItem = {};
-    //   },
-    // );
   },
 });
 

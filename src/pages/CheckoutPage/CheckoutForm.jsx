@@ -4,9 +4,11 @@ import { Elements } from '@stripe/react-stripe-js';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import PaymentForm from './components/PaymentForm';
 import Loader from '../../components/Loader';
 import { selectAuthState } from '../../redux/slice/authSlice';
+import appName from '../../Constants/constantVariables';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -57,14 +59,26 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div className="checkout__layout">
-      <h2>Comfirm Payment For Product Promotion</h2>
-      {stripePromise && clientSecret && (
+    <>
+      <Helmet>
+        <title>{`Checkout | ${appName}`}</title>
+        <meta
+          name="description"
+          content={`Your One-Stop Electronic Gadget Marketplace.
+          Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
+        />
+        <link rel="canonical" href="/chat-room" />
+      </Helmet>
+
+      <div className="checkout__layout">
+        <h2>Comfirm Payment For Product Promotion</h2>
+        {stripePromise && clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <PaymentForm />
         </Elements>
-      )}
-      {!clientSecret && (<Loader />)}
-    </div>
+        )}
+        {!clientSecret && (<Loader />)}
+      </div>
+    </>
   );
 }

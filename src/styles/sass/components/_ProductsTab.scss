@@ -57,6 +57,23 @@
         padding: 8px 15px;
         font-weight: 600;
     }
+
+    &__button {
+        height: 2.5em;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: $secondaryColour;
+        margin-right: 12px;
+        padding: 0.5em 1em;
+        transition: background-color 0.3s;
+        color: $lightFont;
+        font-size: 0.95em;
+
+        &:hover {
+            background-color: lighten($secondaryColour, 10%);
+        }
+    }
 }
 
 @include mobileScreen {

@@ -79,18 +79,6 @@ export default function FilterCard() {
 
   return (
     <form className="filter-card" onSubmit={handleResetFilter}>
-      <div className="filter-card__location-div">
-        <h6>Location</h6>
-        <select
-          className="form-select"
-          aria-label="Default select example"
-          name="location"
-          onChange={handleSelectChange}
-        >
-          <option value="all">All</option>
-          <option value="Near">Items near me (within 5 miles)</option>
-        </select>
-      </div>
       <div className="filter-card__price-range-div">
         <h6>Price Range</h6>
         <div className="filter-card__range-div">

@@ -94,19 +94,18 @@ export default function ProductLocation() {
           {product?.location?.locationIsSet ? `${product?.location?.town}, ${product?.location?.state}` : 'location is unknown'}
         </h3>
       </div>
+      { (mileDistance !== -1 && !isNaN(mileDistance)) && (
       <div className="product-location__product-distance-div">
         <h6 className="product-location__title">Item Distance</h6>
         <h3 className="product-location__distance">
-          { (mileDistance !== -1 && !isNaN(mileDistance)) && (
           <p>
             <span>{mileDistance}</span>
             {' '}
             miles away
           </p>
-          ) }
-          { (mileDistance === -1 || isNaN(mileDistance)) && <p>Distance is Unknown</p>}
         </h3>
       </div>
+      ) }
     </div>
   );
 }
