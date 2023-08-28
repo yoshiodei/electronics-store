@@ -69,7 +69,10 @@ export default function FormItems() {
   };
 
   const [newItem, setNewItem] = useState(initialState);
+
   const [isPosting, setIsPosting] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
   const { userInfo, loginInfo } = useSelector(selectAuthState);
   const { uid } = loginInfo;
   const { displayName, photoURL } = userInfo;
@@ -131,7 +134,7 @@ export default function FormItems() {
   };
 
   const redirectToCheckout = async () => {
-    setIsPosting(true);
+    setIsCheckingOut(true);
 
     const {
       name, price, details, images,
@@ -149,7 +152,7 @@ export default function FormItems() {
         theme: 'light',
       });
 
-      setIsPosting(false);
+      setIsCheckingOut(false);
       return;
     }
 
@@ -725,7 +728,7 @@ export default function FormItems() {
         <div className="col-md-12">
           <div className="new-item-form__post-item-div">
             {(!newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="submit">{isPosting ? '...Posting' : 'Post Item'}</button>)}
-            {(newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="button" onClick={redirectToCheckout}>checkout</button>)}
+            {(newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="button" onClick={redirectToCheckout}>{isCheckingOut ? '...Loading' : 'Checkout'}</button>)}
           </div>
         </div>
       </div>

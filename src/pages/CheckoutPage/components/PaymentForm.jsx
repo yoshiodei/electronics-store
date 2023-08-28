@@ -24,7 +24,7 @@ const ToastSuccess = () => (
   })
 );
 
-export default function PaymentForm() {
+export default function PaymentForm({ clientSecret }) {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -52,11 +52,11 @@ export default function PaymentForm() {
 
     console.log('item to post', promotedItem);
 
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      'payment_intent_client_secret',
-    );
+    // const clientSecret = new URLSearchParams(window.location.search).get(
+    //   'payment_intent_client_secret',
+    // );
 
-    console.log('clientSecret is ===', clientSecret);
+    // console.log('clientSecret is ===', clientSecret);
 
     if (!clientSecret) {
       return;

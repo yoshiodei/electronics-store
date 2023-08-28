@@ -67,14 +67,14 @@ export default function CheckoutForm() {
           content={`Your One-Stop Electronic Gadget Marketplace.
           Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
         />
-        <link rel="canonical" href="/chat-room" />
+        <link rel="canonical" href="/checkoutform" />
       </Helmet>
 
       <div className="checkout__layout">
-        <h2>Comfirm Payment For Product Promotion</h2>
+        <h2>Confirm Payment For Product Promotion</h2>
         {stripePromise && clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <PaymentForm />
+          <PaymentForm clientSecret={options.clientSecret} />
         </Elements>
         )}
         {!clientSecret && (<Loader />)}

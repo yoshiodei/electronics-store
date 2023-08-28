@@ -2064,6 +2064,9 @@ form input:focus-visible, form textarea:focus-visible {
   background-color: #1c5d85;
   text-transform: capitalize;
 }
+.new-item-form__post-item-button:active {
+  padding: 0.48em 4.9em;
+}
 .new-item-form__search-location-button {
   border: none;
   padding: 0.5em 1em;

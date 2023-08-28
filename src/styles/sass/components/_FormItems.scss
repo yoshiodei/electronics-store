@@ -203,6 +203,10 @@ form input:focus-visible, form textarea:focus-visible  {
         color: white;
         background-color: $secondaryColour;
         text-transform: capitalize;
+
+        &:active {
+            padding: 0.48em 4.9em;
+        }
     }
 
     &__search-location-button {

@@ -31,6 +31,7 @@ export default function DisplayItemsNearMe() {
   } = filterObject;
 
   useEffect(() => {
+    console.log('get position');
     if (!isLocationAvailable && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
@@ -40,11 +41,9 @@ export default function DisplayItemsNearMe() {
       });
     }
     if (!navigator.geolocation) {
-      // setIsLocationEnabled(false);
+      console.log('can not get position');
     }
   }, [isLocationAvailable]);
-
-  console.log('all products sike ==>', coordinates, isLocationAvailable);
 
   useEffect(() => {
     const fetchData = async () => {
