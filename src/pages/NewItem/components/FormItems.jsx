@@ -8,11 +8,11 @@ import {
   collection,
 } from '@firebase/firestore';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { db, storage } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
-import { setPromotedItem } from '../../../redux/slice/productsSlice';
+// import { setPromotedItem } from '../../../redux/slice/productsSlice';
 import categoryObj from './categoryObj';
 // import { stripePaymentLink } from '../../../Constants/constantVariables';
 
@@ -43,7 +43,7 @@ export default function FormItems() {
     setOtherBrand('');
   };
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const initialState = {
     name: '',
@@ -232,8 +232,11 @@ export default function FormItems() {
           brand: itemBrand,
         };
 
-        dispatch(setPromotedItem(promotedItem));
+        const promotedItemJSON = JSON.stringify(promotedItem);
+        localStorage.setItem('promotedItem', promotedItemJSON);
+
         console.log(promotedItem);
+
         // window.location.href = stripePaymentLink;
         window.location.href = 'https://buy.stripe.com/test_cN22cd7OSf0j4fu5kk';
       } catch (error) {
