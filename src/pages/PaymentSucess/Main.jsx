@@ -1,7 +1,6 @@
 import React, {
   useEffect,
 } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { addDoc, collection } from '@firebase/firestore';
 import { toast } from 'react-toastify';
 import AdPanel from '../../components/AdPanel';
@@ -9,8 +8,6 @@ import ContentInfoBox from '../../components/ContentInfoBox';
 import { db } from '../../config/firebaseConfig';
 
 export default function Main() {
-  const navigate = useNavigate();
-
   const postItem = async () => {
     const promotedItemJSON = localStorage.getItem('promotedItem');
 
@@ -34,6 +31,7 @@ export default function Main() {
       });
 
       localStorage.removeItem('promotedItem');
+      window.location.reload();
     } else {
       console.log('no item found');
     }
@@ -43,6 +41,10 @@ export default function Main() {
     postItem();
   }, []);
 
+  const handleNavigate = () => {
+    window.location.href = 'http://www.electrotoss.com';
+  };
+
   return (
     <div className="main-section-div">
       <main className="main-section d-flex justify-content-between">
@@ -51,14 +53,14 @@ export default function Main() {
         </div>
         <div className="main-section__right-div">
           <ContentInfoBox>
-            Payment Successful
+            Payment Successful!!
           </ContentInfoBox>
           <div className="checkout__success-message">
             <h3>Your promoted item will be uploaded once the item in approved after review.</h3>
             <button
               type="button"
               className="checkout__success-button"
-              onClick={() => navigate('/')}
+              onClick={handleNavigate}
             >
               Go Back Home
             </button>
