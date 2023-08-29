@@ -7,13 +7,14 @@ import {
   addDoc,
   collection,
 } from '@firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { db, storage } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
 import { setPromotedItem } from '../../../redux/slice/productsSlice';
 import categoryObj from './categoryObj';
+// import { stripePaymentLink } from '../../../Constants/constantVariables';
 
 export default function FormItems() {
   const initialLocation = {
@@ -43,8 +44,6 @@ export default function FormItems() {
   };
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const initialState = {
     name: '',
@@ -216,18 +215,27 @@ export default function FormItems() {
           imageUrls.push(downloadUrl);
         }
 
+        let itemBrand;
+        if (selectedBrand === 'other') {
+          itemBrand = otherBrand;
+        } else {
+          itemBrand = selectedBrand;
+        }
+
         const promotedItem = {
           ...newItem,
           location,
           datePosted: Date.now(),
+          datePromoted: Date.now(),
           images: imageUrls,
           category: selectedCategory,
-          brand: selectedBrand,
+          brand: itemBrand,
         };
 
         dispatch(setPromotedItem(promotedItem));
         console.log(promotedItem);
-        navigate('/checkoutform');
+        // window.location.href = stripePaymentLink;
+        window.location.href = 'https://buy.stripe.com/test_cN22cd7OSf0j4fu5kk';
       } catch (error) {
         setIsPosting(false);
         console.log('cannot submit form', error.message);
@@ -696,32 +704,26 @@ export default function FormItems() {
         </div>
         <div className="col-md-12">
           <div className="new-item-form__promote-item-div d-flex">
-            <label className="new-item-form__label">Promote Item (Current charge for promoting an item is $40 for 30 days)</label>
-            <div className="new-item-form__radio-inner-div new-item-form__radio-inner-div--promote">
-              <div className="new-item-form__radio-inner-div">
-                <input
-                  id="dont-promote"
-                  className="new-item-form__radio-input"
-                  name="isPromoted"
-                  type="radio"
-                  value="donotpromote"
-                  checked={!newItem.isPromoted}
-                  onChange={handleFormChange}
-                />
-                <label htmlFor="dont-promote" className="new-item-form__radio-label">No, do not promote this item</label>
-              </div>
-              <div className="new-item-form__radio-inner-div">
-                <input
-                  id="do-promote"
-                  className="new-item-form__radio-input"
-                  name="isPromoted"
-                  value="promote"
-                  type="radio"
-                  checked={newItem.isPromoted}
-                  onChange={handleFormChange}
-                />
-                <label htmlFor="do-promote" className="new-item-form__radio-label">Yes, promote this item</label>
-              </div>
+            <label className="new-item-form__label">Promote Item</label>
+            <div className="new-item-form__radio-inner-button-div">
+              <button
+                type="button"
+                onClick={() => setNewItem({ ...newItem, isPromoted: false })}
+                className={newItem.isPromoted ? 'new-item-form__radio-inner-button-div__radio-button' : 'new-item-form__radio-inner-button-div__radio-button active'}
+              >
+                <h6>Do not promote item</h6>
+                <h4>Post for free</h4>
+                {!newItem.isPromoted && (<div className="new-item-form__radio-inner-button-div__button-icon"><i className="fa-solid fa-check" /></div>)}
+              </button>
+              <button
+                type="button"
+                onClick={() => setNewItem({ ...newItem, isPromoted: true })}
+                className={newItem.isPromoted ? 'new-item-form__radio-inner-button-div__radio-button  active' : 'new-item-form__radio-inner-button-div__radio-button'}
+              >
+                <h6>Promote item</h6>
+                <h4>$8 for 15 days</h4>
+                {newItem.isPromoted && (<div className="new-item-form__radio-inner-button-div__button-icon"><i className="fa-solid fa-check" /></div>)}
+              </button>
             </div>
           </div>
         </div>

@@ -218,8 +218,57 @@ form input:focus-visible, form textarea:focus-visible  {
         background-color: $secondaryColour;
     }
 
-    &__edit__display-image {
-        
+    &__radio-inner-button-div {
+        display: flex;
+        padding: 10px;
+        gap: 20px;
+
+        &__button-icon {
+            position: absolute;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            top: -7.5px;
+            left: -7.5px;
+            background-color: lighten($secondaryColour, 30%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & i {
+                color: white;
+                font-size: 0.6em;
+            }
+        }
+
+        &__radio-button{
+            padding: 10px 1em;
+            background-color: transparent;
+            border: 2px solid $primaryGreyColour;
+            border-radius: 8px;
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+            transition: all 0.3s;
+            position: relative;
+
+            &.active {
+                border: 2px solid lighten($secondaryColour, 30%);
+                background-color: rgb(245, 245, 245);
+            }
+
+            & h6 {
+                color: $secondaryColour;
+            }
+
+            & h4 {
+                color: rgb(117, 117, 117);
+            }
+
+            & * {
+                margin: 0;
+            }
+        }
     }
 }
 
