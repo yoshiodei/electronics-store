@@ -222,14 +222,32 @@ export default function FormItems() {
           itemBrand = selectedBrand;
         }
 
+        const vendorData = {
+          displayName,
+          image: photoURL,
+          userId: uid,
+        };
+
         const promotedItem = {
           ...newItem,
-          location,
           datePosted: Date.now(),
-          datePromoted: Date.now(),
+          dateLastPromoted: Date.now(),
           images: imageUrls,
           category: selectedCategory,
           brand: itemBrand,
+          status: 'pending',
+          vendor: vendorData,
+          location: {
+            locationIsSet: location.locationIsSet,
+            locationName: `${location.town}, ${location.state}`,
+            country: location.country,
+            state: location.state,
+            town: location.town,
+            coordinates: {
+              longitude: location.longitude,
+              latitude: location.latitude,
+            },
+          },
         };
 
         const promotedItemJSON = JSON.stringify(promotedItem);
@@ -363,6 +381,7 @@ export default function FormItems() {
         category: selectedCategory,
         brand: itemBrand,
         price: price.trim(),
+        status: 'pending',
         images: imageUrls,
         vendor: vendorData,
         datePosted: Date.now(),
