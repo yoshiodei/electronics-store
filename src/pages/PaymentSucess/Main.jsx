@@ -35,18 +35,7 @@ export default function Main() {
 
       localStorage.removeItem('promotedItem');
     } else {
-      toast.error('There are no items to post', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-
-      navigate('/');
+      console.log('no item found');
     }
   };
 
