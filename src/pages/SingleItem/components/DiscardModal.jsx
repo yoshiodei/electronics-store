@@ -2,16 +2,30 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { doc, deleteDoc } from 'firebase/firestore';
+import {
+  doc, deleteDoc, getDocs, collection,
+} from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
+import { fillProductsList } from '../../../redux/slice/productsSlice';
 
 export default function DiscardModal({ show, handleClose, itemName }) {
   const navigate = useNavigate();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   const handleDisacard = async () => {
     try {
       await deleteDoc(doc(db, 'products', id));
+
+      const querySnapshot = await getDocs(collection(db, 'products'));
+      const allProductsData = [];
+      querySnapshot.forEach((item) => {
+        const queryData = item.data();
+        allProductsData.push({ ...queryData, id: item.id });
+      });
+
+      dispatch(fillProductsList(allProductsData));
 
       toast.success('Item deleted successfully', {
         position: 'top-center',

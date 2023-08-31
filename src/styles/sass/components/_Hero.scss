@@ -3,6 +3,14 @@
     height: auto;
     margin-bottom: 30px;
 
+    &__text-large {
+        display: block;
+    }
+
+    &__text-small {
+        display: none;
+    }
+
     &__form-element {
         width: 100%;
         height: 2.5em;
@@ -108,6 +116,15 @@
     .hero {
         width: 100%;
         height: auto;
+
+        &__text-large {
+            display: none;
+        }
+
+        &__text-small {
+            display: block;
+        }
+    
 
         &__main-div {
             width: 100%;

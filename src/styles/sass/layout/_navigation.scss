@@ -148,7 +148,20 @@
         font-size: 0.65em;
         font-weight: 700;
         color: $lightFont;
+    }
 
+    &__mobile-data-count {
+        min-width: 18px;
+        height: 18px;
+        padding: 2px 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        background-color: $dangerRed;
+        font-size: 0.7em;
+        font-weight: 700;
+        color: $lightFont;
     }
 
     &__text-button {
@@ -319,6 +332,22 @@
 
                 & i {
                     color: rgb(111, 111, 111);
+                }
+
+                &__inner-button-div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 12%;
+                    height: 100%;
+
+                    &--modified {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        width: 12%;
+                        height: 100%;
+                    }
                 }
             }
 

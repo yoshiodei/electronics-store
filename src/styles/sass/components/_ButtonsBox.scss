@@ -258,3 +258,9 @@
     }
 }
 
+@include mobileScreen {
+    .edit-item-button{
+        display: none;
+    }
+}
+

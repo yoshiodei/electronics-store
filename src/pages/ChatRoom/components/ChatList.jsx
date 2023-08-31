@@ -20,6 +20,13 @@ export default function ChatList({ uid }) {
 
   useEffect(() => {
     resetNewMessages();
+
+    const notificationsJSON = localStorage.getItem('notificationsCounts');
+    const notificationsData = JSON.parse(notificationsJSON);
+    const dataJSON = JSON.stringify(
+      { messageCount: 0, notificationCount: notificationsData.notificationCount },
+    );
+    localStorage.setItem('notificationsCounts', dataJSON);
   }, []);
 
   useEffect(() => {

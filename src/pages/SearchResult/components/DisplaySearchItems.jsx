@@ -29,10 +29,8 @@ export default function DisplaySearchItems() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const loading = true;
-      setIsLoading(loading);
-
       try {
+        setIsLoading(true);
         const q = query(collection(db, 'products'), where('isPromoted', '==', true));
         const querySnapshot = await getDocs(q);
         const allProducts = [];
@@ -57,6 +55,7 @@ export default function DisplaySearchItems() {
 
         setData(filteredSearch);
         setFilteredData(filteredSearch);
+        setIsLoading(false);
       } catch (error) {
         console.log(error.message);
         setIsLoading(false);
@@ -68,9 +67,6 @@ export default function DisplaySearchItems() {
 
   useEffect(() => {
     const filterData = async () => {
-      const loading = true;
-      setIsLoading(loading);
-
       try {
         const filtered = data.filter(
           (item) => (
@@ -82,7 +78,6 @@ export default function DisplaySearchItems() {
         );
 
         setFilteredData(filtered);
-        setIsLoading(!loading);
         setCurrentPage(1);
       } catch (error) {
         console.log(error.message);
@@ -101,11 +96,11 @@ export default function DisplaySearchItems() {
     setCurrentPage(pageNumber);
   };
 
-  if (isLoading === true || data.length === 0) {
+  if (isLoading) {
     return (<Loader />);
   }
 
-  if (filteredData.length === 0) {
+  if (!isLoading && filteredData.length === 0) {
     return (<EmptyDisplay />);
   }
 

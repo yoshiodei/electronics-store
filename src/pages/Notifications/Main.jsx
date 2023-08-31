@@ -49,6 +49,14 @@ export default function Main({ uid }) {
   useEffect(() => {
     fetchData();
     resetNewNotifications();
+
+    const notificationsJSON = localStorage.getItem('notificationsCounts');
+    const notificationsData = JSON.parse(notificationsJSON);
+    const dataJSON = JSON.stringify(
+      { messageCount: notificationsData.messageCount, notificationCount: 0 },
+    );
+    localStorage.setItem('notificationsCounts', dataJSON);
+
     console.log('data after fetch', notificationsList);
   }, []);
 

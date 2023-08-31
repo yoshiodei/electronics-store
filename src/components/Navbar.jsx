@@ -33,6 +33,7 @@ function Navbar() {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
   const [toggleDrawer, setToggleDrawer] = useState(false);
+  const [userData, setUserData ] = useState({});
   
   const handleCloseRegisterModal = () => setShowRegisterModal(false);
   const handleShowRegisterModal = () => setShowRegisterModal(true);
@@ -54,6 +55,14 @@ function Navbar() {
     const unsub = onSnapshot(doc(db, 'vendors', uid), (doc) => {
     const notificationCount = doc.data()?.newNotifications?.length || 0;
     const messageCount = doc.data()?.newMessages?.length || 0;
+    const wishList = doc.data()?.wishlist?.length || 0;
+
+    const dataJSON = JSON.stringify({ messageCount, notificationCount });
+    localStorage.setItem('notificationsCounts', dataJSON);
+
+    const wishListDataJSON = JSON.stringify({ wishList });
+    localStorage.setItem('wishListCount', wishListDataJSON);
+
     setCountObject({ messageCount, notificationCount });
     dispatch(setNotifications({ messageCount, notificationCount }));
   });
@@ -119,6 +128,13 @@ function Navbar() {
             photoURL: '',
           };
           dispatch(setUserInfo(userInfo));
+
+          const dataToStore = { isAnonymous: true };
+          const dataJSON = JSON.stringify(dataToStore);
+
+          localStorage.removeItem('emailVerified');
+          localStorage.setItem('isAnonymous', dataJSON);
+
           navigate('/');
           toast.success('Logout Successful', {
             position: 'top-center',
@@ -150,6 +166,12 @@ function Navbar() {
 
   }
 
+  const notificationsJSON = localStorage.getItem('notificationsCounts');
+  const notificationsData = JSON.parse(notificationsJSON);
+
+  const wishListCountJSON = localStorage.getItem('wishListCount');
+  const wishListData = JSON.parse(wishListCountJSON);
+
   return (
     <>
       <nav id="page-top" className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
@@ -158,19 +180,19 @@ function Navbar() {
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="notifications" onClick={() => navigate("/notifications")}>
                 <i className="fa-regular fa-bell navbar-custom__icon" />
-                { notificationCount > 0 && (<div className="navbar-custom__data-count">{ notificationCount }</div>)}
+                {notificationsData?.notificationCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.notificationCount }</div>)}
               </button>
             </li>}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
                 <i className="fa-regular fa-message navbar-custom__icon" />
-                {  messageCount > 0 && (<div className="navbar-custom__data-count">{ messageCount }</div>)}
+                { notificationsData?.messageCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.messageCount }</div>)}
               </button>
             </li>}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
-                { wishListCount > 0 && (<div className="navbar-custom__data-count">{ wishListCount }</div>) }
+                { wishListData?.wishList > 0 && (<div className="navbar-custom__data-count">{ wishListData?.wishList }</div>) }
               </button>
             </li>}
             { !isAnonymous && <li>
@@ -226,6 +248,8 @@ function Navbar() {
             toggleDrawer={toggleDrawer}
             handleShowRegisterModal={handleShowRegisterModal}
             handleShowSignInModal={handleShowSignInModal}
+            notificationCount={notificationsData?.notificationCount}
+            wishListCount={ wishListData?.wishList }
           />
         </div>
       </nav>

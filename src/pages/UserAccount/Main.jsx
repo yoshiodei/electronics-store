@@ -16,6 +16,9 @@ export default function Main() {
   const { emailVerified } = userInfo;
   const { uid } = loginInfo;
 
+  const emailVerifiedJSON = localStorage.getItem('emailVerified');
+  const isEmailVerified = JSON.parse(emailVerifiedJSON);
+
   return (
     <div className="main-section-div">
       <main className="main-section d-flex justify-content-between">
@@ -25,7 +28,8 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
-          {(!emailVerified && (uid === id)) && <VerifyCard />}
+          {((!isEmailVerified?.emailVerified || !emailVerified)
+          && (uid === id)) && <VerifyCard />}
           <div className="main-section__mobile-div">
             <UserDetailBox />
             {/* <PremiumAccountBox /> */}
@@ -33,7 +37,7 @@ export default function Main() {
           {/* <ContentInfoBox>All Posts</ContentInfoBox>
           <DisplayProducts /> */}
           {}
-          <ProductsTab />
+          <ProductsTab uid={uid} id={id} />
         </div>
       </main>
     </div>

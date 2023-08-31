@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { selectAuthState } from '../redux/slice/authSlice';
 
 export default function DrawerButton({
-  toggleDrawer, setToggleDrawer, handleShowSignInModal, handleShowRegisterModal,
+  toggleDrawer, setToggleDrawer, handleShowSignInModal,
+  handleShowRegisterModal, notificationCount, wishListCount,
 }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
@@ -92,7 +93,10 @@ export default function DrawerButton({
                    <i className="fa-solid fa-bell" />
                    <h6>notifications</h6>
                  </div>
-                 <i className="fa-solid fa-chevron-right" />
+                 <div className={(notificationCount > 0) ? 'drawer-button__menu-item__inner-button-div' : 'drawer-button__menu-item__inner-button-div--modified'}>
+                   {notificationCount > 0 && (<div className="navbar-custom__mobile-data-count">{ notificationCount }</div>)}
+                   <i className="fa-solid fa-chevron-right" />
+                 </div>
                </button>
              </li>
              <li className="drawer-button__menu-item">
@@ -101,7 +105,10 @@ export default function DrawerButton({
                    <i className="fa-solid fa-heart" />
                    <h6>wish list</h6>
                  </div>
-                 <i className="fa-solid fa-chevron-right" />
+                 <div className={(wishListCount > 0) ? 'drawer-button__menu-item__inner-button-div' : 'drawer-button__menu-item__inner-button-div--modified'}>
+                   {wishListCount > 0 && (<div className="navbar-custom__mobile-data-count">{ wishListCount }</div>)}
+                   <i className="fa-solid fa-chevron-right" />
+                 </div>
                </button>
              </li>
            </ul>

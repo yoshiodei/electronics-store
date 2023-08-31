@@ -19,10 +19,12 @@ export default function DisplayCategoryProducts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(32);
   const [filteredData, setFilteredData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { category } = useParams();
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const q = query(
         collection(db, 'products'),
         where('category', '==', category),
@@ -46,10 +48,12 @@ export default function DisplayCategoryProducts() {
         allProducts.push({ ...docData, id: doc.id });
       });
 
+      setIsLoading(false);
       setData(allProducts);
       setFilteredData(allProducts);
     } catch (err) {
       console.log(err.message);
+      setIsLoading(false);
     }
   };
 
@@ -86,11 +90,11 @@ export default function DisplayCategoryProducts() {
     setCurrentPage(pageNumber);
   };
 
-  if (data.length === 0) {
+  if (isLoading) {
     return (<Loader />);
   }
 
-  if (filteredData.length === 0) {
+  if (!isLoading && filteredData.length === 0) {
     return (<EmptyDisplay />);
   }
 

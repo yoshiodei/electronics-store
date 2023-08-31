@@ -131,6 +131,19 @@
   font-weight: 700;
   color: #ffffff;
 }
+.navbar-custom__mobile-data-count {
+  min-width: 18px;
+  height: 18px;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: rgb(223, 64, 64);
+  font-size: 0.7em;
+  font-weight: 700;
+  color: #ffffff;
+}
 .navbar-custom__text-button {
   display: flex;
   justify-content: center;
@@ -273,6 +286,20 @@
   }
   .navbar-custom .drawer-button__menu-item i {
     color: rgb(111, 111, 111);
+  }
+  .navbar-custom .drawer-button__menu-item__inner-button-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 12%;
+    height: 100%;
+  }
+  .navbar-custom .drawer-button__menu-item__inner-button-div--modified {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 12%;
+    height: 100%;
   }
   .navbar-custom .drawer-button__menu-div h5 {
     color: #1c5d85;
@@ -461,6 +488,12 @@ a {
   height: auto;
   margin-bottom: 30px;
 }
+.hero__text-large {
+  display: block;
+}
+.hero__text-small {
+  display: none;
+}
 .hero__form-element {
   width: 100%;
   height: 2.5em;
@@ -555,6 +588,12 @@ a {
   .hero {
     width: 100%;
     height: auto;
+  }
+  .hero__text-large {
+    display: none;
+  }
+  .hero__text-small {
+    display: block;
   }
   .hero__main-div {
     width: 100%;
@@ -3214,6 +3253,11 @@ form input:focus-visible, form textarea:focus-visible {
   margin-right: 10px;
 }
 
+@media (max-width: 430px) {
+  .edit-item-button {
+    display: none;
+  }
+}
 .carousel__custom {
   background-color: rgb(244, 244, 244);
   position: relative;
@@ -3511,6 +3555,9 @@ form input:focus-visible, form textarea:focus-visible {
   .tabs-custom__empty-div i {
     font-size: 5em;
   }
+  .hide-tab-on-mobile {
+    display: none;
+  }
 }
 .loader__container {
   padding: 30px;
@@ -3746,6 +3793,148 @@ form input:focus-visible, form textarea:focus-visible {
   font-weight: 600;
 }
 
+.contain-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #3a7aa2, #1c5d85);
+  background-image: linear-gradient(to bottom right, #1c5d85, #3a7aa2);
+}
+.contain-div h1 {
+  font-family: "Julius Sans One", sans-serif;
+  font-size: 1.2em;
+  color: #1c5d85;
+  margin-bottom: 30px;
+}
+.contain-div__home-button {
+  border: none;
+  border-radius: 4px;
+  background-color: #1c5d85;
+  margin-top: 12px;
+  padding: 0.4em 0.7em;
+}
+.contain-div__home-button h6 {
+  font-size: 0.6em;
+  color: white;
+  margin-bottom: 0 !important;
+}
+
+.done {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: -20px;
+  margin: auto;
+}
+
+.congrats {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  max-width: 800px;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  min-height: 300px;
+  max-height: 900px;
+  border: 2px solid white;
+  border-radius: 5px;
+  box-shadow: 12px 15px 5px rgba(0, 0, 0, 0.2078431373);
+  background-image: linear-gradient(to bottom right, #02b3e4, #02ccba);
+  background: #fff;
+  text-align: center;
+  font-size: 2em;
+  color: #1c5d85;
+  padding: 0.65em;
+}
+
+.text {
+  position: relative;
+  font-weight: normal;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 80%;
+  max-width: 800px;
+  font-family: "Lato", sans-serif;
+  font-size: 0.6em;
+}
+
+.circ {
+  opacity: 0;
+  stroke-dasharray: 130;
+  stroke-dashoffset: 130;
+  transition: all 1s;
+}
+
+.tick {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  transition: stroke-dashoffset 1s 0.5s ease-out;
+}
+
+.drawn svg .path {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+.regards {
+  font-size: 0.7em;
+}
+
+@media (max-width: 600px) {
+  .congrats h1 {
+    font-size: 1.2em;
+  }
+  .done {
+    top: -10px;
+    width: 80px;
+    height: 80px;
+  }
+  .text {
+    font-size: 0.5em;
+  }
+  .regards {
+    font-size: 0.6em;
+  }
+}
+@media (max-width: 500px) {
+  .congrats h1 {
+    font-size: 1em;
+  }
+  .done {
+    top: -10px;
+    width: 70px;
+    height: 70px;
+  }
+}
+@media (max-width: 410px) {
+  .congrats h1 {
+    font-size: 1em;
+  }
+  .congrats .hide {
+    display: none;
+  }
+  .congrats {
+    width: 100%;
+  }
+  .done {
+    top: -10px;
+    width: 50px;
+    height: 50px;
+  }
+  .regards {
+    font-size: 0.55em;
+  }
+}
+@media (max-width: 430px) {
+  .contain-div {
+    padding: 0 15px;
+  }
+}
 .terms-and-conditions__line {
   width: 100%;
   height: 1px;
@@ -3765,7 +3954,7 @@ form input:focus-visible, form textarea:focus-visible {
 .footer__heading {
   color: #ffffff;
   font-weight: 700;
-  margin: 0 !important;
+  margin-bottom: 12px !important;
 }
 .footer__sub-heading {
   text-decoration: underline;
@@ -3864,13 +4053,17 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .footer__heading {
     font-size: 1.4em;
-    margin: 20px 0 10px;
+    margin: 20px 0 10px !important;
   }
   .footer__brand {
     display: flex;
     align-self: center;
     gap: 8px;
-    margin: 12px 0;
+    margin: 20px 0 5px;
+  }
+  .footer__brand .footer__heading {
+    margin-top: unset !important;
+    margin-bottom: unset !important;
   }
   .footer__brand-info {
     line-height: 1.1;

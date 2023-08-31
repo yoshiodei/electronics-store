@@ -9,7 +9,7 @@ import ProductCard from '../../../components/ProductCard';
 import EmptyTab from './EmptyTab';
 import InactiveItemProductCard from './InactiveItemProductCard';
 
-export default function AllItemsTab() {
+export default function AllItemsTab({ uid }) {
   const [products, setProducts] = useState({
     activeProducts: [],
     soldProducts: [],
@@ -93,11 +93,12 @@ export default function AllItemsTab() {
       ))
       }
         {
-      products.pendingProducts.map((product) => (
+      (uid === id)
+      && (products.pendingProducts.map((product) => (
         <div className="col-6 col-md-3">
           <InactiveItemProductCard product={product} pending sold={false} />
         </div>
-      ))
+      )))
       }
       </div>
     </div>

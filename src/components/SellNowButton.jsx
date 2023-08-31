@@ -18,26 +18,34 @@ export default function SellNowButton() {
   const handleCloseSignInModal = () => setShowSignInModal(false);
   const handleShowSignInModal = () => setShowSignInModal(true);
 
+  const isAnonymousJSON = localStorage.getItem('isAnonymous');
+  const emailVerifiedJSON = localStorage.getItem('emailVerified');
+
+  const isEmailVerified = JSON.parse(emailVerifiedJSON);
+  const isUserAnonymous = JSON.parse(isAnonymousJSON);
+
+  if ((!isAnonymous || !isAnonymousJSON?.isAnonymous)
+  && (emailVerified === true || isEmailVerified?.emailVerified)) {
+    return (
+      <Link to="/new-item" className="sell-now">
+        <h6>Sell Now</h6>
+      </Link>
+    );
+  }
+
+  if ((!isAnonymous || !isUserAnonymous?.isAnonymous)
+  && (emailVerified === false || !emailVerifiedJSON?.emailVerified)) {
+    <Link to="/verify-user" className="sell-now">
+      <h6>Sell Now</h6>
+    </Link>;
+  }
+
   return (
     <>
-      { !isAnonymous && (emailVerified === true)
-        && (
-        <Link to="/new-item" className="sell-now">
-          <h6>Sell Now</h6>
-        </Link>
-        )}
-      { !isAnonymous && (emailVerified === false)
-        && (
-        <Link to="/verify-user" className="sell-now">
-          <h6>Sell Now</h6>
-        </Link>
-        )}
-      { isAnonymous
-        && (
-        <button type="button" className="btn btn-primary sell-now" onClick={handleShowSignInModal}>
-          Sell Now
-        </button>
-        )}
+      <button type="button" className="btn btn-primary sell-now" onClick={handleShowSignInModal}>
+        Sell Now
+      </button>
+
       <RegisterModal
         handleCloseRegisterModal={handleCloseRegisterModal}
         showRegisterModal={showRegisterModal}

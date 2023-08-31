@@ -89,6 +89,14 @@ export default function SignInModal({
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        const dataToStore = { isAnonymous: false };
+        const dataToStore2 = { emailVerified: userCredential.user.emailVerified };
+        const dataJSON = JSON.stringify(dataToStore);
+        const dataJSON2 = JSON.stringify(dataToStore2);
+
+        localStorage.setItem('isAnonymous', dataJSON);
+        localStorage.setItem('emailVerified', dataJSON2);
+
         setIsLoading(false);
         const { uid } = userCredential.user;
         fetchUserInfo(uid);
@@ -116,6 +124,14 @@ export default function SignInModal({
 
       const vendorDocRef = doc(db, 'vendors', uid);
       const docSnap = await getDoc(vendorDocRef);
+
+      const dataToStore = { isAnonymous: false };
+      const dataToStore2 = { emailVerified };
+      const dataJSON = JSON.stringify(dataToStore);
+      const dataJSON2 = JSON.stringify(dataToStore2);
+
+      localStorage.setItem('isAnonymous', dataJSON);
+      localStorage.setItem('emailVerified', dataJSON2);
 
       if (docSnap.exists()) {
         handleCloseSignInModal();

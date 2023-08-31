@@ -11,7 +11,7 @@
     &__heading {
         color: $lightFont;
         font-weight: 700;
-        margin: 0 !important;
+        margin-bottom: 12px !important;
     }
 
     &__sub-heading {
@@ -136,14 +136,19 @@
 
         &__heading {
             font-size: 1.4em;
-            margin: 20px 0 10px;
+            margin: 20px 0 10px !important;
         }
 
         &__brand {
             display: flex;
             align-self: center;
             gap: 8px;
-            margin: 12px 0;
+            margin: 20px 0 5px;
+
+            & .footer__heading {
+                margin-top: unset !important;
+                margin-bottom: unset !important;
+            }
             
         }
     

@@ -128,6 +128,14 @@ export default function RegisterModal({
               photoURL: '',
             };
 
+            const dataToStore = { isAnonymous: false };
+            const dataToStore2 = { emailVerified: false };
+            const dataJSON = JSON.stringify(dataToStore);
+            const dataJSON2 = JSON.stringify(dataToStore2);
+
+            localStorage.setItem('isAnonymous', dataJSON);
+            localStorage.setItem('emailVerified', dataJSON2);
+
             dispatch(setUserInfo(userInfo));
           } catch (err) {
             setIsLoading(false);

@@ -20,8 +20,11 @@ export default function Hero() {
     <div className="hero">
       <div className="hero__main-div">
         <h1>Your One-Stop Electronic Gadget Marketplace.</h1>
-        <p>
+        <p className="hero__text-large">
           {`Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
+        </p>
+        <p className="hero__text-small">
+          {`Discover the Best Deals right here on ${appName}.`}
         </p>
         <SellNowButton />
         <img src={womanHoldingLaptop} className="hero__main-div__image" alt="woman holding laptop" />
