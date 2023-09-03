@@ -11,6 +11,7 @@ export const emptyProductsList = createAction('emptyProductsList');
 export const fillProductsList = createAction('fillProductsList');
 export const setPromotedItem = createAction('setPromotedItem');
 export const setProductToEdit = createAction('setProductToEdit');
+export const addNewProduct = createAction('addNewProduct');
 
 export const addToProductsPending = createAsyncThunk(
   'products/addToProductsPending',
@@ -77,6 +78,9 @@ const productsSlice = createSlice({
       })
       .addCase(setCoordinate, (state, action) => {
         state.userCoordinates = action.payload;
+      })
+      .addCase(addNewProduct, (state, action) => {
+        state.productsList = [...state.productsList, action.payload];
       })
       .addCase(fillProductsList, (state, action) => {
         state.productsList = action.payload;

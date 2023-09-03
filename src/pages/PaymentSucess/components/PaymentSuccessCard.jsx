@@ -1,9 +1,12 @@
-import { addDoc, collection } from '@firebase/firestore';
+import { doc, setDoc } from '@firebase/firestore';
 import React, { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
+import { addNewProduct } from '../../../redux/slice/productsSlice';
 
 export default function PaymentSuccessCard() {
   const doneRef = useRef(null);
+  const dispatch = useDispatch();
 
   const postItem = async () => {
     const promotedItemJSON = localStorage.getItem('promotedItem');
@@ -13,8 +16,10 @@ export default function PaymentSuccessCard() {
 
       console.log('this is the promo item -->', promotedItem);
 
-      const collectionRef = collection(db, 'pendingItems');
-      await addDoc(collectionRef, promotedItem);
+      await setDoc(doc(db, 'pendingItems', promotedItem.id), promotedItem);
+      await setDoc(doc(db, 'products', promotedItem.id), promotedItem);
+
+      dispatch(addNewProduct(promotedItem));
 
       localStorage.removeItem('promotedItem');
       window.location.reload();
@@ -92,7 +97,7 @@ export default function PaymentSuccessCard() {
           Payment has been completed successfully.
         </h6>
         <h6>
-          Your item has been sent for a review and will be posted shortly.
+          Congratulations your item has been posted successfully.
         </h6>
         <button
           className="contain-div__home-button"

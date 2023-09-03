@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { logEvent } from 'firebase/analytics';
 import AdPanel from '../../components/AdPanel';
 import ContentInfoBox from '../../components/ContentInfoBox';
 import TermsOfService from './components/TermsOfService';
+import { analytics } from '../../config/firebaseConfig';
 
 export default function Main() {
   const navigate = useNavigate();
@@ -13,6 +15,13 @@ export default function Main() {
     };
 
     scrollToTop();
+  }, []);
+
+  useEffect(() => {
+    logEvent(analytics, 'select_content', {
+      content_type: 'image',
+      content_id: 'P12453',
+    });
   }, []);
 
   return (

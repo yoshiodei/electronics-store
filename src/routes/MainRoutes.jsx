@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import Home from '../pages/Home/Home';
 import SingleItem from '../pages/SingleItem/SingleItem';
 import '../styles/main.css';
@@ -22,6 +23,10 @@ import EditItem from '../pages/EditItem/EditItem';
 import UserNotVerified from '../pages/UserNotVerified/UserNotVerified';
 
 export default function MainRoutes() {
+  useEffect(() => {
+    ReactGA.initialize('G-J27ZXB98L6');
+  }, []);
+
   return (
     <BrowserRouter>
       <ToastContainer

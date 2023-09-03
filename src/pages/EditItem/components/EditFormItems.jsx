@@ -5,11 +5,10 @@ import { useSelector } from 'react-redux';
 import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import { toast } from 'react-toastify';
 import {
-  addDoc, collection, deleteDoc, doc,
+  deleteDoc, doc, setDoc,
 } from '@firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
-// import { selectAuthState } from '../../../redux/slice/authSlice';
 import Uneditable from './Uneditable';
 import categoryObj from '../../NewItem/components/categoryObj';
 import { db, storage } from '../../../config/firebaseConfig';
@@ -18,8 +17,6 @@ import { selectAuthState } from '../../../redux/slice/authSlice';
 export default function EditFormItems() {
   const { productToEdit } = useSelector(selectProductsState);
   const { id } = useParams();
-
-  // const { loginInfo: uid } = useSelector(selectAuthState);
 
   console.log('item to edit is', productToEdit);
 
@@ -170,8 +167,6 @@ export default function EditFormItems() {
         imageUrls.push(downloadUrl);
       }
 
-      const collectionRef = collection(db, 'pendingItems');
-
       let itemBrand;
       if (selectedBrand === 'other') {
         itemBrand = otherBrand;
@@ -186,6 +181,7 @@ export default function EditFormItems() {
       };
 
       const productsData = {
+        id,
         name: name.trim(),
         details: details.trim(),
         condition,
@@ -212,9 +208,11 @@ export default function EditFormItems() {
         },
       };
 
-      console.log('final object', productsData);
-      await addDoc(collectionRef, productsData);
       await deleteDoc(doc(db, 'products', id));
+      await deleteDoc(doc(db, 'pendingItems', id));
+
+      await setDoc(doc(db, 'pendingItems', id), productsData);
+      await setDoc(doc(db, 'products', id), productsData);
 
       toast.success('Item successfully sent for a review', {
         position: 'top-center',
@@ -272,7 +270,7 @@ export default function EditFormItems() {
       return arr.concat(additionalElements);
     }
 
-    setItem({ ...item, images: populateArray(item.images) });
+    setItem({ ...item, images: populateArray(item?.images) });
   }, []);
 
   if (!item.name) {

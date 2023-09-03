@@ -4,17 +4,16 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import {
-  addDoc,
-  collection,
+  doc,
+  setDoc,
 } from '@firebase/firestore';
-
-import { useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
 import { db, storage } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
-// import { setPromotedItem } from '../../../redux/slice/productsSlice';
 import categoryObj from './categoryObj';
-// import { stripePaymentLink } from '../../../Constants/constantVariables';
+import { addNewProduct } from '../../../redux/slice/productsSlice';
 
 export default function FormItems() {
   const initialLocation = {
@@ -25,6 +24,8 @@ export default function FormItems() {
     latitude: '',
     locationIsSet: false,
   };
+
+  const dispatch = useDispatch();
 
   const [location, setLocation] = useState(initialLocation);
 
@@ -42,8 +43,6 @@ export default function FormItems() {
     setSelectedBrand(event.target.value);
     setOtherBrand('');
   };
-
-  // const dispatch = useDispatch();
 
   const initialState = {
     name: '',
@@ -228,6 +227,8 @@ export default function FormItems() {
           userId: uid,
         };
 
+        const productId = nanoid();
+
         const promotedItem = {
           ...newItem,
           datePosted: Date.now(),
@@ -236,7 +237,9 @@ export default function FormItems() {
           category: selectedCategory,
           brand: itemBrand,
           status: 'pending',
+          id: productId,
           vendor: vendorData,
+          vendorId: uid,
           location: {
             locationIsSet: location.locationIsSet,
             locationName: `${location.town}, ${location.state}`,
@@ -358,8 +361,6 @@ export default function FormItems() {
         imageUrls.push(downloadUrl);
       }
 
-      const collectionRef = collection(db, 'pendingItems');
-
       const vendorData = {
         displayName,
         image: photoURL,
@@ -373,10 +374,13 @@ export default function FormItems() {
         itemBrand = selectedBrand;
       }
 
+      const productId = nanoid();
+
       const productsData = {
         name: name.trim(),
         details: details.trim(),
         condition,
+        id: productId,
         isPromoted,
         category: selectedCategory,
         brand: itemBrand,
@@ -403,7 +407,10 @@ export default function FormItems() {
       setNewItem(initialState);
       e.target.reset();
 
-      await addDoc(collectionRef, productsData);
+      await setDoc(doc(db, 'pendingItems', productId), productsData);
+      await setDoc(doc(db, 'products', productId), productsData);
+
+      dispatch(addNewProduct(productsData));
 
       toast.success('Item Posted successfully!', {
         position: 'top-center',
