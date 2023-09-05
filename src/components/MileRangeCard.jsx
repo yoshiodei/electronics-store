@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setItemMile } from '../redux/slice/locationSlice';
+import React from 'react';
 
-export default function MileRangeCard() {
-  const [mileRange, setMileRange] = useState(5);
-  const dispatch = useDispatch();
-
-  const handleMileChange = (value) => {
-    setMileRange(value);
-    dispatch(setItemMile(mileRange));
+export default function MileRangeCard({ mileDistance, setMileDistance }) {
+  const handleMileChange = (e) => {
+    const value = parseInt(e.target.value);
+    setMileDistance(value);
   };
 
   return (
@@ -17,7 +12,7 @@ export default function MileRangeCard() {
       <p className="mile-range__info">
         Find items within a
         {' '}
-        <span>{mileRange}</span>
+        <span>{mileDistance}</span>
         {' '}
         mile range.
       </p>
@@ -25,13 +20,14 @@ export default function MileRangeCard() {
         <div className="mile-range__input-range-bar">
           <input
             type="range"
-            min="1"
+            className="mile-range__thumb"
+            min="0"
             max="15"
             step="1"
-            value={mileRange}
-            onChange={(e) => handleMileChange(e.target.value)}
+            value={mileDistance}
+            onChange={(e) => handleMileChange(e)}
           />
-          <div className="mile-range__trail-line" style={{ right: `calc(${(100 - ((mileRange / 15) * 100))}% + 16px)` }} />
+          <div className="mile-range__trail-line" style={{ right: `calc(${(100 - ((mileDistance / 15) * 100))}%)` }} />
         </div>
       </div>
     </div>

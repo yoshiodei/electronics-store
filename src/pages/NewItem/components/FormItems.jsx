@@ -232,6 +232,7 @@ export default function FormItems() {
         const promotedItem = {
           ...newItem,
           datePosted: Date.now(),
+          isPromoted: true,
           dateLastPromoted: Date.now(),
           images: imageUrls,
           category: selectedCategory,

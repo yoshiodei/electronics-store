@@ -33,7 +33,11 @@ export default function DisplayCards() {
         setFilteredData(productsList);
       } else {
         try {
-          const q = query(collection(db, 'products'), where('isPromoted', '==', true));
+          const q = query(
+            collection(db, 'products'),
+            where('isPromoted', '==', true),
+            where('status', '!=', 'blocked'),
+          );
           const querySnapshot = await getDocs(q);
           const allProducts = [];
           querySnapshot.forEach((doc) => {
@@ -41,7 +45,11 @@ export default function DisplayCards() {
             allProducts.push({ ...queryData, id: doc.id });
           });
 
-          const q2 = query(collection(db, 'products'), where('isPromoted', '==', false));
+          const q2 = query(
+            collection(db, 'products'),
+            where('isPromoted', '==', false),
+            where('status', '!=', 'blocked'),
+          );
           const querySnapshot2 = await getDocs(q2);
           querySnapshot2.forEach((doc) => {
             const queryData = doc.data();

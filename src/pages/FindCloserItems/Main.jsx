@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ContentInfoBox from '../../components/ContentInfoBox';
 import AdPanel from '../../components/AdPanel';
@@ -6,9 +6,8 @@ import CategoriesBox from '../SearchResult/components/CategoriesBox';
 import SearchBar from '../SearchResult/components/SearchBar';
 import { setFilter } from '../../redux/slice/productsSlice';
 import FilterCard from '../../components/FilterCard';
-import MileRangeCard from '../../components/MileRangeCard';
 import DisplayItemsNearMe from './components/DisplayItemsNearMe';
-import { setItemMile } from '../../redux/slice/locationSlice';
+import MileRangeCard from '../../components/MileRangeCard';
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -22,9 +21,10 @@ export default function Main() {
     condition: 'all',
   };
 
+  const [mileDistance, setMileDistance] = useState(5);
+
   useEffect(() => () => {
     dispatch(setFilter(initialFilter));
-    dispatch(setItemMile(5));
   }, []);
 
   useEffect(() => {
@@ -39,7 +39,6 @@ export default function Main() {
     <div className="main-section-div">
       <main className="main-section d-flex justify-content-between">
         <div className="main-section__left-div">
-          <MileRangeCard />
           <FilterCard />
           <AdPanel />
         </div>
@@ -47,7 +46,8 @@ export default function Main() {
           <ContentInfoBox>Find Items Close To Me</ContentInfoBox>
           <CategoriesBox />
           <SearchBar />
-          <DisplayItemsNearMe />
+          <MileRangeCard mileDistance={mileDistance} setMileDistance={setMileDistance} />
+          <DisplayItemsNearMe mileDistance={mileDistance} />
         </div>
       </main>
     </div>

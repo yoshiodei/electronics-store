@@ -6,14 +6,14 @@ import {
 import { fillProductsList, selectProductsState } from '../../../redux/slice/productsSlice';
 import { db } from '../../../config/firebaseConfig';
 import ProductCard from '../../../components/ProductCard';
-import Loader from '../../../components/Loader';
 import EmptyDisplay from '../../../components/EmptyDisplay';
 import UserOffline from '../../../components/UserOffline';
 import useGetItemsNearMe from '../../../Hooks/useGetItemsNearMe';
 import { selectLocationState, setCoordinates } from '../../../redux/slice/locationSlice';
 import GetLocation from './GetLocation';
+import SearchLoader from './SearchLoader';
 
-export default function DisplayItemsNearMe() {
+export default function DisplayItemsNearMe({ mileDistance }) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -23,7 +23,7 @@ export default function DisplayItemsNearMe() {
   const dispatch = useDispatch();
   const isItemNearMe = useGetItemsNearMe();
 
-  const { coordinates, itemMile, isLocationAvailable } = useSelector(selectLocationState);
+  const { coordinates, isLocationAvailable } = useSelector(selectLocationState);
 
   const { filterObject, productsList } = useSelector(selectProductsState);
   const {
@@ -80,7 +80,7 @@ export default function DisplayItemsNearMe() {
       }
     };
     fetchData();
-  }, []);
+  }, [mileDistance]);
 
   useEffect(() => {
     const filterData = async () => {
@@ -94,7 +94,7 @@ export default function DisplayItemsNearMe() {
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
         && (item.category === category || category === 'all')
-        && isItemNearMe(item, coordinates, itemMile)
+        && isItemNearMe(item, coordinates, mileDistance)
           ),
         );
         setFilteredData(filtered);
@@ -107,7 +107,7 @@ export default function DisplayItemsNearMe() {
     };
 
     filterData();
-  }, [data, time, itemMile]);
+  }, [data, time, mileDistance]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -126,7 +126,7 @@ export default function DisplayItemsNearMe() {
   }
 
   if (isLoading === true || data.length === 0) {
-    return (<Loader />);
+    return (<SearchLoader />);
   }
 
   if (filteredData.length === 0) {
