@@ -47,6 +47,9 @@ export default function HomeMain() {
         <div className="main-section__right-div">
           <Hero />
           <SearchCategoriesBox />
+          <div className="main-section__mobile-div">
+            <FindCloserItemsButton />
+          </div>
           <SectionHeader>Popular Products</SectionHeader>
           <DisplayCards />
         </div>

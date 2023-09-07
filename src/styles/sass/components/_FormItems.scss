@@ -274,10 +274,11 @@ form input:focus-visible, form textarea:focus-visible  {
 
 @include mobileScreen{
     .new-item-form {
-
         width: 100%;
 
-        
+        &__radio-inner-button-div {
+            flex-direction: column;
+        }
 
         &__radio-inner-div--promote {
             flex-direction: column;

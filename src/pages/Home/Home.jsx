@@ -15,7 +15,7 @@ export default function Home() {
           content={`Your One-Stop Electronic Gadget Marketplace.
           Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
         />
-        <link rel="canonical" href="/#page-top" />
+        <link rel="canonical" href="/" />
       </Helmet>
       <Navbar />
       <Main />

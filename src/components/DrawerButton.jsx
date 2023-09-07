@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectAuthState } from '../redux/slice/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { signOut } from 'firebase/auth';
+import { selectAuthState, setUserInfo } from '../redux/slice/authSlice';
+import { auth } from '../config/firebaseConfig';
 
 export default function DrawerButton({
   toggleDrawer, setToggleDrawer, handleShowSignInModal,
   handleShowRegisterModal, notificationCount, wishListCount,
+  messageCount,
 }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous, uid } = loginInfo;
+  const dispatch = useDispatch();
 
   const handleCategoryClick = (category) => {
     navigate(`/category/${category}`);
@@ -27,6 +32,54 @@ export default function DrawerButton({
         break;
       case 'wish-list':
         navigate('/wish-list');
+        break;
+      case 'messages':
+        navigate('/chatlist/mobile');
+        break;
+      case 'log-out':
+        signOut(auth).then(() => {
+          const userInfo = {
+            emailVerified: false,
+            userInfoIsSet: false,
+            displayName: '',
+            bio: '',
+            email: '',
+            followers: '',
+            rating: '',
+            phoneNumber: '',
+            photoURL: '',
+          };
+          dispatch(setUserInfo(userInfo));
+
+          const dataToStore = { isAnonymous: true };
+          const dataJSON = JSON.stringify(dataToStore);
+
+          localStorage.removeItem('emailVerified');
+          localStorage.setItem('isAnonymous', dataJSON);
+
+          navigate('/');
+          toast.success('Logout Successful', {
+            position: 'top-center',
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          });
+        }).catch((error) => {
+          toast.error(error.message, {
+            position: 'top-center',
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          });
+        });
         break;
       default:
         navigate('/');
@@ -95,6 +148,18 @@ export default function DrawerButton({
                  </div>
                  <div className={(notificationCount > 0) ? 'drawer-button__menu-item__inner-button-div' : 'drawer-button__menu-item__inner-button-div--modified'}>
                    {notificationCount > 0 && (<div className="navbar-custom__mobile-data-count">{ notificationCount }</div>)}
+                   <i className="fa-solid fa-chevron-right" />
+                 </div>
+               </button>
+             </li>
+             <li className="drawer-button__menu-item">
+               <button type="button" onClick={() => handleMenuButtonClick('messages')}>
+                 <div className="drawer-button__menu-item__button-div">
+                   <i className="fa-solid fa-message" />
+                   <h6>messages</h6>
+                 </div>
+                 <div className={(messageCount > 0) ? 'drawer-button__menu-item__inner-button-div' : 'drawer-button__menu-item__inner-button-div--modified'}>
+                   {messageCount > 0 && (<div className="navbar-custom__mobile-data-count">{ messageCount }</div>)}
                    <i className="fa-solid fa-chevron-right" />
                  </div>
                </button>
@@ -184,7 +249,7 @@ export default function DrawerButton({
         </div>
         { !isAnonymous && (
         <div className="drawer-button__sign-out-div">
-          <button type="button" className="drawer-button__sign-out-button" onClick={() => handleMenuButtonClick('')}>Sign Out</button>
+          <button type="button" className="drawer-button__sign-out-button" onClick={() => handleMenuButtonClick('log-out')}>Sign Out</button>
         </div>
         )}
       </div>

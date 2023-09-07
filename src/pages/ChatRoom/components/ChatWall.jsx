@@ -22,7 +22,6 @@ export default function ChatWall({ uid }) {
 
   const handleSetMessage = (e) => {
     const { value } = e.target;
-    console.log(value);
     setMessage(value);
   };
 

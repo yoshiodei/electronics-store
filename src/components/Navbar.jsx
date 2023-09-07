@@ -119,7 +119,7 @@ function Navbar() {
           const userInfo = {
             emailVerified: false,
             userInfoIsSet: false,
-            displayName:'',
+            displayName: '',
             bio: '',
             email: '',
             followers: '',
@@ -144,7 +144,7 @@ function Navbar() {
             pauseOnHover: false,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: 'light',
             });
         }).catch((error) => {
           toast.error(error.message, {
@@ -155,7 +155,7 @@ function Navbar() {
             pauseOnHover: false,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: 'light',
             });
         });
         break;
@@ -250,6 +250,7 @@ function Navbar() {
             handleShowSignInModal={handleShowSignInModal}
             notificationCount={notificationsData?.notificationCount}
             wishListCount={ wishListData?.wishList }
+            messageCount={ notificationsData?.messageCount }
           />
         </div>
       </nav>

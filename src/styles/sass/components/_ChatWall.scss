@@ -187,16 +187,16 @@
         margin-bottom: 0.8em;
         
         &__image-div {
-            height: 53px;
-            width: 53px;
+            height: 40px;
+            width: 40px;
             margin-right:8px;
         }
     
         &__message-div {
-            min-height: 3em;
+            min-height: 40px;
             max-width: 70vw;
             display: inline-block;
-            padding: 1em;
+            padding: 10px;
             border: 1px solid $secondaryColour;
             background-color: lighten($primaryColour, 20%);
             border: 1px solid $secondaryColour;

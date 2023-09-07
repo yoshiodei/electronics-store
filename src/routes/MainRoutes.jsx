@@ -21,6 +21,8 @@ import FindCloserItems from '../pages/FindCloserItems/FindCloserItems';
 import Test from '../pages/Test';
 import EditItem from '../pages/EditItem/EditItem';
 import UserNotVerified from '../pages/UserNotVerified/UserNotVerified';
+import MobileChatRoom from '../pages/MobileChatRoom/MobileChatRoom';
+import MobileChatWall from '../pages/MobileChatWall/MobileChatWall';
 
 export default function MainRoutes() {
   useEffect(() => {
@@ -59,6 +61,8 @@ export default function MainRoutes() {
         <Route path="/find-closer-items" element={<FindCloserItems />} />
         <Route path="/edit-single-item/:id" element={<EditItem />} />
         <Route path="/verify-user" element={<UserNotVerified />} />
+        <Route path="/chatlist/mobile" element={<MobileChatRoom />} />
+        <Route path="/chatwall/mobile" element={<MobileChatWall />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
