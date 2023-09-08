@@ -36,6 +36,7 @@ export default function DisplayCards() {
           const q = query(
             collection(db, 'products'),
             where('isPromoted', '==', true),
+            where('status', '==', 'active'),
           );
           const querySnapshot = await getDocs(q);
           const allProducts = [];
@@ -47,6 +48,7 @@ export default function DisplayCards() {
           const q2 = query(
             collection(db, 'products'),
             where('isPromoted', '==', false),
+            where('status', '==', 'active'),
           );
           const querySnapshot2 = await getDocs(q2);
           querySnapshot2.forEach((doc) => {
@@ -56,6 +58,7 @@ export default function DisplayCards() {
 
           const q3 = query(
             collection(db, 'pendingItems'),
+            where('status', '==', 'pending'),
           );
           const querySnapshot3 = await getDocs(q3);
           querySnapshot3.forEach((doc) => {

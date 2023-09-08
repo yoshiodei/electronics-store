@@ -34,6 +34,7 @@ export default function DisplaySearchItems() {
         const q = query(
           collection(db, 'products'),
           where('isPromoted', '==', true),
+          where('status', '==', 'active'),
         );
         const querySnapshot = await getDocs(q);
         const allProducts = [];
@@ -45,6 +46,7 @@ export default function DisplaySearchItems() {
         const q2 = query(
           collection(db, 'products'),
           where('isPromoted', '==', false),
+          where('status', '==', 'active'),
         );
         const querySnapshot2 = await getDocs(q2);
         querySnapshot2.forEach((doc) => {

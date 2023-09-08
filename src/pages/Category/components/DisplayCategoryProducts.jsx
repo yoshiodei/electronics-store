@@ -29,6 +29,7 @@ export default function DisplayCategoryProducts() {
         collection(db, 'products'),
         where('category', '==', category),
         where('isPromoted', '==', true),
+        where('status', '==', 'active'),
       );
       const querySnapshot = await getDocs(q);
       const allProducts = [];
@@ -41,6 +42,7 @@ export default function DisplayCategoryProducts() {
         collection(db, 'products'),
         where('category', '==', category),
         where('isPromoted', '==', false),
+        where('status', '==', 'active'),
       );
       const querySnapshot2 = await getDocs(q2);
       querySnapshot2.forEach((doc) => {
