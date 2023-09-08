@@ -1515,6 +1515,9 @@ a {
 .chat-wall__header-user-info h4, .chat-wall__header-user-info p {
   margin: 0;
 }
+.chat-wall__header-user-info a:hover {
+  text-decoration: underline;
+}
 .chat-wall__header h3 {
   font-weight: 700;
   color: #1c5d85;
@@ -1641,6 +1644,9 @@ a {
   }
   .chat-wall__input {
     width: 80%;
+  }
+  .chat-wall-user-info a:hover {
+    text-decoration: none;
   }
   .chat-card {
     margin-bottom: 0.8em;
@@ -1785,6 +1791,9 @@ a {
   background-color: rgb(243, 243, 243);
 }
 .chat-list__mobile-header h4 {
+  margin: 0;
+}
+.chat-list__mobile-header a.h6 {
   margin: 0;
 }
 .chat-list__mobile-header__user-info {

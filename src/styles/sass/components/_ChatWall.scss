@@ -32,6 +32,9 @@
             & h4, & p {
                 margin: 0;
             }
+            & a:hover {
+                text-decoration: underline;
+            }
         }
 
         & h3 {
@@ -180,6 +183,12 @@
     
         &__input {
             width: 80%;
+        }
+
+        &-user-info {
+            & a:hover {
+                text-decoration: none;
+            }
         }
     }
     

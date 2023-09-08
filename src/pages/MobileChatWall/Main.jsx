@@ -15,9 +15,20 @@ export default function Main() {
 
   return (
     <div className="chat-list__main-section">
-      <ChatWallHeader recipientName={recipientName} recipientImage={recipientImage} />
-      <MessageList uid={uid} recipientId={recipientId} recipientName={recipientName} />
-      <ChatFooter recipientId={recipientId} uid={uid} />
+      <ChatWallHeader
+        recipientName={recipientName}
+        recipientImage={recipientImage}
+        recipientId={recipientId}
+      />
+      <MessageList
+        uid={uid}
+        recipientId={recipientId}
+        recipientName={recipientName}
+      />
+      <ChatFooter
+        recipientId={recipientId}
+        uid={uid}
+      />
     </div>
   );
 }

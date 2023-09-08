@@ -3,6 +3,7 @@ import {
   doc, onSnapshot, updateDoc, arrayUnion,
 } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import profile from '../../../assets/images/profile.jpg';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import ChatCard from './ChatCard';
@@ -105,7 +106,7 @@ export default function ChatWall({ uid }) {
             {!(recipientImage === '') && (<img src={profile} alt="user profile" className="chat-wall__header-image" />)}
           </div>
           <div className="chat-wall__header-user-info">
-            <h4>{recipientName}</h4>
+            <Link className="h4" to={`/user-account/${recipientId}`}>{recipientName}</Link>
           </div>
         </>
         )

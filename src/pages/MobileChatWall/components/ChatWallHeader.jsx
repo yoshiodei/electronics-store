@@ -1,8 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import profile from '../../../assets/images/profile.jpg';
 
-export default function ChatListHeader({ recipientName, recipientImage }) {
+export default function ChatListHeader({ recipientName, recipientImage, recipientId }) {
   const navigate = useNavigate();
 
   return (
@@ -23,7 +23,7 @@ export default function ChatListHeader({ recipientName, recipientImage }) {
           {(recipientImage === '') && (<img src={profile} alt="user profile" className="chat-list__mobile-header__image" />)}
           {!(recipientImage === '') && (<img src={profile} alt="user profile" className="chat-list__mobile-header__image" />)}
         </div>
-        <h6>{recipientName}</h6>
+        <Link className="h6" to={`/user-account/${recipientId}`}>{recipientName}</Link>
       </div>
       )}
     </div>
