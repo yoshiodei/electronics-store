@@ -36,7 +36,6 @@ export default function DisplayCards() {
           const q = query(
             collection(db, 'products'),
             where('isPromoted', '==', true),
-            where('status', '!=', 'blocked'),
           );
           const querySnapshot = await getDocs(q);
           const allProducts = [];
@@ -48,10 +47,18 @@ export default function DisplayCards() {
           const q2 = query(
             collection(db, 'products'),
             where('isPromoted', '==', false),
-            where('status', '!=', 'blocked'),
           );
           const querySnapshot2 = await getDocs(q2);
           querySnapshot2.forEach((doc) => {
+            const queryData = doc.data();
+            allProducts.push({ ...queryData, id: doc.id });
+          });
+
+          const q3 = query(
+            collection(db, 'pendingItems'),
+          );
+          const querySnapshot3 = await getDocs(q3);
+          querySnapshot3.forEach((doc) => {
             const queryData = doc.data();
             allProducts.push({ ...queryData, id: doc.id });
           });
