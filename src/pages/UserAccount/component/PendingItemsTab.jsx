@@ -17,7 +17,11 @@ export default function PendingItemsTab() {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const q = query(collection(db, 'pendingItems'), where('vendorId', '==', id));
+      const q = query(
+        collection(db, 'products'),
+        where('vendorId', '==', id),
+        where('status', '==', 'pending'),
+      );
       const querySnapshot = await getDocs(q);
       const allProducts = [];
 

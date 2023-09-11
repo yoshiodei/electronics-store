@@ -135,7 +135,7 @@ export default function FormItems() {
     setIsCheckingOut(true);
 
     const {
-      name, price, details, images,
+      name, price, details, images, condition,
     } = newItem;
 
     if (!name.trim() || !price.trim() || !details.trim()) {
@@ -230,7 +230,10 @@ export default function FormItems() {
         const productId = nanoid();
 
         const promotedItem = {
-          ...newItem,
+          price,
+          name,
+          details,
+          condition,
           datePosted: Date.now(),
           isPromoted: true,
           dateLastPromoted: Date.now(),
@@ -408,7 +411,7 @@ export default function FormItems() {
       setNewItem(initialState);
       e.target.reset();
 
-      await setDoc(doc(db, 'pendingItems', productId), productsData);
+      // await setDoc(doc(db, 'pendingItems', productId), productsData);
       await setDoc(doc(db, 'products', productId), productsData);
 
       dispatch(addNewProduct(productsData));

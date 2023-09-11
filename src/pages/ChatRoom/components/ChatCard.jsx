@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import profile from '../../../assets/images/profile.jpg';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 
@@ -23,6 +24,9 @@ export default function ChatCard({ mssg }) {
         {!(mssg?.senderImage === '') && (<img src={mssg.senderImage} alt="user profile" className="chat-card__image" />)}
       </div>
       <div className="chat-card__message-div">
+        <Link to="/" className="chat-card__product-link h6">
+          {'iPhone 13 Promax'.length > 15 ? 'iPhone 13 Promax'.slice(0, 14).trim().concat('...') : 'iPhone 13 Promax'}
+        </Link>
         <p className="chat-card__message">
           {mssg.message}
         </p>

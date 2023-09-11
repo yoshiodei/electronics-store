@@ -21,7 +21,11 @@ export default function AllItemsTab({ uid }) {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const q = query(collection(db, 'products'), where('vendorId', '==', id));
+      const q = query(
+        collection(db, 'products'),
+        where('vendorId', '==', id),
+        where('status', '==', 'active'),
+      );
       const querySnapshot = await getDocs(q);
       const activeProductsArray = [];
       const soldProductsArray = [];
@@ -40,7 +44,11 @@ export default function AllItemsTab({ uid }) {
         soldProductsArray.push({ ...data, id: doc.id });
       });
 
-      const q3 = query(collection(db, 'pendingItems'), where('vendorId', '==', id));
+      const q3 = query(
+        collection(db, 'products'),
+        where('vendorId', '==', id),
+        where('status', '==', 'pending'),
+      );
       const querySnapshot3 = await getDocs(q3);
 
       querySnapshot3.forEach((doc) => {
