@@ -1,0 +1,40 @@
+.welcome-page {
+    &__form-div {
+        margin-bottom: 30px;
+        display: flex;
+        height: 80px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__form {
+        width: 750px;
+        height: 100%;
+        border: 1px solid $secondaryColour;
+        border-radius: 8px;
+        background-color: lighten($secondaryColour, 50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    &__input {
+        width: 60%;
+        border-radius: 5px;
+        background-color: white;
+        padding: 5px 10px;
+        outline: none;
+        height: 2.3em;
+        border: 1px solid $secondaryColour;
+    }
+
+    &__search-button {
+        width: 120px;
+        color: $lightFont;
+        border-radius: 5px;
+        background-color: $secondaryColour;
+        border: none;
+        height: 2.3em;
+    }
+}

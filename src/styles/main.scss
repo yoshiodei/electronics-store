@@ -49,3 +49,9 @@
 // Page
 @import './sass/page/Checkout';
 @import './sass/page/About';
+
+
+// Welcome Page
+@import '../pages/WelcomePage/styles/Hero';
+@import '../pages/WelcomePage/styles/SearchBar';
+@import '../pages/WelcomePage/styles/FilterByDistance';

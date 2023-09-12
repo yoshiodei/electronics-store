@@ -1,4 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import DisplayCards from './components/DisplayCards';
+import AdPanel from '../../components/AdPanel';
+import SectionHeader from '../../components/SectionHeader';
+import FilterCard from '../../components/FilterCard';
+import CategoriesBox from '../../components/CategoriesBox';
+import SearchCategoriesBox from '../SearchResult/components/CategoriesBox';
+import Hero from './components/Hero';
+import SearchBar from './components/SearchBar';
+import FilterByDistance from './components/FilterByDistance';
 // import { useDispatch } from 'react-redux';
 // import AdPanel from '../components/AdPanel';
 // import CategoriesBox from '../components/CategoriesBox';
@@ -34,16 +43,17 @@ export default function Main() {
     scrollToTop();
   }, []);
 
+  const [miles, setMiles] = useState(70);
+
   return (
     <div className="main-section-div">
+      <SearchBar />
       <main className="main-section d-flex justify-content-between">
         <div className="main-section__left-div">
-          {/* <CategoriesBox />
+          <CategoriesBox />
           <SectionHeader>Filter</SectionHeader>
           <FilterCard />
-          <FindCloserItemsButton />
-          <AdPanel /> */}
-          hello
+          <AdPanel />
         </div>
         <div className="main-section__right-div">
           {/* <Hero />
@@ -53,7 +63,11 @@ export default function Main() {
           </div>
           <SectionHeader>Popular Products</SectionHeader>
           <DisplayCards /> */}
-          world
+          <SearchCategoriesBox />
+          <Hero />
+          <SectionHeader>All Products</SectionHeader>
+          <FilterByDistance setMiles={setMiles} miles={miles} />
+          <DisplayCards miles={miles} />
         </div>
       </main>
     </div>

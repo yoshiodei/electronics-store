@@ -4637,4 +4637,290 @@ button.checkout__buttom:disabled {
     height: 250px;
     float: unset;
   }
+}
+.welcome-page__hero {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+.welcome-page__hero__text-large {
+  display: block;
+}
+.welcome-page__hero__text-small {
+  display: none;
+}
+.welcome-page__hero__form-element {
+  width: 100%;
+  height: 2.5em;
+  position: relative;
+}
+.welcome-page__hero__main-div {
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  background-color: rgb(243, 243, 243);
+  height: auto;
+  margin-bottom: 15px;
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+}
+.welcome-page__hero__main-div h1 {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #1c5d85;
+  margin-bottom: 5px;
+}
+.welcome-page__hero__main-div p {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.welcome-page__hero__search-div {
+  border-radius: 5px;
+  background-color: rgb(243, 243, 243);
+  height: 100px;
+  border: 1px solid lightgrey;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.welcome-page__hero__search-div__image {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  height: 170px;
+  left: 230px;
+}
+.welcome-page__hero__search-div__input {
+  border: none;
+  height: 2.5em;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #1c5d85;
+  padding: 0 8em 0 1em;
+}
+.welcome-page__hero__search-div__input:focus {
+  outline: 2px solid #3397d4;
+}
+.welcome-page__hero__search-div__button {
+  border: none;
+  outline: none;
+  height: 2.5em;
+  width: 20%;
+  right: 0;
+  z-index: 1;
+  position: absolute;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #1c5d85;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.welcome-page__hero__form {
+  width: 600px;
+  background-color: white;
+  height: 2.5em;
+  z-index: 2;
+  border-radius: 5px;
+}
+.welcome-page__hero__search-box {
+  border: none;
+  width: 100%;
+  height: 2.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-start-start-radius: 5px;
+}
+
+@media (max-width: 430px) {
+  .welcome-page__hero {
+    width: 100%;
+    height: auto;
+  }
+  .welcome-page__hero__text-large {
+    display: none;
+  }
+  .welcome-page__hero__text-small {
+    display: block;
+  }
+  .welcome-page__hero__main-div {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 15px;
+    padding: 15px;
+    position: relative;
+  }
+  .welcome-page__hero__main-div__image {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    height: 140px;
+  }
+  .welcome-page__hero__main-div h1 {
+    width: 80%;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #1c5d85;
+    margin-bottom: 5px;
+  }
+  .welcome-page__hero__main-div p {
+    width: 60%;
+    font-size: 0.9em;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .welcome-page__hero__search-div {
+    height: 90px;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .welcome-page__hero__search-div__image {
+    display: none;
+  }
+  .welcome-page__hero__search-div__input {
+    border: none;
+    height: 2.5em;
+    width: 80%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid #1c5d85;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .welcome-page__hero__search-div__input:focus {
+    outline: 2px solid #3397d4;
+  }
+  .welcome-page__hero__search-div__button {
+    border: none;
+    outline: none;
+    height: 2.5em;
+    width: 20%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #ffffff;
+    background-color: #1c5d85;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .welcome-page__hero__form {
+    width: 600px;
+    background-color: white;
+    height: 2.5em;
+    z-index: 2;
+    border-radius: 5px;
+  }
+  .welcome-page__hero__search-box {
+    border: none;
+    width: 100%;
+    height: 2.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-start-start-radius: 5px;
+  }
+}
+.welcome-page__form-div {
+  margin-bottom: 30px;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+.welcome-page__form {
+  width: 750px;
+  height: 100%;
+  border: 1px solid #1c5d85;
+  border-radius: 8px;
+  background-color: #b1d7ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.welcome-page__input {
+  width: 60%;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 10px;
+  outline: none;
+  height: 2.3em;
+  border: 1px solid #1c5d85;
+}
+.welcome-page__search-button {
+  width: 120px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #1c5d85;
+  border: none;
+  height: 2.3em;
+}
+
+.welcome-page__filter-by-distance__div {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin: 40px 100px 20px;
+  padding: 1em;
+}
+.welcome-page__filter-by-distance__div input {
+  width: 100%;
+}
+.welcome-page__filter-by-distance__div input {
+  width: 100%;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.welcome-page__filter-by-distance__div input::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border: none;
+  border-radius: 50%;
+  background: #1c5d85;
+  pointer-events: auto;
+  -moz-appearance: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+.welcome-page__filter-by-distance__div input::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #1c5d85;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+.welcome-page__filter-by-distance__info span {
+  font-weight: 700;
+  color: #1c5d85;
+}
+.welcome-page__filter-by-distance__input-div {
+  width: 100%;
+  height: 18px;
+  display: flex;
+  align-items: center;
+}
+.welcome-page__filter-by-distance__input-range-bar {
+  width: 100%;
+  height: 5px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  background: #ddd;
+  border-radius: 5px;
+}
+.welcome-page__filter-by-distance__thumb {
+  z-index: 2;
+}
+.welcome-page__filter-by-distance__trail-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #1c5d85;
+  border-radius: 5px;
+  z-index: 1;
 }/*# sourceMappingURL=main.css.map */

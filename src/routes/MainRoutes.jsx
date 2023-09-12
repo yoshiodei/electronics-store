@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import Home from '../pages/Home/Home';
+// import Home from '../pages/Home/Home';
 import SingleItem from '../pages/SingleItem/SingleItem';
 import '../styles/main.css';
 import ChatRoom from '../pages/ChatRoom/ChatRoom';
@@ -23,6 +23,7 @@ import EditItem from '../pages/EditItem/EditItem';
 import UserNotVerified from '../pages/UserNotVerified/UserNotVerified';
 import MobileChatRoom from '../pages/MobileChatRoom/MobileChatRoom';
 import MobileChatWall from '../pages/MobileChatWall/MobileChatWall';
+import WelcomePage from '../pages/WelcomePage/WelcomePage';
 
 export default function MainRoutes() {
   useEffect(() => {
@@ -44,7 +45,8 @@ export default function MainRoutes() {
         theme="light"
       />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<WelcomePage />} />
         <Route path="/search/:searchName" element={<SearchResult />} />
         <Route path="/single-item/:id" element={<SingleItem />} />
         <Route path="/chat-room" element={<ChatRoom />} />
