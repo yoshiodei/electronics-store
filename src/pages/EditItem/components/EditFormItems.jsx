@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import { toast } from 'react-toastify';
 import {
-  deleteDoc, doc, setDoc,
+  doc, setDoc,
 } from '@firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
@@ -208,13 +208,9 @@ export default function EditFormItems() {
         },
       };
 
-      await deleteDoc(doc(db, 'products', id));
-      await deleteDoc(doc(db, 'pendingItems', id));
-
-      await setDoc(doc(db, 'pendingItems', id), productsData);
       await setDoc(doc(db, 'products', id), productsData);
 
-      toast.success('Item successfully sent for a review', {
+      toast.success('Item has been successfully posted', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -226,6 +222,149 @@ export default function EditFormItems() {
       });
 
       setIsPosting(false);
+    } catch (error) {
+      setIsPosting(false);
+      console.log('cannot submit form', error.message);
+      toast.error('Error submitting form. Please try again.', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
+  };
+
+  const handlePromoteEdit = async (e) => {
+    e.preventDefault();
+
+    const {
+      name, price, details, images, condition, location,
+    } = item;
+
+    setIsPosting(true);
+
+    if (!name.trim() || !price.trim() || !details.trim()) {
+      toast.error('Found empty text fields', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+      return;
+    }
+
+    if (isNaN(price.trim())) {
+      toast.error('Price must be a number', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+      return;
+    }
+
+    if (images.length === 0) {
+      toast.error('No item image selected', {
+        position: 'top-center',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setIsPosting(false);
+    }
+
+    try {
+      const storageRef = sRef(storage, 'product_images');
+      const imageUrls = [];
+
+      const imageString = [];
+      const imageObject = [];
+
+      for (let i = 0; i < item.images.length; i += 1) {
+        if (typeof item.images[i] === 'string') {
+          imageString.push(item.images[i]);
+        }
+        if (item?.images[i]?.file) {
+          imageObject.push(item.images[i]);
+        }
+      }
+
+      for (let j = 0; j < imageObject.length; j += 1) {
+        const image = imageObject[j];
+        const fileRef = sRef(storageRef, image.file.name);
+        await uploadBytes(fileRef, image.file);
+        const downloadUrl = await getDownloadURL(fileRef);
+        imageUrls.push(downloadUrl);
+      }
+
+      let itemBrand;
+      if (selectedBrand === 'other') {
+        itemBrand = otherBrand;
+      } else {
+        itemBrand = selectedBrand;
+      }
+
+      const vendorData = {
+        displayName,
+        image: photoURL,
+        userId: uid,
+      };
+
+      const productsData = {
+        id,
+        name: name.trim(),
+        details: details.trim(),
+        condition,
+        isPromoted: 'true',
+        category: selectedCategory,
+        brand: itemBrand,
+        price: price.trim(),
+        images: [...imageString, ...imageUrls],
+        vendor: vendorData,
+        datePosted: Date.now(),
+        dateLastEdited: Date.now(),
+        vendorId: uid,
+        status: 'pending',
+        location: {
+          locationIsSet: location.locationIsSet,
+          locationName: `${location.town}, ${location.state}`,
+          country: location.country,
+          state: location.state,
+          town: location.town,
+          coordinates: {
+            longitude: location?.coordinates?.longitude ? location?.coordinates?.longitude : 0,
+            latitude: location?.coordinates?.latitude ? location?.coordinates?.latitude : 0,
+          },
+        },
+      };
+
+      const promotedItemJSON = JSON.stringify(productsData);
+      localStorage.setItem('promotedItem', promotedItemJSON);
+
+      setIsPosting(false);
+
+      window.location.href = 'https://buy.stripe.com/test_cN22cd7OSf0j4fu5kk';
     } catch (error) {
       setIsPosting(false);
       console.log('cannot submit form', error.message);
@@ -472,7 +611,7 @@ export default function EditFormItems() {
         <div className="col-md-12">
           <div className="new-item-form__post-item-div">
             {(!item.isPromoted) && (<button className="new-item-form__post-item-button" type="submit" onClick={handleEdit}>{isPosting ? '...Posting' : 'Post Item'}</button>)}
-            {(false) && (<button className="new-item-form__post-item-button" type="button" onClick={handleEdit}>checkout</button>)}
+            {(item.isPromoted) && (<button className="new-item-form__post-item-button" type="button" onClick={handlePromoteEdit}>Checkout</button>)}
           </div>
         </div>
       </div>
