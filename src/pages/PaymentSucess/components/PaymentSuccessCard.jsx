@@ -16,7 +16,6 @@ export default function PaymentSuccessCard() {
 
       console.log('this is the promo item -->', promotedItem);
 
-      await setDoc(doc(db, 'pendingItems', promotedItem.id), promotedItem);
       await setDoc(doc(db, 'products', promotedItem.id), promotedItem);
 
       dispatch(addNewProduct(promotedItem));

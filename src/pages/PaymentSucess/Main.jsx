@@ -16,13 +16,6 @@ export default function Main() {
 
       console.log('this is the promo item -->', promotedItem);
 
-      // const collectionRef = collection(db, 'pendingItems');
-      // await addDoc(collectionRef, promotedItem);
-
-      // const productsRef = collection(db, 'products');
-      // await addDoc(productsRef, promotedItem);
-
-      // await setDoc(doc(db, 'pendingItems', promotedItem.id), promotedItem);
       await setDoc(doc(db, 'products', promotedItem.id), promotedItem);
 
       toast.success('Item Posted successfully!', {
