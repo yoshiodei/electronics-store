@@ -41,6 +41,12 @@ export default function ProductDetail() {
           {product.name}
         </h3>
       </div>
+      <div className="product-detail__product-name-div">
+        <h6 className="product-detail__title">Brand</h6>
+        <h3 className="product-detail__name">
+          {product.brand}
+        </h3>
+      </div>
       <div className="product-detail__product-price-div">
         <h6 className="product-detail__title">Price</h6>
         <h3 className="product-detail__price">

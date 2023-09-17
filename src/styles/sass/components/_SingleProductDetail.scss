@@ -57,7 +57,7 @@
     }
 
     &__name, &__distance {
-        font-size: 1.4em;
+        font-size: 1.2em;
         font-weight: 700;
         color:rgb(107, 107, 107);
     }
@@ -66,12 +66,16 @@
         text-transform: capitalize;
     }
 
+    &__miles-away {
+        margin-bottom: 0;
+    }
+
     &__distance {
         margin: 0;
     }
 
     &__distance span {
-        font-size: 1.45em;
+        font-size: 1.3em;
         font-weight: 700;
         color:rgb(107, 107, 107);
     }

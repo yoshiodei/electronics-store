@@ -20,7 +20,6 @@ export default function ButtonsBox({ product }) {
     reportDetail: '',
   };
   const [report, setReport] = useState(initialReport);
-  // const [product, setProduct] = useState({});
   const [show, setShow] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
 
@@ -38,7 +37,7 @@ export default function ButtonsBox({ product }) {
   const { isAnonymous, uid } = loginInfo;
 
   const handleAddToWishList = (wishListProduct) => {
-    if (isAnonymous) {
+    if (isAnonymous || product?.vendor?.userId === uid) {
       console.log('Log in to add items to wish list');
     } else {
       const image = wishListProduct.images[0];
@@ -124,7 +123,7 @@ export default function ButtonsBox({ product }) {
     <>
       <div className="buttons-box">
         { (uid !== product?.vendorId) && (
-        <button type="button" onClick={() => handleAddToWishList(product)}>
+        <button type="button" onClick={() => handleAddToWishList({ ...product, id })}>
           <i className="fa-regular fa-heart" />
           <h6>Save</h6>
         </button>

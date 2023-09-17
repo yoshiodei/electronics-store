@@ -6,6 +6,7 @@ const initialState = {
   recipientImage: '',
   recipientName: '',
   error: null,
+  chatTemplate: {},
 };
 
 const chatSlice = createSlice({
@@ -26,10 +27,21 @@ const chatSlice = createSlice({
       state.recipientName = action.payload.recipientName;
       state.error = null;
     },
+    SET_CHAT_TEMPLATE(state, action) {
+      state.chatTemplate = action.payload;
+    },
+    RESET_CHAT_TEMPLATE(state) {
+      state.chatTemplate = {};
+    },
   },
 });
 
-export const { SET_RECIPIENT_CHAT_DETAILS, SET_CHAT_DETAILS } = chatSlice.actions;
+export const {
+  SET_RECIPIENT_CHAT_DETAILS,
+  SET_CHAT_DETAILS,
+  SET_CHAT_TEMPLATE,
+  RESET_CHAT_TEMPLATE,
+} = chatSlice.actions;
 
 export const selectChatState = (state) => state.chat;
 

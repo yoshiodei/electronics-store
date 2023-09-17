@@ -24,12 +24,15 @@ export default function ChatCard({ mssg }) {
         {!(mssg?.senderImage === '') && (<img src={mssg.senderImage} alt="user profile" className="chat-card__image" />)}
       </div>
       <div className="chat-card__message-div">
-        <Link to="/" className="chat-card__product-link h6">
-          {'iPhone 13 Promax'.length > 15 ? 'iPhone 13 Promax'.slice(0, 14).trim().concat('...') : 'iPhone 13 Promax'}
-        </Link>
         <p className="chat-card__message">
           {mssg.message}
         </p>
+        {(mssg?.linkId)
+          && (
+          <Link to={`/single-item/${mssg?.linkId}`} className="chat-card__product-link">
+            {mssg?.chatItem.length > 15 ? `link to ${mssg?.chatItem.slice(0, 14).trim().concat('...')}` : `link to ${mssg?.chatItem}`}
+          </Link>
+          )}
       </div>
     </div>
   );

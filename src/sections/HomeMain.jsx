@@ -9,6 +9,7 @@ import SectionHeader from '../components/SectionHeader';
 import DisplayCards from '../pages/Home/components/DisplayCards';
 import { setFilter } from '../redux/slice/productsSlice';
 import FindCloserItemsButton from '../components/FindCloserItemsButton';
+import useTopScroll from '../Hooks/useTopScroll';
 
 export default function HomeMain() {
   const dispatch = useDispatch();
@@ -26,13 +27,7 @@ export default function HomeMain() {
     dispatch(setFilter(initialFilter));
   }, []);
 
-  useEffect(() => {
-    const scrollToTop = () => {
-      top.location.href = '#page-top';
-    };
-
-    scrollToTop();
-  }, []);
+  useTopScroll();
 
   return (
     <div className="main-section-div">

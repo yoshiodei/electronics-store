@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
-// import Home from '../pages/Home/Home';
+import Home from '../pages/Home/Home';
 import SingleItem from '../pages/SingleItem/SingleItem';
 import '../styles/main.css';
 import ChatRoom from '../pages/ChatRoom/ChatRoom';
@@ -47,6 +47,7 @@ export default function MainRoutes() {
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<WelcomePage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/search/:searchName" element={<SearchResult />} />
         <Route path="/single-item/:id" element={<SingleItem />} />
         <Route path="/chat-room" element={<ChatRoom />} />

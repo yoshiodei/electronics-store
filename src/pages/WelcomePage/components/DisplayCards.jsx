@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
 import ProductCard from '../../../components/ProductCard';
@@ -10,30 +10,34 @@ import useGetUserLocation from '../hooks/useGetUserLocation';
 import useItemsFetch from '../hooks/useItemsFetch';
 import useFilterProductData from '../hooks/useFilterProductData';
 import PaginationBar from '../../../components/PaginationBar';
+import FilterByDistance from './FilterByDistance';
 
-export default function DisplayCards({ miles }) {
-  const [itemsPerPage] = useState(32);
-
+export default function DisplayCards() {
   const { filterObject } = useSelector(selectProductsState);
   const { updateTime: time } = filterObject;
 
+  const [filteredData, setFilteredData] = useState([]);
+  const [miles, setMiles] = useState(70);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(32);
+
   const { coordinates, isLocationAvailable } = useSelector(selectLocationState);
-  const {
-    fetchItems, data, isLoading, filteredData, setFilteredData,
-  } = useItemsFetch();
-  const { filterProductData, currentPage, setCurrentPage } = useFilterProductData(setFilteredData);
 
-  useEffect(() => {
-    useGetUserLocation();
-  }, [isLocationAvailable]);
+  useGetUserLocation(isLocationAvailable);
+  useItemsFetch(setIsLoading, setFilteredData, setData);
+  useFilterProductData(
+    data,
+    setFilteredData,
+    setCurrentPage,
+    miles,
+    coordinates,
+    time,
+    setIsLoading,
+  );
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  useEffect(() => {
-    filterProductData(miles, coordinates);
-  }, [data, time]);
+  console.log('check this final =>>', data);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -50,11 +54,17 @@ export default function DisplayCards({ miles }) {
   }
 
   if (filteredData.length === 0) {
-    return (<EmptyDisplay />);
+    return (
+      <>
+        <FilterByDistance setMiles={setMiles} miles={miles} />
+        <EmptyDisplay />
+      </>
+    );
   }
 
   return (
     <>
+      <FilterByDistance setMiles={setMiles} miles={miles} />
       <div className="row g-2">
         {
       currentItems.map((product) => (

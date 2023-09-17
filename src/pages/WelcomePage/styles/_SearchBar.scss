@@ -38,3 +38,31 @@
         height: 2.3em;
     }
 }
+
+@include mobileScreen {
+    .welcome-page {
+        &__form-div {
+            padding: 0 10px;
+        }
+    
+        &__form {
+            width: 100%;
+            padding: 10px;
+            gap: 5px;
+        }
+
+        &__input {
+            width: unset;
+            flex: 1;
+        }
+
+        &__search-button {
+            width: 70px;
+            color: $lightFont;
+            border-radius: 5px;
+            background-color: $secondaryColour;
+            border: none;
+            height: 2.3em;
+        }
+    }
+}

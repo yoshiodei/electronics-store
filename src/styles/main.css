@@ -1287,18 +1287,21 @@ a {
   font-weight: 700;
 }
 .product-location__name, .product-location__distance {
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 700;
   color: rgb(107, 107, 107);
 }
 .product-location__name {
   text-transform: capitalize;
 }
+.product-location__miles-away {
+  margin-bottom: 0;
+}
 .product-location__distance {
   margin: 0;
 }
 .product-location__distance span {
-  font-size: 1.45em;
+  font-size: 1.3em;
   font-weight: 700;
   color: rgb(107, 107, 107);
 }
@@ -1615,9 +1618,11 @@ a {
 }
 .chat-card__product-link {
   font-size: 0.8em;
-  padding: 3px 8px;
+  padding: 3px 18px;
   color: #ffffff;
-  border-radius: 50px;
+  margin-top: 8px;
+  border-radius: 4px;
+  border-bottom-left-radius: 10px;
   background-color: #257aaf;
   text-align: left;
   display: inline-block;
@@ -1650,6 +1655,11 @@ a {
 .chat-card--alt .chat-card__product-link {
   text-align: right;
   align-self: flex-end;
+  padding: 3px 18px;
+  color: #ffffff;
+  border-radius: 4px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 4px;
 }
 
 @media (max-width: 430px) {
@@ -3246,6 +3256,7 @@ form input:focus-visible, form textarea:focus-visible {
   height: 60px;
   width: 60px;
   box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.1882352941);
+  border: none;
 }
 .start-chat-button * {
   font-size: 1.2em;
@@ -4746,30 +4757,23 @@ button.checkout__buttom:disabled {
   }
   .welcome-page__hero__main-div {
     width: 100%;
-    height: 180px;
+    height: auto;
     margin-bottom: 15px;
     padding: 15px;
     position: relative;
   }
-  .welcome-page__hero__main-div__image {
-    position: absolute;
-    bottom: 0;
-    right: 10px;
-    height: 140px;
-  }
   .welcome-page__hero__main-div h1 {
-    width: 80%;
+    width: 100%;
+    text-align: center;
     font-weight: 700;
     font-size: 1.2em;
-    color: #1c5d85;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
   .welcome-page__hero__main-div p {
-    width: 60%;
+    width: 100%;
     font-size: 0.9em;
-    font-weight: 500;
     line-height: 1.2;
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
   .welcome-page__hero__search-div {
     height: 90px;
@@ -4856,10 +4860,32 @@ button.checkout__buttom:disabled {
   height: 2.3em;
 }
 
+@media (max-width: 430px) {
+  .welcome-page__form-div {
+    padding: 0 10px;
+  }
+  .welcome-page__form {
+    width: 100%;
+    padding: 10px;
+    gap: 5px;
+  }
+  .welcome-page__input {
+    width: unset;
+    flex: 1;
+  }
+  .welcome-page__search-button {
+    width: 70px;
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: #1c5d85;
+    border: none;
+    height: 2.3em;
+  }
+}
 .welcome-page__filter-by-distance__div {
   border: 1px solid lightgrey;
   border-radius: 5px;
-  margin: 40px 100px 20px;
+  margin: 30px 100px 20px;
   padding: 1em;
 }
 .welcome-page__filter-by-distance__div input {
@@ -4923,4 +4949,70 @@ button.checkout__buttom:disabled {
   background-color: #1c5d85;
   border-radius: 5px;
   z-index: 1;
+}
+
+@media (max-width: 430px) {
+  .welcome-page__filter-by-distance__div {
+    margin: 20px 0;
+    padding: 1em;
+  }
+  .welcome-page__filter-by-distance__div input {
+    width: 100%;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  .welcome-page__filter-by-distance__div input::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 50%;
+    background: #1c5d85;
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+  }
+  .welcome-page__filter-by-distance__div input::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #1c5d85;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+  }
+  .welcome-page__filter-by-distance__info span {
+    font-weight: 700;
+    color: #1c5d85;
+  }
+  .welcome-page__filter-by-distance__input-div {
+    width: 100%;
+    height: 18px;
+    display: flex;
+    align-items: center;
+  }
+  .welcome-page__filter-by-distance__input-range-bar {
+    width: 100%;
+    height: 5px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    background: #ddd;
+    border-radius: 5px;
+  }
+  .welcome-page__filter-by-distance__thumb {
+    z-index: 2;
+  }
+  .welcome-page__filter-by-distance__trail-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #1c5d85;
+    border-radius: 5px;
+    z-index: 1;
+  }
 }/*# sourceMappingURL=main.css.map */
