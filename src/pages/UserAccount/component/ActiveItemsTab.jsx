@@ -16,7 +16,11 @@ export default function ActiveItemsTab() {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const q = query(collection(db, 'products'), where('vendorId', '==', id));
+      const q = query(
+        collection(db, 'products'),
+        where('status', '==', 'active'),
+        where('vendorId', '==', id),
+      );
       const querySnapshot = await getDocs(q);
       const allProducts = [];
 
