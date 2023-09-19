@@ -31,7 +31,6 @@ export default function Main() {
 
   return (
     <div className="main-section-div">
-      <SearchBar />
       <main className="main-section d-flex justify-content-between">
         <div className="main-section__left-div">
           <CategoriesBox />
@@ -40,6 +39,7 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
+          <SearchBar />
           <SearchCategoriesBox />
           <Hero />
           <SectionHeader>All Products</SectionHeader>

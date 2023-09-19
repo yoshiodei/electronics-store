@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { selectAuthState } from '../redux/slice/authSlice';
 import { addToWhishList } from '../redux/slice/wishListSlice';
+import getItemDistanceFromUser from '../pages/SingleItem/utils/getItemDistanceFromUser';
+import { selectProductsState } from '../redux/slice/productsSlice';
 
 export default function ProductCard({ product }) {
   const {
@@ -13,10 +15,13 @@ export default function ProductCard({ product }) {
 
   const image = images[0];
 
+  const { userCoordinates } = useSelector(selectProductsState);
   const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous, uid } = loginInfo;
 
   const dispatch = useDispatch();
+
+  const miles = getItemDistanceFromUser(userCoordinates, product);
 
   const handleAddToWishList = async (wishListProduct) => {
     if (isAnonymous || vendor.userId === uid) {
@@ -51,6 +56,7 @@ export default function ProductCard({ product }) {
             {location?.locationIsSet ? `${location?.town}, ${location?.state}` : 'location is unknown'}
           </p>
         </div>
+        <p className="product-card__product-mile-range">{miles >= 0 ? `${miles} miles away` : '' }</p>
         <div className="product-card__product-condition-div">
           <p className="product-card__product-condition">{condition}</p>
         </div>

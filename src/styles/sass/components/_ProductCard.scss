@@ -80,10 +80,20 @@
 
     &__product-name {
         line-height: 1.1;
-        height: 2.4em;
+        height: 1.2em;
         font-size: 1em;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
         text-transform: capitalize;
+        overflow: hidden;
+    }
+
+    &__product-mile-range {
+        font-size: 0.8em;
+        height: 0.85em;
+        font-weight: 400;
+        color: rgb(95, 95, 95);
+        line-height: 1;
+        margin-bottom: 10px;
     }
 
     &__product-location-div {

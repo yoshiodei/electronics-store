@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export default function AdPanel() {
-  useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.log('There are  no google ads to show!');
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     (window.adsbygoogle = window.adsbygoogle || []).push({});
+  //   } catch (e) {
+  //     console.log('There are  no google ads to show!');
+  //   }
+  // }, []);
 
   return (
     <div className="ad-panel">
