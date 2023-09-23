@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import RegisterModal from './RegisterModal';
 import SignInModal from './SignInModal';
-import { selectAuthState } from '../redux/slice/authSlice';
 
 export default function SellNowButton() {
-  const { loginInfo, userInfo } = useSelector(selectAuthState);
-  const { isAnonymous } = loginInfo;
-  const { emailVerified } = userInfo;
-
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
 
@@ -21,11 +15,12 @@ export default function SellNowButton() {
   const isAnonymousJSON = localStorage.getItem('isAnonymous');
   const emailVerifiedJSON = localStorage.getItem('emailVerified');
 
-  const isEmailVerified = JSON.parse(emailVerifiedJSON);
-  const isUserAnonymous = JSON.parse(isAnonymousJSON);
+  const { emailVerified } = JSON.parse(emailVerifiedJSON);
+  const { isAnonymous } = JSON.parse(isAnonymousJSON);
 
-  if ((!isAnonymous || !isAnonymousJSON?.isAnonymous)
-  && (emailVerified === true || isEmailVerified?.emailVerified)) {
+  console.log(`emailVerified => ${emailVerified} : isAnonymous => ${isAnonymous}`);
+
+  if (!isAnonymous && emailVerified) {
     return (
       <Link to="/new-item" className="sell-now">
         <h6>Sell Now</h6>
@@ -33,11 +28,12 @@ export default function SellNowButton() {
     );
   }
 
-  if ((!isAnonymous || !isUserAnonymous?.isAnonymous)
-  && (emailVerified === false || !emailVerifiedJSON?.emailVerified)) {
-    <Link to="/verify-user" className="sell-now">
-      <h6>Sell Now</h6>
-    </Link>;
+  if (!isAnonymous && !emailVerified) {
+    return (
+      <Link to="/verify-user" className="sell-now">
+        <h6>Sell Now</h6>
+      </Link>
+    );
   }
 
   return (

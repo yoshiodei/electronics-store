@@ -5,9 +5,12 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../sections/Footer';
 import Main from './Main';
 import appName from '../../Constants/constantVariables';
+import useSetViews from './hooks/useSetViews';
 
 export default function Home() {
   const { id } = useParams();
+
+  useSetViews();
 
   return (
     <>

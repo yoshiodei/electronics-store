@@ -4,6 +4,7 @@ export const setUserId = createAction('setUserId');
 export const setUserInfo = createAction('setUserInfo');
 
 const initialState = {
+  userInfoLoaded: false,
   loginInfo: { isAnonymous: true, uid: '' },
   userInfo: {
     emailVerified: false,

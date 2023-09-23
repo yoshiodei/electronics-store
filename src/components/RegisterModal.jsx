@@ -81,95 +81,94 @@ export default function RegisterModal({
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const handleSubmit2 = (e) => {
-    e.preventDefault();
+  // const handleSubmit2 = (e) => {
+  //   e.preventDefault();
 
-    const {
-      password, cPassword, fname, lname, email, phoneNumber,
-    } = inputValue;
+  //   const {
+  //     password, cPassword, fname, lname, email, phoneNumber,
+  //   } = inputValue;
 
-    if (password === '' || fname === '' || lname === '' || email === '' || phoneNumber === '') {
-      setErrorMessage('fields cannot be left empty');
-    }
-    if (password !== cPassword) {
-      setErrorMessage('passwords do not match');
-    }
-    if (password.length < 8) {
-      setErrorMessage('password must at least have 8 characters');
+  //   if (password === '' || fname === '' || lname === '' || email === '' || phoneNumber === '') {
+  //     setErrorMessage('fields cannot be left empty');
+  //   }
+  //   if (password !== cPassword) {
+  //     setErrorMessage('passwords do not match');
+  //   }
+  //   if (password.length < 8) {
+  //     setErrorMessage('password must at least have 8 characters');
 
-    // if (!(isChecked)) {
-    //   setErrorMessage('you must agree to terms and conditions to proceed');
-    // }
-    } else {
-      setIsLoading(true);
+  //   // if (!(isChecked)) {
+  //   //   setErrorMessage('you must agree to terms and conditions to proceed');
+  //   // }
+  //   } else {
+  //     setIsLoading(true);
 
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(async (userCredential) => {
-          const { user } = userCredential;
+  //     createUserWithEmailAndPassword(auth, email, password)
+  //       .then(async (userCredential) => {
+  //         const { user } = userCredential;
 
-          const { emailVerified, uid } = user;
+  //         const { emailVerified, uid } = user;
 
-          try {
-            await setDoc(doc(db, 'vendors', uid), {
-              displayName: `${fname} ${lname}`,
-              email,
-              emailVerified,
-              bio: 'Hi there, this is my Electrotoss shop page.',
-              followers: 0,
-              photoURL: '',
-              isPremium: false,
-              rating: 1,
-              uid,
-              status: 'active',
-              createdAt: Date.now(),
-              phoneNumber,
-              wishlist: [],
-              chatList: [],
-              messages: [],
-              notifications: [],
-            });
+  //         try {
+  //           await setDoc(doc(db, 'vendors', uid), {
+  //             displayName: `${fname} ${lname}`,
+  //             email,
+  //             emailVerified,
+  //             bio: 'Hi there, this is my Electrotoss shop page.',
+  //             followers: 0,
+  //             photoURL: '',
+  //             isPremium: false,
+  //             rating: 1,
+  //             uid,
+  //             status: 'active',
+  //             createdAt: Date.now(),
+  //             phoneNumber,
+  //             wishlist: [],
+  //             chatList: [],
+  //             messages: [],
+  //             notifications: [],
+  //           });
 
-            const userInfo = {
-              emailVerified,
-              userInfoIsSet: true,
-              displayName: `${fname} ${lname}`,
-              bio: 'Hi there, this is my Electrotoss shop page.',
-              email,
-              followers: 0,
-              rating: 1,
-              phoneNumber: '',
-              photoURL: '',
-            };
+  //           const userInfo = {
+  //             emailVerified,
+  //             userInfoIsSet: true,
+  //             displayName: `${fname} ${lname}`,
+  //             bio: 'Hi there, this is my Electrotoss shop page.',
+  //             email,
+  //             followers: 0,
+  //             rating: 1,
+  //             phoneNumber: '',
+  //             photoURL: '',
+  //           };
 
-            const dataToStore = { isAnonymous: false };
-            const dataToStore2 = { emailVerified: false };
-            const dataJSON = JSON.stringify(dataToStore);
-            const dataJSON2 = JSON.stringify(dataToStore2);
+  //           const dataToStore = { isAnonymous: false };
+  //           const dataToStore2 = { emailVerified: false };
+  //           const dataJSON = JSON.stringify(dataToStore);
+  //           const dataJSON2 = JSON.stringify(dataToStore2);
 
-            localStorage.setItem('isAnonymous', dataJSON);
-            localStorage.setItem('emailVerified', dataJSON2);
+  //           localStorage.setItem('isAnonymous', dataJSON);
+  //           localStorage.setItem('emailVerified', dataJSON2);
 
-            dispatch(setUserInfo(userInfo));
-          } catch (err) {
-            setIsLoading(false);
-            handleCloseRegisterModal();
-            errorToast(err);
-          }
+  //           dispatch(setUserInfo(userInfo));
+  //         } catch (err) {
+  //           setIsLoading(false);
+  //           handleCloseRegisterModal();
+  //           errorToast(err);
+  //         }
 
-          setIsLoading(false);
-          handleCloseRegisterModal();
-          successToast();
-          setInputValue(initialValue);
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          handleCloseRegisterModal();
-          errorToast(error);
-          setInputValue(initialValue);
-        });
-    }
-  };
-  console.log(handleSubmit2);
+  //         setIsLoading(false);
+  //         handleCloseRegisterModal();
+  //         successToast();
+  //         setInputValue(initialValue);
+  //       })
+  //       .catch((error) => {
+  //         setIsLoading(false);
+  //         handleCloseRegisterModal();
+  //         errorToast(error);
+  //         setInputValue(initialValue);
+  //       });
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -249,18 +248,18 @@ export default function RegisterModal({
           dispatch(setUserInfo(userInfo));
         } catch (err) {
           setIsLoading(false);
-          handleCloseRegisterModal();
+          handleTermsClose();
           errorToast(err);
         }
 
         setIsLoading(false);
-        handleCloseRegisterModal();
+        handleTermsClose();
         successToast();
         setInputValue(initialValue);
       })
       .catch((error) => {
         setIsLoading(false);
-        handleCloseRegisterModal();
+        handleTermsClose();
         errorToast(error);
         setInputValue(initialValue);
       });

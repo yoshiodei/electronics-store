@@ -1,6 +1,5 @@
 .navbar-custom {
     background-color: $secondaryColour;
-    // background-color: white;
     position: relative;
 
     &__app-logo {
@@ -34,6 +33,15 @@
         width: $largeDeviceWidth;
         margin: 0 auto;
         @include paddingVertical(0.5em);
+    }
+
+    &__brand-div {
+        display: flex;
+        flex-direction: column;
+
+        & p {
+            display: none;
+        }
     }
 
     &__brand {
@@ -223,6 +231,21 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.8em;
+        }
+
+        &__brand-div {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+    
+            & p {
+                display: block;
+                color: white;
+                font-size: 0.85em;
+                margin: 0;
+                letter-spacing: 0.2px;
+                align-self: center;
+            }
         }
     
         &__brand {

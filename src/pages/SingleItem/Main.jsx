@@ -12,6 +12,7 @@ import ButtonsBox from './components/ButtonsBox';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import RemoveItemButtonsBox from './components/RemoveItemButtonsBox';
 import EditItemButton from './components/EditItemButton';
+import ViewsBox from './components/ViewsBox';
 
 export default function Main() {
   const [product, setProduct] = useState({});
@@ -46,6 +47,7 @@ export default function Main() {
         <div className="main-section__left-div">
           <ProductDetail />
           <ProductLocation />
+          <ViewsBox />
           <VendorDetails />
           {!isAnonymous && <ButtonsBox product={product} />}
           {(!isAnonymous && uid === product?.vendorId)
@@ -59,6 +61,7 @@ export default function Main() {
           <div className="main-section__mobile-div">
             <ProductDetail />
             <ProductLocation />
+            <ViewsBox />
             <VendorDetails />
             {!isAnonymous
             && <ButtonsBox product={product} />}

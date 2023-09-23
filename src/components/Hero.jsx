@@ -17,7 +17,7 @@ export default function Hero() {
   };
 
   return (
-    <div className="hero">
+    <div className="hero hero-hidden">
       <div className="hero__main-div">
         <h1>Your One-Stop Electronic Gadget Marketplace.</h1>
         <p className="hero__text-large">

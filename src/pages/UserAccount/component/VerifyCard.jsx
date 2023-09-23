@@ -5,19 +5,21 @@ import { selectAuthState } from '../../../redux/slice/authSlice';
 
 export default function VerifyCard() {
   const navigate = useNavigate();
-  const { userInfo, loginInfo } = useSelector(selectAuthState);
-  const { emailVerified } = userInfo;
+  const { loginInfo } = useSelector(selectAuthState);
   const { uid } = loginInfo;
   const { id } = useParams();
 
   const emailVerifiedJSON = localStorage.getItem('emailVerified');
-  const isEmailVerified = JSON.parse(emailVerifiedJSON);
+  const { emailVerified } = JSON.parse(emailVerifiedJSON);
 
-  if ((!isEmailVerified?.emailVerified || !emailVerified) && (uid === id)) {
+  const isAnonymousJSON = localStorage.getItem('isAnonymous');
+  const { isAnonymous } = JSON.parse(isAnonymousJSON);
+
+  if (isAnonymous && (uid !== id)) {
     return null;
   }
 
-  if (uid !== id) {
+  if (emailVerified) {
     return null;
   }
 
@@ -25,7 +27,6 @@ export default function VerifyCard() {
     <div className="verification-card">
       <h4 className="verification-card__title">
         Your email has not been verified
-        { emailVerified }
       </h4>
       <button className="verification-card__button" type="button" onClick={() => navigate('/verify-user')}>Verify now</button>
     </div>

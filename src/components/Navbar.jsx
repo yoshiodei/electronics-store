@@ -18,6 +18,8 @@ import { selectWishListState } from '../redux/slice/wishListSlice';
 import { selectNotificationState, setNotifications } from '../redux/slice/notificationSlice';
 import ChatList from '../pages/ChatRoom/components/ChatList';
 import ForgotPasswordModal from './ForgotPasswordModal';
+import useAssignDeviceId from '../Hooks/useAssignDeviceId';
+import useGetUserLocation from '../Hooks/useGetUserLocation';
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -49,6 +51,9 @@ function Navbar() {
   const initialCountObject = { notificationCount: 0, messageCount: 0 };
 
   const [countObject, setCountObject] = useState(initialCountObject);
+
+  useAssignDeviceId();
+  useGetUserLocation();
 
   useEffect(() => {
     if(uid){
@@ -132,8 +137,20 @@ function Navbar() {
           const dataToStore = { isAnonymous: true };
           const dataJSON = JSON.stringify(dataToStore);
 
-          localStorage.removeItem('emailVerified');
+          const storeEmailVerifyValue = { emailVerified: false };
+          const storeEmailVerifyValueJSON = JSON.stringify(storeEmailVerifyValue);
+
+          const storeNotificationsCounts = {messageCount:0,notificationCount:0};
+          const storeNotificationsCountsJSON = JSON.stringify(storeNotificationsCounts);
+
+          const storeWishListCount = {wishList:0};
+          const storeWishListCountJSON = JSON.stringify(storeWishListCount);
+
+          // localStorage.removeItem('emailVerified');
           localStorage.setItem('isAnonymous', dataJSON);
+          localStorage.setItem('emailVerified', storeEmailVerifyValueJSON);
+          localStorage.setItem('notificationsCounts', storeNotificationsCountsJSON);
+          localStorage.setItem('wishListCount', storeWishListCountJSON);
 
           navigate('/');
           toast.success('Logout Successful', {
@@ -234,14 +251,17 @@ function Navbar() {
           </ul>
         </div>
         <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
-          <Link to="/" className="navbar-custom__brand">
-            <span>
-              <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
-            </span>
-            <span className="h2 navbar-custom__brand-text">
-            { appName }
-            </span>
-          </Link>
+          <div className="navbar-custom__brand-div">
+            <Link to="/" className="navbar-custom__brand">
+              <span>
+                <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
+              </span>
+              <span className="h2 navbar-custom__brand-text">
+              { appName }
+              </span>
+            </Link>
+            <p>Electronic Gadgets Marketplace</p>
+          </div>
           <SellNowButton />
           <DrawerButton
             setToggleDrawer={setToggleDrawer}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import { db } from '../config/firebaseConfig';
@@ -19,9 +19,15 @@ export default function ProductCard({ product }) {
   const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous, uid } = loginInfo;
 
+  const [miles, setMiles] = useState('');
+
   const dispatch = useDispatch();
 
-  const miles = getItemDistanceFromUser(userCoordinates, product);
+  const distance = getItemDistanceFromUser(userCoordinates, product);
+
+  useEffect(() => {
+    setMiles(distance);
+  }, [distance, userCoordinates.longitude, userCoordinates.latitude]);
 
   const handleAddToWishList = async (wishListProduct) => {
     if (isAnonymous || vendor.userId === uid) {
@@ -56,7 +62,7 @@ export default function ProductCard({ product }) {
             {location?.locationIsSet ? `${location?.town}, ${location?.state}` : 'location is unknown'}
           </p>
         </div>
-        <p className="product-card__product-mile-range">{miles >= 0 ? `${miles} miles away` : '' }</p>
+        <p className="product-card__product-mile-range">{parseInt(miles) >= 0 ? `${miles} miles away` : '' }</p>
         <div className="product-card__product-condition-div">
           <p className="product-card__product-condition">{condition}</p>
         </div>

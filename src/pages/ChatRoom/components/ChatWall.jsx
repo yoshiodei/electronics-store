@@ -29,58 +29,6 @@ export default function ChatWall({ uid }) {
     setMessage(value);
   };
 
-  // const handleSendMessage = async (e) => {
-  //   e.preventDefault();
-
-  //   const combinedId = (uid > recipientId) ? `${uid}${recipientId}` : `${recipientId}${uid}`;
-  //   console.log('combineId is ==>', combinedId);
-
-  //   const messageObject = {
-  //     message,
-  //     senderId: uid,
-  //     recipientId,
-  //     senderImage: photoURL,
-  //     roomId: combinedId,
-  //     timeStamp: Date.now(),
-  //   };
-
-  //   console.log('message object is ==>', messageObject);
-
-  //   const senderChatList = {
-  //     recipientId: uid,
-  //     recipientImage: photoURL,
-  //     recipientName: displayName,
-  //   };
-
-  //   console.log('recipient chat list is ==>', senderChatList);
-
-  //   try {
-  //     const senderRef = doc(db, 'vendors', uid);
-  //     const recipientRef = doc(db, 'vendors', recipientId);
-
-  //     setMessage('');
-  //     e.target.reset();
-
-  //     await updateDoc(senderRef, {
-  //       messages: arrayUnion(messageObject),
-  //     });
-
-  //     await updateDoc(recipientRef, {
-  //       chatList: arrayUnion(senderChatList),
-  //     });
-
-  //     await updateDoc(recipientRef, {
-  //       messages: arrayUnion(messageObject),
-  //     });
-
-  //     await updateDoc(recipientRef, {
-  //       newMessages: arrayUnion(recipientId),
-  //     });
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
-
   const handleSendMessage = async (e) => {
     e.preventDefault();
 

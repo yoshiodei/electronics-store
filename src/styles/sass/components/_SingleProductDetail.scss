@@ -242,6 +242,36 @@
     }
 }
 
+.views-box {
+    border-radius: 5px;
+    border: 1px solid $primaryGreyColour;
+    padding: 15px;
+    background-color: $primaryMidGreyColour;
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    &__icon-div {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 2px solid $primaryGreyColour;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & i {
+            font-size: 1.1em;
+        }
+    }
+
+    & h5 {
+        margin: 0;
+        font-weight: 700;
+    }
+}
+
 .buttons-box-loading {
     width: 100%;
     height: 2.5em;
