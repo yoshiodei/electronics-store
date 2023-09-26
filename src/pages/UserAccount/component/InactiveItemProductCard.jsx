@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function InactiveItemProductCard({ product, sold, pending }) {
   const {
-    id, price, name, location, condition, images,
+    id, price, name, brand, condition, images,
   } = product;
 
   const image = images[0];
@@ -16,10 +16,7 @@ export default function InactiveItemProductCard({ product, sold, pending }) {
         <h5 className="product-card__product-price">{`$ ${price}`}</h5>
         <p className="product-card__product-name">{name}</p>
         <div className="product-card__product-location-div d-flex align-items-center">
-          <i className="product-card__product-location-icon fa-solid fa-location-dot" />
-          <p className="product-card__product-location-name">
-            {location?.locationIsSet ? `${location?.town}, ${location?.state}` : 'location is unknown'}
-          </p>
+          <p className="product-card__product-location-name">{brand}</p>
         </div>
         <div className="product-card__product-condition-div">
           <p className="product-card__product-condition">{condition}</p>

@@ -55,7 +55,7 @@ export default function ChatList({ uid }) {
           (chatList.length !== 0)
           && (chatList.map((item) => ((item.recipientId !== uid)
             ? (
-              <ChatListButton data={item} />
+              <ChatListButton data={item} uid={uid} />
             ) : null)))
         }
       </div>

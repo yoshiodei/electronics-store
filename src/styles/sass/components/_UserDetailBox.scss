@@ -209,6 +209,7 @@
 @include mobileScreen{
     .user-detail-box {
         background-color: lighten($primaryColour, 20%);
+        padding: 0.5em;
     
         &__user-name {
             font-size: 1.6em;
@@ -217,6 +218,7 @@
        &__user-info-outer-div {
             display: flex;
             justify-content: space-between;
+            gap: 8px;
             margin-top: 10px;
 
             & .user-detail-box__user-info-div{
@@ -228,13 +230,8 @@
                 flex: 1;  
                 height: 80px;
                 border-radius: 5px;
-                padding: 0.5em;
+                padding: 0.5em 0.3em;
                 background-color: $secondaryColour;
-                margin-right: 10px;
-
-                &:last-child {
-                    margin-right: 0;
-                }
 
                 & .user-detail-box__user-info-title {
                     color: $lightFont;

@@ -18,7 +18,37 @@
             margin: 0;
             margin-right: 30px;
         }
+    }
 
+    &__card-info-div {
+        & h6 {
+            margin: 0;
+            text-transform: capitalize;
+            font-weight: 700;
+        }
+    }
+
+    &__new-message {
+        display: flex;
+        align-items: center;
+
+        &__icon {
+            height: 20px;
+            min-width: 20px;
+            padding: 3px;
+            border-radius: 5px;
+            background-color: $secondaryColour;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &-value {
+                margin: 0;
+                font-size: 0.65em;
+                color: white;
+                line-height: 1;
+            }
+        }
     }
 
     &__header-input {

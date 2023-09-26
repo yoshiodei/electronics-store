@@ -40,6 +40,7 @@ export default function ChatWall({ uid }) {
       recipientId: uid,
       recipientImage: photoURL,
       recipientName: displayName,
+      messageList: [message],
     };
 
     const messageObject = {
@@ -94,6 +95,7 @@ export default function ChatWall({ uid }) {
       recipientId: uid,
       recipientImage: photoURL,
       recipientName: displayName,
+      messageList: [chatTemplate],
     };
 
     try {

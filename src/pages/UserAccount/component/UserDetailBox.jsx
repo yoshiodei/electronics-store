@@ -37,7 +37,10 @@ export default function UserDetailBox() {
   const handleShow = () => setShow(true);
 
   const fetchData = async () => {
-    const q = query(collection(db, 'vendors'), where('uid', '==', id));
+    const q = query(
+      collection(db, 'vendors'),
+      where('uid', '==', id),
+    );
     const querySnapshot = await getDocs(q);
     let allData = {};
     querySnapshot.forEach((doc2) => {
@@ -46,10 +49,22 @@ export default function UserDetailBox() {
       console.log('user data', userData);
     });
 
-    const q2 = query(collection(db, 'products'), where('vendorId', '==', id));
+    const q2 = query(
+      collection(db, 'products'),
+      where('vendorId', '==', id),
+      where('status', '==', 'active'),
+    );
     const querySnapshot2 = await getDocs(q2);
     const numberOfProducts = querySnapshot2.docs.length;
     setUserData({ ...allData, numberOfProducts });
+
+    const q3 = query(
+      collection(db, 'soldProducts'),
+      where('vendorId', '==', id),
+    );
+    const querySnapshot3 = await getDocs(q3);
+    const numberOfSoldProducts = querySnapshot3.docs.length;
+    setUserData({ ...allData, numberOfProducts, numberOfSoldProducts });
   };
 
   const handleSendReport = async () => {
@@ -132,18 +147,18 @@ export default function UserDetailBox() {
         <div className="user-detail-box__user-info-outer-div">
           <div className="user-detail-box__user-info-div">
             <h6 className="user-detail-box__user-info-title">
-              Followers
+              Active Posts
             </h6>
             <h6 className="user-detail-box__user-info-value">
-              {userData.followers}
+              {userData.numberOfProducts}
             </h6>
           </div>
           <div className="user-detail-box__user-info-div">
             <h6 className="user-detail-box__user-info-title">
-              Total Posts
+              Sold Items
             </h6>
             <h6 className="user-detail-box__user-info-value">
-              {userData.numberOfProducts}
+              {userData.numberOfSoldProducts}
             </h6>
           </div>
           <div className="user-detail-box__user-info-div">

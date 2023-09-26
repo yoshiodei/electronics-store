@@ -63,10 +63,9 @@ export default function Main() {
             <ProductLocation />
             <ViewsBox />
             <VendorDetails />
-            {!isAnonymous
-            && <ButtonsBox product={product} />}
+            {!isAnonymous && <ButtonsBox product={product} />}
             {(!isAnonymous && uid === product?.vendorId)
-          && <EditItemButton id={id} />}
+          && <EditItemButton product={product} id={id} />}
             {(!isAnonymous && uid === product?.vendorId)
           && <RemoveItemButtonsBox product={product} />}
           </div>

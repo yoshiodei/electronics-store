@@ -140,10 +140,10 @@ function Navbar() {
           const storeEmailVerifyValue = { emailVerified: false };
           const storeEmailVerifyValueJSON = JSON.stringify(storeEmailVerifyValue);
 
-          const storeNotificationsCounts = {messageCount:0,notificationCount:0};
+          const storeNotificationsCounts = { messageCount:0, notificationCount:0 };
           const storeNotificationsCountsJSON = JSON.stringify(storeNotificationsCounts);
 
-          const storeWishListCount = {wishList:0};
+          const storeWishListCount = { wishList:0 };
           const storeWishListCountJSON = JSON.stringify(storeWishListCount);
 
           // localStorage.removeItem('emailVerified');

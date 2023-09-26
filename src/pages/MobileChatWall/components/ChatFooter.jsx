@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { arrayUnion, doc, updateDoc } from '@firebase/firestore';
+import {
+  arrayUnion, doc, getDoc, updateDoc,
+} from '@firebase/firestore';
 import { useSelector } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
@@ -37,32 +39,40 @@ export default function ChatFooter({ recipientId, uid }) {
       recipientId: uid,
       recipientImage: photoURL,
       recipientName: displayName,
+      messageList: [message],
     };
-
-    console.log('recipient chat list is ==>', senderChatList);
 
     try {
       const senderRef = doc(db, 'vendors', uid);
       const recipientRef = doc(db, 'vendors', recipientId);
+      const docSnap = await getDoc(recipientRef);
 
       setMessage('');
       e.target.reset();
 
-      await updateDoc(senderRef, {
-        messages: arrayUnion(messageObject),
-      });
+      if (docSnap.exists) {
+        const chatList = docSnap.data().chatList || [];
 
-      await updateDoc(recipientRef, {
-        chatList: arrayUnion(senderChatList),
-      });
+        const filteredChatList = chatList.filter(
+          (chatData) => chatData.recipientId !== senderChatList.recipientId,
+        );
 
-      await updateDoc(recipientRef, {
-        messages: arrayUnion(messageObject),
-      });
+        const newChatList = [senderChatList, ...filteredChatList];
 
-      await updateDoc(recipientRef, {
-        newMessages: arrayUnion(recipientId),
-      });
+        await updateDoc(recipientRef, { chatList: newChatList });
+
+        await updateDoc(senderRef, {
+          messages: arrayUnion(messageObject),
+        });
+
+        await updateDoc(recipientRef, {
+          messages: arrayUnion(messageObject),
+        });
+
+        await updateDoc(recipientRef, {
+          newMessages: arrayUnion(recipientId),
+        });
+      }
     } catch (err) {
       console.log(err.message);
     }
