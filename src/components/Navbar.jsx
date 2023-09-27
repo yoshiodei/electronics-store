@@ -101,6 +101,16 @@ function Navbar() {
             phoneNumber: userData.phoneNumber,
             photoURL: userData.photoURL,
           };
+
+          const dataToStore = { isAnonymous: user?.isAnonymous };
+          const dataJSON = JSON.stringify(dataToStore);
+
+          const storeEmailVerifyValue = { emailVerified: user?.emailVerified };
+          const storeEmailVerifyValueJSON = JSON.stringify(storeEmailVerifyValue);
+
+          localStorage.setItem('isAnonymous', dataJSON);
+          localStorage.setItem('emailVerified', storeEmailVerifyValueJSON);
+
           dispatch(setUserInfo(userInfo));
         }
       } else {
