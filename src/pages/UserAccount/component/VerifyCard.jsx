@@ -5,21 +5,25 @@ import { selectAuthState } from '../../../redux/slice/authSlice';
 
 export default function VerifyCard() {
   const navigate = useNavigate();
-  const { loginInfo } = useSelector(selectAuthState);
-  const { uid } = loginInfo;
+  const { userInfo, loginInfo } = useSelector(selectAuthState);
+  const { uid, isAnonymous } = loginInfo;
+  const { emailVerified } = userInfo;
   const { id } = useParams();
 
   const emailVerifiedJSON = localStorage.getItem('emailVerified');
-  const { emailVerified } = JSON.parse(emailVerifiedJSON);
-
   const isAnonymousJSON = localStorage.getItem('isAnonymous');
-  const { isAnonymous } = JSON.parse(isAnonymousJSON);
 
-  if (isAnonymous && (uid !== id)) {
+  const verifiedEmail = JSON.parse(emailVerifiedJSON);
+  const userAnonymous = JSON.parse(isAnonymousJSON);
+
+  const userIsAnonymous = userAnonymous?.isAnonymous || isAnonymous;
+  const userEmailIsVerified = verifiedEmail?.emailVerified || emailVerified;
+
+  if (userIsAnonymous && (uid !== id)) {
     return null;
   }
 
-  if (emailVerified) {
+  if (userEmailIsVerified) {
     return null;
   }
 

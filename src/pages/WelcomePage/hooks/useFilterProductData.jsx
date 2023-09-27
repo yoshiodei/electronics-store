@@ -22,6 +22,8 @@ export default function useFilterProductData(
   useEffect(() => {
     const filterProductData = async () => {
       try {
+        setIsLoading(true);
+
         const filtered = data.filter(
           (item) => (
             item.price >= minPrice
@@ -36,6 +38,7 @@ export default function useFilterProductData(
         setCurrentPage(1);
         setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.log(error.message);
       }
     };

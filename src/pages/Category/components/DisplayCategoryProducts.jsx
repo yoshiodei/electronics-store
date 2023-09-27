@@ -9,6 +9,9 @@ import ProductCard from '../../../components/ProductCard';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
 import Loader from '../../../components/Loader';
 import EmptyDisplay from '../../../components/EmptyDisplay';
+import FilterByDistance from '../../WelcomePage/components/FilterByDistance';
+import isItemWithinMiles from '../../WelcomePage/utils/isItemWithinMiles';
+import { selectLocationState } from '../../../redux/slice/locationSlice';
 
 export default function DisplayCategoryProducts() {
   const [data, setData] = useState([]);
@@ -16,7 +19,9 @@ export default function DisplayCategoryProducts() {
   const {
     updateTime: time, maxPrice, minPrice, condition, brand,
   } = filterCategoryObject;
+  const { coordinates } = useSelector(selectLocationState);
   const [currentPage, setCurrentPage] = useState(1);
+  const [miles, setMiles] = useState(70);
   const [itemsPerPage] = useState(32);
   const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -96,6 +101,7 @@ export default function DisplayCategoryProducts() {
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
         && (item.brand === brand || brand === 'all')
+        && isItemWithinMiles(miles, coordinates, item)
           ),
         );
         setFilteredData(filtered);
@@ -106,7 +112,7 @@ export default function DisplayCategoryProducts() {
     };
 
     filterData();
-  }, [data, time]);
+  }, [data, time, miles]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -121,33 +127,40 @@ export default function DisplayCategoryProducts() {
   }
 
   if (!isLoading && filteredData.length === 0) {
-    return (<EmptyDisplay />);
+    return (
+      <>
+        <FilterByDistance setMiles={setMiles} miles={miles} />
+        <EmptyDisplay />
+      </>
+    );
   }
 
   return (
-    <div className="search-result-items">
-      <div className="row g-2">
-        {
+    <>
+      <FilterByDistance setMiles={setMiles} miles={miles} />
+      <div className="search-result-items">
+        <div className="row g-2">
+          {
       currentItems.map((product) => (
         <div className="col-6 col-md-3">
           <ProductCard product={product} />
         </div>
       ))
       }
-      </div>
-      <div className="d-flex justify-content-center mt-5">
-        <ul className="pagination">
-          <li className="page-item pagination__prev-page-item">
-            <button
-              className="page-link"
-              type="button"
-              disabled={currentPage === 1}
-              onClick={() => paginate(currentPage - 1)}
-            >
-              Prev
-            </button>
-          </li>
-          {
+        </div>
+        <div className="d-flex justify-content-center mt-5">
+          <ul className="pagination">
+            <li className="page-item pagination__prev-page-item">
+              <button
+                className="page-link"
+                type="button"
+                disabled={currentPage === 1}
+                onClick={() => paginate(currentPage - 1)}
+              >
+                Prev
+              </button>
+            </li>
+            {
             Array.from({ length: Math.ceil(filteredData.length / itemsPerPage) })
               .map((_, index) => (
                 <li className="page-item pagination__page-item">
@@ -162,18 +175,19 @@ export default function DisplayCategoryProducts() {
                 </li>
               ))
            }
-          <li className="page-item pagination__next-page-item">
-            <button
-              className="page-link"
-              type="button"
-              disabled={currentPage === Math.ceil(filteredData.length / itemsPerPage)}
-              onClick={() => paginate(currentPage + 1)}
-            >
-              Next
-            </button>
-          </li>
-        </ul>
+            <li className="page-item pagination__next-page-item">
+              <button
+                className="page-link"
+                type="button"
+                disabled={currentPage === Math.ceil(filteredData.length / itemsPerPage)}
+                onClick={() => paginate(currentPage + 1)}
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

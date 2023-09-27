@@ -9,19 +9,21 @@ export default function useSetViews() {
   const { id } = useParams();
   const [userId, setUserId] = useState('');
   const { loginInfo } = useSelector(selectAuthState);
-  const { uid } = loginInfo;
+  const { uid, isAnonymous } = loginInfo;
 
   const deviceId = localStorage.getItem('deviceId');
   const isAnonymousJSON = localStorage.getItem('isAnonymous');
 
-  const { isAnonymous } = JSON.parse(isAnonymousJSON);
+  const userAnonymous = JSON.parse(isAnonymousJSON);
+
+  const userIsAnonymous = userAnonymous?.isAnonymous || isAnonymous;
 
   const updateProductViews = async () => {
     const productRef = doc(db, 'products', id);
 
-    if (isAnonymous) {
+    if (userIsAnonymous) {
       setUserId(deviceId);
-    } else if (!isAnonymous && uid) {
+    } else if (!userIsAnonymous && uid) {
       setUserId(uid);
     }
 

@@ -18,6 +18,7 @@ export default function useItemsFetch(setIsLoading, setFilteredData, setData) {
       if (productsList.length > 1) {
         setData(productsList);
         setFilteredData(productsList);
+        setIsLoading(false);
       } else {
         try {
           const q = query(
@@ -56,7 +57,7 @@ export default function useItemsFetch(setIsLoading, setFilteredData, setData) {
 
           const q4 = query(
             collection(db, 'products'),
-            where('isPromoted', '==', true),
+            where('isPromoted', '==', false),
             where('status', '==', 'pending'),
           );
           const querySnapshot4 = await getDocs(q4);
@@ -65,10 +66,11 @@ export default function useItemsFetch(setIsLoading, setFilteredData, setData) {
             allProducts.push({ ...queryData, id: doc.id });
           });
 
-          console.log('this is from use Items =>', allProducts);
+          console.log('this is from all products =>', allProducts);
           setData(allProducts);
           dispatch(fillProductsList(allProducts));
           setFilteredData(allProducts);
+          setIsLoading(false);
         } catch (error) {
           console.log(error.message);
           setIsLoading(false);

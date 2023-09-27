@@ -37,8 +37,6 @@ export default function DisplayCards() {
     setIsLoading,
   );
 
-  console.log('check this final =>>', data);
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
