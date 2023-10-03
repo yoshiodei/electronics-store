@@ -47,7 +47,7 @@ export default function Main() {
       );
   };
 
-  useEffect(async () => {
+  const addView = async () => {
     if (userIsAnonymous) {
       try {
         await updateDoc(docRef, {
@@ -66,6 +66,10 @@ export default function Main() {
         console.log(error.message);
       }
     }
+  };
+
+  useEffect(() => {
+    addView();
   }, []);
 
   useEffect(() => {

@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect,
+} from 'react';
 
 export default function AdPanel() {
   const isInProductionMode = process.env.NODE_ENV === 'production';
