@@ -6,7 +6,7 @@ import {
 import { fillProductsList, selectProductsState } from '../../../redux/slice/productsSlice';
 import { db } from '../../../config/firebaseConfig';
 
-export default function useItemsFetch(setIsLoading, setFilteredData, setData) {
+export default function useItemsFetch(setIsLoading, setFilteredData, setData, isLocationAvailable) {
   const { productsList } = useSelector(selectProductsState);
   const dispatch = useDispatch();
 
@@ -79,5 +79,5 @@ export default function useItemsFetch(setIsLoading, setFilteredData, setData) {
     };
 
     fetchItems();
-  }, []);
+  }, [isLocationAvailable]);
 }

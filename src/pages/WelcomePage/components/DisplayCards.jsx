@@ -26,7 +26,7 @@ export default function DisplayCards() {
   const { coordinates, isLocationAvailable } = useSelector(selectLocationState);
 
   useGetUserLocation(isLocationAvailable);
-  useItemsFetch(setIsLoading, setFilteredData, setData);
+  useItemsFetch(setIsLoading, setFilteredData, setData, isLocationAvailable);
   useFilterProductData(
     data,
     setFilteredData,
