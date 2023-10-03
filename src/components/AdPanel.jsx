@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function AdPanel() {
   const isInProductionMode = process.env.NODE_ENV === 'production';
@@ -11,13 +11,38 @@ export default function AdPanel() {
     );
   }
 
+  const pathName = window.location.pathname;
+
+  useEffect(() => {
+    const scriptElement = document.querySelector(
+      'script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1115234717744723"]',
+    );
+
+    const handleScriptLoad = () => {
+      try {
+        if (window.adsbygoogle) {
+          console.log('pushing ads');
+          window.adsbygoogle.push({});
+        } else {
+          scriptElement?.addEventListener('load', handleScriptLoad);
+          console.log('waiting until adsense lib is loaded');
+        }
+      } catch (err) {
+        console.log('error in adsense', err.message);
+      }
+    };
+
+    handleScriptLoad();
+
+    return () => {
+      if (scriptElement) {
+        scriptElement.removeEventListener('load', handleScriptLoad);
+      }
+    };
+  }, [pathName]);
+
   return (
     <div className="google-ad">
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1115234717744723"
-        crossOrigin="anonymous"
-      />
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
@@ -26,11 +51,6 @@ export default function AdPanel() {
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push(
-        {}
-        );
-      </script>
     </div>
   );
 }
