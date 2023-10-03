@@ -47,7 +47,7 @@ export default function Main() {
         <div className="main-section__left-div">
           <ProductDetail />
           <ProductLocation />
-          <ViewsBox />
+          <ViewsBox uid={uid} />
           <VendorDetails />
           {!isAnonymous && <ButtonsBox product={product} />}
           {(!isAnonymous && uid === product?.vendorId)

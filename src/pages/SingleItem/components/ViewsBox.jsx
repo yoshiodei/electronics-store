@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../../../config/firebaseConfig';
 
-export default function ViewsBox() {
+export default function ViewsBox({ uid }) {
   const { id } = useParams();
   const [viewCount, setViewCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [vendorId, setVendorId] = useState('');
 
   const fetchData = () => {
     setIsLoading(true);
@@ -15,6 +16,7 @@ export default function ViewsBox() {
       .then((itemDoc) => {
         if (itemDoc.exists()) {
           const data = itemDoc.data();
+          setVendorId(data?.vendorId);
           if (!data?.viewCount) {
             setViewCount(0);
           } else {
@@ -35,7 +37,7 @@ export default function ViewsBox() {
     fetchData();
   }, []);
 
-  if (isLoading) {
+  if (isLoading || ((uid !== vendorId))) {
     return null;
   }
 

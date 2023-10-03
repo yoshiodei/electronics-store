@@ -10,6 +10,7 @@ import Hero from './components/Hero';
 import SearchBar from './components/SearchBar';
 import useTopScroll from '../../Hooks/useTopScroll';
 import { setFilter } from '../../redux/slice/productsSlice';
+import HorizontalAdPanel from '../../components/HorizontalAdPanel';
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ export default function Main() {
           <SearchBar />
           <SearchCategoriesBox />
           <Hero />
+          <HorizontalAdPanel />
           <SectionHeader>All Products</SectionHeader>
           <DisplayCards />
         </div>

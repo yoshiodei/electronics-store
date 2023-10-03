@@ -34,8 +34,7 @@ export default function ProductCard({ product }) {
       console.log('did not add to wishlist');
     } else {
       dispatch(addToWhishList({ ...wishListProduct, uid, image }));
-      console.log('your id is', uid);
-      toast.success('Item added successfully!', {
+      toast.success(`${name} added to wish list`, {
         position: 'top-center',
         autoClose: 1500,
         hideProgressBar: true,
@@ -57,11 +56,6 @@ export default function ProductCard({ product }) {
         <h5 className="product-card__product-price">{`$ ${price}`}</h5>
         <p className="product-card__product-name">{name}</p>
         <div className="product-card__product-location-div d-flex align-items-center">
-          {/* <i className="product-card__product-location-icon fa-solid fa-location-dot" />
-          <p className="product-card__product-location-name">
-            {location?.locationIsSet ? `${location?.town}, ${location?.state}`
-            : 'location is unknown'}
-          </p> */}
           <p className="product-card__product-location-name">{brand}</p>
         </div>
         <p className="product-card__product-mile-range">{parseInt(miles) >= 0 ? `${miles} miles away` : '' }</p>

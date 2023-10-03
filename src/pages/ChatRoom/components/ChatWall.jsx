@@ -164,8 +164,22 @@ export default function ChatWall({ uid }) {
         && (
         <>
           <div className="chat-wall__header-image-div">
-            {(recipientImage === '') && (<img src={profile} alt="user profile" className="chat-wall__header-image" />)}
-            {!(recipientImage === '') && (<img src={profile} alt="user profile" className="chat-wall__header-image" />)}
+            {
+              (recipientImage === '')
+              && (
+                <Link to={`/user-account/${recipientId}`}>
+                  <img src={profile} alt="user profile" className="chat-wall__header-image" />
+                </Link>
+              )
+            }
+            {
+              !(recipientImage === '')
+              && (
+                <Link to={`/user-account/${recipientId}`}>
+                  <img src={recipientImage} alt="user profile" className="chat-wall__header-image" />
+                </Link>
+              )
+            }
           </div>
           <div className="chat-wall__header-user-info">
             <Link className="h4" to={`/user-account/${recipientId}`}>{recipientName}</Link>

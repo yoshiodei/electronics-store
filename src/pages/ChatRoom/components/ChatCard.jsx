@@ -20,8 +20,22 @@ export default function ChatCard({ mssg }) {
       className={isMe ? 'chat-card d-flex chat-card--alt' : 'chat-card d-flex'}
     >
       <div className="chat-card__image-div">
-        {(mssg?.senderImage === '') && (<img src={profile} alt="user profile" className="chat-card__image" />)}
-        {!(mssg?.senderImage === '') && (<img src={mssg.senderImage} alt="user profile" className="chat-card__image" />)}
+        {
+          (mssg?.senderImage === '')
+          && (
+            <Link to={`/user-account/${mssg.senderId}`}>
+              <img src={profile} alt="user profile" className="chat-card__image" />
+            </Link>
+          )
+        }
+        {
+          !(mssg?.senderImage === '')
+          && (
+            <Link to={`/user-account/${mssg.senderId}`}>
+              <img src={mssg.senderImage} alt="user profile" className="chat-card__image" />
+            </Link>
+          )
+        }
       </div>
       <div className="chat-card__message-div">
         <p className="chat-card__message">

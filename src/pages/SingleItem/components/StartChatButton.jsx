@@ -1,46 +1,55 @@
-import React from 'react';
-// import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 
-// import { SET_RECIPIENT_CHAT_DETAILS } from '../../../redux/slice/chatSlice';
 import { selectAuthState } from '../../../redux/slice/authSlice';
-// import { db } from '../../../config/firebaseConfig';
 import useSetChatList from '../hooks/useSetChatList';
+import RegisterModal from '../../../components/RegisterModal';
+import SignInModal from '../../../components/SignInModal';
 
 export default function StartChatButton({ recipientData }) {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
   const { loginInfo } = useSelector(selectAuthState);
-  const { uid } = loginInfo;
+  const { isAnonymous, uid } = loginInfo;
 
   const { setChatList } = useSetChatList();
 
-  // const handleButtonClick = () => {
-  //   dispatch(SET_RECIPIENT_CHAT_DETAILS(recipientData));
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
 
-  //   const vendorRef = doc(db, 'vendors', uid);
+  const handleCloseRegisterModal = () => setShowRegisterModal(false);
+  const handleShowRegisterModal = () => setShowRegisterModal(true);
+  const handleCloseSignInModal = () => setShowSignInModal(false);
+  const handleShowSignInModal = () => setShowSignInModal(true);
 
-  //   updateDoc(vendorRef, {
-  //     chatList: arrayUnion({
-  //       recipientName: recipientData.vendor.displayName,
-  //       recipientId: recipientData.vendorId,
-  //       recipientImage: recipientData.vendor.image,
-  //     }),
-  //   })
-  //     .then(() => {
-  //       navigate('/chat-room');
-  //     })
-  //     .catch(
-  //       (err) => {
-  //         console.log('No such document!', err.message);
-  //       },
-  //     );
-  // };
+  const isAnonymousJSON = localStorage.getItem('isAnonymous');
+
+  const userAnonymous = JSON.parse(isAnonymousJSON);
+
+  const userIsAnonymous = userAnonymous?.isAnonymous || isAnonymous;
 
   const handleStartChat = () => {
     setChatList(uid, recipientData);
   };
+
+  if (userIsAnonymous) {
+    return (
+      <>
+        <button type="button" className="start-chat-button" title="message vendor" onClick={handleShowSignInModal}>
+          <i className="fa-regular fa-message" />
+        </button>
+
+        <RegisterModal
+          handleCloseRegisterModal={handleCloseRegisterModal}
+          showRegisterModal={showRegisterModal}
+          handleShowSignInModal={handleShowSignInModal}
+        />
+        <SignInModal
+          handleCloseSignInModal={handleCloseSignInModal}
+          showSignInModal={showSignInModal}
+          handleShowRegisterModal={handleShowRegisterModal}
+        />
+      </>
+    );
+  }
 
   return (
     <button type="button" className="start-chat-button" title="message vendor" onClick={handleStartChat}>

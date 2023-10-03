@@ -20,8 +20,22 @@ export default function ChatListHeader({ recipientName, recipientImage, recipien
       && (
       <div className="chat-list__mobile-header__user-info">
         <div className="chat-list__mobile-header__image-div">
-          {(recipientImage === '') && (<img src={profile} alt="user profile" className="chat-list__mobile-header__image" />)}
-          {!(recipientImage === '') && (<img src={profile} alt="user profile" className="chat-list__mobile-header__image" />)}
+          {
+           (recipientImage === '')
+           && (
+           <Link to={`/user-account/${recipientId}`}>
+             <img src={profile} alt="user profile" className="chat-list__mobile-header__image" />
+           </Link>
+           )
+          }
+          {
+          !(recipientImage === '')
+          && (
+            <Link to={`/user-account/${recipientId}`}>
+              <img src={recipientImage} alt="user profile" className="chat-list__mobile-header__image" />
+            </Link>
+          )
+          }
         </div>
         <Link className="h6" to={`/user-account/${recipientId}`}>{recipientName}</Link>
       </div>

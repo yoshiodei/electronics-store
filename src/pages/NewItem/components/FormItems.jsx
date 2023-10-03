@@ -9,11 +9,13 @@ import {
 } from '@firebase/firestore';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
 import categoryObj from './categoryObj';
 import { addNewProduct } from '../../../redux/slice/productsSlice';
+import { stripePaymentLink } from '../../../Constants/constantVariables';
 
 export default function FormItems() {
   const initialLocation = {
@@ -32,6 +34,8 @@ export default function FormItems() {
   const [selectedCategory, setSelectedCategory] = useState('phones');
   const [selectedBrand, setSelectedBrand] = useState(categoryObj.phones[0]);
   const [otherBrand, setOtherBrand] = useState('');
+
+  const navigate = useNavigate();
 
   const handleCategoryChange = (event) => {
     const category = event.target.value;
@@ -241,6 +245,7 @@ export default function FormItems() {
           category: selectedCategory,
           brand: itemBrand,
           status: 'pending',
+          postedFrom: 'web',
           id: productId,
           vendor: vendorData,
           vendorId: uid,
@@ -261,9 +266,8 @@ export default function FormItems() {
         localStorage.setItem('promotedItem', promotedItemJSON);
 
         console.log(promotedItem);
-
-        // window.location.href = stripePaymentLink;
-        window.location.href = 'https://buy.stripe.com/test_cN22cd7OSf0j4fu5kk';
+        window.location.href = stripePaymentLink;
+        // window.location.href = 'https://buy.stripe.com/test_cN22cd7OSf0j4fu5kk';
       } catch (error) {
         setIsPosting(false);
         console.log('cannot submit form', error.message);
@@ -390,6 +394,7 @@ export default function FormItems() {
         brand: itemBrand,
         price: price.trim(),
         status: 'pending',
+        postedFrom: 'web',
         images: imageUrls,
         vendor: vendorData,
         datePosted: Date.now(),
@@ -416,7 +421,7 @@ export default function FormItems() {
 
       dispatch(addNewProduct(productsData));
 
-      toast.success('Item Posted successfully!', {
+      toast.success(`Your item ${name} Posted successfully!`, {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -430,6 +435,7 @@ export default function FormItems() {
       console.log('new item', productsData);
 
       setIsPosting(false);
+      navigate('/');
     } catch (error) {
       setIsPosting(false);
       console.log('cannot submit form', error.message);

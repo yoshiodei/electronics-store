@@ -18,7 +18,7 @@ export default function Main() {
 
       await setDoc(doc(db, 'products', promotedItem.id), promotedItem);
 
-      toast.success('Item Posted successfully!', {
+      toast.success(`Your item ${promotedItem?.name} Posted successfully!`, {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
