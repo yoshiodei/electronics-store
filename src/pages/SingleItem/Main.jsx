@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import {
+  arrayUnion, doc, getDoc, updateDoc,
+} from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AdPanel from '../../components/AdPanel';
@@ -20,8 +22,16 @@ export default function Main() {
   const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous, uid } = loginInfo;
 
+  const docRef = doc(db, 'products', id);
+
+  const deviceId = localStorage.getItem('deviceId');
+  const isAnonymousJSON = localStorage.getItem('isAnonymous');
+
+  const userAnonymous = JSON.parse(isAnonymousJSON);
+
+  const userIsAnonymous = userAnonymous?.isAnonymous || isAnonymous;
+
   const fetchData = () => {
-    const docRef = doc(db, 'products', id);
     getDoc(docRef)
       .then((itemDoc) => {
         if (itemDoc.exists()) {
@@ -37,6 +47,27 @@ export default function Main() {
       );
   };
 
+  useEffect(async () => {
+    if (userIsAnonymous) {
+      try {
+        await updateDoc(docRef, {
+          viewCount: arrayUnion(deviceId),
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    if (!userAnonymous) {
+      try {
+        await updateDoc(docRef, {
+          viewCount: arrayUnion(uid),
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -49,10 +80,10 @@ export default function Main() {
           <ProductLocation />
           <ViewsBox uid={uid} />
           <VendorDetails />
-          {!isAnonymous && <ButtonsBox product={product} />}
-          {(!isAnonymous && uid === product?.vendorId)
+          {!userIsAnonymous && <ButtonsBox product={product} />}
+          {(!userIsAnonymous && uid === product?.vendorId)
           && <EditItemButton product={product} id={id} />}
-          {(!isAnonymous && uid === product?.vendorId)
+          {(!userIsAnonymous && uid === product?.vendorId)
           && <RemoveItemButtonsBox product={product} />}
           <AdPanel />
         </div>
@@ -63,10 +94,10 @@ export default function Main() {
             <ProductLocation />
             <ViewsBox />
             <VendorDetails />
-            {!isAnonymous && <ButtonsBox product={product} />}
-            {(!isAnonymous && uid === product?.vendorId)
+            {!userIsAnonymous && <ButtonsBox product={product} />}
+            {(!userIsAnonymous && uid === product?.vendorId)
           && <EditItemButton product={product} id={id} />}
-            {(!isAnonymous && uid === product?.vendorId)
+            {(!userIsAnonymous && uid === product?.vendorId)
           && <RemoveItemButtonsBox product={product} />}
           </div>
           {/* <SimilarItems /> */}
