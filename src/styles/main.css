@@ -997,7 +997,7 @@ a {
 .google-ad {
   background-color: rgba(227, 227, 227, 0.1137254902);
   width: 295px;
-  height: 295px;
+  height: auto;
   margin-bottom: 20px;
   overflow: hidden;
   position: sticky !important;
