@@ -31,6 +31,7 @@ export default function DisplayCards() {
     data,
     setFilteredData,
     setCurrentPage,
+    isLocationAvailable,
     miles,
     coordinates,
     time,

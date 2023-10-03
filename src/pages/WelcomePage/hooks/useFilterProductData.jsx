@@ -11,6 +11,7 @@ export default function useFilterProductData(
   coordinates,
   time,
   setIsLoading,
+  isLocationAvailable,
 ) {
   console.log('this is from filter Items =>', data);
 
@@ -24,15 +25,30 @@ export default function useFilterProductData(
       try {
         setIsLoading(true);
 
-        const filtered = data.filter(
-          (item) => (
-            item.price >= minPrice
-            && item.price <= maxPrice
-            && (item.condition === condition || condition === 'all')
-            && (item.category === category || category === 'all')
-            && isItemWithinMiles(miles, coordinates, item)
-          ),
-        );
+        let filtered = [];
+
+        if (isLocationAvailable) {
+          filtered = data.filter(
+            (item) => (
+              item.price >= minPrice
+              && item.price <= maxPrice
+              && (item.condition === condition || condition === 'all')
+              && (item.category === category || category === 'all')
+              && isItemWithinMiles(miles, coordinates, item)
+            ),
+          );
+        }
+
+        if (!isLocationAvailable) {
+          filtered = data.filter(
+            (item) => (
+              item.price >= minPrice
+              && item.price <= maxPrice
+              && (item.condition === condition || condition === 'all')
+              && (item.category === category || category === 'all')
+            ),
+          );
+        }
 
         setFilteredData(filtered);
         setCurrentPage(1);

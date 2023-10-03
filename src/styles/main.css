@@ -3397,12 +3397,12 @@ form input:focus-visible, form textarea:focus-visible {
   .start-chat-button {
     bottom: 20px;
     right: 20px;
-    height: 40px;
-    width: 40px;
+    height: 55px;
+    width: 55px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1882352941);
   }
   .start-chat-button * {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 }
 .buttons-box {

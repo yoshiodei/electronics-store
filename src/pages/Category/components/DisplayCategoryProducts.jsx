@@ -19,7 +19,7 @@ export default function DisplayCategoryProducts() {
   const {
     updateTime: time, maxPrice, minPrice, condition, brand,
   } = filterCategoryObject;
-  const { coordinates } = useSelector(selectLocationState);
+  const { coordinates, isLocationAvailable } = useSelector(selectLocationState);
   const [currentPage, setCurrentPage] = useState(1);
   const [miles, setMiles] = useState(70);
   const [itemsPerPage] = useState(32);
@@ -95,15 +95,31 @@ export default function DisplayCategoryProducts() {
   useEffect(() => {
     const filterData = async () => {
       try {
-        const filtered = data.filter(
-          (item) => (
-            item.price >= minPrice
+        let filtered = [];
+
+        if (isLocationAvailable) {
+          filtered = data.filter(
+            (item) => (
+              item.price >= minPrice
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
         && (item.brand === brand || brand === 'all')
         && isItemWithinMiles(miles, coordinates, item)
-          ),
-        );
+            ),
+          );
+        }
+
+        if (!isLocationAvailable) {
+          filtered = data.filter(
+            (item) => (
+              item.price >= minPrice
+        && item.price <= maxPrice
+        && (item.condition === condition || condition === 'all')
+        && (item.brand === brand || brand === 'all')
+            ),
+          );
+        }
+
         setFilteredData(filtered);
         setCurrentPage(1);
       } catch (error) {
