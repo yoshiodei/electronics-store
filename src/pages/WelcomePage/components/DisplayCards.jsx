@@ -48,7 +48,7 @@ export default function DisplayCards() {
     );
   }
 
-  if (isLoading === true || data.length === 0) {
+  if (isLoading === true && data.length === 0) {
     return (<Loader />);
   }
 
