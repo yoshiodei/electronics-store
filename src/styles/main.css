@@ -424,12 +424,22 @@ a {
   background-color: #fac007 !important;
 }
 
+.sell-now-button-box__mobile {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 430px) {
   .navbar-custom .sell-now {
     display: none;
   }
   .sell-now {
     padding: 0.3em 2em;
+  }
+  .sell-now-button-box__mobile {
+    display: flex;
   }
 }
 .categories-box {
@@ -2514,7 +2524,44 @@ form input:focus-visible, form textarea:focus-visible {
     width: 100%;
   }
   .new-item-form__radio-inner-button-div {
+    display: flex;
+    padding: 0;
+    gap: 12px;
+  }
+  .new-item-form__radio-inner-button-div__button-icon {
+    width: 15px;
+    height: 15px;
+    top: 5px;
+    left: 5px;
+  }
+  .new-item-form__radio-inner-button-div__radio-button {
+    flex: 1;
+    padding: 25px 12px 18px;
+    background-color: transparent;
+    border: 2px solid lightgrey;
+    border-radius: 8px;
+    display: flex;
+    gap: 2px;
     flex-direction: column;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .new-item-form__radio-inner-button-div__radio-button.active {
+    border: 2px solid #5dacdd;
+    background-color: rgb(245, 245, 245);
+  }
+  .new-item-form__radio-inner-button-div__radio-button h6 {
+    color: #1c5d85;
+    text-align: left;
+    font-size: 0.9em;
+  }
+  .new-item-form__radio-inner-button-div__radio-button h4 {
+    color: rgb(117, 117, 117);
+    text-align: left;
+    font-size: 1.2em;
+  }
+  .new-item-form__radio-inner-button-div__radio-button * {
+    margin: 0;
   }
   .new-item-form__radio-inner-div--promote {
     flex-direction: column;
@@ -2937,6 +2984,19 @@ form input:focus-visible, form textarea:focus-visible {
   color: #484848;
   margin: 0;
 }
+.user-detail-box__user-rating-div {
+  display: flex;
+  gap: 3px;
+}
+.user-detail-box__user-rating-div i {
+  color: rgba(0, 0, 0, 0.163);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9em;
+}
+.user-detail-box__user-rating-div i.active {
+  color: #1c5d85;
+}
 .user-detail-box__user-info-value--bio {
   font-weight: 400;
   line-height: 1.2;
@@ -3069,6 +3129,18 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .user-detail-box__user-name {
     font-size: 1.6em;
+  }
+  .user-detail-box__user-rating-div {
+    display: flex;
+    gap: 1px;
+    margin-bottom: 10px;
+  }
+  .user-detail-box__user-rating-div i {
+    color: rgba(255, 255, 255, 0.3607843137);
+    font-size: 12px;
+  }
+  .user-detail-box__user-rating-div i.active {
+    color: yellow;
   }
   .user-detail-box__user-info-outer-div {
     display: flex;

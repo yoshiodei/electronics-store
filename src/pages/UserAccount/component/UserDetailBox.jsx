@@ -166,7 +166,14 @@ export default function UserDetailBox() {
               Rating
             </h6>
             <h6 className="user-detail-box__user-info-value">
-              {userData.rating}
+              <div className="user-detail-box__user-rating-div">
+                {/* <i className="fa-regular fa-star-half-stroke" /> */}
+                <i className="fa-solid fa-star active" />
+                <i className="fa-solid fa-star" />
+                <i className="fa-solid fa-star" />
+                <i className="fa-solid fa-star" />
+                <i className="fa-solid fa-star" />
+              </div>
             </h6>
           </div>
         </div>

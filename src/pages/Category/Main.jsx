@@ -9,6 +9,7 @@ import DisplayCategoryProducts from './components/DisplayCategoryProducts';
 import CategoryInfoBox from './components/CategoryInfoBox';
 import CategoryFilterCard from './components/CategoryFilterCard';
 import { setCategoryFilter } from '../../redux/slice/productsSlice';
+import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
 
 export default function Main() {
   const { category } = useParams();
@@ -44,6 +45,7 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
+          <SellNowButtonBoxMobile />
           <CategoryInfoBox />
           <CategoriesBox />
           <SearchBar />

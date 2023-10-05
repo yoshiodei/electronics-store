@@ -8,6 +8,7 @@ import SearchInfoBox from './components/SearchInfoBox';
 import CategoriesBox from './components/CategoriesBox';
 import DisplaySearchItems from './components/DisplaySearchItems';
 import { setFilter } from '../../redux/slice/productsSlice';
+import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
+          <SellNowButtonBoxMobile />
           <SearchInfoBox />
           <CategoriesBox />
           <SearchBar />

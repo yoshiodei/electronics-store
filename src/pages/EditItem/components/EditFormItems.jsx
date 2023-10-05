@@ -579,7 +579,7 @@ export default function EditFormItems() {
         </div>
         <div className="col-md-12">
           <div className="new-item-form__promote-item-div d-flex">
-            <label className="new-item-form__label">Promote Item (Current charge for promoting an item is $40 for 30 days)</label>
+            <label className="new-item-form__label">Promote Item (Current charge for promoting an item is $8 for 15 days)</label>
             <div className="new-item-form__radio-inner-div new-item-form__radio-inner-div--promote">
               <div className="new-item-form__radio-inner-div">
                 <input

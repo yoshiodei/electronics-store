@@ -26,14 +26,25 @@
     }
 }
 
+.sell-now-button-box__mobile {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 @include mobileScreen{
     .navbar-custom{
         & .sell-now {
             display: none;
-        }
+        }    
     }
 
     .sell-now {
         padding: 0.3em 2em; 
+    }
+
+    .sell-now-button-box__mobile {
+        display: flex;
     }
 }

@@ -60,6 +60,22 @@
         margin: 0;
     }
 
+    &__user-rating-div {
+        display: flex;
+        gap: 3px;
+
+        & i {
+            color: rgba(0, 0, 0, 0.163);
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9em;
+
+            &.active {
+              color: $secondaryColour;
+            }
+        }
+    }
+
     &__user-info-value--bio {
         font-weight: 400;
         line-height: 1.2;
@@ -214,6 +230,21 @@
         &__user-name {
             font-size: 1.6em;
         }
+
+        &__user-rating-div {
+        display: flex;
+        gap: 1px;
+        margin-bottom: 10px;
+
+        & i {
+            color: #ffffff5c;
+            font-size: 12px;
+
+            &.active {
+              color: yellow;
+            }
+        }
+    }
     
        &__user-info-outer-div {
             display: flex;
