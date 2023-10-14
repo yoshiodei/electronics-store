@@ -11,7 +11,10 @@ import appName from '../../Constants/constantVariables';
 
 export default function WishList() {
   const { loginInfo } = useSelector(selectAuthState);
-  const { isAnonymous, uid } = loginInfo;
+  const {
+    isAnonymous,
+    uid,
+  } = loginInfo;
 
   const navigate = useNavigate();
   useEffect(() => {

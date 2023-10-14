@@ -9,8 +9,11 @@ export default function useGetUserLocation() {
 
   const getUserLocation = () => {
     if (navigator.geolocation && userLongitude === 0) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
+
+        console.log('coords', { latitude, longitude });
+
         dispatch(setCoordinate({ latitude, longitude }));
       });
     }

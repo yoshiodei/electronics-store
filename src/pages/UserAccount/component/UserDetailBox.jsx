@@ -12,8 +12,9 @@ import {
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import { db } from '../../../config/firebaseConfig';
 import profile from '../../../assets/images/profile.jpg';
+import DeleteAccountModal from './DeleteAccountModal';
 
-export default function UserDetailBox() {
+export default function UserDetailBox({ userProductIds }) {
   const initialReport = {
     reportType: 'User is a Fraud',
     reportDetail: '',
@@ -23,6 +24,7 @@ export default function UserDetailBox() {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
+  const [showDeleteAccount, setShowDeleteAccount] = useState(false);
 
   const [userData, setUserData] = useState({});
   const { id } = useParams();
@@ -35,6 +37,9 @@ export default function UserDetailBox() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseDeleteAccount = () => setShowDeleteAccount(false);
+  const handleShowDeleteAccount = () => setShowDeleteAccount(true);
 
   const fetchData = async () => {
     const q = query(
@@ -197,6 +202,11 @@ export default function UserDetailBox() {
           <h6 className="user-detail-box__report-user">Edit</h6>
         </button>
         )}
+        {(id === uid) && (
+        <button className="user-detail-box__delete-user-button d-flex" type="button" onClick={handleShowDeleteAccount}>
+          <h6 className="user-detail-box__report-user">Delete Account</h6>
+        </button>
+        )}
         {(id !== uid) && (
         <button className="user-detail-box__report-user-button d-inline-flex" type="button" onClick={handleShow}>
           <i className="user-detail-box__report-user-icon fa-solid fa-flag" />
@@ -204,6 +214,13 @@ export default function UserDetailBox() {
         </button>
         )}
       </div>
+
+      <DeleteAccountModal
+        handleCloseDeleteAccount={handleCloseDeleteAccount}
+        showDeleteAccount={showDeleteAccount}
+        uid={id}
+        userProductIds={userProductIds}
+      />
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>

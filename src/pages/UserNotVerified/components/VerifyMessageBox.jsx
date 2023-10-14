@@ -96,7 +96,7 @@ export default function VerifyMessageBox() {
       <h2 className="verification-box__title">Your Email is not Verified</h2>
       <p className="verification-box__text">
         {`In order to post a new item, you would need to have your account email verified.
-          Click on the button below to send an email to your email "${email}".`}
+          Click on the button below to send an email to your email "${email}". Do check your spam box if mail does not appear in the inbox.`}
       </p>
       <div className="verification-box__buttons-div">
         <button

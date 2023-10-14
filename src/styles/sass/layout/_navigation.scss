@@ -9,7 +9,7 @@
 
     &__top-div{
         background-color: #ffffff20;
-        @include paddingVertical(0.25em);
+        @include paddingVertical(0.5em);
         
         & ul {
             margin: 0 auto;
@@ -17,7 +17,7 @@
         }
 
         & li {
-            margin-left: 1.5em;
+            margin-left: 5px;
             cursor: pointer;
 
         }
@@ -72,8 +72,8 @@
 
         &__pop-over {
             position: absolute;
-            top: 35px;
-            right: -60px;
+            top: 60px;
+            left: 9px;
             border: 1px solid $secondaryColour;
             border-radius: 5px;
             background-color: white;
@@ -131,14 +131,33 @@
     &__icon-button {
         position: relative;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        gap: 1em;
         align-items: center;
-        height: 25px;
-        width: 25px;
-        border-radius: 50px;
         outline: none;
         border: none;
-        background-color: #FFFFFF30;
+        background-color: #00000000;
+        padding: 10px;
+        border-radius: 4px;
+
+        transition: background-color 0.4s;
+
+        &__text-div *{
+            margin: 0;
+            text-align: left;
+            color: $lightFont;
+        }
+
+        &__text-div p{
+            font-size: 0.85em;
+            line-height: 1;
+            margin-bottom: 3px;
+            color: #ffffff95;
+        }
+
+        &:hover {
+            background-color: #00000010;
+        }
     }
 
     &__data-count {
@@ -151,8 +170,8 @@
         border-radius: 50px;
         background-color: $dangerRed;
         position: absolute;
-        top: -3px;
-        right: -10px;
+        top: 10px;
+        left: 30px;
         font-size: 0.65em;
         font-weight: 700;
         color: $lightFont;
@@ -190,18 +209,29 @@
         }
     }
 
-    & li:first-child button {
-        border-left: none;
-        padding-left: 0;
-    }
-
     &__icon {
         color: $lightFont;
         font-size: 0.8em;
+        height: 28px;
+        width: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid white;
+        border-radius: 50%;
     }
 
     & .drawer-button, & .drawer-button__div, & .drawer-button__div__hide {
         display: none;
+    }
+
+    &__sign-in {
+        padding: 0 15px;
+        border-left: none;
+    }
+
+    &__register {
+        padding-left:15px;
     }
 }
 

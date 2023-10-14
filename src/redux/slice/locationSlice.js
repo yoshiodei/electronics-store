@@ -1,6 +1,7 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 
 export const setCoordinates = createAction('setCoordinates');
+export const setUserLocation = createAction('setUserLocation');
 export const setItemMile = createAction('setItemMile');
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   location: {
     state: '',
     town: '',
+    country: '',
   },
   itemMile: 5,
 };
@@ -24,6 +26,11 @@ const locationSlice = createSlice({
     builder
       .addCase(setCoordinates, (state, action) => {
         state.coordinates = action.payload.coordinates;
+        state.isLocationAvailable = action.payload.isLocationAvailable;
+      })
+      .addCase(setUserLocation, (state, action) => {
+        state.coordinates = action.payload.coordinates;
+        state.location = action.payload.location;
         state.isLocationAvailable = action.payload.isLocationAvailable;
       })
       .addCase(setItemMile, (state, action) => {

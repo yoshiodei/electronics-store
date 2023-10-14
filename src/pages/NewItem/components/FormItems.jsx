@@ -14,7 +14,7 @@ import { db, storage } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
 import categoryObj from './categoryObj';
-import { addNewProduct } from '../../../redux/slice/productsSlice';
+import { addNewProduct, selectProductsState } from '../../../redux/slice/productsSlice';
 import { stripePaymentLink } from '../../../Constants/constantVariables';
 
 export default function FormItems() {
@@ -30,6 +30,8 @@ export default function FormItems() {
   const dispatch = useDispatch();
 
   const [location, setLocation] = useState(initialLocation);
+
+  const { userCoordinate } = useSelector(selectProductsState);
 
   const [selectedCategory, setSelectedCategory] = useState('phones');
   const [selectedBrand, setSelectedBrand] = useState(categoryObj.phones[0]);
@@ -71,6 +73,11 @@ export default function FormItems() {
   };
 
   const [newItem, setNewItem] = useState(initialState);
+
+  // const [showLocationModal, setShowLocationModal] = useState(false);
+
+  // const handleShowLocationModal = () => setShowLocationModal(true);
+  // const handleCloseLocationModal = () => setShowLocationModal(false);
 
   const [isPosting, setIsPosting] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -174,21 +181,21 @@ export default function FormItems() {
       return;
     }
 
-    if (!location.locationIsSet) {
-      toast.error('Location has not been set', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+    // if (!location.locationIsSet) {
+    //   // toast.error('Location has not been set', {
+    //   //   position: 'top-center',
+    //   //   autoClose: 2500,
+    //   //   hideProgressBar: true,
+    //   //   closeOnClick: true,
+    //   //   pauseOnHover: false,
+    //   //   draggable: true,
+    //   //   progress: undefined,
+    //   //   theme: 'light',
+    //   // });
 
-      setIsPosting(false);
-      return;
-    }
+    //   setIsPosting(false);
+    //   return;
+    // }
 
     if (images.length === 0) {
       toast.error('No item image selected', {
@@ -250,14 +257,14 @@ export default function FormItems() {
           vendor: vendorData,
           vendorId: uid,
           location: {
-            locationIsSet: location.locationIsSet,
+            locationIsSet: (userCoordinate?.longitude !== 0) || location.locationIsSet,
             locationName: `${location.town}, ${location.state}`,
             country: location.country,
             state: location.state,
             town: location.town,
             coordinates: {
-              longitude: location.longitude,
-              latitude: location.latitude,
+              longitude: userCoordinate?.longitude || location.longitude,
+              latitude: userCoordinate?.latitude || location.latitude,
             },
           },
         };
@@ -312,22 +319,6 @@ export default function FormItems() {
 
     if (isNaN(price.trim())) {
       toast.error('Price must be a number', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-
-      setIsPosting(false);
-      return;
-    }
-
-    if (!location.locationIsSet) {
-      toast.error('Location has not been set', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -400,14 +391,14 @@ export default function FormItems() {
         datePosted: Date.now(),
         vendorId: uid,
         location: {
-          locationIsSet: location.locationIsSet,
+          locationIsSet: (userCoordinate?.longitude !== 0) || location.locationIsSet,
           locationName: `${location.town}, ${location.state}`,
           country: location.country,
           state: location.state,
           town: location.town,
           coordinates: {
-            longitude: location.longitude,
-            latitude: location.latitude,
+            longitude: userCoordinate?.longitude || location.longitude,
+            latitude: userCoordinate?.latitude || location.latitude,
           },
         },
       };
@@ -536,21 +527,21 @@ export default function FormItems() {
           </div>
         </div>
         {(selectedBrand === 'other') && (
-        <div className="col-md-12">
-          <div className="new-item-form__input-div">
-            <label htmlFor="other-brand-input" className="new-item-form__label">
-              Please Specify the Item Brand
-            </label>
-            <input
-              id="other-brand-input"
-              className="new-item-form__input"
-              placeholder="please type the name of your brand"
-              name="other"
-              value={otherBrand}
-              onChange={(e) => setOtherBrand(e.target.value)}
-            />
+          <div className="col-md-12">
+            <div className="new-item-form__input-div">
+              <label htmlFor="other-brand-input" className="new-item-form__label">
+                Please Specify the Item Brand
+              </label>
+              <input
+                id="other-brand-input"
+                className="new-item-form__input"
+                placeholder="please type the name of your brand"
+                name="other"
+                value={otherBrand}
+                onChange={(e) => setOtherBrand(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
         )}
         <GeoGetter location={location} setLocation={setLocation} />
         <div className="col-md-12">
@@ -579,16 +570,16 @@ export default function FormItems() {
 
               <div className="new-item-form__file-input-div">
                 {!newItem.images[0] && (
-                <label htmlFor="file-input-1">
-                  <div>
-                    <i className="fa-solid fa-camera" />
-                    <h6>
-                      Add Image
-                      {' '}
-                      <span> ( Cover Image ) </span>
-                    </h6>
-                  </div>
-                </label>
+                  <label htmlFor="file-input-1">
+                    <div>
+                      <i className="fa-solid fa-camera" />
+                      <h6>
+                        Add Image
+                        {' '}
+                        <span> ( Cover Image ) </span>
+                      </h6>
+                    </div>
+                  </label>
                 )}
                 {newItem.images[0] && (
                   <div className="new-item-form__preview-div">
@@ -613,14 +604,14 @@ export default function FormItems() {
 
               <div className="new-item-form__file-input-div">
                 {!newItem.images[1] && (
-                <label htmlFor="file-input-2">
-                  <div>
-                    <i className="fa-solid fa-camera" />
-                    <h6>
-                      Add Image
-                    </h6>
-                  </div>
-                </label>
+                  <label htmlFor="file-input-2">
+                    <div>
+                      <i className="fa-solid fa-camera" />
+                      <h6>
+                        Add Image
+                      </h6>
+                    </div>
+                  </label>
                 )}
                 {newItem.images[1] && (
                   <div className="new-item-form__preview-div">
@@ -645,14 +636,14 @@ export default function FormItems() {
 
               <div className="new-item-form__file-input-div">
                 {!newItem.images[2] && (
-                <label htmlFor="file-input-3">
-                  <div>
-                    <i className="fa-solid fa-camera" />
-                    <h6>
-                      Add Image
-                    </h6>
-                  </div>
-                </label>
+                  <label htmlFor="file-input-3">
+                    <div>
+                      <i className="fa-solid fa-camera" />
+                      <h6>
+                        Add Image
+                      </h6>
+                    </div>
+                  </label>
                 )}
                 {newItem.images[2] && (
                   <div className="new-item-form__preview-div">
@@ -677,14 +668,14 @@ export default function FormItems() {
 
               <div className="new-item-form__file-input-div">
                 {!newItem.images[3] && (
-                <label htmlFor="file-input-4">
-                  <div>
-                    <i className="fa-solid fa-camera" />
-                    <h6>
-                      Add Image
-                    </h6>
-                  </div>
-                </label>
+                  <label htmlFor="file-input-4">
+                    <div>
+                      <i className="fa-solid fa-camera" />
+                      <h6>
+                        Add Image
+                      </h6>
+                    </div>
+                  </label>
                 )}
                 {newItem.images[3] && (
                   <div className="new-item-form__preview-div">
@@ -709,14 +700,14 @@ export default function FormItems() {
 
               <div className="new-item-form__file-input-div">
                 {!newItem.images[4] && (
-                <label htmlFor="file-input-5">
-                  <div>
-                    <i className="fa-solid fa-camera" />
-                    <h6>
-                      Add Image
-                    </h6>
-                  </div>
-                </label>
+                  <label htmlFor="file-input-5">
+                    <div>
+                      <i className="fa-solid fa-camera" />
+                      <h6>
+                        Add Image
+                      </h6>
+                    </div>
+                  </label>
                 )}
                 {newItem.images[4] && (
                   <div className="new-item-form__preview-div">

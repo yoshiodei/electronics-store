@@ -7,11 +7,11 @@ export default function useFilterProductData(
   data,
   setFilteredData,
   setCurrentPage,
+  isLocationAvailable,
   miles,
   coordinates,
   time,
   setIsLoading,
-  isLocationAvailable,
 ) {
   console.log('this is from filter Items =>', data);
 

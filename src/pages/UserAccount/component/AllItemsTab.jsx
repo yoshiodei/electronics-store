@@ -9,7 +9,7 @@ import ProductCard from '../../../components/ProductCard';
 import EmptyTab from './EmptyTab';
 import InactiveItemProductCard from './InactiveItemProductCard';
 
-export default function AllItemsTab({ uid }) {
+export default function AllItemsTab({ uid, setUserProductIds }) {
   const [products, setProducts] = useState({
     activeProducts: [],
     soldProducts: [],
@@ -30,10 +30,12 @@ export default function AllItemsTab({ uid }) {
       const activeProductsArray = [];
       const soldProductsArray = [];
       const pendingProductsArray = [];
+      const userProductIds = [];
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
         activeProductsArray.push({ ...data, id: doc.id });
+        userProductIds.push(doc.id);
       });
 
       const q2 = query(collection(db, 'soldProducts'), where('vendorId', '==', id));
@@ -54,6 +56,7 @@ export default function AllItemsTab({ uid }) {
       querySnapshot3.forEach((doc) => {
         const data = doc.data();
         pendingProductsArray.push({ ...data, id: doc.id });
+        userProductIds.push(doc.id);
       });
 
       setProducts({
@@ -61,6 +64,8 @@ export default function AllItemsTab({ uid }) {
         soldProducts: soldProductsArray,
         pendingProducts: pendingProductsArray,
       });
+
+      setUserProductIds(userProductIds);
 
       setIsLoading(false);
     } catch (err) {

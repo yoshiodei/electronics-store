@@ -20,6 +20,8 @@ import ChatList from '../pages/ChatRoom/components/ChatList';
 import ForgotPasswordModal from './ForgotPasswordModal';
 import useAssignDeviceId from '../Hooks/useAssignDeviceId';
 import useGetUserLocation from '../Hooks/useGetUserLocation';
+import { selectLocationState } from '../redux/slice/locationSlice';
+// import useSetLocation from '../Hooks/useSetLocation';
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ function Navbar() {
   const { loginInfo, userInfo } = useSelector(selectAuthState);
   const { notificationCount, messageCount } = useSelector(selectNotificationState);
   const { isAnonymous, uid } = loginInfo;
-  const { emailVerified } = userInfo;
+  const { emailVerified, displayName } = userInfo;
   
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -50,10 +52,13 @@ function Navbar() {
   
   const initialCountObject = { notificationCount: 0, messageCount: 0 };
 
+  const { location } = useSelector(selectLocationState);
+
   const [countObject, setCountObject] = useState(initialCountObject);
 
   useAssignDeviceId();
   useGetUserLocation();
+  // useSetLocation();
 
   useEffect(() => {
     if(uid){
@@ -93,13 +98,13 @@ function Navbar() {
 
           const userInfo = {
             emailVerified: user?.emailVerified ? user.emailVerified  : '',
-            displayName: userData.displayName,
-            bio: userData.bio,
-            email: userData.email,
-            followers: userData.followers,
-            rating: userData.rating,
-            phoneNumber: userData.phoneNumber,
-            photoURL: userData.photoURL,
+            displayName: userData?.displayName,
+            bio: userData?.bio,
+            email: userData?.email,
+            followers: userData?.followers,
+            rating: userData?.rating,
+            phoneNumber: userData?.phoneNumber,
+            photoURL: userData?.photoURL,
           };
 
           const dataToStore = { isAnonymous: user?.isAnonymous };
@@ -207,18 +212,30 @@ function Navbar() {
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="notifications" onClick={() => navigate("/notifications")}>
                 <i className="fa-regular fa-bell navbar-custom__icon" />
+                <div className="navbar-custom__icon-button__text-div">
+                  <p>Activity Info</p>
+                  <h6>My Notifications</h6>
+                </div>
                 {notificationsData?.notificationCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.notificationCount }</div>)}
               </button>
             </li>}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
                 <i className="fa-regular fa-message navbar-custom__icon" />
+                <div className="navbar-custom__icon-button__text-div">
+                  <p>Chats</p>
+                  <h6>My Messages</h6>
+                </div>
                 { notificationsData?.messageCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.messageCount }</div>)}
               </button>
             </li>}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
+                <div className="navbar-custom__icon-button__text-div">
+                  <p>Favorites</p>
+                  <h6>My Wish List</h6>
+                </div>
                 { wishListData?.wishList > 0 && (<div className="navbar-custom__data-count">{ wishListData?.wishList }</div>) }
               </button>
             </li>}
@@ -226,6 +243,10 @@ function Navbar() {
               <div className="navbar-custom__user-account-div">
                 <button className="navbar-custom__icon-button" title="user account" onClick={() => setShowAccountModal(!showAccountModal)}>
                   <i className="fa-regular fa-user navbar-custom__icon" />
+                  <div className="navbar-custom__icon-button__text-div">
+                    <p>Account</p>
+                    <h6>{ displayName ? `Hi ${displayName.split(' ')[0]}` : 'My User Profile' }</h6>
+                </div>
                 </button>
                 <ul className={ !showAccountModal ? 'pop-over-hidden' : 'navbar-custom__user-account-div__pop-over'}>
                   <li>
@@ -244,12 +265,12 @@ function Navbar() {
               </div>
             </li>}
             { isAnonymous && <li>
-              <button className="navbar-custom__text-button" onClick={handleShowSignInModal}>
+              <button className="navbar-custom__text-button navbar-custom__sign-in" onClick={handleShowSignInModal}>
                 <h6>Sign In</h6>
               </button>
             </li>}
             { isAnonymous && <li>
-              <button className="navbar-custom__text-button" onClick={handleShowRegisterModal}>
+              <button className="navbar-custom__text-button navbar-custom__register" onClick={handleShowRegisterModal}>
                 <h6>Register Now</h6>
               </button>
             </li>}

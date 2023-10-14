@@ -65,7 +65,7 @@ export default function ProductLocation() {
           Location
         </h6>
         <h5 className="product-location__name">
-          {product?.location?.locationIsSet ? `${product?.location?.town}, ${product?.location?.state}` : 'location is unknown'}
+          {product?.location?.town ? `${product?.location?.town}, ${product?.location?.state}` : 'location is unknown'}
         </h5>
       </div>
       { (parseInt(miles) >= 0) && (

@@ -94,9 +94,9 @@ export default function Main() {
         <div className="main-section__right-div">
           <ItemImageBox />
           <div className="main-section__mobile-div">
+            <ViewsBox uid={uid} />
             <ProductDetail />
             <ProductLocation />
-            <ViewsBox />
             <VendorDetails />
             {!userIsAnonymous && <ButtonsBox product={product} />}
             {(!userIsAnonymous && uid === product?.vendorId)

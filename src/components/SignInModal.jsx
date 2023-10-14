@@ -103,10 +103,10 @@ export default function SignInModal({
         handleCloseSignInModal();
         successToast();
       })
-      .catch((error) => {
+      .catch(() => {
         setIsLoading(false);
         handleCloseSignInModal();
-        errorToast(error);
+        errorToast('Something went wrong, Please try again');
       });
 
     setEmail('');
@@ -181,7 +181,7 @@ export default function SignInModal({
     } catch (error) {
       setIsLoading(false);
       handleCloseSignInModal();
-      errorToast(error);
+      errorToast('Something went wrong, Please try again');
       setGoogleLoading(false);
     }
   };

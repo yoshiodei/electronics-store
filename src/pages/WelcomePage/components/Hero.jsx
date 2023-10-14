@@ -12,7 +12,6 @@ export default function Hero() {
         <p className="welcome-page__hero__text-small">
           {`Discover the Best Deals right here on ${appName}.`}
         </p>
-        {/* <SellNowButton /> */}
       </div>
     </div>
   );

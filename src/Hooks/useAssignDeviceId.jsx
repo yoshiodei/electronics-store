@@ -9,7 +9,7 @@ export default function useAssignDeviceId() {
     const storedDeviceId = localStorage.getItem('deviceId');
 
     if (storedDeviceId) {
-      console.log('deviceId is set');
+      console.log('deviceId is already set');
     } else {
       const newDeviceId = generateDeviceId();
       localStorage.setItem('deviceId', newDeviceId);

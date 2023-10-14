@@ -4,7 +4,7 @@ import ActiveItemsTab from './ActiveItemsTab';
 import SoldItemsTab from './SoldItemsTab';
 import PendingItemsTab from './PendingItemsTab';
 
-export default function ProductsTab({ uid, id }) {
+export default function ProductsTab({ uid, id, setUserProductIds }) {
   return (
     <>
       <ul className="nav nav-tabs tabs-custom" id="myTab" role="tablist">
@@ -26,7 +26,7 @@ export default function ProductsTab({ uid, id }) {
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabIndex="0">
-          <AllItemsTab uid={uid} />
+          <AllItemsTab uid={uid} setUserProductIds={setUserProductIds} />
         </div>
         <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabIndex="0">
           <ActiveItemsTab />

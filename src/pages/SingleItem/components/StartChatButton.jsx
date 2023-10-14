@@ -35,6 +35,7 @@ export default function StartChatButton({ recipientData }) {
       <>
         <button type="button" className="start-chat-button" title="message vendor" onClick={handleShowSignInModal}>
           <i className="fa-regular fa-message" />
+          <h5>Start Chat</h5>
         </button>
 
         <RegisterModal
@@ -54,6 +55,7 @@ export default function StartChatButton({ recipientData }) {
   return (
     <button type="button" className="start-chat-button" title="message vendor" onClick={handleStartChat}>
       <i className="fa-regular fa-message" />
+      <h5>Start Chat</h5>
     </button>
   );
 }

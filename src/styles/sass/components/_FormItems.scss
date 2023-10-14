@@ -270,6 +270,22 @@ form input:focus-visible, form textarea:focus-visible  {
             }
         }
     }
+
+    &__location-indicator {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color:rgba(59, 59, 59, 0.6);
+
+        & h6 {
+            margin-bottom: 0; 
+        }
+
+        & i {
+            color:rgba(59, 59, 59, 0.6);
+            font-size: 0.9em;
+        }
+    }
 }
 
 @include mobileScreen{

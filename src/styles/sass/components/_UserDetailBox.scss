@@ -123,6 +123,31 @@
         }
     }
 
+    &__delete-user-button {
+        width: 100%;
+        padding: 5px 10px;
+        color: #fff;
+        border-radius: 5px;
+        background-color: $dangerRed;
+        @include paddingVertical(8px);
+        margin-top: 8px;
+        margin-bottom: 10px;
+        border: none;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+
+        & i {
+           color: $lightFont;
+           margin-right: 10px;
+           font-weight: 700;
+           text-align: center;
+           letter-spacing: 0.8px;
+        }
+    }
+
+
+
     &__report-user-button {
         align-items: center;
         border: none;
