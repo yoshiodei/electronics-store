@@ -43,7 +43,7 @@ export default function VendorDetails() {
         <div className="vendor-details__profile-info-div">
           <h6 className="vendor-details__profile-title">Vendor</h6>
           <Link to={`/user-account/${product.vendor.userId}`}>
-            <h5 className="vendor-details__profile-name">{product.vendor.displayName}</h5>
+            <h5 className="vendor-details__profile-name">{product?.vendor?.displayName?.split(' ')[0]}</h5>
           </Link>
         </div>
       </div>
