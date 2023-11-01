@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SellNowButton from './SellNowButton';
-import SignInModal from './SignInModal';
+// import SignInModal from './SignInModal';
 import DrawerButton from './DrawerButton';
 import { signOut } from "firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { selectAuthState, setUserId, setUserInfo } from '../redux/slice/authSlice';
-import RegisterModal from './RegisterModal';
+// import RegisterModal from './RegisterModal';
 import appName from '../Constants/constantVariables';
 import appLogo from '../assets/images/electrotossLogoWhite.png';
 import { doc, getDoc, onSnapshot } from '@firebase/firestore';
@@ -21,7 +21,9 @@ import ForgotPasswordModal from './ForgotPasswordModal';
 import useAssignDeviceId from '../Hooks/useAssignDeviceId';
 import useGetUserLocation from '../Hooks/useGetUserLocation';
 import { selectLocationState } from '../redux/slice/locationSlice';
-// import useSetLocation from '../Hooks/useSetLocation';
+import MobileLoginModal from './MobileLoginModal';
+import SignInModal from '../auth/SignIn/SignInModal';
+import SignUpModal from '../auth/Register/SignUpModal';
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -30,10 +32,11 @@ function Navbar() {
   const { loginInfo, userInfo } = useSelector(selectAuthState);
   const { notificationCount, messageCount } = useSelector(selectNotificationState);
   const { isAnonymous, uid } = loginInfo;
-  const { emailVerified, displayName } = userInfo;
+  const { displayName } = userInfo;
   
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showJoinModal, setShowJoinModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
   const [toggleDrawer, setToggleDrawer] = useState(false);
@@ -45,6 +48,8 @@ function Navbar() {
   const handleShowSignInModal = () => setShowSignInModal(true);
   const handleShowForgotPasswordModal = () => setShowForgotPasswordModal(true);
   const handleCloseForgotPasswordModal = () => setShowForgotPasswordModal(false);
+  const handleShowMobileModal = () => setShowJoinModal(true);
+  const handleCloseMobileModal= () => setShowJoinModal(false);
 
   const handleClickWishList = (e) => {
     navigate('/wish-list');
@@ -58,8 +63,7 @@ function Navbar() {
 
   useAssignDeviceId();
   useGetUserLocation();
-  // useSetLocation();
-
+ 
   useEffect(() => {
     if(uid){
     const unsub = onSnapshot(doc(db, 'vendors', uid), (doc) => {
@@ -110,11 +114,7 @@ function Navbar() {
           const dataToStore = { isAnonymous: user?.isAnonymous };
           const dataJSON = JSON.stringify(dataToStore);
 
-          const storeEmailVerifyValue = { emailVerified: user?.emailVerified };
-          const storeEmailVerifyValueJSON = JSON.stringify(storeEmailVerifyValue);
-
           localStorage.setItem('isAnonymous', dataJSON);
-          localStorage.setItem('emailVerified', storeEmailVerifyValueJSON);
 
           dispatch(setUserInfo(userInfo));
         }
@@ -152,18 +152,13 @@ function Navbar() {
           const dataToStore = { isAnonymous: true };
           const dataJSON = JSON.stringify(dataToStore);
 
-          const storeEmailVerifyValue = { emailVerified: false };
-          const storeEmailVerifyValueJSON = JSON.stringify(storeEmailVerifyValue);
-
           const storeNotificationsCounts = { messageCount:0, notificationCount:0 };
           const storeNotificationsCountsJSON = JSON.stringify(storeNotificationsCounts);
 
           const storeWishListCount = { wishList:0 };
           const storeWishListCountJSON = JSON.stringify(storeWishListCount);
 
-          // localStorage.removeItem('emailVerified');
           localStorage.setItem('isAnonymous', dataJSON);
-          localStorage.setItem('emailVerified', storeEmailVerifyValueJSON);
           localStorage.setItem('notificationsCounts', storeNotificationsCountsJSON);
           localStorage.setItem('wishListCount', storeWishListCountJSON);
 
@@ -208,6 +203,18 @@ function Navbar() {
     <>
       <nav id="page-top" className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
         <div className="navbar-custom__top-div">
+        <div className="navbar-custom__top-div__inner-div"> 
+        <div className="navbar-custom__top-brand-div">
+            <Link to="/" className="navbar-custom__brand">
+              <span>
+                <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
+              </span>
+              <span className="h2 navbar-custom__brand-text">
+              { appName }
+              </span>
+            </Link>
+            <p>Electronic Gadgets Marketplace</p>
+          </div>
           <ul className="d-flex justify-content-end align-items-center">
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="notifications" onClick={() => navigate("/notifications")}>
@@ -274,14 +281,10 @@ function Navbar() {
                 <h6>Register Now</h6>
               </button>
             </li>}
-            {/* <li>
-              <button className="navbar-custom__icon-button" title="about" onClick={() => navigate("/about")}>
-                  <i className="fa-solid fa-info navbar-custom__icon" />
-              </button>
-            </li> */}
           </ul>
+          </div>
         </div>
-        <div className="d-flex justify-content-between navbar-custom__bottom-div align-items-center">
+        <div className="navbar-custom__bottom-div">
           <div className="navbar-custom__brand-div">
             <Link to="/" className="navbar-custom__brand">
               <span>
@@ -305,7 +308,8 @@ function Navbar() {
           />
         </div>
       </nav>
-      <RegisterModal handleCloseRegisterModal={handleCloseRegisterModal} showRegisterModal={showRegisterModal} handleShowSignInModal={handleShowSignInModal} />
+      <MobileLoginModal showJoinModal={showJoinModal} handleCloseMobileModal={handleCloseMobileModal} />
+      <SignUpModal handleCloseRegisterModal={handleCloseRegisterModal} showRegisterModal={showRegisterModal} handleShowSignInModal={handleShowSignInModal} setShowRegisterModal={setShowRegisterModal} />
       <SignInModal handleCloseSignInModal={handleCloseSignInModal} showSignInModal={showSignInModal} handleShowRegisterModal={handleShowRegisterModal} setForgotPasswordModal={setShowForgotPasswordModal} />
       <ForgotPasswordModal showModal={showForgotPasswordModal} handleShowSignInModal={handleShowSignInModal} handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}/>
     </>

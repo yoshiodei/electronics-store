@@ -175,6 +175,30 @@
         line-height: 1;
         font-size: 0.9em;
     }
+
+    &__buttons-box__discard-button {
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: $dangerRed;
+        border: none;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+
+        &.button-disabled {
+            cursor: not-allowed;
+            background-color: lighten($dangerRed, 30%);
+        }
+
+    }
+
+    &__delete-account-modal__input {
+        height: 2.3em;
+        width: 80%;
+        border-radius: 4px;
+        padding: 0 10px;
+        margin-top: 15px;
+    }
 }
 
 .edit-profile {

@@ -4,12 +4,19 @@ import {
   query,
   getDocs,
 } from '@firebase/firestore';
-import { deleteUser, getAuth } from 'firebase/auth';
+import {
+  deleteUser,
+  getAuth,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+} from 'firebase/auth';
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
+import { removeProduct, selectProductsState } from '../../../redux/slice/productsSlice';
 
 const successToast = () => {
   toast.success('Account Deleted Successfully', {
@@ -24,8 +31,8 @@ const successToast = () => {
   });
 };
 
-const errorToast = () => {
-  toast.error('Sorry could not delete account', {
+const errorToast = (error) => {
+  toast.error(error, {
     position: 'top-center',
     autoClose: 2500,
     hideProgressBar: true,
@@ -40,43 +47,69 @@ const errorToast = () => {
 export default function DeleteAccountModal({
   showDeleteAccount, handleCloseDeleteAccount,
 }) {
+  const { productsList } = useSelector(selectProductsState);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+
+  const [password, setPassword] = useState('');
 
   const handleDeleteAccount = async () => {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    if (user) {
-      try {
-        setLoading(true);
-        const { uid } = user;
+    const credential = EmailAuthProvider.credential(
+      user.email,
+      password,
+    );
 
-        await deleteDoc(doc(db, 'vendors', uid));
+    try {
+      setLoading(true);
+      const { uid } = user;
 
-        const q = query(
-          collection(db, 'products'),
-          where('vendorId', '==', uid),
-        );
+      console.log('cred', credential);
+      await reauthenticateWithCredential(user, credential);
 
-        const querySnapshot = await getDocs(q);
+      const q = query(
+        collection(db, 'products'),
+        where('vendorId', '==', uid),
+      );
 
-        querySnapshot.forEach(async (d) => {
-          await deleteDoc(doc(db, 'products', d.id));
-        });
+      const querySnapshot = await getDocs(q);
 
-        await deleteUser(user);
+      let editableProductList = productsList;
 
-        navigate('/');
+      querySnapshot.forEach(async (d) => {
+        editableProductList = editableProductList.filter((item) => (d.id !== item.id));
+        dispatch(removeProduct(editableProductList));
 
-        successToast();
-      } catch (err) {
-        console.log(err.message);
-        errorToast();
-      } finally {
-        setLoading(false);
-        handleCloseDeleteAccount();
+        await deleteDoc(doc(db, 'products', d.id));
+      });
+
+      await deleteDoc(doc(db, 'vendors', uid));
+
+      await deleteUser(user);
+
+      navigate('/');
+      successToast();
+    } catch (error) {
+      switch (error.code) {
+        case 'auth/user-mismatch':
+          errorToast('Credential does not correspond to user.');
+          break;
+        case 'auth/wrong-password':
+          errorToast('Incorrect password. Please try again.');
+          break;
+        case 'auth/invalid-email':
+          errorToast('Email provided is not valid.');
+          break;
+        default:
+          errorToast('An error occurred. Account not deleted.');
+          break;
       }
+    } finally {
+      setLoading(false);
+      setPassword('');
     }
   };
 
@@ -91,14 +124,27 @@ export default function DeleteAccountModal({
         <Modal.Body>
           <div className="buttons-box__inner-modal-div">
             <h4>
-              Do you want to permanently delete your account and clear all of its posts?
+              Enter your password to permanently delete your account and clear all of its posts.
             </h4>
+            <input
+              className="user-detail-box__delete-account-modal__input"
+              placeholder="Please enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
         </Modal.Body>
       </div>
       <Modal.Footer>
-        <button className="buttons-box__discard-button" type="button" onClick={handleDeleteAccount}>
-          {loading ? '...deleting' : 'Yes, Delete Account'}
+        <button
+          className={password
+            ? 'user-detail-box__buttons-box__discard-button'
+            : 'user-detail-box__buttons-box__discard-button button-disabled'}
+          type="button"
+          onClick={handleDeleteAccount}
+          disabled={!(password)}
+        >
+          {loading ? '...loading' : 'Yes, Delete Account'}
         </button>
         <button className="buttons-box__close-report-button" type="button" onClick={handleCloseDeleteAccount}>
           Close

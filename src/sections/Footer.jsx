@@ -20,7 +20,7 @@ export default function Footer() {
     <div className="footer">
       <div className="footer__top-div">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <Link to="/" className="footer__brand">
               <span>
                 <img className="footer__app-logo" src={appLogo} alt={appName} />
@@ -37,7 +37,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <h4 className="footer__heading">Categories</h4>
             <ul className="footer__category-list">
               <li className="footer__category-list-item">
@@ -63,7 +63,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <h4 className="footer__heading">Contact Us</h4>
 
             <h6 className="footer__sub-heading mb-3">Reach out to our help desk</h6>
@@ -78,7 +78,7 @@ export default function Footer() {
             </div>
 
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <h4 className="footer__heading">Follow Us</h4>
             <div className="footer__socials-div d-flex">
               <a href="https://web.facebook.com/electrotoss" target="_blank" rel="noreferrer" className="footer__socials-inner-div" title="facebook">

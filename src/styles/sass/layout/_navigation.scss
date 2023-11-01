@@ -10,10 +10,17 @@
     &__top-div{
         background-color: #ffffff20;
         @include paddingVertical(0.5em);
-        
-        & ul {
+
+        &__inner-div {
             margin: 0 auto;
             width: $largeDeviceWidth;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        & ul {
+            margin: 0;
         }
 
         & li {
@@ -30,17 +37,31 @@
     }
 
     &__bottom-div {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
         width: $largeDeviceWidth;
         margin: 0 auto;
         @include paddingVertical(0.5em);
     }
 
     &__brand-div {
+        display: none;
+        flex-direction: column;
+
+        & p {
+            color: white;
+            margin: 0
+        }
+    }
+
+    &__top-brand-div {
         display: flex;
         flex-direction: column;
 
         & p {
-            display: none;
+            color: white;
+            margin: 0
         }
     }
 
@@ -57,6 +78,10 @@
             cursor: pointer;
             padding-top: 5px;
         }
+    }
+
+    & bottom-brand-logo {
+        display: none;
     }
 
     &__pop-over{
@@ -233,6 +258,247 @@
     &__register {
         padding-left:15px;
     }
+}
+
+// LARGE MOBILE SCREEN STYLES
+
+@include largemobileScreen {
+    .navbar-custom {
+        
+        &.toggled {
+            position: fixed;
+            z-index: 10;
+            top:0;
+            right: 0;
+            left: 0;
+        }
+
+        &__top-div{
+            display: none;
+        }
+
+        &__bottom-div {
+            width: 100%;
+            margin: 0;
+            padding: 0 1em;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8em;
+        }
+
+        &__brand-div {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+    
+            & p {
+                display: block;
+                color: white;
+                font-size: 0.85em;
+                margin: 0;
+                letter-spacing: 0.2px;
+                align-self: center;
+            }
+        }
+    
+        &__brand {
+            margin: 0;
+        }
+    
+        & .drawer-button {
+            display: flex;
+            width: 30px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            height: 22px;
+            flex-direction: column;
+            justify-content: space-between;
+
+            &__line {
+                background-color: white;
+                width: 100%;
+                height: 3px;
+            }
+
+            &__line:last-child {
+                width: 60%;
+            }
+
+            &__div {
+                display: block;
+                position: absolute;
+                top: 80px;
+                width: 100vw;
+                right: 0;
+                height: calc(100vh - 80px);
+                overflow-y: scroll;
+                background-color: $backgroundColour;
+                z-index: 6;
+                padding: 0.8em;
+                transition: right 0.2s;
+
+                &__hide {
+                    display: block;
+                    position: absolute;
+                    width: 100vw;
+                    top: 80px;
+                    right: 105vw;
+                    height: calc(100vh - 80px);
+                    overflow-y: scroll;
+                    background-color: $backgroundColour;
+                    z-index: 6;
+                    padding: 0.8em;
+                    transition: right 0.3s;
+                    right: 105vw;
+                }
+
+            }
+
+            &__input-button {
+                position: absolute;
+                z-index: 10;
+                top: 0;
+                right:0;
+                height: 100%;
+                padding: 0 0.5em;
+                background-color: $secondaryColour;
+                color: $lightFont;
+                border-radius: 5px;
+                border: none;
+            }
+
+            &__menu-div{
+                & ul {
+                  padding: 0;
+                }
+            }
+
+            &__menu-item {
+                height: 2.8em;
+                width: 100%;
+                border-bottom: 1px solid $primaryGreyColour;
+
+                & button {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: transparent;
+                    border: none;
+                    padding: 0 0.5em !important;
+                }
+
+                &__button-div {
+                    display: flex;
+                    align-items: center;
+
+                    & i {
+                        font-size: 0.9em;
+                        margin-right: 10px;
+                    }
+                }
+
+                & h6 {
+                    font-weight: 700;
+                    margin: 0;
+                    color: rgb(111, 111, 111);
+                }
+
+                & i {
+                    color: rgb(111, 111, 111);
+                }
+
+                &__inner-button-div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 12%;
+                    height: 100%;
+
+                    &--modified {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        width: 12%;
+                        height: 100%;
+                    }
+                }
+            }
+
+            &__menu-div h5{
+                color: $secondaryColour;
+                font-weight: 700;
+            }
+
+            &__input-div {
+                width: 100%;
+                height: 2.5em;
+                margin-bottom: 20px;
+                position: relative;
+            }
+
+            &__input {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                border: 1px solid $secondaryColour;
+                @include paddingHorizontal(1em);
+            }
+
+            &__sign-in-div {
+                display: flex;
+                justify-content: space-between;
+                height: 2em;
+                width: 100%;
+                margin-bottom: 30px;
+            }
+
+            &__sign-in-button {
+                margin-right: 20px;
+                height: 100%;
+                border-radius: 5px;
+                background-color: $secondaryColour;
+                color: white;
+                border: none;
+                flex: 1;
+                font-weight: 700;
+                letter-spacing: 0.8px;
+            }
+
+            &__register-button {
+                flex: 1;
+                height: 100%;
+                border-radius: 5px;
+                border: 1px solid $secondaryColour;
+                background-color: transparent;
+                color: $secondaryColour;
+                font-weight: 700;
+                letter-spacing: 0.8px;
+            }
+
+            &__sign-out-div {
+                height: 2.5em;
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            &__sign-out-button {
+                height: 100%;
+                color: white;
+                border: none;
+                background-color: $secondaryColour;
+                width: 100%;
+                border-radius: 5px;
+                font-weight: 700;
+                letter-spacing: 0.8px;
+            }
+        }
+    }   
+
 }
 
 // MOBILE SCREEN STYLES

@@ -4,9 +4,9 @@ import DisplayCards from './components/DisplayCards';
 import AdPanel from '../../components/AdPanel';
 import SectionHeader from '../../components/SectionHeader';
 import FilterCard from '../../components/FilterCard';
-import CategoriesBox from '../../components/CategoriesBox';
+// import CategoriesBox from '../../components/CategoriesBox';
 import SearchCategoriesBox from '../SearchResult/components/CategoriesBox';
-import Hero from './components/Hero';
+// import Hero from './components/Hero';
 import SearchBar from './components/SearchBar';
 import useTopScroll from '../../Hooks/useTopScroll';
 import { setFilter } from '../../redux/slice/productsSlice';
@@ -35,7 +35,7 @@ export default function Main() {
     <div className="main-section-div">
       <main className="main-section d-flex justify-content-between">
         <div className="main-section__left-div">
-          <CategoriesBox />
+          {/* <CategoriesBox /> */}
           <SectionHeader>Filter</SectionHeader>
           <FilterCard />
           <AdPanel />
@@ -44,7 +44,7 @@ export default function Main() {
           <SellNowButtonBoxMobile />
           <SearchBar />
           <SearchCategoriesBox />
-          <Hero />
+          {/* <Hero /> */}
           <HorizontalAdPanel />
           <SectionHeader>All Products</SectionHeader>
           <DisplayCards />

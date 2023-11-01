@@ -6,8 +6,7 @@ import SignInModal from './SignInModal';
 import { selectAuthState } from '../redux/slice/authSlice';
 
 export default function SellNowButton() {
-  const { userInfo, loginInfo } = useSelector(selectAuthState);
-  const { emailVerified } = userInfo;
+  const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous } = loginInfo;
 
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -19,25 +18,14 @@ export default function SellNowButton() {
   const handleShowSignInModal = () => setShowSignInModal(true);
 
   const isAnonymousJSON = localStorage.getItem('isAnonymous');
-  const emailVerifiedJSON = localStorage.getItem('emailVerified');
 
-  const verifiedEmail = JSON.parse(emailVerifiedJSON);
   const userAnonymous = JSON.parse(isAnonymousJSON);
 
   const userIsAnonymous = userAnonymous?.isAnonymous || isAnonymous;
-  const userEmailIsVerified = verifiedEmail?.emailVerified || emailVerified;
 
-  if (!userIsAnonymous && userEmailIsVerified) {
+  if (!userIsAnonymous) {
     return (
       <Link to="/new-item" className="sell-now">
-        <h6>Sell Now</h6>
-      </Link>
-    );
-  }
-
-  if (!userIsAnonymous && !userEmailIsVerified) {
-    return (
-      <Link to="/verify-user" className="sell-now">
         <h6>Sell Now</h6>
       </Link>
     );

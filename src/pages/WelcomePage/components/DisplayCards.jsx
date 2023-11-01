@@ -67,7 +67,7 @@ export default function DisplayCards() {
       <div className="row g-2">
         {
       currentItems.map((product) => (
-        <div className="col-6 col-md-3">
+        <div className="col-6 col-sm-4 col-md-3">
           <ProductCard product={product} />
         </div>
       ))

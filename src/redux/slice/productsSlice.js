@@ -12,6 +12,7 @@ export const fillProductsList = createAction('fillProductsList');
 export const setPromotedItem = createAction('setPromotedItem');
 export const setProductToEdit = createAction('setProductToEdit');
 export const addNewProduct = createAction('addNewProduct');
+export const removeProduct = createAction('removeProduct');
 
 export const addToProductsPending = createAsyncThunk(
   'products/addToProductsPending',
@@ -57,6 +58,9 @@ const productsSlice = createSlice({
     builder
       .addCase(setFilter, (state, action) => {
         state.filterObject = action.payload;
+      })
+      .addCase(removeProduct, (state, action) => {
+        state.productsList = action.payload;
       })
       .addCase(setProductToEdit, (state, action) => {
         state.productToEdit = action.payload;

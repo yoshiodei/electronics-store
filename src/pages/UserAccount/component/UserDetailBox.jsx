@@ -13,6 +13,7 @@ import { selectAuthState } from '../../../redux/slice/authSlice';
 import { db } from '../../../config/firebaseConfig';
 import profile from '../../../assets/images/profile.jpg';
 import DeleteAccountModal from './DeleteAccountModal';
+import useDisplayStars from '../hooks/useDisplayStars';
 
 export default function UserDetailBox({ userProductIds }) {
   const initialReport = {
@@ -21,12 +22,14 @@ export default function UserDetailBox({ userProductIds }) {
   };
   const [report, setReport] = useState(initialReport);
 
-  const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
 
   const [show, setShow] = useState(false);
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
 
-  const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+  const renderStars = useDisplayStars(userData.rating);
+
   const { id } = useParams();
   const {
     loginInfo, userInfo,
@@ -146,7 +149,7 @@ export default function UserDetailBox({ userProductIds }) {
         </div>
         <div className="user-detail-box__user-name-div">
           <h5 className="user-detail-box__user-name">
-            {userData.displayName}
+            {userData?.displayName?.split(' ')[0]}
           </h5>
         </div>
         <div className="user-detail-box__user-info-outer-div">
@@ -171,14 +174,7 @@ export default function UserDetailBox({ userProductIds }) {
               Rating
             </h6>
             <h6 className="user-detail-box__user-info-value">
-              <div className="user-detail-box__user-rating-div">
-                {/* <i className="fa-regular fa-star-half-stroke" /> */}
-                <i className="fa-solid fa-star active" />
-                <i className="fa-solid fa-star" />
-                <i className="fa-solid fa-star" />
-                <i className="fa-solid fa-star" />
-                <i className="fa-solid fa-star" />
-              </div>
+              { renderStars }
             </h6>
           </div>
         </div>

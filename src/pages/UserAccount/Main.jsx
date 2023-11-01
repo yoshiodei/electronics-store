@@ -5,7 +5,7 @@ import AdPanel from '../../components/AdPanel';
 import UserDetailBox from './component/UserDetailBox';
 import ProductsTab from './component/ProductsTab';
 import { selectAuthState } from '../../redux/slice/authSlice';
-import VerifyCard from './component/VerifyCard';
+// import VerifyCard from './component/VerifyCard';
 
 export default function Main() {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
-          <VerifyCard />
+          {/* <VerifyCard /> */}
           <div className="main-section__mobile-div">
             <UserDetailBox />
           </div>

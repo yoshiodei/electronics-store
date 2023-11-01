@@ -136,6 +136,18 @@
         font-weight: 600;
     }
 
+    &__verify-button {
+        width: 100%;
+        background-color: $secondaryColour;
+        color: $lightFont;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        font-weight: 600;
+    }
+
+
+
     &__discard-button {
         background-color: $dangerRed;
         color: $lightFont;
@@ -153,10 +165,110 @@
         padding: 2em 1em;
         min-height: 100px;
 
+        &--alt {
+            gap: 10px;
+        }
+
         & h4 {
             text-align: center;
             color: rgb(99, 99, 99);
         }
+    }
+
+    &__phone-input-div {
+        position: relative;
+
+        & h6 {
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            border-right: 1px solid grey;
+            padding: 4px; 
+            padding-right: 7px;
+            padding-left: 0;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+    }
+
+    &__phone-input {
+        padding-left: 3.1em !important;
+    }
+
+    &__input-div--otp {
+        width: 100% !important;
+        margin-top: 2em;
+    }
+
+    &__otp {
+        width: 100% !important;
+    }
+
+    &__input-div {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+
+        & label {
+            font-weight: 600;
+            margin-bottom: 2px;
+
+            & span {
+                color: lightgrey;
+            }
+        }
+
+        & input {
+            height: 2.3em;
+            width: 100%;
+            border-radius: 4px;
+            padding: 10px;
+            border: 1px solid grey;
+
+            &:focus {
+                outline: 1px solid $secondaryColour;
+            }
+        }
+    }
+
+    &__inner-input-div {
+        position: relative;
+
+        & input {
+            padding-left: 45px;
+        }
+
+        & h6 {
+            position: absolute;
+            top: 0.5em;
+            left: 10px;
+            z-index: 2;
+            font-weight: 700;
+            color: grey;
+            border-right: 1px solid grey;
+            padding-right: 5px;
+        }
+    }
+
+    &__verification-error-message {
+        font-size: 0.85em;
+        color: $dangerRed;
+        font-weight: 500;
+        margin: 0;
+        margin-top: 3px;
+    }
+
+    &__verification-success-message {
+        font-size: 0.85em;
+        color: $successGreen;
+        font-weight: 500;
+        margin: 0;
+        margin-top: 3px;
+    }
+
+    &__terms-button {
+        border: none;
+        background-color: transparent;
     }
 
     & button {

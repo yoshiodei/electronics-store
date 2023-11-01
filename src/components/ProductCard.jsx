@@ -30,11 +30,8 @@ export default function ProductCard({ product }) {
   }, [distance, userCoordinates.longitude, userCoordinates.latitude]);
 
   const handleAddToWishList = async (wishListProduct) => {
-    if (isAnonymous || vendor.userId === uid) {
-      console.log('did not add to wishlist');
-    } else {
-      dispatch(addToWhishList({ ...wishListProduct, uid, image }));
-      toast.success(`${name} added to wish list`, {
+    if (isAnonymous) {
+      toast.error('Sign in to add to whishlist', {
         position: 'top-center',
         autoClose: 1500,
         hideProgressBar: true,
@@ -44,7 +41,35 @@ export default function ProductCard({ product }) {
         progress: undefined,
         theme: 'light',
       });
+
+      return null;
+    } if (vendor?.userId === uid) {
+      toast.error('Item you posted cannot be added to whishlist', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      return null;
     }
+    dispatch(addToWhishList({ ...wishListProduct, uid, image }));
+    toast.success(`${name} added to wish list`, {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
+    return null;
   };
 
   return (
