@@ -17,7 +17,7 @@ export default function SoldItemsTab() {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const q = query(collection(db, 'soldProducts'), where('vendorId', '==', id));
+      const q = query(collection(db, 'soldProducts'), where('vendor.uid', '==', id));
       const querySnapshot = await getDocs(q);
       const allProducts = [];
 

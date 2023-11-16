@@ -1,19 +1,44 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import {
+// addDoc, collection, doc, setDoc,
+} from '@firebase/firestore';
+import { useParams } from 'react-router-dom';
 import { selectAuthState } from '../../../redux/slice/authSlice';
-import useSetChatList from '../hooks/useSetChatList';
+// import useSetChatList from '../hooks/useSetChatList';
 import RegisterModal from '../../../components/RegisterModal';
 import SignInModal from '../../../components/SignInModal';
+import useNewChat from '../hooks/useNewChat';
 
 export default function StartChatButton({ recipientData }) {
-  const { loginInfo } = useSelector(selectAuthState);
-  const { isAnonymous, uid } = loginInfo;
+  const { loginInfo, userInfo } = useSelector(selectAuthState);
+  const { photURL } = userInfo;
+  const { isAnonymous } = loginInfo;
+  const { uid } = loginInfo;
+  const { vendor, name } = recipientData;
+  const { id } = useParams();
+  const newChat = useNewChat();
 
-  const { setChatList } = useSetChatList();
+  const firstName = vendor?.displayName?.split(' ')[0];
+
+  const textTemplate = `Hi ${firstName || ''}, I'm interested in the ${name} you have for sale and I would love to chat with you about it.`;
+
+  const messageObject = {
+    senderId: uid,
+    image: photURL || '',
+    displayName: vendor?.displayName?.split(' ')[0] || '',
+    message: textTemplate,
+    recipientId: vendor?.uid,
+    itemName: recipientData.name,
+    itemId: id,
+  };
+
+  // const { setChatList } = useSetChatList();
 
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCloseRegisterModal = () => setShowRegisterModal(false);
   const handleShowRegisterModal = () => setShowRegisterModal(true);
@@ -26,8 +51,10 @@ export default function StartChatButton({ recipientData }) {
 
   const userIsAnonymous = userAnonymous?.isAnonymous || isAnonymous;
 
-  const handleStartChat = () => {
-    setChatList(uid, recipientData);
+  const handleStartChat = async () => {
+    setIsLoading(true);
+    await newChat(messageObject);
+    setIsLoading(false);
   };
 
   if (userIsAnonymous) {
@@ -54,8 +81,17 @@ export default function StartChatButton({ recipientData }) {
 
   return (
     <button type="button" className="start-chat-button" title="message vendor" onClick={handleStartChat}>
-      <i className="fa-regular fa-message" />
-      <h5>Start Chat</h5>
+      {!isLoading ? (
+        <>
+          <i className="fa-regular fa-message" />
+          <h5>Start Chat</h5>
+        </>
+      ) : (
+        <>
+          <i className="fa-regular fa-message" />
+          <h5>...loading</h5>
+        </>
+      )}
     </button>
   );
 }

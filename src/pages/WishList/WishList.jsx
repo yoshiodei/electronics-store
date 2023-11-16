@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbar';
 import Main from './Main';
 import Footer from '../../sections/Footer';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function WishList() {
   const { loginInfo } = useSelector(selectAuthState);
@@ -45,6 +46,7 @@ export default function WishList() {
         <link rel="canonical" href="/wish-list" />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main uid={uid} />
       <Footer />
     </>

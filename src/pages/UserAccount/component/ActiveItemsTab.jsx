@@ -19,7 +19,7 @@ export default function ActiveItemsTab() {
       const q = query(
         collection(db, 'products'),
         where('status', '==', 'active'),
-        where('vendorId', '==', id),
+        where('vendor.uid', '==', id),
       );
       const querySnapshot = await getDocs(q);
       const allProducts = [];

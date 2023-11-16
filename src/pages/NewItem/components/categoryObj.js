@@ -8,4 +8,49 @@ const categoryObj = {
   'headphones and speakers': ['jbl', 'beats', 'other'],
 };
 
+export const categoryBrandArray = {
+  'Computers & Tablets': ['Dell', 'Lenovo', 'Acer', 'Asus', 'Microsoft', 'Toshiba', 'IBM', 'HP', 'LG', 'ViewSonic', 'NEC', 'other'],
+  'Video Games & Consoles': ['Sony (PlayStation)', 'Microsoft (Xbox)', 'Nintendo', 'Sega', 'Valve (Steam)', 'Razer', 'Logitech', 'Corsair', 'Alienware', 'HyperX', 'other'],
+  'Audio & Headphones': ['Bose', 'Sony', 'Sennheiser', 'Beats by Dre', 'JBL', 'Audio-Technica', 'Skullcandy', 'Bang & Olufsen', 'Shure', 'AKG', 'other'],
+  'Office Electronics': ['Dell', 'Lenovo', 'Acer', 'Asus', 'Microsoft', 'Toshiba', 'IBM', 'LG', 'HP', 'ViewSonic', 'NEC', 'other'],
+  'Wearable Devices': ['Apple', 'Samsung', 'Fitbit', 'Garmin', 'Xiaomi', 'Huawei', 'Fossil', 'Amazfit', 'Suunto', 'Withings', 'other'],
+  'Car Electronics': ['Pioneer', 'Sony', 'Kenwood', 'Alpine', 'JVC', 'Clarion', 'Garmin', 'TomTom', 'Harman Kardon', 'Blaupunkt', 'other'],
+  'Cameras, Drones & Accessories': ['Nikon', 'Canon', 'Sony', 'Panasonic', 'Fujifilm', 'GoPro', 'DJI', 'Leica', 'Olympus', 'Pentax', 'other'],
+  'Home Appliances': ['Whirlpool', 'LG Electronics', 'Samsung', 'General Electric (GE)', 'Maytag', 'KitchenAid', 'Bosch', 'Kenmore', 'Electrolux', 'Frigidaire', 'other'],
+  'Cellphones & Accessories': ['Apple', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 'Huawei', 'Sony', 'LG', 'Nokia', 'Motorola', 'other'],
+  Televisions: ['Samsung', 'LG', 'Sony', 'TCL', 'Panasonic', 'Vizio', 'Philips', 'Sharp', 'Hisense', 'Insignia', 'other'],
+};
+
+export const categoriesArray = [
+  'Video Games & Consoles',
+  'Wearable Devices',
+  'Office Electronics',
+  'Audio & Headphones',
+  'Computers & Tablets',
+  'Cameras, Drones & Accessories',
+  'Home Appliances',
+  'Car Electronics',
+  'Cellphones & Accessories',
+  'Televisions',
+];
+
+export const subCategoriesObj = {
+  'Video Games & Consoles': [
+    'Video Games', 'Video Game Accessories', 'PC Gaming Accessories', 'Video Game Consoles', '',
+  ],
+  'Wearable Devices': [
+    'Smart Watches', 'Fitness Tracker', 'Virtual Reality', 'Smart Accessories',
+  ],
+  'Office Electronics': [
+    'Printers, Ink & Toner', 'Scanners, Faxes & Copiers', 'Telephones & Communication',
+  ],
+  'Audio & Headphones': ['Headphones', 'Speakers'],
+  'Computers & Tablets': ['Laptops', 'Desktops & All-In-Ones', 'Tablets', 'Computer Accessories', 'Monitors & Screens', 'Computer Components'],
+  'Cameras, Drones & Accessories': ['Digital Camera', 'Camcorders', 'Camera Drones', 'Camera Lenses', 'Camera Tripods', 'Camera Bags & Cases', 'Camera Flashes & Flash Accessories'],
+  'Home Appliances': ['Washers & Dryers', 'Refrigerators & Freezers', 'Ranges & Ovens', 'Dishwashers', 'Microwaves', 'Small Kitchen Appliances', 'Vacuums & Floor Care', 'Appliance Part & Accessories'],
+  'Car Electronics': ['Car Audio', 'Car Video', 'Car Safety & Security', 'Car Accessories', 'GPS & Accessories', 'Car Phone Accessories'],
+  'Cellphones & Accessories': ['Cellphones & Smartphones', 'Cellphones Accessories', 'Cellphone Cases', 'Cellphone Chargers', 'Cellphone Screen Protectors', 'Cellphone Batteries', 'Cellphone Cables', 'Cellphone Holders & Stands', 'Cellphone Parts', 'Cellphone Repair Tools'],
+  Televisions: ['Television'],
+};
+
 export default categoryObj;

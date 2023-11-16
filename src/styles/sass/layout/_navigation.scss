@@ -260,6 +260,97 @@
     }
 }
 
+.bottom-nav {
+    width: 100%;
+    height: 5.3em;
+    background-color: $secondaryColour;
+    position: fixed;
+    top: -5.5em;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    transition: top 0.3s;
+    box-shadow: 1px 1px 8px #00000090;
+
+    &__content {
+        width: $largeDeviceWidth;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $lightFont;
+    }
+
+    &__content-search-div {
+        display: flex;
+        width: 350px;
+        height: 2.2em;
+        position: relative;
+
+        & input {
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            border: none;
+            padding: 0 1em;
+            padding-right: 80px;
+            background-color: #fff;
+
+            &:focus {
+                outline: none;
+                border: 1px solid rgb(176, 206, 251);
+            }
+        }
+    }
+
+    &__home-icon-link {
+        display: flex;
+        gap: 3px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $lightFont;
+        background-color: darken($secondaryColour, 1%);
+        border-radius: 4px;
+        width: 55px;
+        height: 55px;
+
+        & i {
+            color: $lightFont;
+            font-size: 1.1em;
+        }
+
+        & h6 {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    }
+
+    &__content-search-button {
+        height: 1.8em;
+        width: 1.8em;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        position: absolute;
+        top: 0.2em;
+        right: 0.2em;
+        background-color: $secondaryColour;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & i {
+            font-size: 0.8em;
+            color: #FFF;
+        }
+    }
+
+    &--scrolled {
+        top: 0;
+    }
+}
+
 // LARGE MOBILE SCREEN STYLES
 
 @include largemobileScreen {
@@ -499,6 +590,10 @@
         }
     }   
 
+    .bottom-nav {
+        display: none;
+    }
+
 }
 
 // MOBILE SCREEN STYLES
@@ -724,7 +819,8 @@
             &__sign-out-div {
                 height: 2.5em;
                 width: 100%;
-                margin-top: 30px;
+                margin-top: 10px;
+                margin-bottom: 30px;
             }
 
             &__sign-out-button {
@@ -737,6 +833,39 @@
                 font-weight: 700;
                 letter-spacing: 0.8px;
             }
+
+            &__settings-div {
+                height: 2.5em;
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            &__settings-button {
+                // margin-bottom: 10px;
+                height: 100%;
+                color: dimgrey;
+                border: none;
+                background-color: lightgrey;
+                width: 100%;
+                border-radius: 5px;
+                font-weight: 700;
+                letter-spacing: 0.8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                & h6 {
+                    font-weight: 700;
+                }
+
+                & * {
+                    margin: 0;
+                }
+            }
         }
     }   
+    .bottom-nav {
+        display: none;
+    }
 }

@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar';
 import Main from './Main';
 import Footer from '../../sections/Footer';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function Category() {
   const { category } = useParams();
@@ -20,6 +21,7 @@ export default function Category() {
         <link rel="canonical" href={`/category/${category}#page-top`} />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

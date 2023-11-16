@@ -10,8 +10,9 @@ import SearchCategoriesBox from '../SearchResult/components/CategoriesBox';
 import SearchBar from './components/SearchBar';
 import useTopScroll from '../../Hooks/useTopScroll';
 import { setFilter } from '../../redux/slice/productsSlice';
-import HorizontalAdPanel from '../../components/HorizontalAdPanel';
+// import HorizontalAdPanel from '../../components/HorizontalAdPanel';
 import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
+import NewArrivalsButton from '../../components/NewArrivalsButton';
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ export default function Main() {
       <main className="main-section d-flex justify-content-between">
         <div className="main-section__left-div">
           {/* <CategoriesBox /> */}
+          <NewArrivalsButton />
           <SectionHeader>Filter</SectionHeader>
           <FilterCard />
           <AdPanel />
@@ -45,7 +47,10 @@ export default function Main() {
           <SearchBar />
           <SearchCategoriesBox />
           {/* <Hero /> */}
-          <HorizontalAdPanel />
+          {/* <HorizontalAdPanel /> */}
+          <div className="main-section__mobile-div">
+            <NewArrivalsButton />
+          </div>
           <SectionHeader>All Products</SectionHeader>
           <DisplayCards />
         </div>

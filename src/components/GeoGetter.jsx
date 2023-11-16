@@ -53,59 +53,61 @@ function GeoGetter({ location, setLocation }) {
   };
 
   return (
-    <>
-      <div className="col-md-3">
-        <div className="new-item-form__input-div">
-          <label htmlFor="state" className="new-item-form__label">Get Item Location</label>
-          <button
-            className="new-item-form__search-location-button"
-            type="button"
-            onClick={fetchLocation}
-          >
-            {isSearching ? '...Searching' : 'Search Location'}
-          </button>
+    <div className="col-md-12">
+      <div className="row">
+        <div className="col-md-3">
+          <div className="new-item-form__input-div">
+            <label htmlFor="state" className="new-item-form__label">Get Item Location</label>
+            <button
+              className="new-item-form__search-location-button"
+              type="button"
+              onClick={fetchLocation}
+            >
+              {isSearching ? '...Searching' : 'Search Location'}
+            </button>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="new-item-form__input-div">
+            <label htmlFor="country" className="new-item-form__label">Country</label>
+            <input
+              id="country"
+              className="new-item-form__input"
+              placeholder="State"
+              name="state"
+              readOnly
+              value={location.country}
+            />
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="new-item-form__input-div">
+            <label htmlFor="state" className="new-item-form__label">State</label>
+            <input
+              id="state"
+              className="new-item-form__input"
+              placeholder="State"
+              name="state"
+              readOnly
+              value={location.state}
+            />
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="new-item-form__input-div">
+            <label htmlFor="city" className="new-item-form__label">City / Town</label>
+            <input
+              id="city"
+              className="new-item-form__input"
+              placeholder="City / Town"
+              name="city"
+              value={location.town}
+              readOnly
+            />
+          </div>
         </div>
       </div>
-      <div className="col-md-3">
-        <div className="new-item-form__input-div">
-          <label htmlFor="country" className="new-item-form__label">Country</label>
-          <input
-            id="country"
-            className="new-item-form__input"
-            placeholder="State"
-            name="state"
-            readOnly
-            value={location.country}
-          />
-        </div>
-      </div>
-      <div className="col-md-3">
-        <div className="new-item-form__input-div">
-          <label htmlFor="state" className="new-item-form__label">State</label>
-          <input
-            id="state"
-            className="new-item-form__input"
-            placeholder="State"
-            name="state"
-            readOnly
-            value={location.state}
-          />
-        </div>
-      </div>
-      <div className="col-md-3">
-        <div className="new-item-form__input-div">
-          <label htmlFor="city" className="new-item-form__label">City / Town</label>
-          <input
-            id="city"
-            className="new-item-form__input"
-            placeholder="City / Town"
-            name="city"
-            value={location.town}
-            readOnly
-          />
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 

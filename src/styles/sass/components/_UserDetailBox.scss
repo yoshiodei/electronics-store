@@ -199,6 +199,26 @@
         padding: 0 10px;
         margin-top: 15px;
     }
+
+    &__rate-user-button {
+        display: flex;
+        width: 100%;
+        height: auto;
+        border: 1px solid rgba(116, 116, 116, 0.167);
+        border-radius: 4px;
+        align-items: center;
+        padding: 5px 8px;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        & * {
+            margin: 0;
+        }
+
+        &:hover {
+            background-color: rgba(67, 67, 67, 0.1);
+        }
+    }
 }
 
 .edit-profile {
@@ -376,4 +396,11 @@
             font-size: 0.9em;
         }
     }
+
+    .edit-profile {
+        &__form {
+            width: 100%;
+        }
+      }
+      
 }

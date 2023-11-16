@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar';
 import appName from '../../Constants/constantVariables';
 import Footer from '../../sections/Footer';
 import Main from './Main';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function UserAccount() {
   return (
@@ -18,6 +19,7 @@ export default function UserAccount() {
         <link rel="canonical" href="/#page-top" />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

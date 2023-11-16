@@ -1,4 +1,0 @@
-// const handleModalSwitch = () => {
-//     handleCloseSignInModal();
-//     handleShowRegisterModal();
-// };

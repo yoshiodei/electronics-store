@@ -1,5 +1,5 @@
 .navbar-custom {
-  background-color: #1c5d85;
+  background-color: #2a027d;
   position: relative;
 }
 .navbar-custom__app-logo {
@@ -13,7 +13,7 @@
 }
 .navbar-custom__top-div__inner-div {
   margin: 0 auto;
-  width: 1200px;
+  width: 1450px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,7 +34,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 1200px;
+  width: 1450px;
   margin: 0 auto;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -74,7 +74,7 @@
 .navbar-custom__pop-over {
   position: absolute;
   top: 25px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   border-radius: 5px;
   background-color: white;
 }
@@ -85,7 +85,7 @@
   position: absolute;
   top: 60px;
   left: 9px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   border-radius: 5px;
   background-color: white;
   width: 150px !important;
@@ -119,12 +119,12 @@
   padding-right: 0.8em;
 }
 .navbar-custom__user-account-div__pop-over-button i {
-  color: #1c5d85;
+  color: #2a027d;
   font-size: 0.9em;
   margin-right: 12px;
 }
 .navbar-custom__user-account-div__pop-over-button h6 {
-  color: #1c5d85;
+  color: #2a027d;
   font-size: 0.9em;
   margin: 0;
 }
@@ -225,6 +225,87 @@
   padding-left: 15px;
 }
 
+.bottom-nav {
+  width: 100%;
+  height: 5.3em;
+  background-color: #2a027d;
+  position: fixed;
+  top: -5.5em;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  transition: top 0.3s;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5647058824);
+}
+.bottom-nav__content {
+  width: 1450px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+.bottom-nav__content-search-div {
+  display: flex;
+  width: 350px;
+  height: 2.2em;
+  position: relative;
+}
+.bottom-nav__content-search-div input {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  border: none;
+  padding: 0 1em;
+  padding-right: 80px;
+  background-color: #fff;
+}
+.bottom-nav__content-search-div input:focus {
+  outline: none;
+  border: 1px solid rgb(176, 206, 251);
+}
+.bottom-nav__home-icon-link {
+  display: flex;
+  gap: 3px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #280278;
+  border-radius: 4px;
+  width: 55px;
+  height: 55px;
+}
+.bottom-nav__home-icon-link i {
+  color: #ffffff;
+  font-size: 1.1em;
+}
+.bottom-nav__home-icon-link h6 {
+  margin: 0;
+  font-size: 0.9em;
+}
+.bottom-nav__content-search-button {
+  height: 1.8em;
+  width: 1.8em;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  background-color: #2a027d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom-nav__content-search-button i {
+  font-size: 0.8em;
+  color: #FFF;
+}
+.bottom-nav--scrolled {
+  top: 0;
+}
+
 @media (max-width: 1000px) {
   .navbar-custom.toggled {
     position: fixed;
@@ -314,7 +395,7 @@
     right: 0;
     height: 100%;
     padding: 0 0.5em;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     color: #ffffff;
     border-radius: 5px;
     border: none;
@@ -368,7 +449,7 @@
     height: 100%;
   }
   .navbar-custom .drawer-button__menu-div h5 {
-    color: #1c5d85;
+    color: #2a027d;
     font-weight: 700;
   }
   .navbar-custom .drawer-button__input-div {
@@ -381,7 +462,7 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     padding-left: 1em;
     padding-right: 1em;
   }
@@ -396,7 +477,7 @@
     margin-right: 20px;
     height: 100%;
     border-radius: 5px;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     color: white;
     border: none;
     flex: 1;
@@ -407,9 +488,9 @@
     flex: 1;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     background-color: transparent;
-    color: #1c5d85;
+    color: #2a027d;
     font-weight: 700;
     letter-spacing: 0.8px;
   }
@@ -422,11 +503,14 @@
     height: 100%;
     color: white;
     border: none;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     width: 100%;
     border-radius: 5px;
     font-weight: 700;
     letter-spacing: 0.8px;
+  }
+  .bottom-nav {
+    display: none;
   }
 }
 @media (max-width: 430px) {
@@ -518,7 +602,7 @@
     right: 0;
     height: 100%;
     padding: 0 0.5em;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     color: #ffffff;
     border-radius: 5px;
     border: none;
@@ -572,7 +656,7 @@
     height: 100%;
   }
   .navbar-custom .drawer-button__menu-div h5 {
-    color: #1c5d85;
+    color: #2a027d;
     font-weight: 700;
   }
   .navbar-custom .drawer-button__input-div {
@@ -585,7 +669,7 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     padding-left: 1em;
     padding-right: 1em;
   }
@@ -600,7 +684,7 @@
     margin-right: 20px;
     height: 100%;
     border-radius: 5px;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     color: white;
     border: none;
     flex: 1;
@@ -611,26 +695,55 @@
     flex: 1;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     background-color: transparent;
-    color: #1c5d85;
+    color: #2a027d;
     font-weight: 700;
     letter-spacing: 0.8px;
   }
   .navbar-custom .drawer-button__sign-out-div {
     height: 2.5em;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
   }
   .navbar-custom .drawer-button__sign-out-button {
     height: 100%;
     color: white;
     border: none;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     width: 100%;
     border-radius: 5px;
     font-weight: 700;
     letter-spacing: 0.8px;
+  }
+  .navbar-custom .drawer-button__settings-div {
+    height: 2.5em;
+    width: 100%;
+    margin-top: 30px;
+  }
+  .navbar-custom .drawer-button__settings-button {
+    height: 100%;
+    color: dimgrey;
+    border: none;
+    background-color: lightgrey;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .navbar-custom .drawer-button__settings-button h6 {
+    font-weight: 700;
+  }
+  .navbar-custom .drawer-button__settings-button * {
+    margin: 0;
+  }
+  .bottom-nav {
+    display: none;
   }
 }
 * {
@@ -799,7 +912,7 @@ a {
   width: 80%;
   font-size: 1.8em;
   font-weight: 700;
-  color: #1c5d85;
+  color: #2a027d;
   margin-bottom: 5px;
 }
 .hero__main-div p {
@@ -828,11 +941,11 @@ a {
   height: 2.5em;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   padding: 0 8em 0 1em;
 }
 .hero__search-div__input:focus {
-  outline: 2px solid #3397d4;
+  outline: 2px solid #4c04e1;
 }
 .hero__search-div__button {
   border: none;
@@ -844,7 +957,7 @@ a {
   position: absolute;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -892,7 +1005,7 @@ a {
     width: 80%;
     font-weight: 700;
     font-size: 1.2em;
-    color: #1c5d85;
+    color: #2a027d;
     margin-bottom: 5px;
   }
   .hero__main-div p {
@@ -916,12 +1029,12 @@ a {
     width: 80%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     padding-left: 1em;
     padding-right: 1em;
   }
   .hero__search-div__input:focus {
-    outline: 2px solid #3397d4;
+    outline: 2px solid #4c04e1;
   }
   .hero__search-div__button {
     border: none;
@@ -931,7 +1044,7 @@ a {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #ffffff;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -962,7 +1075,7 @@ a {
   color: #ffffff;
   padding-left: 1em;
   padding-right: 1em;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   border-radius: 5px;
   border-bottom-right-radius: 0;
 }
@@ -972,7 +1085,7 @@ a {
 }
 .section-header__line {
   height: 3px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   flex: 1;
 }
 
@@ -983,13 +1096,14 @@ a {
 }
 .product-card__add-to-wish-list {
   background-color: #fff;
+  background-color: #fac007;
   border-radius: 50%;
   width: 35px;
   height: 35px;
   justify-content: center;
   align-items: center;
-  border: 1px solid #1c5d85;
-  border: 1px solid lightgrey;
+  border: 1px solid #2a027d;
+  border: 1px solid white;
   position: absolute;
   top: 100px;
   transition: all 0.3s;
@@ -998,7 +1112,7 @@ a {
 }
 .product-card__add-to-wish-list:hover {
   color: white;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   background-color: #fac007;
 }
 .product-card__add-to-wish-list:hover .product-card__add-to-wish-list__icon {
@@ -1011,18 +1125,19 @@ a {
   font-size: 0.9em;
   color: #484848;
   transition: all 0.3s;
+  color: white;
 }
 .product-card__link {
   display: block;
   border-radius: 5px;
   transition: all 0.3s;
-  padding: 0;
+  padding-bottom: 1px;
 }
 .product-card__link:hover {
   background-color: rgb(243, 243, 243);
 }
 .product-card__link:focus {
-  outline: 2px solid #257aaf;
+  outline: 2px solid #3b03af;
 }
 .product-card__image-div {
   border-radius: 5px;
@@ -1040,13 +1155,16 @@ a {
      object-fit: cover;
 }
 .product-card__product-price {
-  color: #1c5d85;
+  color: #2a027d;
   font-size: 1em;
+  font-weight: 700;
   margin-bottom: 5px;
 }
 .product-card__product-name {
   line-height: 1.1;
   height: 1.2em;
+  font-weight: 800;
+  color: rgb(77, 77, 77);
   font-size: 1em;
   margin-bottom: 6px;
   text-transform: capitalize;
@@ -1058,7 +1176,15 @@ a {
   font-weight: 400;
   color: rgb(95, 95, 95);
   line-height: 1;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+.product-card__product-post-date {
+  font-size: 0.8em;
+  height: 0.85em;
+  font-weight: 400;
+  color: rgb(95, 95, 95);
+  line-height: 1;
+  margin-bottom: 18px;
 }
 .product-card__product-location-div {
   margin-bottom: 10px;
@@ -1074,10 +1200,14 @@ a {
   text-transform: capitalize;
 }
 .product-card__product-condition-div {
+  position: absolute;
+  left: 0;
+  top: 0;
   display: inline-flex;
   height: 1.1em;
   background-color: lightgrey;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 12px 8px;
   justify-content: center;
   align-items: center;
@@ -1214,7 +1344,7 @@ a {
   transition: all 0.3s;
 }
 .pagination__page-item button:hover {
-  background-color: #1c5d85;
+  background-color: #2a027d;
   color: #ffffff;
 }
 
@@ -1334,7 +1464,7 @@ a {
   right: 25%;
   position: absolute;
   border-radius: 5px;
-  background: #1c5d85;
+  background: #2a027d;
 }
 .filter-card__range-input {
   position: relative;
@@ -1356,7 +1486,7 @@ a {
   height: 17px;
   width: 17px;
   border-radius: 50%;
-  background: #1c5d85;
+  background: #2a027d;
   pointer-events: auto;
   -webkit-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -1366,7 +1496,7 @@ a {
   width: 17px;
   border: none;
   border-radius: 50%;
-  background: #1c5d85;
+  background: #2a027d;
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -1395,7 +1525,7 @@ a {
 }
 .filter-card__filter-button {
   height: 2em;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   color: #ffffff;
   border-radius: 5px;
   text-align: center;
@@ -1447,7 +1577,7 @@ a {
      object-fit: cover;
 }
 .item-image-box__bottom-div__image-div:hover {
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
 }
 .item-image-box__bottom-div__image-div:last-child {
   margin: 0;
@@ -1569,7 +1699,7 @@ a {
   background-color: rgb(243, 243, 243);
 }
 .product-detail__title {
-  color: #1c5d85;
+  color: #2a027d;
   margin-bottom: 2px;
   font-weight: 700;
 }
@@ -1606,9 +1736,10 @@ a {
   padding: 15px;
   background-color: rgb(243, 243, 243);
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .product-location__title {
-  color: #1c5d85;
+  color: #2a027d;
   margin-bottom: 2px;
   font-weight: 700;
 }
@@ -1674,7 +1805,7 @@ a {
      object-fit: cover;
 }
 .vendor-details__profile-title {
-  color: #1c5d85;
+  color: #2a027d;
   margin-bottom: 4px;
   font-weight: 700;
 }
@@ -1690,7 +1821,7 @@ a {
   border-radius: 50%;
   position: absolute;
   background-color: #7AFF4B;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   left: 3px;
   top: 6px;
 }
@@ -1700,7 +1831,7 @@ a {
 .vendor-details__button-div {
   display: block;
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 8px;
@@ -1778,7 +1909,7 @@ a {
   border: 1px solid lightgrey;
   padding: 15px;
   background-color: rgb(243, 243, 243);
-  margin: 20px 0;
+  margin-bottom: 20px;
   display: flex;
   gap: 15px;
   align-items: center;
@@ -1876,7 +2007,7 @@ a {
 }
 .chat-wall__header h3 {
   font-weight: 700;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .chat-wall__main {
   height: 60vh;
@@ -1902,7 +2033,7 @@ a {
   border: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   padding-left: 1em;
   padding-right: 1em;
   width: 80%;
@@ -1922,7 +2053,7 @@ a {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #ffffff;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
@@ -1958,8 +2089,8 @@ a {
   display: inline-flex;
   flex-direction: column;
   padding: 1em;
-  border: 1px solid #1c5d85;
-  background-color: #1c5d85;
+  border: 1px solid #2a027d;
+  background-color: #2a027d;
   border-radius: 30px;
   border-top-left-radius: 10px;
   box-sizing: border-box;
@@ -1981,7 +2112,7 @@ a {
   margin-top: 8px;
   border-radius: 4px;
   border-bottom-left-radius: 10px;
-  background-color: #257aaf;
+  background-color: #3b03af;
   text-align: left;
   display: inline-block;
   cursor: pointer;
@@ -2049,10 +2180,10 @@ a {
     max-width: 70vw;
     display: inline-block;
     padding: 10px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     background-color: rgba(255, 255, 102, 0);
-    border: 1px solid #1c5d85;
-    background-color: #1c5d85;
+    border: 1px solid #2a027d;
+    background-color: #2a027d;
     border-radius: 18px;
     border-top-left-radius: 6px;
     box-sizing: border-box;
@@ -2094,12 +2225,20 @@ a {
 }
 .chat-list__header h3 {
   font-weight: 700;
-  color: #1c5d85;
+  color: #2a027d;
   margin: 0;
   margin-right: 30px;
 }
-.chat-list__card-info-div h6 {
+.chat-list__card-info-div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-start;
+}
+.chat-list__card-info-div * {
   margin: 0;
+}
+.chat-list__card-info-div h6 {
   text-transform: capitalize;
   font-weight: 700;
 }
@@ -2112,7 +2251,7 @@ a {
   min-width: 20px;
   padding: 3px;
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2341,7 +2480,7 @@ a {
   outline: none;
   border-radius: 50px;
   color: white;
-  background-color: #1c5d85;
+  background-color: #2a027d;
 }
 
 @media (max-width: 430px) {
@@ -2438,12 +2577,12 @@ a {
   width: 80%;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   padding-left: 1em;
   padding-right: 1em;
 }
 .search-bar__input:focus {
-  outline: 2px solid #3397d4;
+  outline: 2px solid #4c04e1;
 }
 .search-bar__button {
   border: none;
@@ -2453,7 +2592,7 @@ a {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #ffffff;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -2468,7 +2607,7 @@ a {
   height: auto;
   padding: 20px 15px;
   border-radius: 5px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   border: 1px solid lightgrey;
   background-color: rgb(243, 243, 243);
   margin-bottom: 15px;
@@ -2477,7 +2616,7 @@ a {
   text-transform: capitalize;
 }
 .search-info-box h4 {
-  color: #1c5d85;
+  color: #2a027d;
   font-size: 1.3em;
   margin: 0;
 }
@@ -2503,7 +2642,7 @@ a {
   margin-bottom: 20px;
 }
 .content-info-box__text {
-  color: #1c5d85;
+  color: #2a027d;
   margin: 0;
   font-weight: 600;
 }
@@ -2530,18 +2669,18 @@ a {
 .add-post-card__icon {
   padding: 1em;
   border-radius: 50px;
-  border: 2px solid #1c5d85;
-  color: #1c5d85;
+  border: 2px solid #2a027d;
+  color: #2a027d;
   margin-bottom: 0.5em;
 }
 .add-post-card__text {
   margin: 0;
-  color: #1c5d85;
+  color: #2a027d;
   text-align: center;
 }
 
 form input:focus-visible, form textarea:focus-visible {
-  outline-color: #1c5d85 !important;
+  outline-color: #2a027d !important;
 }
 
 .new-item-form__input-div {
@@ -2558,7 +2697,7 @@ form input:focus-visible, form textarea:focus-visible {
   display: none;
 }
 .new-item-form__label {
-  color: #1c5d85;
+  color: #2a027d;
   font-weight: 700;
   margin-bottom: 5px;
 }
@@ -2575,7 +2714,7 @@ form input:focus-visible, form textarea:focus-visible {
 .new-item-form__label span {
   font-weight: 500;
   margin-left: 10px;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .new-item-form__label span.new-item-form__span--alt {
   font-weight: 500;
@@ -2617,11 +2756,11 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .new-item-form__file-input-div label i, .new-item-form__file-input-div label h6 {
   font-size: 0.9em;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .new-item-form__file-input-div label h6 span {
   display: block;
-  color: #1c5d85;
+  color: #2a027d;
   margin-top: 1px;
   font-size: 0.75em;
 }
@@ -2695,7 +2834,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .new-item-form__radio-label {
   font-weight: 600;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .new-item-form__upload-image-div {
   flex-direction: column;
@@ -2709,7 +2848,7 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   font-weight: 700;
   color: white;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   text-transform: capitalize;
 }
 .new-item-form__post-item-button:active {
@@ -2721,7 +2860,7 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   font-weight: 700;
   color: white;
-  background-color: #1c5d85;
+  background-color: #2a027d;
 }
 .new-item-form__radio-inner-button-div {
   display: flex;
@@ -2735,7 +2874,7 @@ form input:focus-visible, form textarea:focus-visible {
   height: 15px;
   top: -7.5px;
   left: -7.5px;
-  background-color: #5dacdd;
+  background-color: #651dfb;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2756,11 +2895,11 @@ form input:focus-visible, form textarea:focus-visible {
   position: relative;
 }
 .new-item-form__radio-inner-button-div__radio-button.active {
-  border: 2px solid #5dacdd;
+  border: 2px solid #651dfb;
   background-color: rgb(245, 245, 245);
 }
 .new-item-form__radio-inner-button-div__radio-button h6 {
-  color: #1c5d85;
+  color: #2a027d;
 }
 .new-item-form__radio-inner-button-div__radio-button h4 {
   color: rgb(117, 117, 117);
@@ -2810,11 +2949,11 @@ form input:focus-visible, form textarea:focus-visible {
     position: relative;
   }
   .new-item-form__radio-inner-button-div__radio-button.active {
-    border: 2px solid #5dacdd;
+    border: 2px solid #651dfb;
     background-color: rgb(245, 245, 245);
   }
   .new-item-form__radio-inner-button-div__radio-button h6 {
-    color: #1c5d85;
+    color: #2a027d;
     text-align: left;
     font-size: 0.9em;
   }
@@ -2867,11 +3006,11 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .new-item-form__file-input-div label i, .new-item-form__file-input-div label h6 {
     font-size: 0.8em;
-    color: #1c5d85;
+    color: #2a027d;
   }
   .new-item-form__file-input-div label h6 span {
     display: block;
-    color: #1c5d85;
+    color: #2a027d;
     margin-top: 1px;
     font-size: 0.75em;
   }
@@ -2882,7 +3021,7 @@ form input:focus-visible, form textarea:focus-visible {
     font-weight: 600;
     color: white;
     margin: 10px 0 30px;
-    background-color: #1c5d85;
+    background-color: #2a027d;
   }
 }
 .modal {
@@ -2897,14 +3036,14 @@ form input:focus-visible, form textarea:focus-visible {
   padding: 0;
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.062745098);
 }
 
 .modal__custom-content-left {
   min-height: 300px;
   flex: 4;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   padding: 4em 1.5em;
 }
 .modal__custom-content-left h2 {
@@ -2942,7 +3081,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 100%;
   height: 2.5em;
   border-radius: 5px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   margin-bottom: 10px;
   padding: 0 1em;
 }
@@ -2959,7 +3098,7 @@ form input:focus-visible, form textarea:focus-visible {
   height: 1em;
   margin: 0;
   margin-right: 12px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
 }
 .modal__custom-content-right .check-box-div h6 {
   margin: 0;
@@ -2970,7 +3109,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 100%;
   height: 2.5em;
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   color: #ffffff;
   display: block;
   font-weight: 700;
@@ -2985,7 +3124,7 @@ form input:focus-visible, form textarea:focus-visible {
   text-align: center;
 }
 .modal__custom-content-right .register-button:hover {
-  background-color: #206c9a;
+  background-color: #320296;
 }
 .modal__custom-content-right .switch-to-signin {
   font-size: 0.95em;
@@ -2995,7 +3134,7 @@ form input:focus-visible, form textarea:focus-visible {
 .modal__custom-content-right .switch-to-signin__button {
   outline: none;
   border: none;
-  color: #1c5d85;
+  color: #2a027d;
   cursor: pointer;
   background-color: transparent;
   font-weight: 600;
@@ -3005,6 +3144,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .modal__custom-content-right__or-separator {
   text-align: center;
+  margin: 0;
 }
 .modal__custom-content-right__google-signin-button, .modal__custom-content-right__facebook-signin-button {
   border: none;
@@ -3017,7 +3157,7 @@ form input:focus-visible, form textarea:focus-visible {
   font-weight: 600;
   color: white;
   letter-spacing: 1px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 .modal__custom-content-right__google-signin-button i, .modal__custom-content-right__facebook-signin-button i {
   color: white;
@@ -3030,7 +3170,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: none;
   background-color: transparent;
   font-weight: 600;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .modal__custom-content__terms-body {
   height: 50vh;
@@ -3050,7 +3190,7 @@ form input:focus-visible, form textarea:focus-visible {
 .modal-body__left-inner-div {
   height: 100%;
   width: 100%;
-  background-color: #1c5d85;
+  background-color: #2a027d;
 }
 
 .modal-body__left, .modal-body__right {
@@ -3111,7 +3251,7 @@ form input:focus-visible, form textarea:focus-visible {
     width: 100%;
     height: 2.5em;
     border-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     margin-bottom: 15px;
     padding: 0 1em;
   }
@@ -3128,7 +3268,7 @@ form input:focus-visible, form textarea:focus-visible {
     height: 1em;
     margin: 0;
     margin-right: 12px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
   }
   .modal__custom-content-right .check-box-div h6 {
     margin: 0;
@@ -3137,7 +3277,7 @@ form input:focus-visible, form textarea:focus-visible {
   .modal__custom-content-right .register-button {
     height: 2.5em;
     border-radius: 5px;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     color: #ffffff;
     display: block;
     font-weight: 700;
@@ -3147,7 +3287,7 @@ form input:focus-visible, form textarea:focus-visible {
     margin-bottom: 15px;
   }
   .modal__custom-content-right .register-button:hover {
-    background-color: #206c9a;
+    background-color: #320296;
   }
   .modal__custom-content-right .switch-to-signin {
     font-size: 0.95em;
@@ -3157,7 +3297,7 @@ form input:focus-visible, form textarea:focus-visible {
   .modal__custom-content-right .switch-to-signin__button {
     outline: none;
     border: none;
-    color: #1c5d85;
+    color: #2a027d;
     cursor: pointer;
     background-color: transparent;
     font-weight: 600;
@@ -3177,7 +3317,7 @@ form input:focus-visible, form textarea:focus-visible {
   .modal-body__left-inner-div {
     height: 100%;
     width: 100%;
-    background-color: #1c5d85;
+    background-color: #2a027d;
   }
   .modal-body__left, .modal-body__right {
     padding: 0;
@@ -3186,7 +3326,7 @@ form input:focus-visible, form textarea:focus-visible {
 .terms-and-conditions {
   text-transform: capitalize;
   font-weight: 600;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .terms-and-conditions:hover {
   text-decoration: underline;
@@ -3258,7 +3398,7 @@ form input:focus-visible, form textarea:focus-visible {
   font-size: 0.9em;
 }
 .user-detail-box__user-rating-div i.active {
-  color: #1c5d85;
+  color: #2a027d;
 }
 .user-detail-box__user-info-value--bio {
   font-weight: 400;
@@ -3268,7 +3408,7 @@ form input:focus-visible, form textarea:focus-visible {
 .user-detail-box__start-chat-div {
   display: block;
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 8px;
@@ -3287,7 +3427,7 @@ form input:focus-visible, form textarea:focus-visible {
   padding: 5px 10px;
   color: #fff;
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 8px;
@@ -3367,6 +3507,23 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 4px;
   padding: 0 10px;
   margin-top: 15px;
+}
+.user-detail-box__rate-user-button {
+  display: flex;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(116, 116, 116, 0.167);
+  border-radius: 4px;
+  align-items: center;
+  padding: 5px 8px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.user-detail-box__rate-user-button * {
+  margin: 0;
+}
+.user-detail-box__rate-user-button:hover {
+  background-color: rgba(67, 67, 67, 0.1);
 }
 
 .edit-profile__form-image-div {
@@ -3463,7 +3620,7 @@ form input:focus-visible, form textarea:focus-visible {
     height: 80px;
     border-radius: 5px;
     padding: 0.5em 0.3em;
-    background-color: #1c5d85;
+    background-color: #2a027d;
   }
   .user-detail-box__user-info-outer-div .user-detail-box__user-info-div .user-detail-box__user-info-title {
     color: #ffffff;
@@ -3474,11 +3631,11 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .user-detail-box__user-info-title, .user-detail-box__user-info-value {
     font-weight: 700;
-    color: #1c5d85;
+    color: #2a027d;
     margin: 0;
   }
   .user-detail-box__user-info-div--bio {
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     border-radius: 5px;
     background-color: rgba(255, 255, 102, 0);
     padding: 0.5em;
@@ -3492,7 +3649,7 @@ form input:focus-visible, form textarea:focus-visible {
   .user-detail-box__start-chat-div {
     display: block;
     border-radius: 5px;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     padding-top: 8px;
     padding-bottom: 8px;
     margin-top: 8px;
@@ -3517,6 +3674,9 @@ form input:focus-visible, form textarea:focus-visible {
     margin: 0;
     line-height: 1;
     font-size: 0.9em;
+  }
+  .edit-profile__form {
+    width: 100%;
   }
 }
 .wish-list__item {
@@ -3710,17 +3870,17 @@ form input:focus-visible, form textarea:focus-visible {
     font-size: 0.8em;
   }
   .wish-list__empty-div {
-    width: 50%;
+    width: 90%;
     min-height: 250px;
     border-radius: 5px;
-    margin: 50px auto 30px;
+    margin: 30px auto;
     background-color: rgb(232, 232, 232);
     border: 1px solid lightgrey;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3em;
+    padding: 1.5em;
   }
   .wish-list__empty-div * {
     color: rgb(158, 158, 158);
@@ -3728,6 +3888,7 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .wish-list__empty-div i {
     font-size: 5em;
+    margin-bottom: 10px;
   }
   .wish-list__empty-div h6 {
     margin: 0;
@@ -3748,7 +3909,7 @@ form input:focus-visible, form textarea:focus-visible {
   z-index: 4;
   bottom: 25px;
   right: 50px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3769,7 +3930,7 @@ form input:focus-visible, form textarea:focus-visible {
   margin-top: 5px;
 }
 .start-chat-button:hover {
-  background-color: #257aaf;
+  background-color: #3b03af;
 }
 
 @media (max-width: 430px) {
@@ -3794,6 +3955,24 @@ form input:focus-visible, form textarea:focus-visible {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+.buttons-box__edit-item-button {
+  height: 2.5em;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  background-color: #2a027d;
+  color: white;
+  gap: 10px;
+  border: none;
+  outline: none;
+}
+.buttons-box__edit-item-button * {
+  margin: 0;
+  color: #ffffff;
 }
 .buttons-box__delete {
   background-color: rgb(223, 64, 64) !important;
@@ -3884,28 +4063,40 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .buttons-box__share-modal__copy-link-button {
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   color: #ffffff;
   border: none;
   padding: 0.5em 2em;
   font-weight: 600;
 }
 .buttons-box__sold-button {
-  background-color: #1c5d85;
+  background-color: #2a027d;
   color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
   font-weight: 600;
 }
-.buttons-box__verify-button {
-  width: 100%;
-  background-color: #1c5d85;
+.buttons-box__sold-button--disabled {
   color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
   font-weight: 600;
+  background-color: #a981fd;
+  cursor: not-allowed;
+}
+.buttons-box__verify-button {
+  width: 100%;
+  background-color: #2a027d;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+}
+.buttons-box__modal-title {
+  margin: 0;
 }
 .buttons-box__discard-button {
   background-color: rgb(223, 64, 64);
@@ -3920,8 +4111,11 @@ form input:focus-visible, form textarea:focus-visible {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 2em 1em;
+  padding: 2em 2em;
   min-height: 100px;
+}
+.buttons-box__inner-modal-div.register {
+  padding: 0.5em 2em;
 }
 .buttons-box__inner-modal-div--alt {
   gap: 10px;
@@ -3945,7 +4139,11 @@ form input:focus-visible, form textarea:focus-visible {
   font-weight: 700;
 }
 .buttons-box__phone-input {
-  padding-left: 3.1em !important;
+  flex: 1;
+  height: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid grey;
 }
 .buttons-box__input-div--otp {
   width: 100% !important;
@@ -3957,7 +4155,7 @@ form input:focus-visible, form textarea:focus-visible {
 .buttons-box__input-div {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
 }
 .buttons-box__input-div label {
   font-weight: 600;
@@ -3974,7 +4172,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: 1px solid grey;
 }
 .buttons-box__input-div input:focus {
-  outline: 1px solid #1c5d85;
+  outline: 1px solid #2a027d;
 }
 .buttons-box__inner-input-div {
   position: relative;
@@ -3992,6 +4190,110 @@ form input:focus-visible, form textarea:focus-visible {
   border-right: 1px solid grey;
   padding-right: 5px;
 }
+.buttons-box__country-code-text {
+  display: block;
+}
+.buttons-box__country-code-text--mobile {
+  display: none;
+}
+.buttons-box__phone-input-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.buttons-box__phone-input-div label {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.buttons-box__phone-input-div label span {
+  color: lightgrey;
+}
+.buttons-box__phone-input-div input:focus {
+  outline: 1px solid #2a027d;
+}
+.buttons-box__inner-phone-input-div {
+  display: flex;
+  justify-content: space-between;
+  height: 2.3em;
+  gap: 7px;
+  position: relative;
+}
+.buttons-box__country-code-list {
+  position: absolute;
+  top: 2.5em;
+  left: 0;
+  z-index: 10;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  max-height: 130px;
+  min-width: 100%;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 5px dimgrey;
+  margin: 0;
+  padding: 0;
+}
+.buttons-box__country-code-list-item {
+  height: 2em;
+  border: 1px solid rgb(239, 239, 239);
+}
+.buttons-box__country-code-list-item button {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s;
+}
+.buttons-box__country-code-list-item button:hover {
+  background-color: rgba(211, 211, 211, 0.603);
+}
+.buttons-box__country-code-list-item:last-child {
+  border: 1px solid transparent;
+}
+.buttons-box__country-code-list-item p {
+  margin: 0;
+  font-size: 0.9em;
+}
+.buttons-box__country-code-div {
+  display: flex;
+  padding: 8px;
+  gap: 5px;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid grey;
+}
+.buttons-box__country-code-div p {
+  font-size: 0.85em;
+  margin: 0;
+}
+.buttons-box__verify-phone-number-button {
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  border-radius: 4px;
+  background-color: #2a027d;
+  color: #ffffff;
+}
+.buttons-box__verify-phone-number-button--mobile {
+  display: none;
+}
+.buttons-box__phone-input-carret-button {
+  padding: 3px;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  background-color: lightgrey;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(90deg);
+}
 .buttons-box__verification-error-message {
   font-size: 0.85em;
   color: rgb(223, 64, 64);
@@ -4006,6 +4308,60 @@ form input:focus-visible, form textarea:focus-visible {
   margin: 0;
   margin-top: 3px;
 }
+.buttons-box__check-box-div {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+}
+.buttons-box__switch-to-login-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.buttons-box__switch-to-login-div.signin {
+  margin: 0;
+}
+.buttons-box__switch-to-login-div h6 {
+  margin: 0;
+}
+.buttons-box__forgot-password-div {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.buttons-box__forgot-password-div h6 {
+  margin: 0;
+  color: #2a027d;
+}
+.buttons-box__forgot-password-div h6:hover {
+  text-decoration: underline;
+}
+.buttons-box__forgot-password-div button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.buttons-box__check-box-text-div {
+  display: flex;
+  align-items: center;
+}
+.buttons-box__check-box-text-div h6, .buttons-box__check-box-text-div button {
+  font-size: 0.85;
+  margin: 0;
+}
+.buttons-box__check-box-text-div span.buttons-box__terms-button {
+  color: #2a027d;
+}
+.buttons-box__check-box-text-div span.buttons-box__terms-button:hover {
+  text-decoration: underline;
+}
+.buttons-box__switch-to-login-button {
+  color: #2a027d;
+}
+.buttons-box__switch-to-login-button:hover {
+  text-decoration: underline;
+}
 .buttons-box__terms-button {
   border: none;
   background-color: transparent;
@@ -4019,12 +4375,12 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   height: 100%;
   flex: 1;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   margin-right: 12px;
   transition: background-color 0.3s;
 }
 .buttons-box button:hover {
-  background-color: #257aaf;
+  background-color: #3b03af;
 }
 .buttons-box button:last-child {
   margin-right: 0;
@@ -4062,40 +4418,90 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   background-color: lightgrey;
   border: none;
-  color: rgb(156, 156, 156);
+  color: rgb(63, 63, 63);
   font-weight: 600;
 }
-
-.edit-item-button {
+.buttons-box__new-arrivals {
+  width: 100%;
+  height: 3em;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background-color: #2a027d;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  width: 100%;
-  height: 2.5em;
-  flex: 1;
-  background-color: #1c5d85;
-  margin-right: 12px;
-  transition: background-color 0.3s;
+  gap: 15px;
 }
-.edit-item-button:hover {
-  background-color: #257aaf;
-}
-.edit-item-button:last-child {
-  margin-right: 0;
-}
-.edit-item-button h6, .edit-item-button i {
+.buttons-box__new-arrivals h1 {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #ffffff;
   margin: 0;
-  font-size: 0.95em;
+}
+.buttons-box__new-arrivals i {
+  font-size: 1.2em;
   color: #ffffff;
 }
-.edit-item-button i {
-  margin-right: 10px;
+.buttons-box__modal-header {
+  margin: 0;
+}
+.buttons-box__star-rating-inner-div {
+  display: flex;
+}
+.buttons-box__star-rating-icon-div {
+  width: 3.5em;
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttons-box__star-rating-icon-div i {
+  font-size: 2.3em;
+  color: lightgrey;
+  transition: color 0.3s;
+}
+.buttons-box__star-rating-icon-div i.active {
+  color: #2a027d;
+}
+.buttons-box__review-text-area {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 100%;
+  height: 150px;
+  padding: 10px;
 }
 
+@media (max-width: 430px) {
+  .buttons-box__country-code-div {
+    width: 38%;
+  }
+  .buttons-box__country-code-text {
+    display: none;
+  }
+  .buttons-box__country-code-text--mobile {
+    display: block;
+  }
+  .buttons-box__phone-input {
+    width: 50%;
+  }
+  .buttons-box__verify-phone-number-button {
+    display: none;
+  }
+  .buttons-box__verify-phone-number-button--mobile {
+    display: block;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 4px;
+    background-color: #2a027d;
+    color: #ffffff;
+    margin-top: 8px;
+    height: 2em;
+  }
+}
 .carousel__custom {
   background-color: rgb(244, 244, 244);
   position: relative;
@@ -4124,7 +4530,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: 4px solid white;
   border-radius: 50%;
   padding: 0.5em;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   position: absolute;
   opacity: 1;
   left: -20px;
@@ -4136,7 +4542,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: 4px solid white;
   border-radius: 50%;
   padding: 0.5em;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   position: absolute;
   opacity: 1;
   right: -20px;
@@ -4169,7 +4575,7 @@ form input:focus-visible, form textarea:focus-visible {
     border: 4px solid white;
     border-radius: 50%;
     padding: 0.5em;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     position: absolute;
     opacity: 1;
     left: -20px;
@@ -4181,7 +4587,7 @@ form input:focus-visible, form textarea:focus-visible {
     border: 4px solid white;
     border-radius: 50%;
     padding: 0.5em;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     position: absolute;
     opacity: 1;
     right: -20px;
@@ -4359,7 +4765,7 @@ form input:focus-visible, form textarea:focus-visible {
   font-size: 5em;
 }
 .tabs-custom__reload {
-  background-color: #1c5d85;
+  background-color: #2a027d;
   margin-top: 30px;
   border: none;
   border-radius: 5px;
@@ -4372,7 +4778,7 @@ form input:focus-visible, form textarea:focus-visible {
   outline: none;
   border: none;
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   margin-right: 12px;
   padding: 0.5em 1em;
   transition: background-color 0.3s;
@@ -4380,7 +4786,7 @@ form input:focus-visible, form textarea:focus-visible {
   font-size: 0.95em;
 }
 .tabs-custom__button:hover {
-  background-color: #257aaf;
+  background-color: #3b03af;
 }
 
 @media (max-width: 430px) {
@@ -4414,7 +4820,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   margin: 35px 5px;
 }
 .loader__div span:nth-child(1) {
@@ -4447,12 +4853,34 @@ form input:focus-visible, form textarea:focus-visible {
   border: 1px solid lightgrey;
   padding: 0.5em 1em;
   border-radius: 50px;
-  color: #1c5d85;
+  color: #2a027d;
   font-weight: 700;
   letter-spacing: 0.8px;
   margin: 0.3em;
 }
+.search__categories-box button * {
+  font-weight: 700;
+  margin: 0;
+}
 
+@media (max-width: 430px) {
+  .search__categories-box ul {
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .search__categories-box h6 {
+    text-wrap: nowrap;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  .search__categories-box button {
+    max-width: 400px;
+    display: inline-block;
+  }
+}
 .find-closer-items__button {
   width: 100%;
   height: auto;
@@ -4484,7 +4912,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .find-closer-items__icon-div i {
   font-size: 1.3em;
-  color: #1c5d85;
+  color: #2a027d;
 }
 
 .mile-range__div {
@@ -4508,7 +4936,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 20px;
   border: none;
   border-radius: 50%;
-  background: #1c5d85;
+  background: #2a027d;
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -4518,7 +4946,7 @@ form input:focus-visible, form textarea:focus-visible {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #1c5d85;
+  background: #2a027d;
   pointer-events: auto;
   -webkit-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -4526,7 +4954,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .mile-range__info span {
   font-weight: 700;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .mile-range__input-div {
   width: 100%;
@@ -4551,7 +4979,7 @@ form input:focus-visible, form textarea:focus-visible {
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   border-radius: 5px;
   z-index: 1;
 }
@@ -4641,19 +5069,19 @@ form input:focus-visible, form textarea:focus-visible {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #3a7aa2, #1c5d85);
-  background-image: linear-gradient(to bottom right, #1c5d85, #3a7aa2);
+  background: linear-gradient(90deg, #3a7aa2, #2a027d);
+  background-image: linear-gradient(to bottom right, #2a027d, #3a7aa2);
 }
 .contain-div h1 {
   font-family: "Julius Sans One", sans-serif;
   font-size: 1.2em;
-  color: #1c5d85;
+  color: #2a027d;
   margin-bottom: 30px;
 }
 .contain-div__home-button {
   border: none;
   border-radius: 4px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   margin-top: 12px;
   padding: 0.4em 0.7em;
 }
@@ -4689,7 +5117,7 @@ form input:focus-visible, form textarea:focus-visible {
   background: #fff;
   text-align: center;
   font-size: 2em;
-  color: #1c5d85;
+  color: #2a027d;
   padding: 0.65em;
 }
 
@@ -4795,7 +5223,7 @@ form input:focus-visible, form textarea:focus-visible {
 .pulse {
   height: 100px;
   width: 100px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   z-index: 2;
   position: relative;
   border-radius: 50%;
@@ -4817,7 +5245,7 @@ form input:focus-visible, form textarea:focus-visible {
   left: 0;
   height: 100px;
   width: 100px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   border-radius: 50%;
   z-index: -1;
   opacity: 0.7;
@@ -4837,13 +5265,42 @@ form input:focus-visible, form textarea:focus-visible {
     opacity: 0;
   }
 }
+.settings {
+  padding: 15px;
+}
+.settings__title-header {
+  margin: 0;
+  font-weight: 700;
+  color: #2a027d;
+}
+.settings__account-info {
+  background-color: rgb(225, 225, 225);
+  border: 1px solid dimgrey;
+  border-radius: 4px;
+  padding: 0 8px;
+}
+.settings__account-info-div {
+  border-bottom: 2px solid rgb(177, 177, 177);
+  height: 2.4em;
+  line-height: 2;
+}
+.settings__account-info-div:last-child {
+  border-bottom: none;
+}
+.settings__account-info-div * {
+  margin: 0;
+}
+.settings__account-info-title {
+  font-weight: 700;
+}
+
 .footer {
   height: auto;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   padding-top: 30px;
 }
 .footer__top-div {
-  width: 1200px;
+  width: 1450px;
   margin: 0 auto 30px;
 }
 .footer__heading {
@@ -4918,7 +5375,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .footer__social-icon {
   font-size: 1.4em;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .footer__bottom-div {
   height: 60px;
@@ -4998,7 +5455,7 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .footer__social-icon {
     font-size: 1.4em;
-    color: #1c5d85;
+    color: #2a027d;
   }
   .footer__bottom-div {
     height: 60px;
@@ -5072,7 +5529,7 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .footer__social-icon {
     font-size: 1.4em;
-    color: #1c5d85;
+    color: #2a027d;
   }
   .footer__bottom-div {
     height: 60px;
@@ -5093,15 +5550,15 @@ form input:focus-visible, form textarea:focus-visible {
 
 .main-section {
   margin: 0 auto;
-  width: 1200px;
+  width: 1450px;
   height: 100%;
 }
 .main-section__left-div {
-  flex: 1;
+  width: 300px;
   margin-right: 10px;
 }
 .main-section__right-div {
-  flex: 3;
+  flex: 1;
   margin-left: 10px;
 }
 
@@ -5113,7 +5570,7 @@ form input:focus-visible, form textarea:focus-visible {
   .main-section-div {
     background-color: #fff;
     height: auto;
-    padding: 15px 0;
+    padding: 20px 0;
   }
   .main-section {
     margin: 0 auto;
@@ -5191,7 +5648,7 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   display: block;
   margin: 0 auto;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   color: white;
   font-weight: 700;
 }
@@ -5323,7 +5780,7 @@ button.checkout__buttom:disabled {
   height: 100%;
 }
 .about__heading {
-  color: #1c5d85;
+  color: #2a027d;
 }
 .about__button {
   margin: 2.5em 0;
@@ -5332,7 +5789,7 @@ button.checkout__buttom:disabled {
   border-radius: 5px;
   font-weight: 700;
   color: white;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   text-transform: capitalize;
 }
 
@@ -5373,7 +5830,7 @@ button.checkout__buttom:disabled {
   text-align: center;
   font-size: 1.8em;
   font-weight: 700;
-  color: #1c5d85;
+  color: #2a027d;
   margin-bottom: 5px;
 }
 .welcome-page__hero__main-div p {
@@ -5402,11 +5859,11 @@ button.checkout__buttom:disabled {
   height: 2.5em;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   padding: 0 8em 0 1em;
 }
 .welcome-page__hero__search-div__input:focus {
-  outline: 2px solid #3397d4;
+  outline: 2px solid #4c04e1;
 }
 .welcome-page__hero__search-div__button {
   border: none;
@@ -5418,7 +5875,7 @@ button.checkout__buttom:disabled {
   position: absolute;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -5484,12 +5941,12 @@ button.checkout__buttom:disabled {
     width: 80%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     padding-left: 1em;
     padding-right: 1em;
   }
   .welcome-page__hero__search-div__input:focus {
-    outline: 2px solid #3397d4;
+    outline: 2px solid #4c04e1;
   }
   .welcome-page__hero__search-div__button {
     border: none;
@@ -5499,7 +5956,7 @@ button.checkout__buttom:disabled {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #ffffff;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -5565,12 +6022,12 @@ button.checkout__buttom:disabled {
     width: 80%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border: 1px solid #1c5d85;
+    border: 1px solid #2a027d;
     padding-left: 1em;
     padding-right: 1em;
   }
   .welcome-page__hero__search-div__input:focus {
-    outline: 2px solid #3397d4;
+    outline: 2px solid #4c04e1;
   }
   .welcome-page__hero__search-div__button {
     border: none;
@@ -5580,7 +6037,7 @@ button.checkout__buttom:disabled {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #ffffff;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -5610,9 +6067,9 @@ button.checkout__buttom:disabled {
 .welcome-page__form {
   width: 100%;
   height: 100%;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
   border-radius: 8px;
-  background-color: #b1d7ef;
+  background-color: #a981fd;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5625,13 +6082,13 @@ button.checkout__buttom:disabled {
   padding: 5px 10px;
   outline: none;
   height: 2.3em;
-  border: 1px solid #1c5d85;
+  border: 1px solid #2a027d;
 }
 .welcome-page__search-button {
   width: 120px;
   color: #ffffff;
   border-radius: 5px;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   border: none;
   height: 2.3em;
 }
@@ -5653,7 +6110,7 @@ button.checkout__buttom:disabled {
     width: 70px;
     color: #ffffff;
     border-radius: 5px;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     border: none;
     height: 2.3em;
   }
@@ -5675,7 +6132,7 @@ button.checkout__buttom:disabled {
     width: 70px;
     color: #ffffff;
     border-radius: 5px;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     border: none;
     height: 2.3em;
   }
@@ -5701,7 +6158,7 @@ button.checkout__buttom:disabled {
   width: 20px;
   border: none;
   border-radius: 50%;
-  background: #1c5d85;
+  background: #2a027d;
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5711,7 +6168,7 @@ button.checkout__buttom:disabled {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #1c5d85;
+  background: #2a027d;
   pointer-events: auto;
   -webkit-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5719,7 +6176,7 @@ button.checkout__buttom:disabled {
 }
 .welcome-page__filter-by-distance__info span {
   font-weight: 700;
-  color: #1c5d85;
+  color: #2a027d;
 }
 .welcome-page__filter-by-distance__input-div {
   width: 100%;
@@ -5744,7 +6201,7 @@ button.checkout__buttom:disabled {
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: #1c5d85;
+  background-color: #2a027d;
   border-radius: 5px;
   z-index: 1;
 }
@@ -5766,7 +6223,7 @@ button.checkout__buttom:disabled {
     width: 20px;
     border: none;
     border-radius: 50%;
-    background: #1c5d85;
+    background: #2a027d;
     pointer-events: auto;
     -moz-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5776,7 +6233,7 @@ button.checkout__buttom:disabled {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #1c5d85;
+    background: #2a027d;
     pointer-events: auto;
     -webkit-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5784,7 +6241,7 @@ button.checkout__buttom:disabled {
   }
   .welcome-page__filter-by-distance__info span {
     font-weight: 700;
-    color: #1c5d85;
+    color: #2a027d;
   }
   .welcome-page__filter-by-distance__input-div {
     width: 100%;
@@ -5809,7 +6266,7 @@ button.checkout__buttom:disabled {
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     border-radius: 5px;
     z-index: 1;
   }
@@ -5831,7 +6288,7 @@ button.checkout__buttom:disabled {
     width: 20px;
     border: none;
     border-radius: 50%;
-    background: #1c5d85;
+    background: #2a027d;
     pointer-events: auto;
     -moz-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5841,7 +6298,7 @@ button.checkout__buttom:disabled {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #1c5d85;
+    background: #2a027d;
     pointer-events: auto;
     -webkit-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5849,7 +6306,7 @@ button.checkout__buttom:disabled {
   }
   .welcome-page__filter-by-distance__info span {
     font-weight: 700;
-    color: #1c5d85;
+    color: #2a027d;
   }
   .welcome-page__filter-by-distance__input-div {
     width: 100%;
@@ -5874,7 +6331,7 @@ button.checkout__buttom:disabled {
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: #1c5d85;
+    background-color: #2a027d;
     border-radius: 5px;
     z-index: 1;
   }

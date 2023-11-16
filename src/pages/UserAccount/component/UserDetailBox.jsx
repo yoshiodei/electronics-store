@@ -14,6 +14,8 @@ import { db } from '../../../config/firebaseConfig';
 import profile from '../../../assets/images/profile.jpg';
 import DeleteAccountModal from './DeleteAccountModal';
 import useDisplayStars from '../hooks/useDisplayStars';
+import ReviewModal from './ReviewModal';
+import calculateNewRating from '../utils/calculateNewRating';
 
 export default function UserDetailBox({ userProductIds }) {
   const initialReport = {
@@ -26,9 +28,12 @@ export default function UserDetailBox({ userProductIds }) {
 
   const [show, setShow] = useState(false);
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   const navigate = useNavigate();
-  const renderStars = useDisplayStars(userData.rating);
+
+  const rating = calculateNewRating(userData.ratings);
+  const renderStars = useDisplayStars(rating);
 
   const { id } = useParams();
   const {
@@ -44,35 +49,21 @@ export default function UserDetailBox({ userProductIds }) {
   const handleCloseDeleteAccount = () => setShowDeleteAccount(false);
   const handleShowDeleteAccount = () => setShowDeleteAccount(true);
 
+  const handleCloseReviewModal = () => setShowReviewModal(false);
+  const handleShowReviewModal = () => setShowReviewModal(true);
+
   const fetchData = async () => {
-    const q = query(
-      collection(db, 'vendors'),
-      where('uid', '==', id),
-    );
-    const querySnapshot = await getDocs(q);
-    let allData = {};
-    querySnapshot.forEach((doc2) => {
-      const data = doc2.data();
-      allData = data;
-      console.log('user data', userData);
-    });
-
-    const q2 = query(
-      collection(db, 'products'),
-      where('vendorId', '==', id),
-      where('status', '==', 'active'),
-    );
-    const querySnapshot2 = await getDocs(q2);
-    const numberOfProducts = querySnapshot2.docs.length;
-    setUserData({ ...allData, numberOfProducts });
-
-    const q3 = query(
-      collection(db, 'soldProducts'),
-      where('vendorId', '==', id),
-    );
-    const querySnapshot3 = await getDocs(q3);
-    const numberOfSoldProducts = querySnapshot3.docs.length;
-    setUserData({ ...allData, numberOfProducts, numberOfSoldProducts });
+    const q = query(collection(db, 'vendors'), where('uid', '==', id));
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc1) => {
+        console.log(doc1.id, ' => ', doc1.data());
+        const itemData = doc1.data();
+        setUserData(itemData);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSendReport = async () => {
@@ -98,7 +89,7 @@ export default function UserDetailBox({ userProductIds }) {
           reporterId: uid,
           reportedVendorName: userData.displayName,
           reporterImage: photoURL,
-          reportDate: Date.now(),
+          reportDate: new Date(),
         };
 
         await updateDoc(vendorRef, {
@@ -149,7 +140,7 @@ export default function UserDetailBox({ userProductIds }) {
         </div>
         <div className="user-detail-box__user-name-div">
           <h5 className="user-detail-box__user-name">
-            {userData?.displayName?.split(' ')[0]}
+            {userData?.firstName}
           </h5>
         </div>
         <div className="user-detail-box__user-info-outer-div">
@@ -158,7 +149,7 @@ export default function UserDetailBox({ userProductIds }) {
               Active Posts
             </h6>
             <h6 className="user-detail-box__user-info-value">
-              {userData.numberOfProducts}
+              {userData.productsPosted}
             </h6>
           </div>
           <div className="user-detail-box__user-info-div">
@@ -166,7 +157,7 @@ export default function UserDetailBox({ userProductIds }) {
               Sold Items
             </h6>
             <h6 className="user-detail-box__user-info-value">
-              {userData.numberOfSoldProducts}
+              {userData.productsSold}
             </h6>
           </div>
           <div className="user-detail-box__user-info-div">
@@ -204,6 +195,12 @@ export default function UserDetailBox({ userProductIds }) {
         </button>
         )}
         {(id !== uid) && (
+        <button className="user-detail-box__rate-user-button" type="button" onClick={handleShowReviewModal}>
+          <i className="user-detail-box__report-user-icon fa-solid fa-pen-nib" />
+          <h6 className="user-detail-box__report-user">Write Review</h6>
+        </button>
+        )}
+        {(id !== uid) && (
         <button className="user-detail-box__report-user-button d-inline-flex" type="button" onClick={handleShow}>
           <i className="user-detail-box__report-user-icon fa-solid fa-flag" />
           <h6 className="user-detail-box__report-user">Report User</h6>
@@ -218,10 +215,17 @@ export default function UserDetailBox({ userProductIds }) {
         userProductIds={userProductIds}
       />
 
+      <ReviewModal
+        handleCloseReviewModal={handleCloseReviewModal}
+        showReviewModal={showReviewModal}
+        displayName={userData?.displayName?.split(' ')[0]}
+        ratings={userData.ratings}
+      />
+
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>
-            <h6>{`Report user ${displayName}`}</h6>
+            <h6>{`Report user ${userData?.firstName}`}</h6>
           </Modal.Title>
         </Modal.Header>
         <div className="buttons-box__modal">

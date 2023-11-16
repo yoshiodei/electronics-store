@@ -1,0 +1,35 @@
+.settings {
+    padding: 15px;
+    
+    &__title-header {
+        margin: 0;
+        font-weight: 700;
+        color: $secondaryColour;
+    }
+
+    &__account-info {
+        background-color: rgb(225, 225, 225);
+        border: 1px solid dimgrey;
+        border-radius: 4px;
+        padding: 0 8px;
+    }
+
+    &__account-info-div {
+
+        border-bottom: 2px solid rgb(177, 177, 177);
+        height: 2.4em;
+        line-height: 2;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        & * {
+            margin: 0;
+        }
+    }
+
+    &__account-info-title {
+        font-weight: 700;
+    }
+}

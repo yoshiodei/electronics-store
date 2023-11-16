@@ -36,6 +36,9 @@ export default function DrawerButton({
       case 'messages':
         navigate('/chatlist/mobile');
         break;
+      case 'settings':
+        navigate('/settings/mobile');
+        break;
       case 'log-out':
         signOut(auth).then(() => {
           const userInfo = {
@@ -198,66 +201,90 @@ export default function DrawerButton({
               <button type="button" onClick={() => handleCategoryClick('phones')}>
                 <div className="drawer-button__menu-item__button-div">
                   <i className="fa-solid fa-mobile" />
-                  <h6>phones</h6>
+                  <h6>Cellphones & Accessories</h6>
                 </div>
                 <i className="fa-solid fa-chevron-right" />
               </button>
             </li>
             <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('televisions')}>
+              <button type="button" onClick={() => handleCategoryClick('Televisions')}>
                 <div className="drawer-button__menu-item__button-div">
                   <i className="fa-solid fa-tv" />
-                  <h6>televisions</h6>
+                  <h6>Televisions</h6>
                 </div>
                 <i className="fa-solid fa-chevron-right" />
               </button>
             </li>
             <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('desktops')}>
+              <button type="button" onClick={() => handleCategoryClick('Computers & Tablets')}>
                 <div className="drawer-button__menu-item__button-div">
                   <i className="fa-solid fa-desktop" />
-                  <h6>desktops</h6>
+                  <h6>Computers & Tablets</h6>
                 </div>
                 <i className="fa-solid fa-chevron-right" />
               </button>
             </li>
             <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('laptops')}>
+              <button type="button" onClick={() => handleCategoryClick('Office Electronics')}>
                 <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-laptop" />
-                  <h6>laptops</h6>
+                  <i className="fa-solid fa-print" />
+                  <h6>Office Electronics</h6>
                 </div>
                 <i className="fa-solid fa-chevron-right" />
               </button>
             </li>
             <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('gaming consoles')}>
+              <button type="button" onClick={() => handleCategoryClick('Video Games & Consoles')}>
                 <div className="drawer-button__menu-item__button-div">
                   <i className="fa-solid fa-gamepad" />
-                  <h6>gaming consoles</h6>
+                  <h6>Video Games & Consoles</h6>
                 </div>
                 <i className="fa-solid fa-chevron-right" />
               </button>
             </li>
             <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('headphones-and-speakers')}>
+              <button type="button" onClick={() => handleCategoryClick('Audio & Headphones')}>
                 <div className="drawer-button__menu-item__button-div">
                   <i className="fa-solid fa-headphones" />
-                  <h6>headphones and speakers</h6>
+                  <h6>Audio & Headphones</h6>
                 </div>
                 <i className="fa-solid fa-chevron-right" />
               </button>
             </li>
             <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('accessories')}>
+              <button type="button" onClick={() => handleCategoryClick('Home Appliances')}>
                 <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-puzzle-piece" />
-                  <h6>accessories</h6>
+                  <i className="fa-solid fa-house" />
+                  <h6>Home Appliances</h6>
+                </div>
+                <i className="fa-solid fa-chevron-right" />
+              </button>
+            </li>
+            <li className="drawer-button__menu-item">
+              <button type="button" onClick={() => handleCategoryClick('Car Electronics')}>
+                <div className="drawer-button__menu-item__button-div">
+                  <i className="fa-solid fa-car" />
+                  <h6>Car Electronics</h6>
+                </div>
+                <i className="fa-solid fa-chevron-right" />
+              </button>
+            </li>
+            <li className="drawer-button__menu-item">
+              <button type="button" onClick={() => handleCategoryClick('Wearable Devices')}>
+                <div className="drawer-button__menu-item__button-div">
+                  <i className="fa-solid fa-hand" />
+                  <h6>Wearable Devices</h6>
                 </div>
                 <i className="fa-solid fa-chevron-right" />
               </button>
             </li>
           </ul>
+        </div>
+        <div className="drawer-button__settings-div">
+          <button type="button" className="drawer-button__settings-button" onClick={() => handleMenuButtonClick('settings')}>
+            <i className="fa-solid fa-gear" />
+            <h6>Settings</h6>
+          </button>
         </div>
         { !isAnonymous && (
         <div className="drawer-button__sign-out-div">

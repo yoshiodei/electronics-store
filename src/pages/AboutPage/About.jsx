@@ -4,6 +4,7 @@ import Footer from '../../sections/Footer';
 import Main from './Main';
 import Navbar from '../../components/Navbar';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function About() {
   return (
@@ -18,6 +19,7 @@ export default function About() {
         <link rel="canonical" href="/#page-top" />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

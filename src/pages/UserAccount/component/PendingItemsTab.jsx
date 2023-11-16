@@ -6,8 +6,7 @@ import { useParams } from 'react-router-dom';
 import { db } from '../../../config/firebaseConfig';
 import DisplayProductLoader from '../../Home/components/DisplayProductLoader';
 import EmptyTab from './EmptyTab';
-// import ProductCard from '../../../components/ProductCard';
-import InactiveItemProductCard from './InactiveItemProductCard';
+import ProductCard from '../../../components/ProductCard';
 
 export default function PendingItemsTab() {
   const [products, setProducts] = useState([]);
@@ -19,7 +18,7 @@ export default function PendingItemsTab() {
       setIsLoading(true);
       const q = query(
         collection(db, 'products'),
-        where('vendorId', '==', id),
+        where('vendor.uid', '==', id),
         where('status', '==', 'pending'),
       );
       const querySnapshot = await getDocs(q);
@@ -54,7 +53,7 @@ export default function PendingItemsTab() {
         {
           products.map((product) => (
             <div className="col-6 col-md-3">
-              <InactiveItemProductCard product={product} pending sold={false} />
+              <ProductCard product={product} />
             </div>
           ))
           }

@@ -137,6 +137,7 @@
 
         &__or-separator {
             text-align: center;
+            margin: 0;
         }
 
         &__google-signin-button, &__facebook-signin-button {
@@ -150,7 +151,7 @@
             font-weight: 600;
             color: white;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 0;
 
             & i {
                 color: white;

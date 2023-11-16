@@ -5,6 +5,7 @@ const initialState = {
   recipientId: '',
   recipientImage: '',
   recipientName: '',
+  chatRoomId: '',
   error: null,
   chatTemplate: {},
 };
@@ -16,8 +17,12 @@ const chatSlice = createSlice({
     SET_RECIPIENT_CHAT_DETAILS(state, action) {
       state.isLoading = false;
       state.recipientId = action.payload.vendorId;
-      state.recipientImage = action.payload.vendor.image;
-      state.recipientName = action.payload.vendor.displayName;
+      state.recipientImage = action.payload.image;
+      state.recipientName = action.payload.displayName;
+      state.chatRoomId = action.payload.chatRoomId;
+      // state.recipientId = action.payload.vendorId;
+      // state.recipientImage = action.payload.vendor.image;
+      // state.recipientName = action.payload.vendor.displayName;
       state.error = null;
     },
     SET_CHAT_DETAILS(state, action) {
@@ -25,6 +30,7 @@ const chatSlice = createSlice({
       state.recipientId = action.payload.recipientId;
       state.recipientImage = action.payload.recipientImage;
       state.recipientName = action.payload.recipientName;
+      state.chatRoomId = action.payload.chatRoomId;
       state.error = null;
     },
     SET_CHAT_TEMPLATE(state, action) {

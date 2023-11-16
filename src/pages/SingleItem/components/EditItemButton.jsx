@@ -16,7 +16,7 @@ export default function EditItemButton({ product, id }) {
     <button
       type="button"
       onClick={handleEdit}
-      className="edit-item-button"
+      className="buttons-box__edit-item-button"
     >
       <i className="fa-regular fa-solid fa-pen-to-square" />
       <h6>Edit Item</h6>

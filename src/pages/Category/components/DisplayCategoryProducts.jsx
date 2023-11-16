@@ -12,6 +12,7 @@ import EmptyDisplay from '../../../components/EmptyDisplay';
 import FilterByDistance from '../../WelcomePage/components/FilterByDistance';
 import isItemWithinMiles from '../../WelcomePage/utils/isItemWithinMiles';
 import { selectLocationState } from '../../../redux/slice/locationSlice';
+// import { subCategoriesObj } from '../../../Constants/constantObjects';
 
 export default function DisplayCategoryProducts() {
   const [data, setData] = useState([]);
@@ -78,7 +79,7 @@ export default function DisplayCategoryProducts() {
         const docData = doc.data();
         allProducts.push({ ...docData, id: doc.id });
       });
-
+      console.log('this is crazy', allProducts);
       setIsLoading(false);
       setData(allProducts);
       setFilteredData(allProducts);
@@ -158,7 +159,7 @@ export default function DisplayCategoryProducts() {
         <div className="row g-2">
           {
       currentItems.map((product) => (
-        <div className="col-6 col-sm-4 col-md-3">
+        <div className="col-6 col-sm-4 col-md-2">
           <ProductCard product={product} />
         </div>
       ))

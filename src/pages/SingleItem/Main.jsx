@@ -5,22 +5,24 @@ import {
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AdPanel from '../../components/AdPanel';
-import ItemImageBox from './components/ItemImageBox';
 import { db } from '../../config/firebaseConfig';
 import ProductDetail from './components/ProductDetails';
 import ProductLocation from './components/ProductLocation';
+import { selectAuthState } from '../../redux/slice/authSlice';
 import VendorDetails from './components/VendorDetails';
 import ButtonsBox from './components/ButtonsBox';
-import { selectAuthState } from '../../redux/slice/authSlice';
 import RemoveItemButtonsBox from './components/RemoveItemButtonsBox';
 import EditItemButton from './components/EditItemButton';
 import ViewsBox from './components/ViewsBox';
+import ItemImageBox from './components/ItemImageBox';
+import DisplaySimilarItems from './components/DisplaySimilarItems';
+import DisplayUserItems from './components/DisplayUserItems';
 
 export default function Main() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   const { loginInfo } = useSelector(selectAuthState);
-  const { isAnonymous, uid } = loginInfo;
+  const { uid, isAnonymous } = loginInfo;
 
   const docRef = doc(db, 'products', id);
 
@@ -83,11 +85,11 @@ export default function Main() {
           <ProductDetail />
           <ProductLocation />
           <ViewsBox uid={uid} />
-          <VendorDetails />
+          <VendorDetails id={product?.vendor?.uid} />
           {!userIsAnonymous && <ButtonsBox product={product} />}
-          {(!userIsAnonymous && uid === product?.vendorId)
+          {(!userIsAnonymous && (uid === product?.vendor?.uid))
           && <EditItemButton product={product} id={id} />}
-          {(!userIsAnonymous && uid === product?.vendorId)
+          {(!userIsAnonymous && uid === product?.vendor?.uid)
           && <RemoveItemButtonsBox product={product} />}
           <AdPanel />
         </div>
@@ -97,14 +99,21 @@ export default function Main() {
             <ViewsBox uid={uid} />
             <ProductDetail />
             <ProductLocation />
-            <VendorDetails />
+            <VendorDetails id={product?.vendor?.uid} />
             {!userIsAnonymous && <ButtonsBox product={product} />}
-            {(!userIsAnonymous && uid === product?.vendorId)
+            {(!userIsAnonymous && (uid === product?.vendor?.uid))
           && <EditItemButton product={product} id={id} />}
-            {(!userIsAnonymous && uid === product?.vendorId)
+            {(!userIsAnonymous && (uid === product?.vendor?.uid))
           && <RemoveItemButtonsBox product={product} />}
           </div>
-          {/* <SimilarItems /> */}
+          <DisplayUserItems
+            displayName={product?.vendor?.displayName}
+            vendorId={product?.vendor?.uid}
+          />
+          <DisplaySimilarItems
+            category={product?.category}
+            id={id}
+          />
         </div>
       </main>
     </div>

@@ -23,7 +23,7 @@ export default function AllItemsTab({ setUserProductIds }) {
       setIsLoading(true);
       const q = query(
         collection(db, 'products'),
-        where('vendorId', '==', id),
+        where('vendor.uid', '==', id),
         where('status', '==', 'active'),
       );
       const querySnapshot = await getDocs(q);
@@ -38,7 +38,7 @@ export default function AllItemsTab({ setUserProductIds }) {
         userProductIds.push(doc.id);
       });
 
-      const q2 = query(collection(db, 'soldProducts'), where('vendorId', '==', id));
+      const q2 = query(collection(db, 'soldProducts'), where('vendor.uid', '==', id));
       const querySnapshot2 = await getDocs(q2);
 
       querySnapshot2.forEach((doc) => {
@@ -48,7 +48,7 @@ export default function AllItemsTab({ setUserProductIds }) {
 
       const q3 = query(
         collection(db, 'products'),
-        where('vendorId', '==', id),
+        where('vendor.uid', '==', id),
         where('status', '==', 'pending'),
       );
       const querySnapshot3 = await getDocs(q3);
@@ -108,7 +108,7 @@ export default function AllItemsTab({ setUserProductIds }) {
         {
       products.pendingProducts.map((product) => (
         <div className="col-6 col-md-3">
-          <InactiveItemProductCard product={product} pending sold={false} />
+          <ProductCard product={product} />
         </div>
       ))
       }

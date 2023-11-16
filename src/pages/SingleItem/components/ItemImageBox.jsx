@@ -44,7 +44,7 @@ export default function ItemImageBox() {
     <div className="item-image-box">
       <div className="item-image-box__top-div">
         <Carousel images={product?.images} />
-        {(uid !== product?.vendorId) && <StartChatButton recipientData={product} />}
+        {(uid !== product?.vendor?.uid) && <StartChatButton recipientData={product} />}
       </div>
       <div className="item-image-box__bottom-div">
         {

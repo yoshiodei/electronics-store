@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { emptyProductsList, setCoordinate, setFilter } from '../redux/slice/productsSlice';
+import { categoriesArray } from '../pages/NewItem/components/categoryObj';
 
 export default function FilterCard() {
   const initialFilter = {
@@ -111,7 +112,7 @@ export default function FilterCard() {
           onChange={handleSelectChange}
         >
           <option value="all">All</option>
-          <option value="brand new">Brand New</option>
+          <option value="new">New</option>
           <option value="slightly used">Slightly Used</option>
           <option value="used">Used</option>
         </select>
@@ -125,12 +126,11 @@ export default function FilterCard() {
           onChange={handleSelectChange}
         >
           <option value="all">All</option>
-          <option value="phones">Phones</option>
-          <option value="televisions">Televisions</option>
-          <option value="desktops">Desktops</option>
-          <option value="laptops">Laptops</option>
-          <option value="game consoles">Game Consoles</option>
-          <option value="headphones and speakers">Headphones and Speakers</option>
+          {
+            categoriesArray.map((category) => (
+              <option value={category} key={category}>{category}</option>
+            ))
+          }
         </select>
       </div>
       <div className="filter-card__reset-div d-flex justify-content-between">

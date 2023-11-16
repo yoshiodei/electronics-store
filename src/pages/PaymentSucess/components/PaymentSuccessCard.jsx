@@ -1,4 +1,4 @@
-import { doc, setDoc } from '@firebase/firestore';
+import { addDoc, collection } from '@firebase/firestore';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
@@ -16,7 +16,7 @@ export default function PaymentSuccessCard() {
 
       console.log('this is the promo item -->', promotedItem);
 
-      await setDoc(doc(db, 'products', promotedItem.id), promotedItem);
+      await addDoc(collection(db, 'products'), promotedItem);
 
       dispatch(addNewProduct(promotedItem));
 

@@ -41,25 +41,34 @@ export default function Footer() {
             <h4 className="footer__heading">Categories</h4>
             <ul className="footer__category-list">
               <li className="footer__category-list-item">
-                <Link to="/category/phones">Phones</Link>
+                <Link to="/category/Computers & Tablets">Computers &amp; Tablets</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/televisions">Televisions</Link>
+                <Link to="/category/Video Games & Consoles">Video Games &amp; Consoles</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/desktops">Desktops</Link>
+                <Link to="/category/Audio & Headphones">Audio &amp; Headphones</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/laptops">Laptops</Link>
+                <Link to="/category/Office Electronics">Office Electronics</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/game consoles">Game Consoles</Link>
+                <Link to="/category/Wearable Devices">Wearable Devices</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/headphones and speakers">Headphones and Speakers</Link>
+                <Link to="/category/Car Electronics">Car Electronics</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/accessories">Accessories</Link>
+                <Link to="/category/Cameras, Drones & Accessories">Cameras, Drones &amp; Accessories</Link>
+              </li>
+              <li className="footer__category-list-item">
+                <Link to="/category/Home Appliances">Home Appliances</Link>
+              </li>
+              <li className="footer__category-list-item">
+                <Link to="/category/Cellphones & Accessories">Cellphones & Accessories</Link>
+              </li>
+              <li className="footer__category-list-item">
+                <Link to="/category/Televisions">Televisions</Link>
               </li>
             </ul>
           </div>

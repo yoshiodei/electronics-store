@@ -87,6 +87,8 @@ export default function Main() {
       const updatedData = {
         bio: data.bio,
         displayName: data.displayName,
+        firstName: data.displayName?.split(' ')[0] || '',
+        lastName: data.displayName?.split(' ')[1] || '',
         photoURL: imageUrl,
       };
 

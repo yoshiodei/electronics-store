@@ -6,10 +6,10 @@ import Footer from '../../sections/Footer';
 import Main from './Main';
 import appName from '../../Constants/constantVariables';
 import useSetViews from './hooks/useSetViews';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function Home() {
   const { id } = useParams();
-
   useSetViews();
 
   return (
@@ -24,6 +24,7 @@ export default function Home() {
         <link rel="canonical" href={`/single-item/${id}`} />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

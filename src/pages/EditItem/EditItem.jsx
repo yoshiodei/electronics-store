@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../sections/Footer';
 import Main from './Main';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function EditItem() {
   return (
@@ -18,6 +19,7 @@ export default function EditItem() {
         <link rel="canonical" href="/new-item" />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

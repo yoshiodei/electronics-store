@@ -102,7 +102,7 @@ function Navbar() {
 
           const userInfo = {
             emailVerified: user?.emailVerified ? user.emailVerified  : '',
-            displayName: userData?.displayName,
+            displayName: userData?.firstName || userData?.displayName,
             bio: userData?.bio,
             email: userData?.email,
             followers: userData?.followers,
@@ -227,7 +227,7 @@ function Navbar() {
               </button>
             </li>}
             { !isAnonymous && <li>
-              <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
+              <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/messages")}>
                 <i className="fa-regular fa-message navbar-custom__icon" />
                 <div className="navbar-custom__icon-button__text-div">
                   <p>Chats</p>
@@ -236,6 +236,16 @@ function Navbar() {
                 { notificationsData?.messageCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.messageCount }</div>)}
               </button>
             </li>}
+            {/* { !isAnonymous && <li>
+              <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
+                <i className="fa-regular fa-message navbar-custom__icon" />
+                <div className="navbar-custom__icon-button__text-div">
+                  <p>Chats</p>
+                  <h6>My Messages</h6>
+                </div>
+                { notificationsData?.messageCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.messageCount }</div>)}
+              </button>
+            </li>} */}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
@@ -309,9 +319,8 @@ function Navbar() {
         </div>
       </nav>
       <MobileLoginModal showJoinModal={showJoinModal} handleCloseMobileModal={handleCloseMobileModal} />
-      <SignUpModal handleCloseRegisterModal={handleCloseRegisterModal} showRegisterModal={showRegisterModal} handleShowSignInModal={handleShowSignInModal} setShowRegisterModal={setShowRegisterModal} />
-      <SignInModal handleCloseSignInModal={handleCloseSignInModal} showSignInModal={showSignInModal} handleShowRegisterModal={handleShowRegisterModal} setForgotPasswordModal={setShowForgotPasswordModal} />
-      <ForgotPasswordModal showModal={showForgotPasswordModal} handleShowSignInModal={handleShowSignInModal} handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}/>
+      <SignUpModal handleCloseRegisterModal={handleCloseRegisterModal} showRegisterModal={showRegisterModal} handleShowSignInModal={handleShowSignInModal} handleShowRegisterModal={handleShowRegisterModal} />
+      <SignInModal handleCloseSignInModal={handleCloseSignInModal} showSignInModal={showSignInModal} handleShowRegisterModal={handleShowRegisterModal} handleShowSignInModal={handleShowSignInModal} />
     </>
   );
 }

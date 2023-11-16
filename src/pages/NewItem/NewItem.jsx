@@ -8,6 +8,7 @@ import Footer from '../../sections/Footer';
 import Main from './Main';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function NewItem() {
   const { login: isAnonymous, userInfo: emailVerified } = useSelector(selectAuthState);
@@ -40,6 +41,7 @@ export default function NewItem() {
         <link rel="canonical" href="/new-item" />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

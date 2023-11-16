@@ -1,7 +1,7 @@
 import {
   collection, getDocs, query, where,
 } from '@firebase/firestore';
-import { db } from '../../../config/firebaseConfig';
+import { db } from '../../config/firebaseConfig';
 
 const checkIfUserExists = async (userPhoneNumber) => {
   try {

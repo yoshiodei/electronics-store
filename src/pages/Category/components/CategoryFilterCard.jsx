@@ -18,31 +18,43 @@ export default function CategoryFilterCard({ category }) {
   const priceGap = 900;
 
   const brandArray = {
-    phones: ['all', 'apple', 'samsung', 'nokia', 'google', 'tecno', 'infinix', 'motorola', 'itel'],
-    computers: ['all', 'apple', 'dell', 'toshiba', 'asus', 'lenovo', 'alienware', 'hp'],
-    televisions: ['all', 'sony', 'samsung', 'nasco', 'tcl'],
-    games: ['all', 'xbox', 'playstation', 'nintendo'],
-    sound: ['all', 'jbl', 'beats', 'apple', 'sony'],
-    accessories: ['all', 'apple', 'samsung', 'google', 'sony'],
+    'Computers & Tablets': ['all', 'Dell', 'Lenovo', 'Acer', 'Asus', 'Microsoft', 'Toshiba', 'IBM', 'HP', 'LG', 'ViewSonic', 'NEC'],
+    'Video Games & Consoles': ['all', 'Sony (PlayStation)', 'Microsoft (Xbox)', 'Nintendo', 'Sega', 'Valve (Steam)', 'Razer', 'Logitech', 'Corsair', 'Alienware', 'HyperX'],
+    'Audio & Headphones': ['all', 'Bose', 'Sony', 'Sennheiser', 'Beats by Dre', 'JBL', 'Audio-Technica', 'Skullcandy', 'Bang & Olufsen', 'Shure', 'AKG'],
+    'Office Electronics': ['all', 'Dell', 'Lenovo', 'Acer', 'Asus', 'Microsoft', 'Toshiba', 'IBM', 'LG', 'HP', 'ViewSonic', 'NEC'],
+    'Wearable Devices': ['all', 'Apple', 'Samsung', 'Fitbit', 'Garmin', 'Xiaomi', 'Huawei', 'Fossil', 'Amazfit', 'Suunto', 'Withings'],
+    'Car Electronics': ['all', 'Pioneer', 'Sony', 'Kenwood', 'Alpine', 'JVC', 'Clarion', 'Garmin', 'TomTom', 'Harman Kardon', 'Blaupunkt'],
+    'Cameras, Drones & Accessories': ['all', 'Nikon', 'Canon', 'Sony', 'Panasonic', 'Fujifilm', 'GoPro', 'DJI', 'Leica', 'Olympus', 'Pentax'],
+    'Home Appliances': ['all', 'Whirlpool', 'LG Electronics', 'Samsung', 'General Electric (GE)', 'Maytag', 'KitchenAid', 'Bosch', 'Kenmore', 'Electrolux', 'Frigidaire'],
+    'Cellphones & Accessories': ['all', 'Apple', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 'Huawei', 'Sony', 'LG', 'Nokia', 'Motorola'],
+    Televisions: ['all', 'Samsung', 'LG', 'Sony', 'TCL', 'Panasonic', 'Vizio', 'Philips', 'Sharp', 'Hisense', 'Insignia'],
   };
 
   useEffect(() => {
     const getBrandArray = (categoryName) => {
       switch (categoryName) {
-        case 'phones':
-          return brandArray.phones;
-        case 'laptops':
-          return brandArray.computers;
-        case 'desktops':
-          return brandArray.computers;
-        case 'televisions':
-          return brandArray.televisions;
-        case 'headphones and speakers':
-          return brandArray.sound;
-        case 'game consoles':
-          return brandArray.games;
+        case 'Computers & Tablets':
+          return brandArray['Computers & Tablets'];
+        case 'Video Games & Consoles':
+          return brandArray['Video Games & Consoles'];
+        case 'Audio & Headphones':
+          return brandArray['Audio & Headphones'];
+        case 'Office Electronics':
+          return brandArray['Office Electronics'];
+        case 'Wearable Devices':
+          return brandArray['Wearable Devices'];
+        case 'Car Electronics':
+          return brandArray['Car Electronics'];
+        case 'Cameras, Drones & Accessories':
+          return brandArray['Cameras, Drones & Accessories'];
+        case 'Home Appliances':
+          return brandArray['Home Appliances'];
+        case 'Cellphones & Accessories':
+          return brandArray['Cellphones & Accessories'];
+        case 'Televisions':
+          return brandArray.Televisions;
         default:
-          return brandArray.accessories;
+          return null;
       }
     };
 
@@ -158,7 +170,7 @@ export default function CategoryFilterCard({ category }) {
           onChange={handleSelectChange}
         >
           <option value="all">All</option>
-          <option value="brand new">Brand New</option>
+          <option value="new">New</option>
           <option value="slightly used">Slightly Used</option>
           <option value="used">Used</option>
         </select>

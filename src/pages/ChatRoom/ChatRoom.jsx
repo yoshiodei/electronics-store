@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../sections/Footer';
 import Main from './Main';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function ChatRoom() {
   const { loginInfo } = useSelector(selectAuthState);
@@ -41,6 +42,7 @@ export default function ChatRoom() {
         <link rel="canonical" href="/chat-room" />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main uid={uid} />
       <Footer />
     </>

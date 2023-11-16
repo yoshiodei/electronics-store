@@ -24,6 +24,9 @@ import UserNotVerified from '../pages/UserNotVerified/UserNotVerified';
 import MobileChatRoom from '../pages/MobileChatRoom/MobileChatRoom';
 import MobileChatWall from '../pages/MobileChatWall/MobileChatWall';
 import WelcomePage from '../pages/WelcomePage/WelcomePage';
+import NewArrivals from '../pages/NewArrivals/NewArrivals';
+import Messages from '../pages/Messages/Messages';
+import MobileSettings from '../pages/MobileSettings/MobileSettings';
 
 export default function MainRoutes() {
   useEffect(() => {
@@ -51,6 +54,7 @@ export default function MainRoutes() {
         <Route path="/search/:searchName" element={<SearchResult />} />
         <Route path="/single-item/:id" element={<SingleItem />} />
         <Route path="/chat-room" element={<ChatRoom />} />
+        <Route path="/messages" element={<Messages />} />
         <Route path="/category/:category" element={<Category />} />
         <Route path="/new-item" element={<NewItem />} />
         <Route path="/user-account/:id" element={<UserAccount />} />
@@ -66,6 +70,8 @@ export default function MainRoutes() {
         <Route path="/verify-user" element={<UserNotVerified />} />
         <Route path="/chatlist/mobile" element={<MobileChatRoom />} />
         <Route path="/chatwall/mobile" element={<MobileChatWall />} />
+        <Route path="/settings/mobile" element={<MobileSettings />} />
+        <Route path="/new-arrivals" element={<NewArrivals />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>

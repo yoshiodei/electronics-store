@@ -9,20 +9,23 @@ import {
 } from '@firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
-import Uneditable from './Uneditable';
-import categoryObj from '../../NewItem/components/categoryObj';
-import { db, storage } from '../../../config/firebaseConfig';
+// import Uneditable from './Uneditable';
+import { categoryBrandArray, subCategoriesObj } from '../../NewItem/components/categoryObj';
+import {
+  db,
+  storage,
+} from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 
 export default function EditFormItems() {
   const { productToEdit } = useSelector(selectProductsState);
+
   const { id } = useParams();
 
-  console.log('item to edit is', productToEdit);
-
   const [item, setItem] = useState(productToEdit);
-  const [selectedCategory, setSelectedCategory] = useState(productToEdit.category);
-  const [selectedBrand, setSelectedBrand] = useState(productToEdit.brand);
+  const [selectedCategory, setSelectedCategory] = useState(productToEdit?.category);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(productToEdit?.subCategory);
+  const [selectedBrand, setSelectedBrand] = useState(productToEdit?.brand);
   const [previewImages, setPreviewImages] = useState([]);
   const [otherBrand, setOtherBrand] = useState('');
   const [isPosting, setIsPosting] = useState(false);
@@ -34,7 +37,8 @@ export default function EditFormItems() {
   const handleCategoryChange = (event) => {
     const category = event.target.value;
     setSelectedCategory(category);
-    setSelectedBrand(categoryObj[category][0]);
+    setSelectedSubCategory(subCategoriesObj[category][0]);
+    setSelectedBrand(categoryBrandArray[category][0]);
   };
 
   const handleBrandChange = (event) => {
@@ -91,7 +95,8 @@ export default function EditFormItems() {
     e.preventDefault();
 
     const {
-      name, price, details, images, condition, isPromoted, location,
+      name, price, details, condition, datePosted, location,
+      images, viewCount, subCategory,
     } = item;
 
     setIsPosting(true);
@@ -177,27 +182,20 @@ export default function EditFormItems() {
       const vendorData = {
         displayName,
         image: photoURL,
-        userId: uid,
+        uid,
       };
 
       const productsData = {
-        id,
         name: name.trim(),
-        details: details.trim(),
-        condition,
-        isPromoted,
-        category: selectedCategory,
-        brand: itemBrand,
         price: price.trim(),
-        images: [...imageString, ...imageUrls],
-        vendor: vendorData,
-        datePosted: Date.now(),
-        dateLastEdited: Date.now(),
-        vendorId: uid,
+        brand: itemBrand,
+        details: details.trim(),
         status: 'pending',
+        category: selectedCategory,
+        condition,
+        lastEdited: new Date(),
         location: {
           locationIsSet: location.locationIsSet,
-          locationName: `${location.town}, ${location.state}`,
           country: location.country,
           state: location.state,
           town: location.town,
@@ -206,11 +204,18 @@ export default function EditFormItems() {
             latitude: location?.coordinates?.latitude ? location?.coordinates?.latitude : 0,
           },
         },
+        images: [...imageString, ...imageUrls],
+        viewCount,
+        isPromoted: false,
+        postedFrom: 'web',
+        vendor: vendorData,
+        datePosted,
+        subCategory,
       };
 
       await setDoc(doc(db, 'products', id), productsData);
 
-      toast.success('Item has been successfully posted', {
+      toast.success('Item has been successfully edited', {
         position: 'top-center',
         autoClose: 2500,
         hideProgressBar: true,
@@ -242,7 +247,8 @@ export default function EditFormItems() {
     e.preventDefault();
 
     const {
-      name, price, details, images, condition, location,
+      name, price, details, condition, location, subCategory, viewCount,
+      images, datePosted,
     } = item;
 
     setIsPosting(true);
@@ -328,27 +334,20 @@ export default function EditFormItems() {
       const vendorData = {
         displayName,
         image: photoURL,
-        userId: uid,
+        uid,
       };
 
       const productsData = {
-        id,
         name: name.trim(),
-        details: details.trim(),
-        condition,
-        isPromoted: 'true',
-        category: selectedCategory,
-        brand: itemBrand,
         price: price.trim(),
-        images: [...imageString, ...imageUrls],
-        vendor: vendorData,
-        datePosted: Date.now(),
-        dateLastEdited: Date.now(),
-        vendorId: uid,
+        brand: itemBrand,
+        details: details.trim(),
         status: 'pending',
+        category: selectedCategory,
+        condition,
+        lastEdited: new Date(),
         location: {
           locationIsSet: location.locationIsSet,
-          locationName: `${location.town}, ${location.state}`,
           country: location.country,
           state: location.state,
           town: location.town,
@@ -357,6 +356,13 @@ export default function EditFormItems() {
             latitude: location?.coordinates?.latitude ? location?.coordinates?.latitude : 0,
           },
         },
+        images: [...imageString, ...imageUrls],
+        viewCount,
+        isPromoted: true,
+        postedFrom: 'web',
+        vendor: vendorData,
+        datePosted,
+        subCategory,
       };
 
       const promotedItemJSON = JSON.stringify(productsData);
@@ -412,10 +418,6 @@ export default function EditFormItems() {
     setItem({ ...item, images: populateArray(item?.images) });
   }, []);
 
-  if (!item.name) {
-    return (<Uneditable />);
-  }
-
   return (
     <form className="new-item-form" onSubmit={handleEdit}>
       <div className="row g-4">
@@ -457,7 +459,7 @@ export default function EditFormItems() {
               value={item.condition}
               onChange={handleFormChange}
             >
-              <option value="brand new">Brand New</option>
+              <option value="new">New</option>
               <option value="slightly used">Slightly Used</option>
               <option value="used">Used</option>
             </select>
@@ -473,9 +475,27 @@ export default function EditFormItems() {
               value={selectedCategory}
               onChange={handleCategoryChange}
             >
-              {Object.keys(categoryObj).map((category) => (
+              {Object.keys(subCategoriesObj).map((category) => (
                 <option key={category} value={category}>
                   {category}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="new-item-form__input-div">
+            <label htmlFor="category" className="new-item-form__label">Sub Category</label>
+            <select
+              className="new-item-form__input"
+              aria-label="Default select example"
+              name="subCategory"
+              value={selectedSubCategory}
+              onChange={(e) => setSelectedSubCategory(e.target.value)}
+            >
+              {subCategoriesObj[selectedCategory].map((subCategory) => (
+                <option key={subCategory} value={subCategory}>
+                  {subCategory}
                 </option>
               ))}
             </select>
@@ -491,7 +511,7 @@ export default function EditFormItems() {
               value={selectedBrand}
               onChange={handleBrandChange}
             >
-              {categoryObj[selectedCategory].map((brand) => (
+              {categoryBrandArray[selectedCategory].map((brand) => (
                 <option key={brand} value={brand}>
                   {brand}
                 </option>
@@ -500,7 +520,7 @@ export default function EditFormItems() {
           </div>
         </div>
         {(selectedBrand === 'other') && (
-        <div className="col-md-12">
+        <div className="col-md-6">
           <div className="new-item-form__input-div">
             <label htmlFor="other-brand-input" className="new-item-form__label">
               Please Specify the Item Brand
@@ -520,11 +540,20 @@ export default function EditFormItems() {
           <div className="new-item-form__textarea-div">
             <label className="new-item-form__label new-item-form__label--alt">
               <h6>Item Detail</h6>
-              <span className={(item.details.length <= 300) ? '' : 'new-item-form__label new-item-form__span--alt'}>{`( ${item.details.length} / 300 )`}</span>
+              <span
+                className={
+                (item.details.length <= 300)
+                  ? ''
+                  : 'new-item-form__label new-item-form__span--alt'
+}
+              >
+                {`( ${item.details.length} / 300 )`}
+              </span>
             </label>
             <textarea
               className="new-item-form__textarea"
-              placeholder="Write a suitable description for your item, such as color, brand, model and other useful information."
+              placeholder="Write a suitable description for your item,
+              such as color, brand, model and other useful information."
               name="details"
               value={item.details}
               onChange={handleFormChange}

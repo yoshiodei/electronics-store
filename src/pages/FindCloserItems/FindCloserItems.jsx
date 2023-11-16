@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar';
 import Main from './Main';
 import Footer from '../../sections/Footer';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function FindCloserItems() {
   return (
@@ -18,6 +19,7 @@ export default function FindCloserItems() {
         <link rel="canonical" href="/find-closer-items" />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

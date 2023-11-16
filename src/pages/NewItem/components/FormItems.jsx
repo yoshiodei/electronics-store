@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import {
-  doc,
-  setDoc,
+  addDoc,
+  collection,
 } from '@firebase/firestore';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import GeoGetter from '../../../components/GeoGetter';
-import categoryObj from './categoryObj';
+import { categoryBrandArray, subCategoriesObj } from './categoryObj';
 import { addNewProduct, selectProductsState } from '../../../redux/slice/productsSlice';
 import { stripePaymentLink } from '../../../Constants/constantVariables';
 
@@ -33,8 +33,9 @@ export default function FormItems() {
 
   const { userCoordinate } = useSelector(selectProductsState);
 
-  const [selectedCategory, setSelectedCategory] = useState('phones');
-  const [selectedBrand, setSelectedBrand] = useState(categoryObj.phones[0]);
+  const [selectedCategory, setSelectedCategory] = useState('Cellphones & Accessories');
+  const [selectedBrand, setSelectedBrand] = useState(categoryBrandArray[selectedCategory][0]);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(subCategoriesObj['Cellphones & Accessories'][0]);
   const [otherBrand, setOtherBrand] = useState('');
 
   const navigate = useNavigate();
@@ -42,7 +43,12 @@ export default function FormItems() {
   const handleCategoryChange = (event) => {
     const category = event.target.value;
     setSelectedCategory(category);
-    setSelectedBrand(categoryObj[category][0]);
+    setSelectedBrand(categoryBrandArray[category][0]);
+    setSelectedSubCategory(subCategoriesObj[category][0]);
+  };
+
+  const handleSubCategoryChange = (e) => {
+    setSelectedSubCategory(e.target.value);
   };
 
   const handleBrandChange = (event) => {
@@ -53,13 +59,16 @@ export default function FormItems() {
   const initialState = {
     name: '',
     price: '',
-    category: 'laptops',
-    brand: 'sony',
+    brand: 'Apple',
     details: '',
+    category: 'Cellphones & Accessories',
+    subCategory: 'Cellphones & Smartphones',
+    viewCount: [],
     images: [],
-    condition: 'brand new',
+    condition: 'new',
+    postedFrom: 'web',
     isPromoted: false,
-    datePosted: '',
+    datePosted: new Date(),
     location: {
       locationIsSet: false,
       country: '',
@@ -234,28 +243,22 @@ export default function FormItems() {
 
         const vendorData = {
           displayName,
-          image: photoURL,
-          userId: uid,
+          photoURL,
+          uid,
         };
 
-        const productId = nanoid();
+        // const productId = nanoid();
 
         const promotedItem = {
-          price,
           name,
-          details,
-          condition,
-          datePosted: Date.now(),
-          isPromoted: true,
-          dateLastPromoted: Date.now(),
-          images: imageUrls,
-          category: selectedCategory,
+          price,
           brand: itemBrand,
+          details,
           status: 'pending',
-          postedFrom: 'web',
-          id: productId,
-          vendor: vendorData,
-          vendorId: uid,
+          category: selectedCategory,
+          subCategory: selectedSubCategory,
+          condition,
+          lastEdited: new Date(),
           location: {
             locationIsSet: (userCoordinate?.longitude !== 0) || location.locationIsSet,
             locationName: `${location.town}, ${location.state}`,
@@ -267,6 +270,13 @@ export default function FormItems() {
               latitude: userCoordinate?.latitude || location.latitude,
             },
           },
+          images: imageUrls,
+          viewCount: [],
+          isPromoted: true,
+          postedFrom: 'web',
+          datePosted: new Date(),
+          dateLastPromoted: new Date(),
+          vendor: vendorData,
         };
 
         const promotedItemJSON = JSON.stringify(promotedItem);
@@ -296,7 +306,7 @@ export default function FormItems() {
     e.preventDefault();
 
     const {
-      name, price, details, images, condition, isPromoted,
+      name, price, details, images, condition,
     } = newItem;
 
     setIsPosting(true);
@@ -363,7 +373,7 @@ export default function FormItems() {
       const vendorData = {
         displayName,
         image: photoURL,
-        userId: uid,
+        uid,
       };
 
       let itemBrand;
@@ -373,26 +383,19 @@ export default function FormItems() {
         itemBrand = selectedBrand;
       }
 
-      const productId = nanoid();
+      // const productId = nanoid();
 
       const productsData = {
         name: name.trim(),
-        details: details.trim(),
-        condition,
-        id: productId,
-        isPromoted,
-        category: selectedCategory,
-        brand: itemBrand,
         price: price.trim(),
+        brand: itemBrand,
+        details: details.trim(),
         status: 'pending',
-        postedFrom: 'web',
-        images: imageUrls,
-        vendor: vendorData,
-        datePosted: Date.now(),
-        vendorId: uid,
+        category: selectedCategory,
+        condition,
+        lastEdited: new Date(),
         location: {
           locationIsSet: (userCoordinate?.longitude !== 0) || location.locationIsSet,
-          locationName: `${location.town}, ${location.state}`,
           country: location.country,
           state: location.state,
           town: location.town,
@@ -401,14 +404,20 @@ export default function FormItems() {
             latitude: userCoordinate?.latitude || location.latitude,
           },
         },
+        images: imageUrls,
+        viewCount: [],
+        isPromoted: false,
+        postedFrom: 'web',
+        vendor: vendorData,
+        datePosted: new Date(),
+        subCategory: selectedSubCategory,
       };
 
       setLocation(initialLocation);
       setNewItem(initialState);
       e.target.reset();
 
-      // await setDoc(doc(db, 'pendingItems', productId), productsData);
-      await setDoc(doc(db, 'products', productId), productsData);
+      await addDoc(collection(db, 'products'), productsData);
 
       dispatch(addNewProduct(productsData));
 
@@ -484,7 +493,7 @@ export default function FormItems() {
               value={newItem.condition}
               onChange={handleFormChange}
             >
-              <option value="brand new">Brand New</option>
+              <option value="new">New</option>
               <option value="slightly used">Slightly Used</option>
               <option value="used">Used</option>
             </select>
@@ -492,17 +501,35 @@ export default function FormItems() {
         </div>
         <div className="col-md-6">
           <div className="new-item-form__input-div">
-            <label htmlFor="category2" className="new-item-form__label">Item Category</label>
+            <label htmlFor="itemCategory" className="new-item-form__label">Item Category</label>
             <select
               className="new-item-form__input"
               aria-label="Default select example"
-              name="category2"
+              name="itemCategory"
               value={selectedCategory}
               onChange={handleCategoryChange}
             >
-              {Object.keys(categoryObj).map((category) => (
+              {Object.keys(subCategoriesObj).map((category) => (
                 <option key={category} value={category}>
                   {category}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="new-item-form__input-div">
+            <label htmlFor="subCategory" className="new-item-form__label">Sub Category</label>
+            <select
+              className="new-item-form__input"
+              aria-label="Default select example"
+              name="subCategory"
+              value={selectedSubCategory}
+              onChange={handleSubCategoryChange}
+            >
+              {subCategoriesObj[selectedCategory].map((subCategory) => (
+                <option key={subCategory} value={subCategory}>
+                  {subCategory}
                 </option>
               ))}
             </select>
@@ -518,7 +545,7 @@ export default function FormItems() {
               value={selectedBrand}
               onChange={handleBrandChange}
             >
-              {categoryObj[selectedCategory].map((brand) => (
+              {categoryBrandArray[selectedCategory].map((brand) => (
                 <option key={brand} value={brand}>
                   {brand}
                 </option>
@@ -527,7 +554,7 @@ export default function FormItems() {
           </div>
         </div>
         {(selectedBrand === 'other') && (
-          <div className="col-md-12">
+          <div className="col-md-6">
             <div className="new-item-form__input-div">
               <label htmlFor="other-brand-input" className="new-item-form__label">
                 Please Specify the Item Brand

@@ -21,8 +21,16 @@
     }
 
     &__card-info-div {
-        & h6 {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        align-items: flex-start;
+
+        & * {
             margin: 0;
+        }
+
+        & h6 {
             text-transform: capitalize;
             font-weight: 700;
         }

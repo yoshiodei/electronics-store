@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../sections/Footer';
 import Main from './Main';
 import appName from '../../Constants/constantVariables';
+import NavbarBottom from '../../components/NavbarBottom';
 
 export default function SearchResult() {
   const { searchName } = useParams();
@@ -20,6 +21,7 @@ export default function SearchResult() {
         <link rel="canonical" href={`/search/${searchName}#page-top`} />
       </Helmet>
       <Navbar />
+      <NavbarBottom />
       <Main />
       <Footer />
     </>

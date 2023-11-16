@@ -6,31 +6,9 @@ export default function WishListItem({ item, removeItem }) {
     name, price, location, condition, id, image,
   } = item;
 
-  // const itemObject = {
-  //   itemObjectIsSet: false,
-  //   name: '',
-  //   price: '',
-  //   location: { locationIsSet: false },
-  //   condition: '',
-  //   id: '',
-  //   image: '',
-  // };
-
-  // const [obj, setObj] = useState(itemObject);
-
   const handleCloseItem = () => {
     removeItem(id);
   };
-
-  // useEffect(() => {
-  //   setObj({
-  //     itemObjectIsSet: true,
-  //   });
-  // },[]);
-
-  // if (!obj.itemObjectIsSet) {
-  //   return '';
-  // }
 
   return (
     <div className="wish-list__item" key={id}>
@@ -41,7 +19,7 @@ export default function WishListItem({ item, removeItem }) {
         <div className="wish-list__info-div">
           <h6>{name}</h6>
           <h6>{`$ ${price}.00`}</h6>
-          <h6>{location?.locationIsSet ? `${location?.town}, ${location?.state}` : 'location is unknown'}</h6>
+          <h6>{(location?.state && location?.town) ? `${location?.town}, ${location?.state}` : 'location is unknown'}</h6>
           <h6>{condition}</h6>
         </div>
       </Link>

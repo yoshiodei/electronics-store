@@ -7,13 +7,18 @@ import { selectAuthState } from '../redux/slice/authSlice';
 import { addToWhishList } from '../redux/slice/wishListSlice';
 import getItemDistanceFromUser from '../pages/SingleItem/utils/getItemDistanceFromUser';
 import { selectProductsState } from '../redux/slice/productsSlice';
+import convertSecondsToHumanDate from '../utils/DispalyDate';
 
 export default function ProductCard({ product }) {
   const {
-    id, price, vendor, name, condition, isPromoted, images, brand,
+    id, price, vendor, name, condition, isPromoted, images, datePosted,
+    // brand,
   } = product;
 
   const image = images[0];
+  const postDate = datePosted?.seconds
+    ? convertSecondsToHumanDate(datePosted?.seconds)
+    : convertSecondsToHumanDate(datePosted);
 
   const { userCoordinates } = useSelector(selectProductsState);
   const { loginInfo } = useSelector(selectAuthState);
@@ -43,7 +48,7 @@ export default function ProductCard({ product }) {
       });
 
       return null;
-    } if (vendor?.userId === uid) {
+    } if (vendor?.uid === uid) {
       toast.error('Item you posted cannot be added to whishlist', {
         position: 'top-center',
         autoClose: 1500,
@@ -78,12 +83,13 @@ export default function ProductCard({ product }) {
         <div className="product-card__image-div">
           <img src={image || ''} alt="product" className="product-card__image" />
         </div>
-        <h5 className="product-card__product-price">{`$ ${price}`}</h5>
         <p className="product-card__product-name">{name}</p>
-        <div className="product-card__product-location-div d-flex align-items-center">
+        <h5 className="product-card__product-price">{`$ ${price}`}</h5>
+        {/* <div className="product-card__product-location-div d-flex align-items-center">
           <p className="product-card__product-location-name">{brand}</p>
-        </div>
+        </div> */}
         <p className="product-card__product-mile-range">{parseInt(miles) >= 0 ? `${miles} miles away` : '' }</p>
+        <p className="product-card__product-post-date">{`posted on ${postDate}`}</p>
         <div className="product-card__product-condition-div">
           <p className="product-card__product-condition">{condition}</p>
         </div>

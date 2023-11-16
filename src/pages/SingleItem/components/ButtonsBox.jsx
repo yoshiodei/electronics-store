@@ -37,7 +37,7 @@ export default function ButtonsBox({ product }) {
   const { isAnonymous, uid } = loginInfo;
 
   const handleAddToWishList = (wishListProduct) => {
-    if (isAnonymous || product?.vendor?.userId === uid) {
+    if (isAnonymous || product?.vendor?.uid === uid) {
       console.log('Log in to add items to wish list');
     } else {
       const image = wishListProduct.images[0];
@@ -77,10 +77,10 @@ export default function ButtonsBox({ product }) {
           reporterName: displayName,
           reporterId: uid,
           reportedItemName: product?.name,
-          reportedItemVendorId: product?.vendorId,
+          reportedItemVendorId: product?.uid,
           reportedItemVendorName: product?.vendor.displayName,
           reporterImage: photoURL,
-          reportDate: Date.now(),
+          reportDate: new Date(),
         };
 
         await updateDoc(vendorRef, {
@@ -122,13 +122,13 @@ export default function ButtonsBox({ product }) {
   return (
     <>
       <div className="buttons-box">
-        { (uid !== product?.vendorId) && (
+        { (uid !== product?.vendor?.uid) && (
         <button type="button" onClick={() => handleAddToWishList({ ...product, id })}>
           <i className="fa-regular fa-heart" />
           <h6>Save</h6>
         </button>
         )}
-        { (uid !== product?.vendorId) && (
+        { (uid !== product?.vendor?.uid) && (
         <button type="button" onClick={handleShow}>
           <i className="fa-regular fa-flag" />
           <h6>Report</h6>
