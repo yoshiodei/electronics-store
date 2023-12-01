@@ -35,7 +35,7 @@ export default function ViewsBox({ uid }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   if (isLoading || ((uid !== vendorId))) {
     return null;

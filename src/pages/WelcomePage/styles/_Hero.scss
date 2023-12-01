@@ -1,10 +1,96 @@
+.welcome-page__right-div {
+    display: flex;
+    flex-direction: column;
+}
+
 .welcome-page__hero {
     width: 100%;
-    height: auto;
-    margin-bottom: 30px;
+    flex: 1;
+    margin-bottom: 20px;
+
+    &__new-arrivals-button {
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        display: flex;
+        gap: 15px;
+        background-color: $secondaryColour;
+        padding: 0 20px;
+        height: 2.8em;
+        align-items: center;
+
+        & * {
+            color: white;
+            font-size: 1.3em;
+            margin: 0;
+        } 
+
+        &.shiny {
+            background: $secondaryColour;
+            background: linear-gradient(-45deg, $secondaryColour 50%, #b2b3e5 60%, $secondaryColour 70%);
+            background-size: 600% 100%;
+            -webkit-animation: shine 20s infinite;
+                    animation: shine 20s infinite;
+            -webkit-animation-delay: 0s;
+                    animation-delay: 0s;
+            -webkit-animation-timing-function: linear;
+                    animation-timing-function: linear;
+          }
+          
+          @-webkit-keyframes shine {
+            0% {
+              background-position-x: 400%;
+            }
+            50% {
+              background-position-x: 0%;
+            }
+            100% {
+              background-position-x: -400%;
+            }
+          }
+          
+          @keyframes shine {
+            0% {
+              background-position-x: 400%;
+            }
+            50% {
+              background-position-x: 0%;
+            }
+            100% {
+              background-position-x: -400%;
+            }
+          }
+    }
+
+    &__image-div {
+        height: 100%;
+        width: 200px;
+        position: absolute;
+        right: 200px;
+        bottom: 0;
+    }
+
+    &__image {
+        height: 90%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+    }
+
+    &__image-BG {
+        height: 95%;
+        position: absolute;
+        right: -20%;
+        bottom: 0;
+        z-index: 2;
+        opacity: 0.7;
+    }
 
     &__text-large {
         display: block;
+        text-align: left !important;
+        width: 40%;
     }
 
     &__text-small {
@@ -21,18 +107,20 @@
         border-radius: 5px;
         border: 1px solid $primaryGreyColour;
         background-color: $primaryMidGreyColour;
-        height: auto;
+        height: 100%;
         margin-bottom: 15px;
         overflow: hidden;
-        padding: 15px;
+        padding: 2em;
         position: relative;
 
         & h1 {
             text-align: center;
             font-size: 1.8em;
             font-weight: 700;
+            width: 50%;
             color: $secondaryColour;
             margin-bottom: 5px;
+            text-align: left;
         }
 
         & p {

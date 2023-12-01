@@ -21,7 +21,7 @@ export default function RemoveItemButtonsBox({ product }) {
         </button>
         <button type="button" onClick={handleShowDiscardModal} className="buttons-box__delete">
           <i className="fa-solid fa-trash" />
-          <h6>Discard Item</h6>
+          <h6>Delete Item</h6>
         </button>
       </div>
 

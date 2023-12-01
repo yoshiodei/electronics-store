@@ -11,6 +11,7 @@ import useItemsFetch from '../hooks/useItemsFetch';
 import useFilterProductData from '../hooks/useFilterProductData';
 import PaginationBar from '../../../components/PaginationBar';
 import FilterByDistance from './FilterByDistance';
+// import FindItemsSlider from './FindItemsSlider';
 
 export default function DisplayCards() {
   const { filterObject } = useSelector(selectProductsState);
@@ -63,6 +64,7 @@ export default function DisplayCards() {
 
   return (
     <>
+      {/* <FindItemsSlider /> */}
       <FilterByDistance setMiles={setMiles} miles={miles} />
       <div className="row g-2">
         {

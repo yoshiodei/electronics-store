@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import {
-  addDoc,
-  collection,
+  doc,
+  setDoc,
 } from '@firebase/firestore';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../../../config/firebaseConfig';
@@ -247,8 +247,6 @@ export default function FormItems() {
           uid,
         };
 
-        // const productId = nanoid();
-
         const promotedItem = {
           name,
           price,
@@ -417,9 +415,11 @@ export default function FormItems() {
       setNewItem(initialState);
       e.target.reset();
 
-      await addDoc(collection(db, 'products'), productsData);
+      const productId = nanoid();
 
-      dispatch(addNewProduct(productsData));
+      await setDoc(doc(db, 'products', productId), productsData);
+
+      dispatch(addNewProduct({ ...productsData, id: productId }));
 
       toast.success(`Your item ${name} Posted successfully!`, {
         position: 'top-center',

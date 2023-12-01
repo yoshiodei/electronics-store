@@ -258,6 +258,12 @@
     &__register {
         padding-left:15px;
     }
+
+    &__search-div {
+        position: absolute !important;
+        z-index: 2;
+        left: calc(50% - 175px);
+    }
 }
 
 .bottom-nav {
@@ -372,6 +378,7 @@
             width: 100%;
             margin: 0;
             padding: 0 1em;
+            position: relative;
             height: 80px;
             display: flex;
             justify-content: space-between;
@@ -587,6 +594,10 @@
                 font-weight: 700;
                 letter-spacing: 0.8px;
             }
+        }
+
+        &__search-div {
+            display: none;
         }
     }   
 
@@ -863,6 +874,10 @@
                     margin: 0;
                 }
             }
+        }
+
+        &__search-div {
+            display: none;
         }
     }   
     .bottom-nav {

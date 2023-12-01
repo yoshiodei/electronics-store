@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import RegisterForm from './components/RegisterForm';
+// import RegisterForm from './components/RegisterForm';
 import TermsAndConditionsModal from './components/TermsAndConditionsModal';
+import SignUpForm from './components/SignUpForm';
 
 export default function SignUpModal({
   handleShowRegisterModal,
@@ -15,7 +16,13 @@ export default function SignUpModal({
 
   return (
     <>
-      <RegisterForm
+      {/* <RegisterForm
+        showRegisterModal={showRegisterModal}
+        handleCloseRegisterModal={handleCloseRegisterModal}
+        handleShowSignInModal={handleShowSignInModal}
+        handleShowTerms={handleShowTerms}
+      /> */}
+      <SignUpForm
         showRegisterModal={showRegisterModal}
         handleCloseRegisterModal={handleCloseRegisterModal}
         handleShowSignInModal={handleShowSignInModal}

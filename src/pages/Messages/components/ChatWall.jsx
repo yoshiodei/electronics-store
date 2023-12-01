@@ -83,7 +83,7 @@ export default function ChatWall({ uid }) {
 
   useEffect(() => {
     const unsub = fetchMessages(chatRoomId, setChats);
-
+    console.log('the list of chats', chats);
     return () => {
       unsub();
     };

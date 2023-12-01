@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import RegisterModal from './RegisterModal';
-import SignInModal from './SignInModal';
 import { selectAuthState } from '../redux/slice/authSlice';
+import SignUpModal from '../auth/Register/SignUpModal';
+import SignInModal from '../auth/SignIn/SignInModal';
 
 export default function SellNowButton() {
   const { loginInfo } = useSelector(selectAuthState);
@@ -37,14 +37,17 @@ export default function SellNowButton() {
         Sell Now
       </button>
 
-      <RegisterModal
-        handleCloseRegisterModal={handleCloseRegisterModal}
+      <SignUpModal
+        handleShowRegisterModal={handleShowRegisterModal}
         showRegisterModal={showRegisterModal}
+        handleCloseRegisterModal={handleCloseRegisterModal}
         handleShowSignInModal={handleShowSignInModal}
       />
+
       <SignInModal
-        handleCloseSignInModal={handleCloseSignInModal}
         showSignInModal={showSignInModal}
+        handleCloseSignInModal={handleCloseSignInModal}
+        handleShowSignInModal={handleShowSignInModal}
         handleShowRegisterModal={handleShowRegisterModal}
       />
     </>

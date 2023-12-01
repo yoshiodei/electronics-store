@@ -7,8 +7,9 @@ import PhoneNumberVerifyInput from './PhoneNumberVerifyInput';
 import { handleSwitchToSignIn, handleSwitchTerms } from '../../utils/SwitchModals';
 import { signUpFormValidated } from '../../utils/FormValidated';
 import signUpUser from '../../utils/authenticateUser';
+import logo from '../../../assets/images/electrotossLogoBlue.png';
 
-export default function RegisterForm({
+export default function SignUpForm({
   showRegisterModal,
   handleCloseRegisterModal,
   handleShowSignInModal,
@@ -64,14 +65,24 @@ export default function RegisterForm({
 
   return (
     <Modal show={showRegisterModal} onHide={handleCloseRegisterModal} centered>
-      <Modal.Header closeButton>
+      {/* <Modal.Header closeButton>
         <Modal.Title>
           <h6 className="buttons-box__modal-title">Register</h6>
         </Modal.Title>
-      </Modal.Header>
+      </Modal.Header> */}
       <div className="buttons-box__modal">
-        <Modal.Body>
+        <Modal.Body className="buttons-box__modal-body-custom">
           <div className="buttons-box__inner-modal-div buttons-box__inner-modal-div--alt register">
+            <button title="close modal" type="button" onClick={handleCloseRegisterModal} className="buttons-box__inner-modal-div__close-button">
+              <div />
+              <div />
+            </button>
+            <div className="buttons-box__modal-logo-div">
+              <img src={logo} className="buttons-box__modal-logo" alt="electrotoss logo" />
+            </div>
+            <div className="buttons-box__modal-title-div">
+              <h4 className="buttons-box__modal-title">Register</h4>
+            </div>
             <div className="buttons-box__input-div">
               <label>
                 First Name
@@ -167,10 +178,18 @@ export default function RegisterForm({
               </h6>
             </div>
             <div id="recaptcha-container" />
+            <button
+              className={`buttons-box__${isPhoneVerified ? 'sold-button' : 'sold-button--disabled'}`}
+              type="button"
+              onClick={handleSignUp}
+              disabled={!isPhoneVerified}
+            >
+              { isSigningUp ? '...loading' : 'Sign Up'}
+            </button>
           </div>
         </Modal.Body>
       </div>
-      <Modal.Footer>
+      {/* <Modal.Footer>
         <button
           className={`buttons-box__${isPhoneVerified ? 'sold-button' : 'sold-button--disabled'}`}
           type="button"
@@ -179,7 +198,7 @@ export default function RegisterForm({
         >
           { isSigningUp ? '...loading' : 'Sign Up'}
         </button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 }

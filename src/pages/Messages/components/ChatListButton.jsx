@@ -20,6 +20,10 @@ export default function ChatListButton({ data, uid }) {
     ? data.lastMessage.message.trim().substring(0, 20).concat('...')
     : data.lastMessage.message;
 
+  const myLastMessage = data.lastMessage.message.length > 10
+    ? data.lastMessage.message.trim().substring(0, 17).concat('...')
+    : data.lastMessage.message;
+
   const handleSetChat = async () => {
     dispatch(SET_CHAT_DETAILS(chatDetailsData));
   };
@@ -37,6 +41,7 @@ export default function ChatListButton({ data, uid }) {
         <div className="chat-list__card-info-div">
           <h6>{ firstName }</h6>
           {uid !== data.lastMessage.senderId ? (<p>{lastMessage}</p>) : null}
+          {uid === data.lastMessage.senderId ? (<p>{`You: ${myLastMessage}`}</p>) : null}
         </div>
       </div>
       { (data?.messageList?.length > 0) && (

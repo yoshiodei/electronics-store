@@ -5,9 +5,10 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { db } from '../../../config/firebaseConfig';
 import { fillProductsList } from '../../../redux/slice/productsSlice';
+import { errorToast, successToast } from '../../../utils/Toasts';
 
 export default function SoldModal({
   show, handleClose, itemName, product,
@@ -30,30 +31,12 @@ export default function SoldModal({
 
       dispatch(fillProductsList(allProductsData));
 
-      toast.success('Sold item successfully', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      successToast('Sold item successfully');
 
       handleClose();
       navigate('/');
     } catch (error) {
-      toast.error(error.message, {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast(error.message);
     }
   };
 

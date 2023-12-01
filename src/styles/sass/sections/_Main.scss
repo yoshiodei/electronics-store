@@ -17,6 +17,19 @@
     &__right-div {
         flex: 1;    
         margin-left: 10px;
+
+        &__category-alt {
+            display: flex;
+            flex-direction: column;
+
+            & .hero {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                margin-bottom: 20px;
+            }
+        }
     }
 }
 

@@ -8,6 +8,7 @@ import { selectAuthState } from '../../../redux/slice/authSlice';
 import Carousel from './Carousel';
 // import dummyImage from '../../../assets/images/dummy-image.jpg';
 import ItemImageBoxLoading from './ItemImageBoxLoading';
+import AddItemToWishlistButton from './AddItemToWishlistButton';
 
 export default function ItemImageBox() {
   const [product, setProduct] = useState({});
@@ -34,7 +35,7 @@ export default function ItemImageBox() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   if (!product?.name) {
     return (<ItemImageBoxLoading />);
@@ -44,6 +45,14 @@ export default function ItemImageBox() {
     <div className="item-image-box">
       <div className="item-image-box__top-div">
         <Carousel images={product?.images} />
+        {(uid !== product?.vendor?.uid)
+        && (
+        <AddItemToWishlistButton
+          vendor={product?.vendor}
+          uid={uid}
+          id={id}
+        />
+        )}
         {(uid !== product?.vendor?.uid) && <StartChatButton recipientData={product} />}
       </div>
       <div className="item-image-box__bottom-div">

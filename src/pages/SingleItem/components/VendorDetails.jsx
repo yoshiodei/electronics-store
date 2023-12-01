@@ -30,7 +30,7 @@ export default function VendorDetails() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   if (!product?.location) {
     return (<VendorDetailLoading />);

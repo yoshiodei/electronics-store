@@ -27,6 +27,7 @@ export default function NavbarBottom() {
   const handleSubmit = () => {
     if (search.trim().length > 0) {
       navigate(`/search/${search}`);
+      setSearch('');
     }
   };
 

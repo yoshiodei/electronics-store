@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { handleSwitchToForgotPassword, handleSwitchToSignUp } from '../../utils/SwitchModals';
 import PhoneNumberVerifyInput from './PhoneNumberInput';
 import { signInFormValidated } from '../../utils/FormValidated';
+import logo from '../../../assets/images/electrotossLogoBlue.png';
 import { signInUserWithPhoneAndPassword, handleSignInWithGoogle } from '../../utils/authenticateUser';
 
 export default function LoginModal(
@@ -60,14 +61,24 @@ export default function LoginModal(
 
   return (
     <Modal show={showSignInModal} onHide={handleCloseSignInModal} centered>
-      <Modal.Header closeButton>
+      {/* <Modal.Header closeButton>
         <Modal.Title>
           <h6 className="buttons-box__modal-title">Sign in</h6>
         </Modal.Title>
-      </Modal.Header>
+      </Modal.Header> */}
       <div className="buttons-box__modal">
-        <Modal.Body>
+        <Modal.Body className="buttons-box__modal-body-custom">
           <div className="buttons-box__inner-modal-div buttons-box__inner-modal-div--alt">
+            <button title="close modal" type="button" onClick={() => {}} className="buttons-box__inner-modal-div__close-button">
+              <div />
+              <div />
+            </button>
+            <div className="buttons-box__modal-logo-div">
+              <img src={logo} className="buttons-box__modal-logo" alt="electrotoss logo" />
+            </div>
+            <div className="buttons-box__modal-title-div sign-in">
+              <h4 className="buttons-box__modal-title">Sign In</h4>
+            </div>
             <PhoneNumberVerifyInput
               handleFormDataChange={handleChangeInput}
               currentCountryCode={currentCountryCode}
@@ -97,6 +108,13 @@ export default function LoginModal(
                 <h6>forgot password</h6>
               </button>
             </div>
+            <button
+              className="buttons-box__sold-button sign-in"
+              type="button"
+              onClick={handleSignIn}
+            >
+              { isSigningIn ? '...loading' : 'Sign In'}
+            </button>
             <p className="modal__custom-content-right__or-separator">-- or --</p>
             <button type="button" className="modal__custom-content-right__google-signin-button" onClick={handleGoogleSignIn}>
               <i className="fa-brands fa-google" />
@@ -120,7 +138,7 @@ export default function LoginModal(
           </div>
         </Modal.Body>
       </div>
-      <Modal.Footer>
+      {/* <Modal.Footer>
         <button
           className="buttons-box__sold-button"
           type="button"
@@ -128,7 +146,7 @@ export default function LoginModal(
         >
           { isSigningIn ? '...loading' : 'Sign In'}
         </button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 }

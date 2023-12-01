@@ -1,13 +1,14 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import {
   doc, deleteDoc, getDocs, collection,
 } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
 import { fillProductsList } from '../../../redux/slice/productsSlice';
+import { errorToast, successToast } from '../../../utils/Toasts';
 
 export default function DiscardModal({ show, handleClose, itemName }) {
   const navigate = useNavigate();
@@ -27,30 +28,12 @@ export default function DiscardModal({ show, handleClose, itemName }) {
 
       dispatch(fillProductsList(allProductsData));
 
-      toast.success('Item deleted successfully', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      successToast('Item deleted successfully');
 
       handleClose();
       navigate('/');
     } catch (error) {
-      toast.error(error.message, {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast(error.message);
     }
   };
 

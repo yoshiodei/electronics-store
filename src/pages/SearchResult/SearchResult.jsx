@@ -22,7 +22,7 @@ export default function SearchResult() {
       </Helmet>
       <Navbar />
       <NavbarBottom />
-      <Main />
+      <Main searchName={searchName} />
       <Footer />
     </>
   );

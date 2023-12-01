@@ -27,7 +27,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   if (!product.name) {
     return (<ProductDetailLoading />);

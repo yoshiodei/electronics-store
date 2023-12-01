@@ -33,7 +33,7 @@ export default function ProductLocation() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   const fetchCurrentLocation = () => {
     if (navigator.geolocation) {

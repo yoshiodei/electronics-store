@@ -14,7 +14,7 @@ import appName from '../Constants/constantVariables';
 import appLogo from '../assets/images/electrotossLogoWhite.png';
 import { doc, getDoc, onSnapshot } from '@firebase/firestore';
 import { auth, db } from '../config/firebaseConfig';
-import { selectWishListState } from '../redux/slice/wishListSlice';
+import { selectWishListState, setWishlistIds } from '../redux/slice/wishListSlice';
 import { selectNotificationState, setNotifications } from '../redux/slice/notificationSlice';
 import ChatList from '../pages/ChatRoom/components/ChatList';
 import ForgotPasswordModal from './ForgotPasswordModal';
@@ -60,6 +60,9 @@ function Navbar() {
   const { location } = useSelector(selectLocationState);
 
   const [countObject, setCountObject] = useState(initialCountObject);
+  const [wishlistArray, setWishlistArray] = useState([]);
+
+  const [search, setSearch] = useState('');
 
   useAssignDeviceId();
   useGetUserLocation();
@@ -86,6 +89,21 @@ function Navbar() {
     };
   }
   }, []);
+
+  useEffect(() => {
+    if(uid){
+      const unsubWish = onSnapshot(doc(db, 'wishlists', uid), (doc3) => {
+        const wishlist = doc3.data()?.itemIds || [];
+        console.log('wishlist collection =>', doc3.data()); 
+        setWishlistArray(wishlist);
+        dispatch(setWishlistIds(wishlist));
+      });
+
+      return () => {
+        unsubWish();
+      };
+    }
+  }, [uid]);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -199,6 +217,13 @@ function Navbar() {
   const wishListCountJSON = localStorage.getItem('wishListCount');
   const wishListData = JSON.parse(wishListCountJSON);
 
+  const handleSubmit = () => {
+    if (search.trim().length > 0) {
+      navigate(`/search/${search}`);
+      setSearch('');
+    }
+  };
+
   return (
     <>
       <nav id="page-top" className={toggleDrawer ? 'navbar-custom toggled':'navbar-custom'}>
@@ -253,7 +278,7 @@ function Navbar() {
                   <p>Favorites</p>
                   <h6>My Wish List</h6>
                 </div>
-                { wishListData?.wishList > 0 && (<div className="navbar-custom__data-count">{ wishListData?.wishList }</div>) }
+                { wishlistArray?.length > 0 && (<div className="navbar-custom__data-count">{ wishlistArray?.length }</div>) }
               </button>
             </li>}
             { !isAnonymous && <li>
@@ -306,6 +331,20 @@ function Navbar() {
             </Link>
             <p>Electronic Gadgets Marketplace</p>
           </div>
+          <div className="bottom-nav__content-search-div navbar-custom__search-div">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="What are you looking for"
+          />
+          <button
+            className="bottom-nav__content-search-button"
+            type="button"
+            onClick={handleSubmit}
+          >
+            <i className="fa-solid fa-magnifying-glass" />
+          </button>
+        </div>
           <SellNowButton />
           <DrawerButton
             setToggleDrawer={setToggleDrawer}

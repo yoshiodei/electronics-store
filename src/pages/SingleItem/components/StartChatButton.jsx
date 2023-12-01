@@ -7,9 +7,9 @@ import {
 import { useParams } from 'react-router-dom';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 // import useSetChatList from '../hooks/useSetChatList';
-import RegisterModal from '../../../components/RegisterModal';
-import SignInModal from '../../../components/SignInModal';
 import useNewChat from '../hooks/useNewChat';
+import SignUpModal from '../../../auth/Register/SignUpModal';
+import SignInModal from '../../../auth/SignIn/SignInModal';
 
 export default function StartChatButton({ recipientData }) {
   const { loginInfo, userInfo } = useSelector(selectAuthState);
@@ -65,14 +65,17 @@ export default function StartChatButton({ recipientData }) {
           <h5>Start Chat</h5>
         </button>
 
-        <RegisterModal
-          handleCloseRegisterModal={handleCloseRegisterModal}
+        <SignUpModal
+          handleShowRegisterModal={handleShowRegisterModal}
           showRegisterModal={showRegisterModal}
+          handleCloseRegisterModal={handleCloseRegisterModal}
           handleShowSignInModal={handleShowSignInModal}
         />
+
         <SignInModal
-          handleCloseSignInModal={handleCloseSignInModal}
           showSignInModal={showSignInModal}
+          handleCloseSignInModal={handleCloseSignInModal}
+          handleShowSignInModal={handleShowSignInModal}
           handleShowRegisterModal={handleShowRegisterModal}
         />
       </>
@@ -80,7 +83,13 @@ export default function StartChatButton({ recipientData }) {
   }
 
   return (
-    <button type="button" className="start-chat-button" title="message vendor" onClick={handleStartChat}>
+    <button
+      type="button"
+      className="start-chat-button"
+      title="message vendor"
+      onClick={handleStartChat}
+    >
+
       {!isLoading ? (
         <>
           <i className="fa-regular fa-message" />

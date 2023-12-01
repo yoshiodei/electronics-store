@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 import {
-  collection, getDocs, limit, query, where,
+  collection, getDocs, limit, query, where, orderBy,
 } from '@firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -18,19 +18,20 @@ export default function DisplayUserItems({ displayName, vendorId }) {
       const q = query(
         collection(db, 'products'),
         where('vendor.uid', '==', vendorId),
-        // orderBy('isPromoted', 'desc'),
+        orderBy('isPromoted', 'desc'),
         limit(8),
       );
 
       const querySnapshot = await getDocs(q);
       const allProducts = [];
       querySnapshot.forEach((doc) => {
-        console.log('comparison', doc.id, id);
+        // console.log('comparison user items', doc.id, id);
         const docData = doc.data();
+        // allProducts.push({ ...docData, id: doc.id });
         if (doc.id !== id) { allProducts.push({ ...docData, id: doc.id }); }
       });
 
-      console.log('allProducts', allProducts);
+      console.log('allProducts user items !!!!!', allProducts);
       setData(allProducts);
     } catch (err) {
       console.log(err.message);
@@ -39,7 +40,8 @@ export default function DisplayUserItems({ displayName, vendorId }) {
 
   useEffect(() => {
     fetchItems();
-  }, [id]);
+    window.scrollTo(0, 0);
+  }, [id, vendorId]);
 
   if (data.length < 1) {
     return (

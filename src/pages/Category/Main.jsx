@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import AdPanel from '../../components/AdPanel';
+// import AdPanel from '../../components/AdPanel';
 import SectionHeader from '../../components/SectionHeader';
-import SearchBar from '../SearchResult/components/SearchBar';
+// import SearchBar from '../SearchResult/components/SearchBar';
 import CategoriesBox from '../SearchResult/components/CategoriesBox';
 import DisplayCategoryProducts from './components/DisplayCategoryProducts';
 import CategoryInfoBox from './components/CategoryInfoBox';
 import CategoryFilterCard from './components/CategoryFilterCard';
 import { setCategoryFilter } from '../../redux/slice/productsSlice';
 import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
+import Hero from '../../components/Hero';
 
 export default function Main() {
   const { category } = useParams();
@@ -26,14 +27,10 @@ export default function Main() {
 
   useEffect(() => () => {
     dispatch(setCategoryFilter(initialFilter));
-  }, []);
+  }, [category]);
 
   useEffect(() => {
-    const scrollToTop = () => {
-      top.location.href = '#page-top';
-    };
-
-    scrollToTop();
+    window.scrollTo(0, 0);
   }, [category]);
 
   return (
@@ -42,16 +39,23 @@ export default function Main() {
         <div className="main-section__left-div">
           <SectionHeader>Filter</SectionHeader>
           <CategoryFilterCard category={category} />
-          <AdPanel />
+          {/* <AdPanel /> */}
         </div>
-        <div className="main-section__right-div">
+        <div className="main-section__right-div main-section__right-div__category-alt">
           <SellNowButtonBoxMobile />
           <CategoryInfoBox />
           <CategoriesBox />
-          <SearchBar />
+          {/* <SearchBar /> */}
+          <Hero />
+        </div>
+      </main>
+      <main className="main-section">
+        <div>
+          <SectionHeader>{`All ${category}`}</SectionHeader>
           <DisplayCategoryProducts />
         </div>
       </main>
     </div>
   );
 }
+// *920*456#

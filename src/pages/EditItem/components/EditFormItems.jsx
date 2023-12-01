@@ -16,6 +16,7 @@ import {
   storage,
 } from '../../../config/firebaseConfig';
 import { selectAuthState } from '../../../redux/slice/authSlice';
+import { errorToast, successToast } from '../../../utils/Toasts';
 
 export default function EditFormItems() {
   const { productToEdit } = useSelector(selectProductsState);
@@ -215,31 +216,13 @@ export default function EditFormItems() {
 
       await setDoc(doc(db, 'products', id), productsData);
 
-      toast.success('Item has been successfully edited', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      successToast('Item has been successfully edited');
 
       setIsPosting(false);
     } catch (error) {
       setIsPosting(false);
       console.log('cannot submit form', error.message);
-      toast.error('Error submitting form. Please try again.', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('Error submitting form. Please try again.');
     }
   };
 

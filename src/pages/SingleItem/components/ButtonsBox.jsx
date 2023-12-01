@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import {
   doc,
-  updateDoc,
+  // updateDoc,
   arrayUnion,
+  setDoc,
+  collection,
+  addDoc,
 } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { db } from '../../../config/firebaseConfig';
 import ButtonsBoxLoading from './ButtonsBoxLoading';
-import { addToWhishList } from '../../../redux/slice/wishListSlice';
+import { selectWishListState } from '../../../redux/slice/wishListSlice';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 import ShareModal from './ShareModal';
+import { errorToast, successToast } from '../../../utils/Toasts';
 
 export default function ButtonsBox({ product }) {
   const initialReport = {
@@ -29,88 +33,88 @@ export default function ButtonsBox({ product }) {
   const handleCloseShareModal = () => setShowShareModal(false);
   const handleShowShareModal = () => setShowShareModal(true);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const { id } = useParams();
-  const { userInfo, loginInfo } = useSelector(selectAuthState);
-  const { displayName, photoURL } = userInfo;
-  const { isAnonymous, uid } = loginInfo;
+  const { wishlistIds } = useSelector(selectWishListState);
+  const {
+    // userInfo,
+    loginInfo,
+  } = useSelector(selectAuthState);
+  // const { displayName, photoURL } = userInfo;
+  const { uid } = loginInfo;
 
-  const handleAddToWishList = (wishListProduct) => {
-    if (isAnonymous || product?.vendor?.uid === uid) {
-      console.log('Log in to add items to wish list');
-    } else {
-      const image = wishListProduct.images[0];
-      dispatch(addToWhishList({ ...wishListProduct, image, uid }));
-      toast.success('Item added successfully!', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+  const handleAddProductToWishList = async () => {
+    // check if user is the owner of item, if yes send a message
+    if (product?.vendor?.uid === uid) {
+      errorToast('Item you posted cannot be added to whishlist');
+      return null;
     }
+
+    console.log('wishlistIds', wishlistIds);
+
+    const itemExists = wishlistIds.some((itemId) => (itemId === id));
+
+    if (itemExists) {
+      errorToast(`${name} item has already been added`);
+      return null;
+    }
+
+    const wishlistRef = doc(db, 'wishlists', uid);
+    try {
+      await setDoc(
+        wishlistRef,
+        { itemIds: arrayUnion(id), userId: uid },
+        { merge: true },
+      );
+    } catch (error) {
+      errorToast('Sorry, something went wrong. Try again');
+      console.log(error);
+      return null;
+    }
+
+    successToast(`${name} has been added to wishlist`);
+    return null;
   };
 
   const handleSendReport = async () => {
     if (report.reportDetail.trim().length < 30) {
-      toast.error('Report detail is too short!', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('Report detail is too short!');
     } else {
       try {
-        const vendorRef = doc(db, 'vendors', uid);
+        const reportRef = collection(db, 'reports');
 
-        const reportData = {
-          ...report,
-          reportedItemId: id,
-          reporterName: displayName,
-          reporterId: uid,
-          reportedItemName: product?.name,
-          reportedItemVendorId: product?.uid,
-          reportedItemVendorName: product?.vendor.displayName,
-          reporterImage: photoURL,
-          reportDate: new Date(),
-        };
-
-        await updateDoc(vendorRef, {
-          productReports: arrayUnion(reportData),
+        await addDoc(reportRef, {
+          createdAt: new Date(),
+          message: report?.reportDetail,
+          userId: uid,
+          title: report?.reportType,
+          type: 'item-report',
+          itemId: id,
         });
 
-        toast.success('Report sent successfully', {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        // const reportData = {
+        //   ...report,
+        //   reportedItemId: id,
+        //   reporterName: displayName,
+        //   reporterId: uid,
+        //   reportedItemName: product?.name,
+        //   reportedItemVendorId: product?.uid,
+        //   reportedItemVendorName: product?.vendor.displayName,
+        //   reporterImage: photoURL,
+        //   reportDate: new Date(),
+        // };
+
+        // await updateDoc(vendorRef, {
+        //   productReports: arrayUnion(reportData),
+        // });
+
+        successToast('Report sent successfully');
 
         setReport(initialReport);
         handleClose();
       } catch (err) {
-        toast.error(err.message, {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        errorToast(err.message);
       }
     }
   };
@@ -123,7 +127,7 @@ export default function ButtonsBox({ product }) {
     <>
       <div className="buttons-box">
         { (uid !== product?.vendor?.uid) && (
-        <button type="button" onClick={() => handleAddToWishList({ ...product, id })}>
+        <button type="button" onClick={handleAddProductToWishList}>
           <i className="fa-regular fa-heart" />
           <h6>Save</h6>
         </button>

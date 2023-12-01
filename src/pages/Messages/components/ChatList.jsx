@@ -36,6 +36,7 @@ export default function ChatList({ uid }) {
 
   useEffect(() => {
     const unsub = fetchChats(uid, setChatList);
+    // console.log('fetch chat!', uid);
 
     return () => {
       unsub();

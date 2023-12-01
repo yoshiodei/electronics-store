@@ -5,9 +5,12 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../config/firebaseConfig';
 
+export const setWishlistIds = createAction('setWishlistIds');
+
 const initialState = {
   isLoading: false,
   wishList: [],
+  wishlistIds: [],
   wishListCount: 0,
   error: null,
 };
@@ -105,6 +108,9 @@ const wishListSlice = createSlice({
       .addCase(removeFromWishList.pending, (state) => {
         state.isLoading = false;
         state.error = null;
+      })
+      .addCase(setWishlistIds, (state, action) => {
+        state.wishlistIds = action.payload;
       })
       .addCase(removeFromWishList.fulfilled, (state, action) => {
         state.isLoading = false;

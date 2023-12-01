@@ -36,6 +36,8 @@ export default function useNewChat() {
       displayName,
       message,
       senderId,
+      itemId,
+      itemName,
     };
 
     try {
@@ -63,8 +65,8 @@ export default function useNewChat() {
           chatItem: itemName,
         };
 
-        await addDoc(collection(db, 'chatlist', chatId, 'messages'), messageData);
-        await setDoc(doc(db, 'chatlist', chatId), lastMessageData);
+        await addDoc(collection(db, 'chats', chatId, 'messages'), messageData);
+        await setDoc(doc(db, 'chats', chatId), lastMessageData);
 
         dispatch(SET_RECIPIENT_CHAT_DETAILS(recipientData));
         dispatch(SET_CHAT_TEMPLATE(templateObject));

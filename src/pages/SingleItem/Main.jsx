@@ -72,11 +72,11 @@ export default function Main() {
 
   useEffect(() => {
     addView();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <div className="main-section-div">

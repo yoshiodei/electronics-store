@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { db } from '../config/firebaseConfig';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+// import { arrayUnion, doc, setDoc } from '@firebase/firestore';
 import { selectAuthState } from '../redux/slice/authSlice';
-import { addToWhishList } from '../redux/slice/wishListSlice';
+// import { addToWhishList } from '../redux/slice/wishListSlice';
 import getItemDistanceFromUser from '../pages/SingleItem/utils/getItemDistanceFromUser';
 import { selectProductsState } from '../redux/slice/productsSlice';
 import convertSecondsToHumanDate from '../utils/DispalyDate';
+// import { errorToast, successToast } from '../utils/Toasts';
+// import { db } from '../config/firebaseConfig';
+import AddToWishListButton from './AddToWishListButton';
 
 export default function ProductCard({ product }) {
   const {
@@ -26,7 +31,7 @@ export default function ProductCard({ product }) {
 
   const [miles, setMiles] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const distance = getItemDistanceFromUser(userCoordinates, product);
 
@@ -34,48 +39,48 @@ export default function ProductCard({ product }) {
     setMiles(distance);
   }, [distance, userCoordinates.longitude, userCoordinates.latitude]);
 
-  const handleAddToWishList = async (wishListProduct) => {
-    if (isAnonymous) {
-      toast.error('Sign in to add to whishlist', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+  // const handleAddToWishList = async (wishListProduct) => {
+  //   if (isAnonymous) {
+  //     toast.error('Sign in to add to whishlist', {
+  //       position: 'top-center',
+  //       autoClose: 1500,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: false,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: 'light',
+  //     });
 
-      return null;
-    } if (vendor?.uid === uid) {
-      toast.error('Item you posted cannot be added to whishlist', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+  //     return null;
+  //   } if (vendor?.uid === uid) {
+  //     toast.error('Item you posted cannot be added to whishlist', {
+  //       position: 'top-center',
+  //       autoClose: 1500,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: false,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: 'light',
+  //     });
 
-      return null;
-    }
-    dispatch(addToWhishList({ ...wishListProduct, uid, image }));
-    toast.success(`${name} added to wish list`, {
-      position: 'top-center',
-      autoClose: 1500,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+  //     return null;
+  //   }
+  //   dispatch(addToWhishList({ ...wishListProduct, uid, image }));
+  //   toast.success(`${name} added to wish list`, {
+  //     position: 'top-center',
+  //     autoClose: 1500,
+  //     hideProgressBar: true,
+  //     closeOnClick: true,
+  //     pauseOnHover: false,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: 'light',
+  //   });
 
-    return null;
-  };
+  //   return null;
+  // };
 
   return (
     <div className="product-card" key={id}>
@@ -99,9 +104,13 @@ export default function ProductCard({ product }) {
         </div>
         )}
       </Link>
-      <button type="button" className="product-card__add-to-wish-list d-flex" onClick={() => handleAddToWishList({ ...product, id })}>
-        <i className="fa-sharp fa-regular fa-heart product-card__add-to-wish-list__icon" />
-      </button>
+      <AddToWishListButton
+        userIsAnonymous={isAnonymous}
+        uid={uid}
+        vendor={vendor}
+        id={id}
+        name={name}
+      />
     </div>
   );
 }

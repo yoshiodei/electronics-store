@@ -194,13 +194,13 @@ export default function UserDetailBox({ userProductIds }) {
           <h6 className="user-detail-box__report-user">Delete Account</h6>
         </button>
         )}
-        {(id !== uid) && (
+        {!isAnonymous && (id !== uid) && (
         <button className="user-detail-box__rate-user-button" type="button" onClick={handleShowReviewModal}>
           <i className="user-detail-box__report-user-icon fa-solid fa-pen-nib" />
           <h6 className="user-detail-box__report-user">Write Review</h6>
         </button>
         )}
-        {(id !== uid) && (
+        { !isAnonymous && (id !== uid) && (
         <button className="user-detail-box__report-user-button d-inline-flex" type="button" onClick={handleShow}>
           <i className="user-detail-box__report-user-icon fa-solid fa-flag" />
           <h6 className="user-detail-box__report-user">Report User</h6>
