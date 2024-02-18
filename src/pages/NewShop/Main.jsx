@@ -193,7 +193,7 @@ export default function Main() {
                 </div>
               </div>
             </div>
-            <button className="new-item-form__post-item-button mt-4" type="submit">
+            <button className="new-item-form__post-item-button mt-4" type="button">
               {isPosting ? '...Updating' : 'Upgrade ($25) / year'}
             </button>
           </form>

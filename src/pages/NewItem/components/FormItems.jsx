@@ -74,6 +74,7 @@ export default function FormItems() {
     images: [],
     condition: 'new',
     postedFrom: 'web',
+    itemType: 'electronics',
     isPromoted: false,
     datePosted: new Date(),
     location: {
@@ -245,6 +246,7 @@ export default function FormItems() {
           viewCount: [],
           isPromoted: true,
           postedFrom: 'web',
+          itemType: 'electronics',
           datePosted: new Date(),
           dateLastPromoted: new Date(),
           vendor: vendorData,
@@ -350,6 +352,7 @@ export default function FormItems() {
         viewCount: [],
         isPromoted: false,
         postedFrom: 'web',
+        itemType: 'electronics',
         vendor: vendorData,
         datePosted: new Date(),
         subCategory: selectedSubCategory,
