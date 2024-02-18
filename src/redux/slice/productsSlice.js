@@ -35,6 +35,7 @@ const initialFilter = {
   location: 'all',
   category: 'all',
   condition: 'all',
+  itemType: 'all',
   brand: 'all',
   updateTime: 0,
 };

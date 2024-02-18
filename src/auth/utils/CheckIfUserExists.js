@@ -3,11 +3,11 @@ import {
 } from '@firebase/firestore';
 import { db } from '../../config/firebaseConfig';
 
-const checkIfUserExists = async (userPhoneNumber) => {
+const checkIfUserExists = async (email) => {
   try {
     const q = query(
       collection(db, 'vendors'),
-      where('phoneNumber', '==', userPhoneNumber),
+      where('email', '==', email),
     );
 
     const querySnapshot = await getDocs(q);

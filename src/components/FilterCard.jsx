@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { emptyProductsList, setCoordinate, setFilter } from '../redux/slice/productsSlice';
-import { categoriesArray } from '../pages/NewItem/components/categoryObj';
+import { categoriesArray, carsCategoriesArray } from '../pages/NewItem/components/categoryObj';
 
-export default function FilterCard() {
+export default function FilterCard({ itemType }) {
   const initialFilter = {
     maxPrice: 10000,
     minPrice: 0,
@@ -11,6 +11,8 @@ export default function FilterCard() {
     category: 'all',
     condition: 'all',
   };
+
+  const categoriesData = itemType === 'electronics' ? categoriesArray : carsCategoriesArray;
 
   const dispatch = useDispatch();
   const [filterObj, setFilterObj] = useState(initialFilter);
@@ -127,7 +129,7 @@ export default function FilterCard() {
         >
           <option value="all">All</option>
           {
-            categoriesArray.map((category) => (
+            categoriesData.map((category) => (
               <option value={category} key={category}>{category}</option>
             ))
           }

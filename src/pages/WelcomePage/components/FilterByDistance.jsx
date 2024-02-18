@@ -2,7 +2,7 @@ import React from 'react';
 import MileDisplay from './MileDisplay';
 
 export default function FilterByDistance({ miles, setMiles }) {
-  console.log(miles, setMiles);
+  // console.log(miles, setMiles);
 
   return (
     // <div className="welcome-page__filter-by-distance__div">

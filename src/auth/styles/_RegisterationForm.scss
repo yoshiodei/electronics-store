@@ -1,0 +1,187 @@
+.main-auth-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.auth-form {
+
+    width: 550px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid $primaryGreyColour;
+    padding: 25px;
+
+    &__outer-div {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__title-div {
+        &__title {
+            text-align: center;
+        }
+
+        &__sub-title-div {
+            display: inline-flex;
+            justify-content: center;
+            border: 1px solid $primaryGreyColour;
+            border-radius: 50px;
+            padding: 5px;
+            padding-left: 13px;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        &__user-verified {
+            background-color: $successGreen;
+            color: white;
+            border-radius: 50px;
+            padding: 2px 8px;
+            margin: 0;
+        } 
+
+        &__user-not-verified {
+            background-color: $dangerRed;
+            color: white;
+            border-radius: 50px;
+            padding: 1px 8px;
+            margin: 0;
+        }
+
+        &__sub-title-outer-div {
+            display: flex;
+            justify-content: center;
+        }
+
+        &__sub-title {
+            margin: 0;
+        }
+
+        &__underline {
+            width: 100%;
+            height: 1px;
+            margin-bottom: 10px;
+            background-color: $primaryGreyColour;            
+        }
+    }
+
+    &__forgot-password-button {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        font-weight: 700;
+        text-align: left;
+        color: $secondaryColour;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__input-div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        & label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        & span {
+            font-weight: 600;
+            color: $primaryGreyColour;
+        }
+
+        & input {
+            width: 100%;
+            height: 2.3em;
+            border-radius: 4px;
+            border: 1px solid grey;
+            padding: 5px 10px;
+        }
+    }
+
+    &__register-button {
+        width: 100%;
+        height: 2.3em;
+        font-weight: 600;
+        letter-spacing: 1px;
+        // margin-top: 15px;
+        border-radius: 5px;
+        color: $lightFont;
+        background-color: $secondaryColour;
+        border: none;
+        outline: none;
+    }
+
+    &__or-separator {
+        text-align: center;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    &__google-button {
+        background-color: orangered;
+        color: $lightFont;
+        width: 100%;
+        height: 2.3em;
+        // margin-top: 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        // color: $lightFont;
+        // background-color: $secondaryColour;
+        border: none;
+        outline: none;
+    }
+
+    &__switch-to-sign-in {
+        text-align: center;
+
+        &__button {
+            border: none;
+            background-color: transparent;
+            outline: none;
+            color: $secondaryColour;
+            font-weight: 700;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__display-name-div {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+
+    &__check-box-div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        & h6 {
+            margin-bottom: 0;
+        }
+
+        & span {
+            font-weight: 700;
+            color: $secondaryColour;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

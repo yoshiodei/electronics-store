@@ -6,43 +6,44 @@ import {
 } from '@firebase/firestore';
 import {
   deleteUser,
-  getAuth,
   EmailAuthProvider,
   reauthenticateWithCredential,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from 'firebase/auth';
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { db } from '../../../config/firebaseConfig';
+import { auth, db } from '../../../config/firebaseConfig';
 import { removeProduct, selectProductsState } from '../../../redux/slice/productsSlice';
+import { errorToast, successToast } from '../../../utils/Toasts';
 
-const successToast = () => {
-  toast.success('Account Deleted Successfully', {
-    position: 'top-center',
-    autoClose: 2500,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-  });
-};
+// const successToast = () => {
+//   toast.success('Account Deleted Successfully', {
+//     position: 'top-center',
+//     autoClose: 2500,
+//     hideProgressBar: true,
+//     closeOnClick: true,
+//     pauseOnHover: false,
+//     draggable: true,
+//     progress: undefined,
+//     theme: 'light',
+//   });
+// };
 
-const errorToast = (error) => {
-  toast.error(error, {
-    position: 'top-center',
-    autoClose: 2500,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-  });
-};
+// const errorToast = (error) => {
+//   toast.error(error, {
+//     position: 'top-center',
+//     autoClose: 2500,
+//     hideProgressBar: true,
+//     closeOnClick: true,
+//     pauseOnHover: false,
+//     draggable: true,
+//     progress: undefined,
+//     theme: 'light',
+//   });
+// };
 
 export default function DeleteAccountModal({
   showDeleteAccount, handleCloseDeleteAccount,
@@ -55,7 +56,6 @@ export default function DeleteAccountModal({
   const [password, setPassword] = useState('');
 
   const handleDeleteAccount = async () => {
-    const auth = getAuth();
     const user = auth.currentUser;
 
     const credential = EmailAuthProvider.credential(
@@ -90,8 +90,9 @@ export default function DeleteAccountModal({
 
       await deleteUser(user);
 
+      handleCloseDeleteAccount();
       navigate('/');
-      successToast();
+      successToast('Account deleted successfully!');
     } catch (error) {
       switch (error.code) {
         case 'auth/user-mismatch':
@@ -113,6 +114,28 @@ export default function DeleteAccountModal({
     }
   };
 
+  const handleDeleteGoogleAccount = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const { user } = result;
+        console.log(token);
+        // await reauthenticateWithCredential(user, credential);
+        async function delUser() {
+          await deleteUser(user);
+        }
+
+        delUser();
+
+        navigate('/');
+        successToast('Account deleted successfully!');
+      }).catch((err) => {
+        errorToast(err.code);
+      });
+  };
+
   return (
     <Modal show={showDeleteAccount} onHide={handleCloseDeleteAccount} centered>
       <Modal.Header closeButton>
@@ -123,15 +146,22 @@ export default function DeleteAccountModal({
       <div className="buttons-box__modal">
         <Modal.Body>
           <div className="buttons-box__inner-modal-div">
-            <h4>
+            <h5>
               Enter your password to permanently delete your account and clear all of its posts.
-            </h4>
+            </h5>
             <input
               className="user-detail-box__delete-account-modal__input"
               placeholder="Please enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <p>-- or --</p>
+            <button
+              type="button"
+              onClick={handleDeleteGoogleAccount}
+            >
+              Delete Account with Google Sign In
+            </button>
           </div>
         </Modal.Body>
       </div>

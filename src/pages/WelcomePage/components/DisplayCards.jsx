@@ -13,7 +13,8 @@ import PaginationBar from '../../../components/PaginationBar';
 import FilterByDistance from './FilterByDistance';
 // import FindItemsSlider from './FindItemsSlider';
 
-export default function DisplayCards() {
+export default function DisplayCards({ itemType }) {
+  console.log(`item value ${itemType} from displayCards`);
   const { filterObject } = useSelector(selectProductsState);
   const { updateTime: time } = filterObject;
 
@@ -27,7 +28,8 @@ export default function DisplayCards() {
   const { coordinates, isLocationAvailable } = useSelector(selectLocationState);
 
   useGetUserLocation(isLocationAvailable);
-  useItemsFetch(setIsLoading, setFilteredData, setData, isLocationAvailable);
+
+  useItemsFetch(setIsLoading, setFilteredData, setData, isLocationAvailable, itemType);
   useFilterProductData(
     data,
     setFilteredData,

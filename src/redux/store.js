@@ -5,6 +5,7 @@ import chatReducer from './slice/chatSlice';
 import productsReducer from './slice/productsSlice';
 import notificationReducer from './slice/notificationSlice';
 import locationReducer from './slice/locationSlice';
+import itemTypeReducer from './slice/itemTypeSlice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   products: productsReducer,
   location: locationReducer,
   notification: notificationReducer,
+  itemType: itemTypeReducer,
 });
 
 const store = configureStore({

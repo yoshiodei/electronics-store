@@ -27,6 +27,13 @@ import WelcomePage from '../pages/WelcomePage/WelcomePage';
 import NewArrivals from '../pages/NewArrivals/NewArrivals';
 import Messages from '../pages/Messages/Messages';
 import MobileSettings from '../pages/MobileSettings/MobileSettings';
+import RegisterPage from '../auth/Register/RegisterPage';
+import SignInPage from '../auth/SignIn/SignInPage';
+import ForgotPasswordPage from '../auth/ForgotPassword/ForgotPasswordPage';
+import VerifyEmailPage from '../auth/VerifyEmail/VerifyEmailPage';
+import VerifyEmailPageforSignIn from '../auth/SignIn/VerifyEmailPage';
+import NewShop from '../pages/NewShop/NewShop';
+import CarsCategory from '../pages/CarsCategory/CarsCategory';
 
 export default function MainRoutes() {
   useEffect(() => {
@@ -56,6 +63,7 @@ export default function MainRoutes() {
         <Route path="/chat-room" element={<ChatRoom />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/category/:category" element={<Category />} />
+        <Route path="/category/cars/:category" element={<CarsCategory />} />
         <Route path="/new-item" element={<NewItem />} />
         <Route path="/user-account/:id" element={<UserAccount />} />
         <Route path="/wish-list" element={<WishList />} />
@@ -72,6 +80,12 @@ export default function MainRoutes() {
         <Route path="/chatwall/mobile" element={<MobileChatWall />} />
         <Route path="/settings/mobile" element={<MobileSettings />} />
         <Route path="/new-arrivals" element={<NewArrivals />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/sign-in-verify-email/:id" element={<VerifyEmailPageforSignIn />} />
+        <Route path="/verify-email/:id" element={<VerifyEmailPage />} />
+        <Route path="/create-shop" element={<NewShop />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>

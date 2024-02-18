@@ -34,9 +34,49 @@ export const categoriesArray = [
   'Televisions',
 ];
 
+export const carsCategoriesArray = [
+  'Sedan',
+  'SUV',
+  'Truck',
+  'Coupe',
+  'Convertible',
+  'Hatchback',
+  'Van',
+  'Wagon',
+  'Crossover',
+  'Minivan',
+  'Sports Car',
+  'Electric Car',
+  'Hybrid Car',
+  'Luxury Car',
+  'Midsize Car',
+  'Full-size Car',
+  'Off-Road Vehicle',
+];
+
+export const carBrandsByCategory = {
+  Sedan: ['Toyota', 'Honda', 'Ford', 'Chevrolet', 'Hyundai'],
+  SUV: ['Jeep', 'Nissan', 'Subaru', 'Mazda', 'Kia'],
+  Truck: ['Ford', 'Chevrolet', 'Ram', 'Toyota', 'Nissan'],
+  Coupe: ['BMW', 'Mercedes-Benz', 'Audi', 'Lexus', 'Infiniti'],
+  Convertible: ['Mazda', 'Mercedes-Benz', 'Chevrolet', 'Audi', 'BMW'],
+  Hatchback: ['Volkswagen', 'Ford', 'Honda', 'Mazda', 'Chevrolet'],
+  Van: ['Chrysler', 'Honda', 'Toyota', 'Ford', 'Nissan'],
+  Wagon: ['Subaru', 'Volvo', 'Audi', 'BMW', 'Mercedes-Benz'],
+  Crossover: ['Honda', 'Toyota', 'Mazda', 'Hyundai', 'Nissan'],
+  Minivan: ['Toyota', 'Honda', 'Chrysler', 'Kia', 'Dodge'],
+  'Sports Car': ['Porsche', 'Ferrari', 'Lamborghini', 'McLaren', 'Aston Martin'],
+  'Electric Car': ['Tesla', 'Nissan', 'Chevrolet', 'BMW', 'Audi'],
+  'Hybrid Car': ['Toyota', 'Honda', 'Ford', 'Lexus', 'Hyundai'],
+  'Luxury Car': ['Mercedes-Benz', 'BMW', 'Lexus', 'Audi', 'Jaguar'],
+  'Midsize Car': ['Toyota', 'Honda', 'Ford', 'Chevrolet', 'Nissan'],
+  'Full-size Car': ['Chevrolet', 'Ford', 'Dodge', 'Chrysler', 'Buick'],
+  'Off-Road Vehicle': ['Jeep', 'Toyota', 'Land Rover', 'Ford', 'Nissan'],
+};
+
 export const subCategoriesObj = {
   'Video Games & Consoles': [
-    'Video Games', 'Video Game Accessories', 'PC Gaming Accessories', 'Video Game Consoles', '',
+    'Video Games', 'Video Game Accessories', 'PC Gaming Accessories', 'Video Game Consoles',
   ],
   'Wearable Devices': [
     'Smart Watches', 'Fitness Tracker', 'Virtual Reality', 'Smart Accessories',

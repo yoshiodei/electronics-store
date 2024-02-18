@@ -6,6 +6,10 @@
 // Base
 @import './sass/base/reset';
 
+// Auth
+@import './../auth/styles/RegisterationForm';
+@import './../auth/styles/VerifyEmail';
+
 // Components
 @import './sass/components/SellNowButton';
 @import './sass/components/CategoriesBox';
@@ -53,6 +57,10 @@
 
 
 // Welcome Page
+
+@import '../pages/WelcomePage/styles/ItemTypeToggleButton';
+@import '../pages/WelcomePage/styles/TopBrands';
 @import '../pages/WelcomePage/styles/Hero';
+@import '../pages/WelcomePage/styles/ExploreShops';
 @import '../pages/WelcomePage/styles/SearchBar';
 @import '../pages/WelcomePage/styles/FilterByDistance';

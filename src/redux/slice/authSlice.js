@@ -16,6 +16,8 @@ const initialState = {
     rating: '',
     phoneNumber: '',
     photoURL: '',
+    isPremium: '',
+    productsPosted: '',
   },
 };
 

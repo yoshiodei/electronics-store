@@ -1,7 +1,7 @@
 import {
-  EmailAuthProvider,
+  // EmailAuthProvider,
   GoogleAuthProvider,
-  linkWithCredential,
+  // linkWithCredential,
   signInWithEmailAndPassword,
   signInWithPopup,
   updatePassword,
@@ -12,47 +12,47 @@ import { auth, db } from '../../config/firebaseConfig';
 import { errorToast, successToast } from '../../utils/Toasts';
 import { setUserInfo } from '../../redux/slice/authSlice';
 
-const signUpUser = async (formData, dispatch, countryCode) => {
+const signUpUser = async (formData, dispatch) => {
   try {
-    const displayName = `${formData?.firstName} ${formData?.lastName}`;
+    const displayName = formData?.lastName ? `${formData?.firstName} ${formData?.lastName}` : formData?.firstName;
 
-    const { user } = await window.confirmationResult.confirm(formData?.verificationCode);
+    // const credential = EmailAuthProvider.credential
+    // (`${countryCode}${formData.phoneNumber}@electrotoss.com`, formData.password);
 
-    const credential = EmailAuthProvider.credential(`${countryCode}${formData.phoneNumber}@electrotoss.com`, formData.password);
-
-    linkWithCredential(auth.currentUser, credential)
-      .then((usercred) => {
-        console.log('Account linking success', usercred);
-      }).catch((error) => {
-        console.log('Account linking error', error);
-      });
+    // linkWithCredential(auth.currentUser,
+    // credential)
+    // .then((usercred) => {
+    //   console.log('Account linking success', usercred);
+    // }).catch((error) => {
+    //   console.log('Account linking error', error);
+    // });
 
     await updateProfile(auth.currentUser, {
       displayName: displayName.trim(),
     });
 
-    await setDoc(doc(db, 'vendors', user.uid), {
-      firstName: formData?.firstName,
-      lastName: formData?.lastName || '',
-      displayName,
-      bio: 'Hi there, this is my Electrotoss profile.',
-      followers: 0,
-      email: `${countryCode}${formData.phoneNumber}@electrotoss.com`,
-      phoneNumber: '',
-      uid: user.uid,
-      status: 'active',
-      createdAt: new Date(),
-      photoURL: '',
-      isPremium: false,
-      productsPosted: 0,
-      productsSold: 0,
-      ratings: [],
-      emailVerified: true,
-      wishlist: [],
-      chatList: [],
-      messages: [],
-      notifications: [],
-    });
+    // await setDoc(doc(db, 'vendors', user.uid), {
+    //   firstName: formData?.firstName,
+    //   lastName: formData?.lastName || '',
+    //   displayName,
+    //   bio: 'Hi there, this is my Electrotoss profile.',
+    //   followers: 0,
+    //   email: `${countryCode}${formData.phoneNumber}@electrotoss.com`,
+    //   phoneNumber: '',
+    //   uid: user.uid,
+    //   status: 'active',
+    //   createdAt: new Date(),
+    //   photoURL: '',
+    //   isPremium: false,
+    //   productsPosted: 0,
+    //   productsSold: 0,
+    //   ratings: [],
+    //   emailVerified: true,
+    //   wishlist: [],
+    //   chatList: [],
+    //   messages: [],
+    //   notifications: [],
+    // });
 
     const userInfo = {
       emailVerified: true,
@@ -271,6 +271,7 @@ export const handleResetPassword = async (formData, dispatch) => {
     if (error.code === 'auth/invalid-verification-code') {
       errorToast('Incorrect verification code');
     } else {
+      console.log('error code', error.code);
       errorToast('Sorry, your account could not be created');
     }
     console.log(error.code);

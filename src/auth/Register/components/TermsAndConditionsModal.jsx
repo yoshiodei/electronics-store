@@ -1,10 +1,9 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { handleSwitchRegister } from '../../utils/SwitchModals';
 import TermsOfService from '../../../pages/TermsAndConditions/components/TermsOfService';
 
 export default function TermsAndConditionsModal(
-  { handleCloseTerms, showTerms, handleShowRegisterModal },
+  { handleCloseTerms, showTerms },
 ) {
   return (
     <Modal
@@ -25,7 +24,7 @@ export default function TermsAndConditionsModal(
         </Modal.Body>
       </div>
       <Modal.Footer>
-        <button className="buttons-box__close-report-button" type="button" onClick={() => handleSwitchRegister(handleCloseTerms, handleShowRegisterModal)}>
+        <button className="buttons-box__close-report-button" type="button" onClick={() => handleCloseTerms()}>
           Back to form
         </button>
       </Modal.Footer>

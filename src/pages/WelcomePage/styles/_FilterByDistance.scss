@@ -2,26 +2,27 @@
     &__caption {
         height: 100%;
         width: 300px;
-        background-color: $secondaryColour;
-        border-radius: 4px;
         display: flex;
         justify-content: center;
         align-items: center;
+        border-right: 1px solid $primaryGreyColour;
 
         & * {
-            color: $lightFont;
+            color: $secondaryColour;
+            color: rgb(83, 83, 83);
             margin-bottom: 0;
             font-size: 1.1em;
+            font-weight: 700;
         }
     }
 
     &__div {
-        // border: 1px solid $primaryGreyColour;
+        border: 1px solid $primaryGreyColour;
         margin: 35px 130px;
         height: 3.2em;
-        // background-color: aquamarine;
+        border-radius: 50px;
+        overflow: hidden;
         display: flex;
-        gap: 10px;
 
         &.alt {
             display: flex;
@@ -97,7 +98,6 @@
     &__input-div{
         flex: 1;
         height: 100%;
-        border: 1px solid $primaryGreyColour;
         display: flex;
         align-items: center;
         border-radius: 4px;

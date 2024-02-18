@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { arrayUnion, doc, setDoc } from '@firebase/firestore';
 import { useSelector } from 'react-redux';
-import SignUpModal from '../auth/Register/SignUpModal';
-import SignInModal from '../auth/SignIn/SignInModal';
 import { db } from '../config/firebaseConfig';
 import { errorToast, successToast } from '../utils/Toasts';
 import { selectWishListState } from '../redux/slice/wishListSlice';
@@ -10,14 +8,6 @@ import { selectWishListState } from '../redux/slice/wishListSlice';
 export default function AddToWishListButton({
   userIsAnonymous, vendor, uid, id, name,
 }) {
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showSignInModal, setShowSignInModal] = useState(false);
-
-  const handleCloseRegisterModal = () => setShowRegisterModal(false);
-  const handleShowRegisterModal = () => setShowRegisterModal(true);
-  const handleCloseSignInModal = () => setShowSignInModal(false);
-  const handleShowSignInModal = () => setShowSignInModal(true);
-
   const { wishlistIds } = useSelector(selectWishListState);
 
   const handleAddProductToWishList = async () => {
@@ -67,30 +57,13 @@ export default function AddToWishListButton({
   }
 
   return (
-    <>
-      <button
-        title="Add to wishlist"
-        type="button"
-        className="product-card__add-to-wish-list d-flex"
-        onClick={handleShowSignInModal}
-      >
-        <i className="fa-sharp fa-regular fa-heart product-card__add-to-wish-list__icon" />
-      </button>
-
-      <SignUpModal
-        handleShowRegisterModal={handleShowRegisterModal}
-        showRegisterModal={showRegisterModal}
-        handleCloseRegisterModal={handleCloseRegisterModal}
-        handleShowSignInModal={handleShowSignInModal}
-      />
-
-      <SignInModal
-        showSignInModal={showSignInModal}
-        handleCloseSignInModal={handleCloseSignInModal}
-        handleShowSignInModal={handleShowSignInModal}
-        handleShowRegisterModal={handleShowRegisterModal}
-      />
-
-    </>
+    <button
+      title="Add to wishlist"
+      type="button"
+      className="product-card__add-to-wish-list d-flex"
+      onClick={() => (errorToast('Please sign in to add item to wishlist'))}
+    >
+      <i className="fa-sharp fa-regular fa-heart product-card__add-to-wish-list__icon" />
+    </button>
   );
 }

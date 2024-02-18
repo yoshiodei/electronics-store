@@ -1,27 +1,34 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthState } from '../redux/slice/authSlice';
-import SignUpModal from '../auth/Register/SignUpModal';
-import SignInModal from '../auth/SignIn/SignInModal';
+import { errorToast } from '../utils/Toasts';
+// import SignUpModal from '../auth/Register/SignUpModal';
+// import SignInModal from '../auth/SignIn/SignInModal';
 
 export default function SellNowButton() {
   const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous } = loginInfo;
+  const navigate = useNavigate();
 
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showSignInModal, setShowSignInModal] = useState(false);
+  // const [showRegisterModal, setShowRegisterModal] = useState(false);
+  // const [showSignInModal, setShowSignInModal] = useState(false);
 
-  const handleCloseRegisterModal = () => setShowRegisterModal(false);
-  const handleShowRegisterModal = () => setShowRegisterModal(true);
-  const handleCloseSignInModal = () => setShowSignInModal(false);
-  const handleShowSignInModal = () => setShowSignInModal(true);
+  // const handleCloseRegisterModal = () => setShowRegisterModal(false);
+  // const handleShowRegisterModal = () => setShowRegisterModal(true);
+  // const handleCloseSignInModal = () => setShowSignInModal(false);
+  // const handleShowSignInModal = () => setShowSignInModal(true);
 
   const isAnonymousJSON = localStorage.getItem('isAnonymous');
 
   const userAnonymous = JSON.parse(isAnonymousJSON);
 
   const userIsAnonymous = userAnonymous?.isAnonymous || isAnonymous;
+
+  const accessDenied = () => {
+    errorToast('Please Log In to sell item');
+    navigate('/sign-in');
+  };
 
   if (!userIsAnonymous) {
     return (
@@ -33,23 +40,23 @@ export default function SellNowButton() {
 
   return (
     <>
-      <button type="button" className="btn btn-primary sell-now" onClick={handleShowSignInModal}>
+      <button type="button" className="btn btn-primary sell-now" onClick={accessDenied}>
         Sell Now
       </button>
 
-      <SignUpModal
+      {/* <SignUpModal
         handleShowRegisterModal={handleShowRegisterModal}
         showRegisterModal={showRegisterModal}
         handleCloseRegisterModal={handleCloseRegisterModal}
         handleShowSignInModal={handleShowSignInModal}
-      />
+      /> */}
 
-      <SignInModal
+      {/* <SignInModal
         showSignInModal={showSignInModal}
         handleCloseSignInModal={handleCloseSignInModal}
         handleShowSignInModal={handleShowSignInModal}
         handleShowRegisterModal={handleShowRegisterModal}
-      />
+      /> */}
     </>
   );
 }

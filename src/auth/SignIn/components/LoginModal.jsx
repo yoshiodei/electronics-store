@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { handleSwitchToForgotPassword, handleSwitchToSignUp } from '../../utils/SwitchModals';
-import PhoneNumberVerifyInput from './PhoneNumberInput';
+// import PhoneNumberVerifyInput from './PhoneNumberInput';
 import { signInFormValidated } from '../../utils/FormValidated';
 import logo from '../../../assets/images/electrotossLogoBlue.png';
 import { signInUserWithPhoneAndPassword, handleSignInWithGoogle } from '../../utils/authenticateUser';
@@ -79,12 +79,22 @@ export default function LoginModal(
             <div className="buttons-box__modal-title-div sign-in">
               <h4 className="buttons-box__modal-title">Sign In</h4>
             </div>
-            <PhoneNumberVerifyInput
+            {/* <PhoneNumberVerifyInput
               handleFormDataChange={handleChangeInput}
               currentCountryCode={currentCountryCode}
               setCurrentCountryCode={setCurrentCountryCode}
               formData={formData}
-            />
+            /> */}
+            <div className="buttons-box__input-div">
+              <label>Email</label>
+              <input
+                placeholder="Please enter your email"
+                type="email"
+                // value={formData.password}
+                // onChange={handleChangeInput}
+                name="email"
+              />
+            </div>
             <div className="buttons-box__input-div">
               <label>Password</label>
               <input

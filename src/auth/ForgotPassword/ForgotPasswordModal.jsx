@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
-import PhoneNumberVerifyInput from '../Register/components/PhoneNumberVerifyInput';
+// import PhoneNumberVerifyInput from '../Register/components/PhoneNumberVerifyInput';
 import { handleSwitchFromForgotPassword } from '../utils/SwitchModals';
 import { passwordResetFormValidated } from '../utils/FormValidated';
 
@@ -19,23 +19,23 @@ export default function ForgotPasswordModal(
     password: '',
     verificationCode: '',
   };
-  const initialCountryCode = {
-    abbreviation: 'US',
-    code: '+1',
-  };
+  // const initialCountryCode = {
+  //   abbreviation: 'US',
+  //   code: '+1',
+  // };
 
   const dispatch = useDispatch();
 
   const [isPasswordSet, setIsPasswordSet] = useState(false);
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [formData, setFormData] = useState(initialState);
-  const [currentCountryCode, setCurrentCountryCode] = useState(initialCountryCode);
+  // const [currentCountryCode, setCurrentCountryCode] = useState(initialCountryCode);
 
-  const handleFormDataChange = (e) => {
-    const { value, name } = e.target;
+  // const handleFormDataChange = (e) => {
+  //   const { value, name } = e.target;
 
-    setFormData({ ...formData, [name]: value });
-  };
+  //   setFormData({ ...formData, [name]: value });
+  // };
 
   const handleResetPassword = async () => {
     setIsPasswordSet(true);
@@ -48,7 +48,7 @@ export default function ForgotPasswordModal(
       if (passwordReset) {
         setIsPhoneVerified(false);
         setFormData(initialState);
-        setCurrentCountryCode(initialCountryCode);
+        // setCurrentCountryCode(initialCountryCode);
         handleCloseResetModal();
       }
     }
@@ -66,7 +66,7 @@ export default function ForgotPasswordModal(
       <div className="buttons-box__modal">
         <Modal.Body>
           <div className="buttons-box__inner-modal-div buttons-box__inner-modal-div--alt">
-            <PhoneNumberVerifyInput
+            {/* <PhoneNumberVerifyInput
               handleFormDataChange={handleFormDataChange}
               currentCountryCode={currentCountryCode}
               setCurrentCountryCode={setCurrentCountryCode}
@@ -86,15 +86,15 @@ export default function ForgotPasswordModal(
                   />
                 </div>
               ) : null
-            }
+            } */}
             <div className="buttons-box__input-div">
-              <label>New Password</label>
+              <label>Email</label>
               <input
-                placeholder="Please enter your password"
-                type="password"
-                value={formData.password}
-                onChange={handleFormDataChange}
-                name="password"
+                placeholder="Please enter your email"
+                type="email"
+                // value={formData.password}
+                // onChange={handleFormDataChange}
+                name="email"
               />
             </div>
             <div className="buttons-box__switch-to-login-div">

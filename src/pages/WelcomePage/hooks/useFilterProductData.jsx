@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectProductsState } from '../../../redux/slice/productsSlice';
 import isItemWithinMiles from '../utils/isItemWithinMiles';
+import { subCategoriesObj } from '../../NewItem/components/categoryObj';
 
 export default function useFilterProductData(
   data,
@@ -20,6 +21,14 @@ export default function useFilterProductData(
     maxPrice, minPrice, category, condition,
   } = filterObject;
 
+  const checkCategory = (selectedCategory, itemCategoryName) => {
+    if (selectedCategory === 'all') {
+      return true;
+    }
+    const isCategoryAvailable = subCategoriesObj[selectedCategory].includes(itemCategoryName);
+    return isCategoryAvailable;
+  };
+
   useEffect(() => {
     const filterProductData = async () => {
       try {
@@ -33,7 +42,7 @@ export default function useFilterProductData(
               item.price >= minPrice
               && item.price <= maxPrice
               && (item.condition === condition || condition === 'all')
-              && (item.category === category || category === 'all')
+              && checkCategory(category, item.category)
               && isItemWithinMiles(miles, coordinates, item)
             ),
           );

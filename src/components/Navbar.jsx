@@ -24,13 +24,18 @@ import { selectLocationState } from '../redux/slice/locationSlice';
 import MobileLoginModal from './MobileLoginModal';
 import SignInModal from '../auth/SignIn/SignInModal';
 import SignUpModal from '../auth/Register/SignUpModal';
+import { selectItemTypeState, setItemType } from '../redux/slice/itemTypeSlice';
+import { errorToast, successToast } from '../utils/Toasts';
 
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { wishListCount } = useSelector(selectWishListState);
+  const { itemType } = useSelector(selectItemTypeState);
   const { loginInfo, userInfo } = useSelector(selectAuthState);
   const { notificationCount, messageCount } = useSelector(selectNotificationState);
+ 
   const { isAnonymous, uid } = loginInfo;
   const { displayName } = userInfo;
   
@@ -54,6 +59,19 @@ function Navbar() {
   const handleClickWishList = (e) => {
     navigate('/wish-list');
   }
+
+  // /const [itemTypeValue, setItemTypeValue] = useState('electronics');
+
+  const handleChangeItemType = (e) => {
+    const { value } = e.target;
+    dispatch(setItemType(value));
+    if(value === 'cars') {
+      navigate('/cars');
+    } else if (value ==='electronics') {
+      navigate('/');
+    }
+  }
+  
   
   const initialCountObject = { notificationCount: 0, messageCount: 0 };
 
@@ -127,6 +145,8 @@ function Navbar() {
             rating: userData?.rating,
             phoneNumber: userData?.phoneNumber,
             photoURL: userData?.photoURL,
+            isPremium: userData?.isPremium,
+            productsPosted: userData?.productsPosted,
           };
 
           const dataToStore = { isAnonymous: user?.isAnonymous };
@@ -164,6 +184,8 @@ function Navbar() {
             rating: '',
             phoneNumber: '',
             photoURL: '',
+            isPremium: '',
+            productsPosted: '',
           };
           dispatch(setUserInfo(userInfo));
 
@@ -181,27 +203,9 @@ function Navbar() {
           localStorage.setItem('wishListCount', storeWishListCountJSON);
 
           navigate('/');
-          toast.success('Logout Successful', {
-            position: 'top-center',
-            autoClose: 2500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-            });
+          successToast('Logout Successful');
         }).catch((error) => {
-          toast.error(error.message, {
-            position: 'top-center',
-            autoClose: 2500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-            });
+            errorToast(error.message);
         });
         break;
       default:
@@ -261,16 +265,6 @@ function Navbar() {
                 { notificationsData?.messageCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.messageCount }</div>)}
               </button>
             </li>}
-            {/* { !isAnonymous && <li>
-              <button className="navbar-custom__icon-button" title="message" onClick={() => navigate("/chat-room")}>
-                <i className="fa-regular fa-message navbar-custom__icon" />
-                <div className="navbar-custom__icon-button__text-div">
-                  <p>Chats</p>
-                  <h6>My Messages</h6>
-                </div>
-                { notificationsData?.messageCount > 0 && (<div className="navbar-custom__data-count">{ notificationsData?.messageCount }</div>)}
-              </button>
-            </li>} */}
             { !isAnonymous && <li>
               <button className="navbar-custom__icon-button" title="wish list" onClick={handleClickWishList}>
                 <i className="fa-regular fa-heart navbar-custom__icon" />
@@ -307,15 +301,25 @@ function Navbar() {
               </div>
             </li>}
             { isAnonymous && <li>
-              <button className="navbar-custom__text-button navbar-custom__sign-in" onClick={handleShowSignInModal}>
+              <button className="navbar-custom__text-button navbar-custom__sign-in" onClick={() => navigate('/sign-in')}>
                 <h6>Sign In</h6>
               </button>
             </li>}
             { isAnonymous && <li>
-              <button className="navbar-custom__text-button navbar-custom__register" onClick={handleShowRegisterModal}>
+              <button className="navbar-custom__text-button navbar-custom__register" onClick={() => navigate('/register')}>
                 <h6>Register Now</h6>
               </button>
             </li>}
+            {/* { isAnonymous && <li>
+              <button className="navbar-custom__text-button navbar-custom__sign-in" onClick={handleShowSignInModal}>
+                <h6>Sign In lll</h6>
+              </button>
+            </li>} */}
+            {/* { isAnonymous && <li>
+              <button className="navbar-custom__text-button navbar-custom__register" onClick={handleShowRegisterModal}>
+                <h6>Register Now lll</h6>
+              </button>
+            </li>} */}
           </ul>
           </div>
         </div>

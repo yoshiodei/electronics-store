@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setFilter } from '../../../redux/slice/productsSlice';
-import { categoriesArray } from '../../NewItem/components/categoryObj';
+import { categoriesArray, carsCategoriesArray } from '../../NewItem/components/categoryObj';
 
-export default function CategoriesBox() {
+export default function CategoriesBox({ itemType }) {
   const initialFilter = {
     maxPrice: 10000,
     minPrice: 0,
@@ -20,6 +20,23 @@ export default function CategoriesBox() {
     dispatch(setFilter({ ...initialFilter, updateTime: Date.now() }));
     navigate(link);
   };
+
+  if (itemType === 'cars') {
+    return (
+      <div className="search__categories-box">
+        <ul>
+          {
+            carsCategoriesArray.map((categories) => (
+              <li>
+                <button type="button" onClick={() => handleClearFilter(`/category/cars/${categories}`)}><h6>{categories}</h6></button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div className="search__categories-box">
       <ul>

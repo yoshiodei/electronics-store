@@ -36,6 +36,17 @@
         }
     }
 
+    &__item-type {
+        &__title {
+            color: $lightFont;
+            font-size: 0.83em;
+        }
+        &__drop-down {
+            width: 150px;
+            border-radius: 4px;
+        }
+    }
+
     &__bottom-div {
         display: flex;
         justify-content: flex-end;

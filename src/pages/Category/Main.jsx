@@ -10,7 +10,7 @@ import CategoryInfoBox from './components/CategoryInfoBox';
 import CategoryFilterCard from './components/CategoryFilterCard';
 import { setCategoryFilter } from '../../redux/slice/productsSlice';
 import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
-import Hero from '../../components/Hero';
+import HeroSectionBrands from '../SearchResult/components/HeroSectionBrands';
 
 export default function Main() {
   const { category } = useParams();
@@ -46,7 +46,8 @@ export default function Main() {
           <CategoryInfoBox />
           <CategoriesBox />
           {/* <SearchBar /> */}
-          <Hero />
+          <SectionHeader>Top Brands</SectionHeader>
+          <HeroSectionBrands />
         </div>
       </main>
       <main className="main-section">
@@ -58,4 +59,3 @@ export default function Main() {
     </div>
   );
 }
-// *920*456#

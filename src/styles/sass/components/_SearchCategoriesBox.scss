@@ -1,4 +1,5 @@
 .search__categories-box {
+
     ul {
         padding: 0;
         display: flex;
@@ -36,6 +37,7 @@
 
         & h6 {
             text-wrap: nowrap;
+            font-size: 0.9em;
             margin-bottom: 0;
             font-weight: 700;
         }

@@ -3,6 +3,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { db } from '../../../config/firebaseConfig';
 import ProductDetailLoading from './ProductDetailLoading';
+import convertSecondsToHumanDate from '../../../utils/DispalyDate';
 
 export default function ProductDetail() {
   const [product, setProduct] = useState({});
@@ -24,6 +25,10 @@ export default function ProductDetail() {
         },
       );
   };
+
+  const postDate = product?.datePosted?.seconds
+    ? convertSecondsToHumanDate(product?.datePosted?.seconds)
+    : convertSecondsToHumanDate(product?.datePosted);
 
   useEffect(() => {
     fetchData();
@@ -56,6 +61,10 @@ export default function ProductDetail() {
       <div className="product-detail__product-condition-div">
         <h6 className="product-detail__title">Item Condition</h6>
         <h3 className="product-detail__condition">{product.condition}</h3>
+      </div>
+      <div className="product-detail__product-condition-div">
+        <h6 className="product-detail__title">Date Posted</h6>
+        <h3 className="product-detail__condition">{`posted on ${postDate}`}</h3>
       </div>
       <div className="product-detail__product-details-div">
         <h6 className="product-detail__title">Details</h6>

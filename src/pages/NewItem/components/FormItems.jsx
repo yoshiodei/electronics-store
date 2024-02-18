@@ -16,6 +16,7 @@ import GeoGetter from '../../../components/GeoGetter';
 import { categoryBrandArray, subCategoriesObj } from './categoryObj';
 import { addNewProduct, selectProductsState } from '../../../redux/slice/productsSlice';
 import { stripePaymentLink } from '../../../Constants/constantVariables';
+import { errorToast, successToast } from '../../../utils/Toasts';
 
 export default function FormItems() {
   const initialLocation = {
@@ -37,6 +38,12 @@ export default function FormItems() {
   const [selectedBrand, setSelectedBrand] = useState(categoryBrandArray[selectedCategory][0]);
   const [selectedSubCategory, setSelectedSubCategory] = useState(subCategoriesObj['Cellphones & Accessories'][0]);
   const [otherBrand, setOtherBrand] = useState('');
+
+  const brandAndCategoriesObject = {
+    selectedCategory, selectedBrand, selectedSubCategory, otherBrand,
+  };
+
+  console.log(brandAndCategoriesObject);
 
   const navigate = useNavigate();
 
@@ -61,8 +68,8 @@ export default function FormItems() {
     price: '',
     brand: 'Apple',
     details: '',
-    category: 'Cellphones & Accessories',
     subCategory: 'Cellphones & Smartphones',
+    category: 'Cellphones & Accessories',
     viewCount: [],
     images: [],
     condition: 'new',
@@ -93,7 +100,9 @@ export default function FormItems() {
 
   const { userInfo, loginInfo } = useSelector(selectAuthState);
   const { uid } = loginInfo;
-  const { displayName, photoURL } = userInfo;
+  const {
+    displayName, photoURL, isPremium, productsPosted,
+  } = userInfo;
 
   const handleRemoveImage = (index) => {
     const updatedImages = [...newItem.images];
@@ -152,6 +161,13 @@ export default function FormItems() {
   };
 
   const redirectToCheckout = async () => {
+    if (!isPremium && productsPosted >= 3) {
+      errorToast('You have reached the total monthly posts');
+
+      setIsCheckingOut(false);
+      return;
+    }
+
     setIsCheckingOut(true);
 
     const {
@@ -159,64 +175,21 @@ export default function FormItems() {
     } = newItem;
 
     if (!name.trim() || !price.trim() || !details.trim()) {
-      toast.error('Found empty text fields', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('Found empty text fields');
 
       setIsCheckingOut(false);
       return;
     }
 
     if (isNaN(price.trim())) {
-      toast.error('Price must be a number', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('Price must be a number');
 
       setIsPosting(false);
       return;
     }
 
-    // if (!location.locationIsSet) {
-    //   // toast.error('Location has not been set', {
-    //   //   position: 'top-center',
-    //   //   autoClose: 2500,
-    //   //   hideProgressBar: true,
-    //   //   closeOnClick: true,
-    //   //   pauseOnHover: false,
-    //   //   draggable: true,
-    //   //   progress: undefined,
-    //   //   theme: 'light',
-    //   // });
-
-    //   setIsPosting(false);
-    //   return;
-    // }
-
     if (images.length === 0) {
-      toast.error('No item image selected', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('No item image selected');
 
       setIsPosting(false);
     } else {
@@ -286,22 +259,20 @@ export default function FormItems() {
       } catch (error) {
         setIsPosting(false);
         console.log('cannot submit form', error.message);
-        toast.error('Error submitting form. Please try again.', {
-          position: 'top-center',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        errorToast('Error submitting form. Please try again.');
       }
     }
   };
 
   const handleSubmitNewItem = async (e) => {
     e.preventDefault();
+
+    if (!isPremium && productsPosted >= 3) {
+      errorToast('');
+
+      setIsCheckingOut(false);
+      return;
+    }
 
     const {
       name, price, details, images, condition,
@@ -310,48 +281,21 @@ export default function FormItems() {
     setIsPosting(true);
 
     if (!name.trim() || !price.trim() || !details.trim()) {
-      toast.error('Found empty text fields', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('Found empty text fields');
 
       setIsPosting(false);
       return;
     }
 
     if (isNaN(price.trim())) {
-      toast.error('Price must be a number', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('Price must be a number');
 
       setIsPosting(false);
       return;
     }
 
     if (images.length === 0) {
-      toast.error('No item image selected', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('No item image selected');
 
       setIsPosting(false);
     }
@@ -421,16 +365,7 @@ export default function FormItems() {
 
       dispatch(addNewProduct({ ...productsData, id: productId }));
 
-      toast.success(`Your item ${name} Posted successfully!`, {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      successToast(`Your item ${name} Posted successfully!`);
 
       console.log('new item', productsData);
 
@@ -439,16 +374,7 @@ export default function FormItems() {
     } catch (error) {
       setIsPosting(false);
       console.log('cannot submit form', error.message);
-      toast.error('Error submitting form. Please try again.', {
-        position: 'top-center',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      errorToast('Error submitting form. Please try again.');
     }
   };
 

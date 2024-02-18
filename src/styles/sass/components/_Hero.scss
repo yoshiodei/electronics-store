@@ -112,6 +112,25 @@
     }
 }
 
+.hero-section-brands {
+
+    &__div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 8px;
+    }
+
+    max-width: 1000px;
+    overflow: scroll;
+    display: flex;
+    gap: 15px;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 @include mobileScreen {
     .hero {
         width: 100%;

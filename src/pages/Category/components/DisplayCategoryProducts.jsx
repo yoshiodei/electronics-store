@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   collection, query, where, getDocs,
+  orderBy,
 } from '@firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -12,7 +13,6 @@ import EmptyDisplay from '../../../components/EmptyDisplay';
 import FilterByDistance from '../../WelcomePage/components/FilterByDistance';
 import isItemWithinMiles from '../../WelcomePage/utils/isItemWithinMiles';
 import { selectLocationState } from '../../../redux/slice/locationSlice';
-// import { subCategoriesObj } from '../../../Constants/constantObjects';
 
 export default function DisplayCategoryProducts() {
   const [data, setData] = useState([]);
@@ -28,15 +28,77 @@ export default function DisplayCategoryProducts() {
   const [isLoading, setIsLoading] = useState(false);
   const { category } = useParams();
 
+  // const fetchData = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const q = query(
+  //       collection(db, 'products'),
+  //       where('category', '==', category),
+  //       where('isPromoted', '==', true),
+  //       where('status', '==', 'active'),
+  //     );
+  //     const querySnapshot = await getDocs(q);
+  //     const allProducts = [];
+  //     querySnapshot.forEach((doc) => {
+  //       const docData = doc.data();
+  //       allProducts.push({ ...docData, id: doc.id });
+  //     });
+
+  //     const q2 = query(
+  //       collection(db, 'products'),
+  //       where('category', '==', category),
+  //       where('isPromoted', '==', true),
+  //       where('status', '==', 'pending'),
+  //     );
+  //     const querySnapshot2 = await getDocs(q2);
+  //     querySnapshot2.forEach((doc) => {
+  //       const docData = doc.data();
+  //       allProducts.push({ ...docData, id: doc.id });
+  //     });
+
+  //     const q3 = query(
+  //       collection(db, 'products'),
+  //       where('category', '==', category),
+  //       where('isPromoted', '==', false),
+  //       where('status', '==', 'active'),
+  //     );
+  //     const querySnapshot3 = await getDocs(q3);
+  //     querySnapshot3.forEach((doc) => {
+  //       const docData = doc.data();
+  //       allProducts.push({ ...docData, id: doc.id });
+  //     });
+
+  //     const q4 = query(
+  //       collection(db, 'products'),
+  //       where('category', '==', category),
+  //       where('isPromoted', '==', false),
+  //       where('status', '==', 'pending'),
+  //     );
+  //     const querySnapshot4 = await getDocs(q4);
+  //     querySnapshot4.forEach((doc) => {
+  //       const docData = doc.data();
+  //       allProducts.push({ ...docData, id: doc.id });
+  //     });
+  //     console.log('this is crazy', allProducts);
+  //     setIsLoading(false);
+  //     setData(allProducts);
+  //     setFilteredData(allProducts);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const fetchData = async () => {
     try {
       setIsLoading(true);
+
       const q = query(
         collection(db, 'products'),
-        where('category', '==', category),
-        where('isPromoted', '==', true),
-        where('status', '==', 'active'),
+        where('mainCategory', '==', category),
+        orderBy('isPromoted'),
       );
+
       const querySnapshot = await getDocs(q);
       const allProducts = [];
       querySnapshot.forEach((doc) => {
@@ -44,41 +106,6 @@ export default function DisplayCategoryProducts() {
         allProducts.push({ ...docData, id: doc.id });
       });
 
-      const q2 = query(
-        collection(db, 'products'),
-        where('category', '==', category),
-        where('isPromoted', '==', true),
-        where('status', '==', 'pending'),
-      );
-      const querySnapshot2 = await getDocs(q2);
-      querySnapshot2.forEach((doc) => {
-        const docData = doc.data();
-        allProducts.push({ ...docData, id: doc.id });
-      });
-
-      const q3 = query(
-        collection(db, 'products'),
-        where('category', '==', category),
-        where('isPromoted', '==', false),
-        where('status', '==', 'active'),
-      );
-      const querySnapshot3 = await getDocs(q3);
-      querySnapshot3.forEach((doc) => {
-        const docData = doc.data();
-        allProducts.push({ ...docData, id: doc.id });
-      });
-
-      const q4 = query(
-        collection(db, 'products'),
-        where('category', '==', category),
-        where('isPromoted', '==', false),
-        where('status', '==', 'pending'),
-      );
-      const querySnapshot4 = await getDocs(q4);
-      querySnapshot4.forEach((doc) => {
-        const docData = doc.data();
-        allProducts.push({ ...docData, id: doc.id });
-      });
       console.log('this is crazy', allProducts);
       setIsLoading(false);
       setData(allProducts);
@@ -93,6 +120,14 @@ export default function DisplayCategoryProducts() {
     fetchData();
   }, [category]);
 
+  // const checkCategory = (selectedCategory, itemCategoryName) => {
+  //   if (selectedCategory === 'all') {
+  //     return true;
+  //   }
+  //   const isCategoryAvailable = subCategoriesObj[selectedCategory].includes(itemCategoryName);
+  //   return isCategoryAvailable;
+  // };
+
   useEffect(() => {
     const filterData = async () => {
       try {
@@ -104,6 +139,7 @@ export default function DisplayCategoryProducts() {
               item.price >= minPrice
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
+        && (item.mainCategory === category || category === 'all')
         && (item.brand === brand || brand === 'all')
         && isItemWithinMiles(miles, coordinates, item)
             ),

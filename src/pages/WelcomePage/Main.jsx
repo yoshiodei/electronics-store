@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DisplayCards from './components/DisplayCards';
 // import AdPanel from '../../components/AdPanel';
 import SectionHeader from '../../components/SectionHeader';
@@ -11,11 +11,15 @@ import SearchBar from './components/SearchBar';
 import { setFilter } from '../../redux/slice/productsSlice';
 // import HorizontalAdPanel from '../../components/HorizontalAdPanel';
 import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
-import Hero from './components/Hero';
-// import NewArrivalsButton from '../../components/NewArrivalsButton';
+// import Hero from './components/Hero';
+import TopBrands from './components/TopBrands';
+import ExploreShops from './components/ExploreShops';
+import { selectItemTypeState, setItemType } from '../../redux/slice/itemTypeSlice';
+import ItemTypeToggleButton from './components/ItemTypeToggleButton';
 
 export default function Main() {
   const dispatch = useDispatch();
+  const { itemType } = useSelector(selectItemTypeState);
 
   const initialFilter = {
     maxPrice: 10000,
@@ -27,6 +31,7 @@ export default function Main() {
   };
 
   useEffect(() => () => {
+    dispatch(setItemType('electronics'));
     dispatch(setFilter(initialFilter));
     window.scrollTo(0, 0);
   }, []);
@@ -39,14 +44,16 @@ export default function Main() {
         <div className="main-section__left-div">
           {/* <CategoriesBox /> */}
           {/* <NewArrivalsButton /> */}
+          <ItemTypeToggleButton />
           <SectionHeader>Filter</SectionHeader>
-          <FilterCard />
+          <FilterCard itemType={itemType} />
           {/* <AdPanel /> */}
         </div>
         <div className="main-section__right-div welcome-page__right-div">
           <SellNowButtonBoxMobile />
-          <SearchCategoriesBox />
-          <Hero />
+          <SearchCategoriesBox itemType={itemType} />
+          <ExploreShops />
+          {/* <Hero /> */}
           {/* <HorizontalAdPanel /> */}
           <div className="main-section__mobile-div">
             <SearchBar />
@@ -56,34 +63,14 @@ export default function Main() {
       </main>
       <main className="main-section">
         <div>
+          <SectionHeader>Top Brands</SectionHeader>
+          <TopBrands itemType={itemType} />
+        </div>
+        <div>
           <SectionHeader>All Products</SectionHeader>
-          <DisplayCards />
+          <DisplayCards itemType={itemType} />
         </div>
       </main>
     </div>
   );
 }
-
-// <div className="main-section-div">
-//       <main className="main-section d-flex justify-content-between">
-//         <div className="main-section__left-div">
-//           {/* <CategoriesBox /> */}
-//           <NewArrivalsButton />
-//           <SectionHeader>Filter</SectionHeader>
-//           <FilterCard />
-//           <AdPanel />
-//         </div>
-//         <div className="main-section__right-div">
-//           <SellNowButtonBoxMobile />
-//           <SearchCategoriesBox />
-//           {/* <Hero /> */}
-//           {/* <HorizontalAdPanel /> */}
-//           <div className="main-section__mobile-div">
-//             <SearchBar />
-//             <NewArrivalsButton />
-//           </div>
-//           <SectionHeader>All Products</SectionHeader>
-//           <DisplayCards />
-//         </div>
-//       </main>
-//     </div>

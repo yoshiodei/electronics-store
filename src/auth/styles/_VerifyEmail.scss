@@ -1,0 +1,89 @@
+.verify-email-box__outer-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.verify-email-box {
+    width: 600px;
+    height: auto;
+    background-color: $primaryMidGreyColour;
+    border: 1px solid $primaryGreyColour;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+
+    &--success {
+        border: 1px solid $successGreen;
+        background-color: rgb(234, 239, 234);
+    }
+
+    &__outer-div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__title-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__title-div__underline {
+        width: 80%;
+        height: 1px;
+        background-color: $primaryGreyColour;
+    }
+
+    &__info-text {
+        span {
+            color: dimgrey;
+            font-weight: 800;
+        }
+    }
+
+    &__resend-email-button {
+        height: 2.3em;
+        padding: 4px 20px;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        outline: none;
+        background-color: $secondaryColour;
+
+        &--success {
+            background-color: $successGreen;
+        }
+    }
+
+    &__countdown {
+        font-weight: 700;
+        font-size: 1.5em;
+        color: $dangerRed;
+    }
+
+    &__resend-email-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 50px;
+    }
+
+    &__resend-mail-button {
+        color: white;
+        padding: 3px 20px;
+        height: 2.3em;
+        width: 35%;
+        border-radius: 4px;
+        background-color: $successGreen;
+        border: none;
+        outline: none;
+    }
+}

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
-import PhoneNumberVerifyInput from './PhoneNumberVerifyInput';
+// import PhoneNumberVerifyInput from './PhoneNumberVerifyInput';
 import { handleSwitchToSignIn, handleSwitchTerms } from '../../utils/SwitchModals';
 import { signUpFormValidated } from '../../utils/FormValidated';
 import signUpUser from '../../utils/authenticateUser';
@@ -18,42 +18,31 @@ export default function SignUpForm({
   const initialState = {
     firstName: '',
     lastName: '',
-    phoneNumber: '',
+    email: '',
     password: '',
-    verificationCode: '',
-  };
-
-  const initialCountryCode = {
-    abbreviation: 'US',
-    code: '+1',
   };
 
   const [isChecked, setIsChecked] = useState(false);
-  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [formData, setFormData] = useState(initialState);
   const [isSigningUp, setIsSigningUp] = useState(false);
-  const [currentCountryCode, setCurrentCountryCode] = useState(initialCountryCode);
 
   const dispatch = useDispatch();
 
   const handleFormDataChange = (e) => {
     const { value, name } = e.target;
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
 
   const handleSignUp = async () => {
     setIsSigningUp(true);
-    const isFormValidated = await signUpFormValidated(formData, isPhoneVerified, isChecked);
+    const isFormValidated = await signUpFormValidated(formData, isChecked);
 
     if (isFormValidated) {
-      const isSignedUp = await signUpUser(formData, dispatch, currentCountryCode.code);
+      const isSignedUp = await signUpUser(formData, dispatch);
 
       if (isSignedUp) {
         setIsChecked(false);
-        setIsPhoneVerified(false);
         setFormData(initialState);
-        setCurrentCountryCode(initialCountryCode);
         handleCloseRegisterModal();
       }
     }
@@ -61,15 +50,8 @@ export default function SignUpForm({
     setIsSigningUp(false);
   };
 
-  console.log(handleSignUp);
-
   return (
     <Modal show={showRegisterModal} onHide={handleCloseRegisterModal} centered>
-      {/* <Modal.Header closeButton>
-        <Modal.Title>
-          <h6 className="buttons-box__modal-title">Register</h6>
-        </Modal.Title>
-      </Modal.Header> */}
       <div className="buttons-box__modal">
         <Modal.Body className="buttons-box__modal-body-custom">
           <div className="buttons-box__inner-modal-div buttons-box__inner-modal-div--alt register">
@@ -83,49 +65,43 @@ export default function SignUpForm({
             <div className="buttons-box__modal-title-div">
               <h4 className="buttons-box__modal-title">Register</h4>
             </div>
+            <div className="buttons-box__input-outer-div">
+              <div className="buttons-box__input-div">
+                <label>
+                  First Name
+                  {' '}
+                  <span>*required</span>
+                </label>
+                <input
+                  placeholder="please enter your first name"
+                  value={formData?.firstName}
+                  onChange={handleFormDataChange}
+                  name="firstName"
+                />
+              </div>
+              <div className="buttons-box__input-div">
+                <label>Last Name</label>
+                <input
+                  placeholder="please enter your last name"
+                  value={formData?.lastName}
+                  onChange={handleFormDataChange}
+                  name="lastName"
+                />
+              </div>
+            </div>
             <div className="buttons-box__input-div">
               <label>
-                First Name
+                Email
                 {' '}
                 <span>*required</span>
               </label>
               <input
-                placeholder="please enter your first name"
-                value={formData?.firstName}
+                placeholder="please enter your email"
+                value={formData?.email}
                 onChange={handleFormDataChange}
-                name="firstName"
+                name="email"
               />
             </div>
-            <div className="buttons-box__input-div">
-              <label>Last Name</label>
-              <input
-                placeholder="please enter your last name"
-                value={formData?.lastName}
-                onChange={handleFormDataChange}
-                name="lastName"
-              />
-            </div>
-            <PhoneNumberVerifyInput
-              handleFormDataChange={handleFormDataChange}
-              currentCountryCode={currentCountryCode}
-              setCurrentCountryCode={setCurrentCountryCode}
-              formData={formData}
-              setIsPhoneVerified={setIsPhoneVerified}
-            />
-            {
-            isPhoneVerified === true
-              ? (
-                <div className="buttons-box__input-div">
-                  <label>Verification Code</label>
-                  <input
-                    placeholder="please enter verification code"
-                    value={formData.verificationCode}
-                    name="verificationCode"
-                    onChange={handleFormDataChange}
-                  />
-                </div>
-              ) : null
-            }
             <div className="buttons-box__input-div">
               <label>
                 Password
@@ -162,7 +138,24 @@ export default function SignUpForm({
                 </h6>
               </div>
             </div>
-            <div className="buttons-box__switch-to-login-div">
+            <button
+              className={`buttons-box__${isSigningUp ? 'register-button' : 'register-button--disabled'}`}
+              type="button"
+              onClick={handleSignUp}
+              disabled={isSigningUp}
+            >
+              { isSigningUp ? '...loading' : 'Sign Up'}
+            </button>
+            <p className="modal__custom-content-right__or-separator">-- or --</p>
+            <button
+              type="button"
+              className="modal__custom-content-right__google-signin-button"
+              // onClick={handleGoogleSignIn}
+            >
+              <i className="fa-brands fa-google" />
+              {false ? '...Loading' : 'Sign In With Google'}
+            </button>
+            <div className="buttons-box__switch-to-register-div">
               <h6>
                 Already have an account?
                 {' '}
@@ -177,15 +170,6 @@ export default function SignUpForm({
                 </span>
               </h6>
             </div>
-            <div id="recaptcha-container" />
-            <button
-              className={`buttons-box__${isPhoneVerified ? 'sold-button' : 'sold-button--disabled'}`}
-              type="button"
-              onClick={handleSignUp}
-              disabled={!isPhoneVerified}
-            >
-              { isSigningUp ? '...loading' : 'Sign Up'}
-            </button>
           </div>
         </Modal.Body>
       </div>

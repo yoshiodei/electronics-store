@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 import {
 // addDoc, collection, doc, setDoc,
 } from '@firebase/firestore';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { selectAuthState } from '../../../redux/slice/authSlice';
 // import useSetChatList from '../hooks/useSetChatList';
 import useNewChat from '../hooks/useNewChat';
-import SignUpModal from '../../../auth/Register/SignUpModal';
-import SignInModal from '../../../auth/SignIn/SignInModal';
+import { errorToast } from '../../../utils/Toasts';
+// import SignUpModal from '../../../auth/Register/SignUpModal';
+// import SignInModal from '../../../auth/SignIn/SignInModal';
 
 export default function StartChatButton({ recipientData }) {
   const { loginInfo, userInfo } = useSelector(selectAuthState);
@@ -19,6 +20,13 @@ export default function StartChatButton({ recipientData }) {
   const { vendor, name } = recipientData;
   const { id } = useParams();
   const newChat = useNewChat();
+
+  const navigate = useNavigate();
+
+  const accessDenied = () => {
+    errorToast('Please Log In to start chat');
+    navigate('/sign-in');
+  };
 
   const firstName = vendor?.displayName?.split(' ')[0];
 
@@ -36,14 +44,14 @@ export default function StartChatButton({ recipientData }) {
 
   // const { setChatList } = useSetChatList();
 
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showSignInModal, setShowSignInModal] = useState(false);
+  // const [showRegisterModal, setShowRegisterModal] = useState(false);
+  // const [showSignInModal, setShowSignInModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCloseRegisterModal = () => setShowRegisterModal(false);
-  const handleShowRegisterModal = () => setShowRegisterModal(true);
-  const handleCloseSignInModal = () => setShowSignInModal(false);
-  const handleShowSignInModal = () => setShowSignInModal(true);
+  // const handleCloseRegisterModal = () => setShowRegisterModal(false);
+  // const handleShowRegisterModal = () => setShowRegisterModal(true);
+  // const handleCloseSignInModal = () => setShowSignInModal(false);
+  // const handleShowSignInModal = () => setShowSignInModal(true);
 
   const isAnonymousJSON = localStorage.getItem('isAnonymous');
 
@@ -60,12 +68,12 @@ export default function StartChatButton({ recipientData }) {
   if (userIsAnonymous) {
     return (
       <>
-        <button type="button" className="start-chat-button" title="message vendor" onClick={handleShowSignInModal}>
+        <button type="button" className="start-chat-button" title="message vendor" onClick={accessDenied}>
           <i className="fa-regular fa-message" />
           <h5>Start Chat</h5>
         </button>
 
-        <SignUpModal
+        {/* <SignUpModal
           handleShowRegisterModal={handleShowRegisterModal}
           showRegisterModal={showRegisterModal}
           handleCloseRegisterModal={handleCloseRegisterModal}
@@ -77,7 +85,7 @@ export default function StartChatButton({ recipientData }) {
           handleCloseSignInModal={handleCloseSignInModal}
           handleShowSignInModal={handleShowSignInModal}
           handleShowRegisterModal={handleShowRegisterModal}
-        />
+        /> */}
       </>
     );
   }
