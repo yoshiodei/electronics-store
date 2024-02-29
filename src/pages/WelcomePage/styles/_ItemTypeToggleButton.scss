@@ -49,3 +49,26 @@
         }
     }
 }
+
+@include mobileScreen{
+    .item-type-button {
+        width: 200px;
+        height: 40px;
+        margin-bottom: 0;
+        margin-top: 10px;
+    
+        &__top-button {
+            font-weight: 600;
+    
+            &.cars {
+                right: 0;
+            }
+        }
+    
+        &__bottom-button-div {
+            & button {
+                font-weight: 600;
+            }
+        }
+    }
+}

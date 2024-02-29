@@ -633,6 +633,16 @@
 
         &__top-div{
             display: none;
+
+            &__inner-div {
+                width: 100%;
+                padding: 0 0.8em;
+            }
+
+            &.alt {
+                display: block;
+                width: 100%;
+            }
         }
 
         &__bottom-div {

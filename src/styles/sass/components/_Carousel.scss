@@ -116,5 +116,16 @@
             right: -20px;
             top: calc(50% - 20px);
         }
+
+        &__add-to-wishlist-button {
+            top: 15px;
+            right: 15px;
+            height: 2.4em;
+            width: 2.4em;
+    
+            & i {
+                font-size: 1em;
+            }
+        }
     }
 }

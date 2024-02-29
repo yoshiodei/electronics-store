@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SellNowButton from '../components/SellNowButton';
 import appName, { helpEmail, marketingAndPartnershipEmail } from '../Constants/constantVariables';
 import appLogo from '../assets/images/electrotossLogoWhite.png';
+import appleLogo from '../assets/images/apple-logo-small.png';
 
 export default function Footer() {
   const handleEmailClick = (emailAddress) => {
@@ -35,9 +36,27 @@ export default function Footer() {
               <div className="footer__info">
                 <Link to="/termsAndConditions">Terms and Conditions</Link>
               </div>
+              <div className="footer__info footer__info--get-the-app">
+                <h5 className="footer__info--get-the-app__title">Get the App Today</h5>
+                <button className="footer__info--get-the-app__button" type="button">
+                  <div className="footer__info--get-the-app__button-div">
+                    <div className="footer__info--get-the-app__button-image-div">
+                      <img
+                        src={appleLogo}
+                        alt="apple logo"
+                        className="footer__info--get-the-app__button-image"
+                      />
+                    </div>
+                    <div className="footer__info--get-the-app__button-info-div">
+                      <p>Download on the</p>
+                      <h3>App Store</h3>
+                    </div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 footer__categories">
             <h4 className="footer__heading">Categories</h4>
             <ul className="footer__category-list">
               <li className="footer__category-list-item">

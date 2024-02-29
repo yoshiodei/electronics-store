@@ -24,7 +24,6 @@
             display: flex;
             gap: 10px;
             overflow-x: scroll;
-            // background-color: aqua;
 
             &::-webkit-scrollbar {
                 display: none;
@@ -114,4 +113,90 @@
         }
     }
 
+}
+
+@include mobileScreen {
+    .welcome-page {
+
+        &__explore-shops {
+            // width: 100%;
+            // flex: 1;
+            // margin-bottom: 20px;
+            margin-bottom: 0;
+            height: auto;
+        
+            &__main-div {
+                // display: flex;
+                // justify-content: center;
+                // border-radius: 5px;
+                // border: 1px solid $primaryGreyColour;
+                // background-color: lighten($primaryMidGreyColour, 2%);
+                // height: 200px;
+                // margin-bottom: 15px;
+                // overflow: hidden;
+                margin-bottom: 0;
+                height: auto;
+                padding: 2.4em 10px 10px;
+                // position: relative; 
+            }
+        
+            &__shop-div {
+                height: auto;
+                width: 100%;
+                gap: 5px;
+            }
+        
+            &-div {
+                height: 1.8em;
+                padding: 0 15px;
+        
+                & * {
+                    margin-bottom: 0;
+                    font-size: 0.9em;
+                }
+            }
+        }
+    
+        &__shop-card {
+            padding: 5px;
+            width: 155px;
+            height: 200px;
+
+            &:hover .welcome-page__shop-card__button{
+                bottom: 5px;
+            }    
+    
+            &__button {
+                padding: 1px 5px;
+                font-size: 0.85em;
+                font-weight: 500;
+                bottom: 5px;
+                transition: none;
+                box-shadow: unset;
+            }
+    
+            &__image-div {
+                height: 80px;
+                margin-bottom: 2px;
+            }
+    
+            &__shop-name {
+                margin-bottom: 2px;
+                font-weight: 700;
+                font-size: 0.9em;
+            }
+    
+            &__shop-description {
+                font-size: 0.8em;
+                line-height: 1;
+                font-weight: 400;
+                color:rgb(93, 93, 93);
+                margin-bottom: 0;
+                // background-color: aqua;
+                height: 4.8em;
+                overflow: hidden;
+            }
+        }
+    
+    }
 }

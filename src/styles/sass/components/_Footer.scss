@@ -116,7 +116,53 @@
     }
 
     &__info {
-        // margin: 0.25em 0;
+        &--get-the-app {
+            padding-top: 20px; 
+
+            &__title {
+                color: $lightFont;
+            }
+
+            &__button {
+                background-color: black;
+                border: none; 
+                outline: none;
+                border-radius: 8px;
+                padding: 8px 18px;
+
+                &-image-div {
+                    width: 30px;
+                }
+
+                &-image {
+                    width: 100%;
+                }
+
+                &-info-div {
+                    display: flex;
+                    flex-direction: column;
+                     & * {
+                        margin: 0;
+                        color: $lightFont;
+                        line-height: 1;
+                     }
+
+                     & p {
+                        font-size: 0.9em;
+                     }
+
+                     & h3 {
+                        font-size: 1.5em;
+                     }
+
+                }
+
+                &-div {
+                    display: flex;
+                    gap: 12px;
+                }
+            }
+        }
 
         & a {
           color: $lightFont;
@@ -137,6 +183,10 @@
         &__heading {
             font-size: 1.4em;
             margin: 20px 0 10px !important;
+        }
+
+        &__categories {
+            display: none;
         }
 
         &__brand {

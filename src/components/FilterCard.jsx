@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { emptyProductsList, setCoordinate, setFilter } from '../redux/slice/productsSlice';
-import { categoriesArray, carsCategoriesArray } from '../pages/NewItem/components/categoryObj';
+import { categoriesArray } from '../pages/NewItem/components/categoryObj';
+import { vehicleCat } from '../pages/NewItem/components/vehicleCategoryObj';
 
 export default function FilterCard({ itemType }) {
   const initialFilter = {
@@ -12,7 +13,7 @@ export default function FilterCard({ itemType }) {
     condition: 'all',
   };
 
-  const categoriesData = itemType === 'electronics' ? categoriesArray : carsCategoriesArray;
+  const categoriesData = itemType === 'electronics' ? categoriesArray : vehicleCat;
 
   const dispatch = useDispatch();
   const [filterObj, setFilterObj] = useState(initialFilter);

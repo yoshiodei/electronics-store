@@ -5,7 +5,9 @@ import { toast } from 'react-toastify';
 import { getDownloadURL, uploadBytes, ref as sRef } from 'firebase/storage';
 import {
   doc,
+  increment,
   setDoc,
+  updateDoc,
 } from '@firebase/firestore';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
@@ -270,8 +272,7 @@ export default function FormItems() {
     e.preventDefault();
 
     if (!isPremium && productsPosted >= 3) {
-      errorToast('');
-
+      errorToast('You have reached maximum posts for this month');
       setIsCheckingOut(false);
       return;
     }
@@ -284,21 +285,18 @@ export default function FormItems() {
 
     if (!name.trim() || !price.trim() || !details.trim()) {
       errorToast('Found empty text fields');
-
       setIsPosting(false);
       return;
     }
 
     if (isNaN(price.trim())) {
       errorToast('Price must be a number');
-
       setIsPosting(false);
       return;
     }
 
     if (images.length === 0) {
       errorToast('No item image selected');
-
       setIsPosting(false);
     }
 
@@ -335,7 +333,7 @@ export default function FormItems() {
         brand: itemBrand,
         details: details.trim(),
         status: 'pending',
-        category: selectedCategory,
+        category: selectedSubCategory,
         condition,
         lastEdited: new Date(),
         location: {
@@ -355,7 +353,7 @@ export default function FormItems() {
         itemType: 'electronics',
         vendor: vendorData,
         datePosted: new Date(),
-        subCategory: selectedSubCategory,
+        mainCategory: selectedCategory,
       };
 
       setLocation(initialLocation);
@@ -367,6 +365,11 @@ export default function FormItems() {
       await setDoc(doc(db, 'products', productId), productsData);
 
       dispatch(addNewProduct({ ...productsData, id: productId }));
+
+      const userRef = doc(db, 'vendors', uid);
+      await updateDoc(userRef, {
+        productsPosted: increment(1),
+      });
 
       successToast(`Your item ${name} Posted successfully!`);
 
@@ -716,7 +719,7 @@ export default function FormItems() {
         <div className="col-md-12">
           <div className="new-item-form__post-item-div">
             {(!newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="submit">{isPosting ? '...Posting' : 'Post Item'}</button>)}
-            {(newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="button" onClick={redirectToCheckout}>{isCheckingOut ? '...Loading' : 'Checkout'}</button>)}
+            {(newItem.isPromoted) && (<button className="new-item-form__post-item-button" type="button" onClick={() => console.log(redirectToCheckout)}>{isCheckingOut ? '...Loading' : 'Checkout'}</button>)}
           </div>
         </div>
       </div>

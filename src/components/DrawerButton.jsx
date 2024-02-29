@@ -5,10 +5,11 @@ import { toast } from 'react-toastify';
 import { signOut } from 'firebase/auth';
 import { selectAuthState, setUserInfo } from '../redux/slice/authSlice';
 import { auth } from '../config/firebaseConfig';
+import ItemTypeToggleButton from '../pages/WelcomePage/components/ItemTypeToggleButton';
+import DrawerButtonCategories from './DrawerButtonCategories';
 
 export default function DrawerButton({
-  toggleDrawer, setToggleDrawer, handleShowSignInModal,
-  handleShowRegisterModal, notificationCount, wishListCount,
+  toggleDrawer, setToggleDrawer, notificationCount, wishListCount,
   messageCount,
 }) {
   const navigate = useNavigate();
@@ -17,8 +18,13 @@ export default function DrawerButton({
   const { isAnonymous, uid } = loginInfo;
   const dispatch = useDispatch();
 
-  const handleCategoryClick = (category) => {
-    navigate(`/category/${category}`);
+  const handleShowSignIn = () => {
+    navigate('/sign-in');
+    setToggleDrawer(false);
+  };
+
+  const handleShowSignUp = () => {
+    navigate('/register');
     setToggleDrawer(false);
   };
 
@@ -34,7 +40,7 @@ export default function DrawerButton({
         navigate('/wish-list');
         break;
       case 'messages':
-        navigate('/chatlist/mobile');
+        navigate('/messages');
         break;
       case 'settings':
         navigate('/settings/mobile');
@@ -120,6 +126,9 @@ export default function DrawerButton({
         <div className="drawer-button__line" />
       </button>
       <div className={toggleDrawer ? 'drawer-button__div' : 'drawer-button__div__hide'}>
+        <div className="main-section__mobile-div">
+          <ItemTypeToggleButton />
+        </div>
         <div className="drawer-button__input-div">
           <input
             value={search}
@@ -137,8 +146,8 @@ export default function DrawerButton({
         </div>
         {isAnonymous && (
         <div className="drawer-button__sign-in-div">
-          <button type="button" className="drawer-button__sign-in-button" onClick={handleShowSignInModal}>Sign In</button>
-          <button type="button" className="drawer-button__register-button" onClick={handleShowRegisterModal}>Register</button>
+          <button type="button" className="drawer-button__sign-in-button" onClick={handleShowSignIn}>Sign In</button>
+          <button type="button" className="drawer-button__register-button" onClick={handleShowSignUp}>Register</button>
         </div>
         )}
         {!isAnonymous
@@ -196,96 +205,15 @@ export default function DrawerButton({
          )}
         <div className="drawer-button__menu-div">
           <h5>Categories</h5>
-          <ul>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('phones')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-mobile" />
-                  <h6>Cellphones & Accessories</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Televisions')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-tv" />
-                  <h6>Televisions</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Computers & Tablets')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-desktop" />
-                  <h6>Computers & Tablets</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Office Electronics')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-print" />
-                  <h6>Office Electronics</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Video Games & Consoles')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-gamepad" />
-                  <h6>Video Games & Consoles</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Audio & Headphones')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-headphones" />
-                  <h6>Audio & Headphones</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Home Appliances')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-house" />
-                  <h6>Home Appliances</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Car Electronics')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-car" />
-                  <h6>Car Electronics</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-            <li className="drawer-button__menu-item">
-              <button type="button" onClick={() => handleCategoryClick('Wearable Devices')}>
-                <div className="drawer-button__menu-item__button-div">
-                  <i className="fa-solid fa-hand" />
-                  <h6>Wearable Devices</h6>
-                </div>
-                <i className="fa-solid fa-chevron-right" />
-              </button>
-            </li>
-          </ul>
+          <DrawerButtonCategories setToggleDrawer={setToggleDrawer} />
         </div>
-        <div className="drawer-button__settings-div">
-          <button type="button" className="drawer-button__settings-button" onClick={() => handleMenuButtonClick('settings')}>
+        {/* <div className="drawer-button__settings-div">
+          <button type="button" className="drawer-button__
+          settings-button" onClick={() => handleMenuButtonClick('settings')}>
             <i className="fa-solid fa-gear" />
             <h6>Settings</h6>
           </button>
-        </div>
+        </div> */}
         { !isAnonymous && (
         <div className="drawer-button__sign-out-div">
           <button type="button" className="drawer-button__sign-out-button" onClick={() => handleMenuButtonClick('log-out')}>Sign Out</button>

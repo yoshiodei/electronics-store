@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DisplayCards from './components/DisplayCards';
-// import AdPanel from '../../components/AdPanel';
 import SectionHeader from '../../components/SectionHeader';
+// import AdPanel from '../../components/AdPanel';
 import FilterCard from '../../components/FilterCard';
 // import CategoriesBox from '../../components/CategoriesBox';
 import SearchCategoriesBox from '../SearchResult/components/CategoriesBox';
-import SearchBar from './components/SearchBar';
+// import SearchBar from './components/SearchBar';
 // import useTopScroll from '../../Hooks/useTopScroll';
 import { setFilter } from '../../redux/slice/productsSlice';
 // import HorizontalAdPanel from '../../components/HorizontalAdPanel';
@@ -56,7 +56,7 @@ export default function Main() {
           {/* <Hero /> */}
           {/* <HorizontalAdPanel /> */}
           <div className="main-section__mobile-div">
-            <SearchBar />
+            {/* <SearchBar /> */}
             {/* <NewArrivalsButton /> */}
           </div>
         </div>

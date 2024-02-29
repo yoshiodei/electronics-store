@@ -52,7 +52,7 @@ export default function RegistrationForm() {
           </div>
           <div className="auth-form__div">
             <div className="auth-form__display-name-div">
-              <div className="auth-form__input-div">
+              <div className="auth-form__input-div auth-form__input-div--first-name">
                 <label>
                   First Name
                   {' '}

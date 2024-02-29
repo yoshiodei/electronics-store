@@ -146,7 +146,7 @@ export default function DeleteAccountModal({
       <div className="buttons-box__modal">
         <Modal.Body>
           <div className="buttons-box__inner-modal-div">
-            <h5>
+            <h5 className="user-detail-box__delete-account-modal__heading-text">
               Enter your password to permanently delete your account and clear all of its posts.
             </h5>
             <input
@@ -155,12 +155,13 @@ export default function DeleteAccountModal({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <p>-- or --</p>
+            <p className="user-detail-box__delete-account-modal__input-or">-- or --</p>
             <button
+              className="user-detail-box__delete-account-modal__google-delete"
               type="button"
               onClick={handleDeleteGoogleAccount}
             >
-              Delete Account with Google Sign In
+              Delete Account created with Google Sign In
             </button>
           </div>
         </Modal.Body>

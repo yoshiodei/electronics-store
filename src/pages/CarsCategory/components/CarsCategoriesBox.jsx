@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setFilter } from '../../../redux/slice/productsSlice';
-import { carsCategoriesArray } from '../../NewItem/components/categoryObj';
+import { vehicleCat } from '../../NewItem/components/vehicleCategoryObj';
 
 export default function CarsCategoriesBox() {
   const initialFilter = {
@@ -25,7 +25,7 @@ export default function CarsCategoriesBox() {
     <div className="search__categories-box">
       <ul>
         {
-            carsCategoriesArray.map((categories) => (
+            vehicleCat.map((categories) => (
               <li>
                 <button type="button" onClick={() => handleClearFilter(`/category/cars/${categories}`)}><h6>{categories}</h6></button>
               </li>

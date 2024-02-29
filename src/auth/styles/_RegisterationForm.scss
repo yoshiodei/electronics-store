@@ -185,3 +185,24 @@
         }
     }
 }
+
+@include mobileScreen {
+    .auth-form {
+        border: none;
+
+        &__input-div--first-name {
+            margin-bottom: 10px;
+        }
+
+        &__title-div {
+            &__underline {
+                margin-bottom: 20px;        
+            }
+        }
+
+        &__display-name-div {
+            display: block;
+            gap: unset;
+        }
+    }
+}

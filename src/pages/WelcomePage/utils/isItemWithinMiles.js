@@ -5,11 +5,16 @@ export default function isItemWithinMiles(miles, userCoordinates, product) {
   if (!(userCoordinates?.latitude && userCoordinates?.longitude)) {
     return false;
   }
+
+  let distance = 1;
+
   if (miles > 60) {
-    return true;
+    distance = 300;
+  } else if (miles > 0 && miles < 70) {
+    distance = miles;
   }
 
-  const distance = miles < 10 ? 1 : miles;
+  // const distance = miles < 10 ? 1 : miles;
 
   const R = 6371; // Earth's radius in kilometers
 

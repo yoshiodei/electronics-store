@@ -13,7 +13,7 @@ export default function TopBrandLink({ BrandObj }) {
           src={link}
         />
       </div>
-      <h6>{name}</h6>
+      <h6 className="top-brands__text">{name}</h6>
     </Link>
   );
 }

@@ -310,16 +310,6 @@ function Navbar() {
                 <h6>Register Now</h6>
               </button>
             </li>}
-            {/* { isAnonymous && <li>
-              <button className="navbar-custom__text-button navbar-custom__sign-in" onClick={handleShowSignInModal}>
-                <h6>Sign In lll</h6>
-              </button>
-            </li>} */}
-            {/* { isAnonymous && <li>
-              <button className="navbar-custom__text-button navbar-custom__register" onClick={handleShowRegisterModal}>
-                <h6>Register Now lll</h6>
-              </button>
-            </li>} */}
           </ul>
           </div>
         </div>

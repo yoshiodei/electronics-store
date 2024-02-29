@@ -19,8 +19,11 @@ export default function Main() {
           <AdPanel />
         </div>
         <div className="main-section__right-div">
+          <div className="main-section__mobile-div">
+            <ItemTypeToggleButton />
+          </div>
           <PostedItemsCount />
-          <ContentInfoBox>{`Post New Item - ${itemType === 'cars' ? 'Cars' : 'Electrotoss'}` }</ContentInfoBox>
+          <ContentInfoBox>{`Post New Item - ${itemType === 'cars' ? 'Cars' : 'Electronics'}` }</ContentInfoBox>
           {itemType === 'electronics' ? <FormItems /> : <CarsFormItems /> }
         </div>
       </main>

@@ -541,6 +541,14 @@
   .navbar-custom__top-div {
     display: none;
   }
+  .navbar-custom__top-div__inner-div {
+    width: 100%;
+    padding: 0 0.8em;
+  }
+  .navbar-custom__top-div.alt {
+    display: block;
+    width: 100%;
+  }
   .navbar-custom__bottom-div {
     width: 100%;
     margin: 0;
@@ -937,6 +945,21 @@ a {
   text-decoration: underline;
 }
 
+@media (max-width: 430px) {
+  .auth-form {
+    border: none;
+  }
+  .auth-form__input-div--first-name {
+    margin-bottom: 10px;
+  }
+  .auth-form__title-div__underline {
+    margin-bottom: 20px;
+  }
+  .auth-form__display-name-div {
+    display: block;
+    gap: unset;
+  }
+}
 .verify-email-box__outer-div {
   width: 100%;
   display: flex;
@@ -3242,6 +3265,16 @@ form input:focus-visible, form textarea:focus-visible {
   .new-item-form {
     width: 100%;
   }
+  .new-item-form__posted-items-count__upgrade-button {
+    padding: 8px 15px;
+  }
+  .new-item-form__posted-items-count__progress-bar-div {
+    width: 90%;
+  }
+  .new-item-form__posted-items-count__text {
+    font-size: 1.2em;
+    text-align: center;
+  }
   .new-item-form__radio-inner-button-div {
     display: flex;
     padding: 0;
@@ -3723,9 +3756,11 @@ form input:focus-visible, form textarea:focus-visible {
   font-size: 0.9em;
 }
 .user-detail-box__start-chat-div {
-  display: block;
   border-radius: 5px;
   background-color: #2a027d;
+  border: none;
+  outline: none;
+  width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 8px;
@@ -3824,6 +3859,19 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 4px;
   padding: 0 10px;
   margin-top: 15px;
+}
+.user-detail-box__delete-account-modal__input-or {
+  margin: 0;
+}
+.user-detail-box__delete-account-modal__google-delete {
+  height: 2.3em;
+  width: 80%;
+  border-radius: 4px;
+  padding: 0 10px;
+  border: none;
+  outline: none;
+  background-color: orangered;
+  color: #ffffff;
 }
 .user-detail-box__rate-user-button {
   display: flex;
@@ -3980,10 +4028,32 @@ form input:focus-visible, form textarea:focus-visible {
     text-align: center;
     letter-spacing: 0.8px;
   }
+  .user-detail-box__rate-user-button {
+    padding: 10px 8px;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .user-detail-box__rate-user-button * {
+    margin: 0;
+  }
+  .user-detail-box__delete-account-modal__google-delete {
+    height: 2.3em;
+    width: 100%;
+    font-size: 0.9em;
+    padding: 0 2px;
+    background-color: orangered;
+    color: #ffffff;
+  }
+  .user-detail-box__delete-account-modal__heading-text {
+    text-align: center;
+    width: 100%;
+  }
+  .user-detail-box__delete-account-modal__input {
+    width: 100%;
+  }
   .user-detail-box__report-user-icon {
     height: 1em;
     width: 1em;
-    background-color: grey;
     border-radius: 50%;
     margin-right: 10px;
   }
@@ -5049,6 +5119,15 @@ form input:focus-visible, form textarea:focus-visible {
     right: -20px;
     top: calc(50% - 20px);
   }
+  .carousel__custom__add-to-wishlist-button {
+    top: 15px;
+    right: 15px;
+    height: 2.4em;
+    width: 2.4em;
+  }
+  .carousel__custom__add-to-wishlist-button i {
+    font-size: 1em;
+  }
 }
 .notifications__list-heading {
   padding: 8px;
@@ -5847,6 +5926,44 @@ form input:focus-visible, form textarea:focus-visible {
 .footer__info-div {
   margin-top: 20px;
 }
+.footer__info--get-the-app {
+  padding-top: 20px;
+}
+.footer__info--get-the-app__title {
+  color: #ffffff;
+}
+.footer__info--get-the-app__button {
+  background-color: black;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+}
+.footer__info--get-the-app__button-image-div {
+  width: 30px;
+}
+.footer__info--get-the-app__button-image {
+  width: 100%;
+}
+.footer__info--get-the-app__button-info-div {
+  display: flex;
+  flex-direction: column;
+}
+.footer__info--get-the-app__button-info-div * {
+  margin: 0;
+  color: #ffffff;
+  line-height: 1;
+}
+.footer__info--get-the-app__button-info-div p {
+  font-size: 0.9em;
+}
+.footer__info--get-the-app__button-info-div h3 {
+  font-size: 1.5em;
+}
+.footer__info--get-the-app__button-div {
+  display: flex;
+  gap: 12px;
+}
 .footer__info a {
   color: #ffffff;
 }
@@ -5863,6 +5980,9 @@ form input:focus-visible, form textarea:focus-visible {
   .footer__heading {
     font-size: 1.4em;
     margin: 20px 0 10px !important;
+  }
+  .footer__categories {
+    display: none;
   }
   .footer__brand {
     display: flex;
@@ -6312,6 +6432,23 @@ button.checkout__buttom:disabled {
   color: rgb(128, 128, 128);
 }
 
+@media (max-width: 430px) {
+  .item-type-button {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  .item-type-button__top-button {
+    font-weight: 600;
+  }
+  .item-type-button__top-button.cars {
+    right: 0;
+  }
+  .item-type-button__bottom-button-div button {
+    font-weight: 600;
+  }
+}
 .top-brands {
   width: 100%;
   height: auto;
@@ -6347,6 +6484,21 @@ button.checkout__buttom:disabled {
      object-fit: contain;
 }
 
+@media (max-width: 430px) {
+  .top-brands {
+    margin-bottom: 20px;
+    gap: 15px;
+  }
+  .top-brands__image-div {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+  .top-brands__text {
+    font-size: 0.9em;
+  }
+}
 .welcome-page__right-div {
   display: flex;
   flex-direction: column;
@@ -6784,6 +6936,64 @@ button.checkout__buttom:disabled {
   margin-bottom: 0;
 }
 
+@media (max-width: 430px) {
+  .welcome-page__explore-shops {
+    margin-bottom: 0;
+    height: auto;
+  }
+  .welcome-page__explore-shops__main-div {
+    margin-bottom: 0;
+    height: auto;
+    padding: 2.4em 10px 10px;
+  }
+  .welcome-page__explore-shops__shop-div {
+    height: auto;
+    width: 100%;
+    gap: 5px;
+  }
+  .welcome-page__explore-shops-div {
+    height: 1.8em;
+    padding: 0 15px;
+  }
+  .welcome-page__explore-shops-div * {
+    margin-bottom: 0;
+    font-size: 0.9em;
+  }
+  .welcome-page__shop-card {
+    padding: 5px;
+    width: 155px;
+    height: 200px;
+  }
+  .welcome-page__shop-card:hover .welcome-page__shop-card__button {
+    bottom: 5px;
+  }
+  .welcome-page__shop-card__button {
+    padding: 1px 5px;
+    font-size: 0.85em;
+    font-weight: 500;
+    bottom: 5px;
+    transition: none;
+    box-shadow: unset;
+  }
+  .welcome-page__shop-card__image-div {
+    height: 80px;
+    margin-bottom: 2px;
+  }
+  .welcome-page__shop-card__shop-name {
+    margin-bottom: 2px;
+    font-weight: 700;
+    font-size: 0.9em;
+  }
+  .welcome-page__shop-card__shop-description {
+    font-size: 0.8em;
+    line-height: 1;
+    font-weight: 400;
+    color: rgb(93, 93, 93);
+    margin-bottom: 0;
+    height: 4.8em;
+    overflow: hidden;
+  }
+}
 .welcome-page__form-div {
   margin-bottom: 30px;
   display: flex;
@@ -7045,9 +7255,54 @@ button.checkout__buttom:disabled {
   }
 }
 @media (max-width: 430px) {
+  .welcome-page__filter-by-distance__caption {
+    height: 100%;
+    width: auto;
+    justify-content: flex-start;
+    border-right: none;
+  }
+  .welcome-page__filter-by-distance__caption * {
+    font-size: 0.95em;
+    font-weight: 600;
+  }
+  .welcome-page__filter-by-distance__input-div {
+    padding: 0;
+  }
   .welcome-page__filter-by-distance__div {
-    margin: 20px 0;
-    padding: 1em;
+    margin: 35px 10px;
+    height: auto;
+    border-radius: 8px;
+    flex-direction: column;
+    padding: 15px 10px;
+    gap: 15px;
+  }
+  .welcome-page__filter-by-distance__div.alt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    padding-right: 30px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ddccfe;
+  }
+  .welcome-page__filter-by-distance__div.alt .caption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    min-width: 200px;
+    background-color: #2a027d;
+    border-radius: 50px;
+  }
+  .welcome-page__filter-by-distance__div.alt h5 {
+    color: #ffffff;
+    font-size: 1.1em;
+    margin: 0;
+  }
+  .welcome-page__filter-by-distance__div input {
+    width: 100%;
   }
   .welcome-page__filter-by-distance__div input {
     width: 100%;
@@ -7076,36 +7331,5 @@ button.checkout__buttom:disabled {
     -webkit-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
     z-index: 2;
-  }
-  .welcome-page__filter-by-distance__info span {
-    font-weight: 700;
-    color: #2a027d;
-  }
-  .welcome-page__filter-by-distance__input-div {
-    width: 100%;
-    height: 18px;
-    display: flex;
-    align-items: center;
-  }
-  .welcome-page__filter-by-distance__input-range-bar {
-    width: 100%;
-    height: 5px;
-    display: flex;
-    position: relative;
-    align-items: center;
-    background: #ddd;
-    border-radius: 5px;
-  }
-  .welcome-page__filter-by-distance__thumb {
-    z-index: 2;
-  }
-  .welcome-page__filter-by-distance__trail-line {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background-color: #2a027d;
-    border-radius: 5px;
-    z-index: 1;
   }
 }/*# sourceMappingURL=main.css.map */

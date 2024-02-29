@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -16,6 +16,7 @@ import DeleteAccountModal from './DeleteAccountModal';
 import useDisplayStars from '../hooks/useDisplayStars';
 import ReviewModal from './ReviewModal';
 import calculateNewRating from '../utils/calculateNewRating';
+import useNewChat from '../../SingleItem/hooks/useNewChat';
 
 export default function UserDetailBox({ userProductIds }) {
   const initialReport = {
@@ -23,6 +24,8 @@ export default function UserDetailBox({ userProductIds }) {
     reportDetail: '',
   };
   const [report, setReport] = useState(initialReport);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [userData, setUserData] = useState({});
 
@@ -34,6 +37,8 @@ export default function UserDetailBox({ userProductIds }) {
 
   const rating = calculateNewRating(userData.ratings);
   const renderStars = useDisplayStars(rating);
+
+  const newChat = useNewChat();
 
   const { id } = useParams();
   const {
@@ -64,6 +69,22 @@ export default function UserDetailBox({ userProductIds }) {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const textTemplate = `Hi ${userData?.firstName || 'there'}.`;
+
+  const messageObject = {
+    senderId: uid,
+    image: photoURL || '',
+    displayName: userData?.firstName || '',
+    message: textTemplate,
+    recipientId: id,
+  };
+
+  const handleStartChat = async () => {
+    setIsLoading(true);
+    await newChat(messageObject);
+    setIsLoading(false);
   };
 
   const handleSendReport = async () => {
@@ -179,9 +200,13 @@ export default function UserDetailBox({ userProductIds }) {
         </div>
         { !isAnonymous && (id !== uid)
       && (
-      <Link to="/chat-room" className="user-detail-box__start-chat-div">
-        <h5 className="user-detail-box__start-chat">Start Chat</h5>
-      </Link>
+      <button
+        type="button"
+        className="user-detail-box__start-chat-div"
+        onClick={handleStartChat}
+      >
+        <h5 className="user-detail-box__start-chat">{isLoading ? '...Loading Chat' : 'Start Chat'}</h5>
+      </button>
       )}
         {(id === uid) && (
         <button className="user-detail-box__edit-user-button d-flex" type="button" onClick={() => { navigate('/edit-profile'); }}>

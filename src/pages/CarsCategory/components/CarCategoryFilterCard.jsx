@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { emptyProductsList, setCoordinate, setCategoryFilter } from '../../../redux/slice/productsSlice';
+import { vehiclesArray } from '../../NewItem/components/vehicleCategoryObj';
 
 export default function CarCategoryFilterCard({ category }) {
   const initialFilter = {
@@ -17,63 +18,25 @@ export default function CarCategoryFilterCard({ category }) {
 
   const priceGap = 900;
 
-  const carBrandsByCategory = {
-    Sedan: ['Toyota', 'Honda', 'Ford', 'Chevrolet', 'Hyundai'],
-    SUV: ['Jeep', 'Nissan', 'Subaru', 'Mazda', 'Kia'],
-    Truck: ['Ford', 'Chevrolet', 'Ram', 'Toyota', 'Nissan'],
-    Coupe: ['BMW', 'Benz', 'Audi', 'Lexus', 'Infiniti'],
-    Convertible: ['Mazda', 'Benz', 'Chevrolet', 'Audi', 'BMW'],
-    Hatchback: ['Volkswagen', 'Ford', 'Honda', 'Mazda', 'Chevrolet'],
-    Van: ['Chrysler', 'Honda', 'Toyota', 'Ford', 'Nissan'],
-    Wagon: ['Subaru', 'Volvo', 'Audi', 'BMW', 'Benz'],
-    Crossover: ['Honda', 'Toyota', 'Mazda', 'Hyundai', 'Nissan'],
-    Minivan: ['Toyota', 'Honda', 'Chrysler', 'Kia', 'Dodge'],
-    'Sports Car': ['Porsche', 'Ferrari', 'Lamborghini', 'McLaren', 'Aston Martin'],
-    'Electric Car': ['Tesla', 'Nissan', 'Chevrolet', 'BMW', 'Audi'],
-    'Hybrid Car': ['Toyota', 'Honda', 'Ford', 'Lexus', 'Hyundai'],
-    'Luxury Car': ['Benz', 'BMW', 'Lexus', 'Audi', 'Jaguar'],
-    'Midsize Car': ['Toyota', 'Honda', 'Ford', 'Chevrolet', 'Nissan'],
-    'Full-size Car': ['Chevrolet', 'Ford', 'Dodge', 'Chrysler', 'Buick'],
-    'Off-Road Vehicle': ['Jeep', 'Toyota', 'Land Rover', 'Ford', 'Nissan'],
-  };
-
   useEffect(() => {
     const getBrandArray = (categoryName) => {
       switch (categoryName) {
-        case 'Sedan':
-          return carBrandsByCategory.Sedan;
-        case 'Hatchback':
-          return carBrandsByCategory.Hatchback;
-        case 'Van':
-          return carBrandsByCategory.Van;
-        case 'Wagon':
-          return carBrandsByCategory.Wagon;
-        case 'Sports Car':
-          return carBrandsByCategory['Sports Car'];
-        case 'Electric Car':
-          return carBrandsByCategory['Electric Car'];
-        case 'Hybrid Car':
-          return carBrandsByCategory['Hybrid Car'];
-        case 'Luxury Car':
-          return carBrandsByCategory['Luxury Car'];
-        case 'Midsize Car':
-          return carBrandsByCategory['Midsize Car'];
-        case 'Full-size car':
-          return carBrandsByCategory['Full-size car'];
-        case 'Off-Road Vehicle':
-          return carBrandsByCategory['Off-Road Vehicle'];
-        case 'Crossover':
-          return carBrandsByCategory.Crossover;
-        case 'Minivan':
-          return carBrandsByCategory.Minivan;
-        case 'SUV':
-          return carBrandsByCategory.SUV;
-        case 'Truck':
-          return carBrandsByCategory.Truck;
-        case 'Coupe':
-          return carBrandsByCategory.Coupe;
-        case 'Convertible':
-          return carBrandsByCategory.Convertible;
+        case 'Motorcycles':
+          return Object.keys(vehiclesArray.Motorcycles);
+        case 'Cars & Trucks':
+          return Object.keys(vehiclesArray['Cars & Trucks']);
+        case 'Campers & RVs':
+          return Object.keys(vehiclesArray['Campers & RVs']);
+        case 'Boats & Marine':
+          return Object.keys(vehiclesArray['Boats & Marine']);
+        case 'Auto parts & Accessories':
+          return Object.keys(vehiclesArray['Auto parts & Accessories']);
+        case 'Powersport vehicles':
+          return Object.keys(vehiclesArray['Powersport vehicles']);
+        case 'Tires & Rims':
+          return Object.keys(vehiclesArray['Tires & Rims']);
+        case 'Trailers':
+          return Object.keys(vehiclesArray.Trailers);
         default:
           return null;
       }

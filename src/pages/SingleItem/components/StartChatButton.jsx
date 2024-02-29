@@ -14,7 +14,7 @@ import { errorToast } from '../../../utils/Toasts';
 
 export default function StartChatButton({ recipientData }) {
   const { loginInfo, userInfo } = useSelector(selectAuthState);
-  const { photURL } = userInfo;
+  const { photoURL } = userInfo;
   const { isAnonymous } = loginInfo;
   const { uid } = loginInfo;
   const { vendor, name } = recipientData;
@@ -34,7 +34,7 @@ export default function StartChatButton({ recipientData }) {
 
   const messageObject = {
     senderId: uid,
-    image: photURL || '',
+    image: photoURL || '',
     displayName: vendor?.displayName?.split(' ')[0] || '',
     message: textTemplate,
     recipientId: vendor?.uid,
