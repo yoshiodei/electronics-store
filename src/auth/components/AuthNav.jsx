@@ -6,7 +6,7 @@ import appLogo from '../../assets/images/electrotossLogoWhite.png';
 export default function AuthNav() {
   return (
     <nav id="page-top" className={false ? 'navbar-custom toggled' : 'navbar-custom'}>
-      <div className="navbar-custom__top-div">
+      <div className="navbar-custom__top-div alt">
         <div className="navbar-custom__top-div__inner-div">
           <div className="navbar-custom__top-brand-div">
             <Link to="/" className="navbar-custom__brand">
