@@ -49,7 +49,7 @@ export default function CarsFormItems() {
     lastEdited: new Date(),
     condition: 'new',
     postedFrom: 'web',
-    itemType: 'cars',
+    itemType: 'vehicles',
     isPromoted: false,
     vendor: {},
     location: {
@@ -316,7 +316,7 @@ export default function CarsFormItems() {
         viewCount: [],
         isPromoted: false,
         postedFrom: 'web',
-        itemType: 'cars',
+        itemType: 'vehicles',
         vendor: vendorData,
         datePosted: new Date(),
         mainCategory: vehicleCategory,

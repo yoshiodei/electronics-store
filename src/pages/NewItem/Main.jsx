@@ -23,7 +23,7 @@ export default function Main() {
             <ItemTypeToggleButton />
           </div>
           <PostedItemsCount />
-          <ContentInfoBox>{`Post New Item - ${itemType === 'cars' ? 'Cars' : 'Electronics'}` }</ContentInfoBox>
+          <ContentInfoBox>{`Post New Item - ${itemType === 'vehicles' ? 'Vehicles' : 'Electronics'}` }</ContentInfoBox>
           {itemType === 'electronics' ? <FormItems /> : <CarsFormItems /> }
         </div>
       </main>

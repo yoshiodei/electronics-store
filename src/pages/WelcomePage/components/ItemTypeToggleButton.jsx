@@ -7,13 +7,13 @@ export default function ItemTypeToggleButton() {
   const dispatch = useDispatch();
 
   const handleToggle = () => {
-    if (itemType === 'Cars') {
+    if (itemType === 'Vehicles') {
       setType('Electronics');
       dispatch(setItemType('electronics'));
     }
     if (itemType === 'Electronics') {
-      setType('Cars');
-      dispatch(setItemType('cars'));
+      setType('Vehicles');
+      dispatch(setItemType('vehicles'));
     }
   };
 
@@ -22,18 +22,18 @@ export default function ItemTypeToggleButton() {
     dispatch(setItemType('electronics'));
   };
 
-  const setToCars = () => {
-    setType('Cars');
-    dispatch(setItemType('cars'));
+  const setToVehicles = () => {
+    setType('Vehicles');
+    dispatch(setItemType('vehicles'));
   };
 
   return (
     <div className="item-type-button__outer-div">
       <div className="item-type-button">
-        <button type="button" onClick={handleToggle} className={`item-type-button__top-button ${itemType === 'Cars' ? 'cars' : ''}`}>{itemType}</button>
+        <button type="button" onClick={handleToggle} className={`item-type-button__top-button ${itemType === 'Vehicles' ? 'vehicles' : ''}`}>{itemType}</button>
         <div className="item-type-button__bottom-button-div">
           <button type="button" onClick={setToElectronics} className="item-type-button__bottom-button-left">Electronics</button>
-          <button type="button" onClick={setToCars} className="item-type-button__bottom-button-right">Cars</button>
+          <button type="button" onClick={setToVehicles} className="item-type-button__bottom-button-right">Vehicles</button>
         </div>
       </div>
     </div>

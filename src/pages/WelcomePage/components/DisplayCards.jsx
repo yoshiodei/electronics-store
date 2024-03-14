@@ -14,7 +14,7 @@ import FilterByDistance from './FilterByDistance';
 // import FindItemsSlider from './FindItemsSlider';
 
 export default function DisplayCards({ itemType }) {
-  console.log(`item value ${itemType} from displayCards`);
+  // console.log(`item value ${itemType} from displayCards`);
   const { filterObject } = useSelector(selectProductsState);
   const { updateTime: time } = filterObject;
 
