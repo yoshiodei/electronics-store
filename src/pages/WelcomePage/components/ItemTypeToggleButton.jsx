@@ -30,7 +30,7 @@ export default function ItemTypeToggleButton() {
   return (
     <div className="item-type-button__outer-div">
       <div className="item-type-button">
-        <button type="button" onClick={handleToggle} className={`item-type-button__top-button ${itemType === 'Vehicles' ? 'vehicles' : ''}`}>{itemType}</button>
+        <button type="button" onClick={handleToggle} className={`item-type-button__top-button ${itemType === 'Vehicles' ? 'cars' : ''}`}>{itemType}</button>
         <div className="item-type-button__bottom-button-div">
           <button type="button" onClick={setToElectronics} className="item-type-button__bottom-button-left">Electronics</button>
           <button type="button" onClick={setToVehicles} className="item-type-button__bottom-button-right">Vehicles</button>

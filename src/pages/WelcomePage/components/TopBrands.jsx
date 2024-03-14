@@ -89,7 +89,7 @@ export default function TopBrands({ itemType }) {
     { name: 'Skoda', link: Skoda },
   ];
 
-  if (itemType === 'cars') {
+  if (itemType === 'vehicles') {
     return (
       <div className="top-brands">
         {

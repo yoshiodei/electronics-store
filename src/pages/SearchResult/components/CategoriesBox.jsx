@@ -22,7 +22,7 @@ export default function CategoriesBox({ itemType }) {
     navigate(link);
   };
 
-  if (itemType === 'cars') {
+  if (itemType === 'vehicles') {
     return (
       <div className="search__categories-box">
         <ul>
