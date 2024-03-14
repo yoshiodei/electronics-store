@@ -17,7 +17,7 @@ export default function DrawerButtonCategories({ setToggleDrawer }) {
     setToggleDrawer(false);
   };
 
-  if (itemType === 'cars') {
+  if (itemType === 'vehicles') {
     return (
       <ul>
         <li className="drawer-button__menu-item">
