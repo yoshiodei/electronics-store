@@ -13,7 +13,10 @@ import { errorToast } from '../../../utils/Toasts';
 // import SignInModal from '../../../auth/SignIn/SignInModal';
 
 export default function StartChatButton({ recipientData }) {
-  const { loginInfo, userInfo } = useSelector(selectAuthState);
+  const {
+    loginInfo,
+    userInfo,
+  } = useSelector(selectAuthState);
   const { photoURL } = userInfo;
   const { isAnonymous } = loginInfo;
   const { uid } = loginInfo;

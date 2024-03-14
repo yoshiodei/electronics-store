@@ -32,7 +32,6 @@ export default function useNewChat() {
 
     const messageData = itemId ? ({
       createdAt: new Date(),
-      image,
       displayName,
       message,
       senderId,
@@ -40,7 +39,6 @@ export default function useNewChat() {
       itemName,
     }) : ({
       createdAt: new Date(),
-      image,
       displayName,
       message,
       senderId,
