@@ -3,9 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Main from './Main';
-import Footer from '../../sections/Footer';
+// import Footer from '../../sections/Footer';
 import appName from '../../Constants/constantVariables';
 import NavbarBottom from '../../components/NavbarBottom';
+import AuthFooter from '../../auth/components/AuthFooter';
 
 export default function Category() {
   const { category } = useParams();
@@ -23,7 +24,8 @@ export default function Category() {
       <Navbar />
       <NavbarBottom />
       <Main />
-      <Footer />
+      {/* <Footer /> */}
+      <AuthFooter />
     </>
   );
 }

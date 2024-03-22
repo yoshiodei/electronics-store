@@ -2,9 +2,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../../components/Navbar';
 import Main from './Main';
-import Footer from '../../sections/Footer';
+// import Footer from '../../sections/Footer';
 import appName from '../../Constants/constantVariables';
 import NavbarBottom from '../../components/NavbarBottom';
+import AuthFooter from '../../auth/components/AuthFooter';
 
 export default function EditProfile() {
   return (
@@ -21,7 +22,8 @@ export default function EditProfile() {
       <Navbar />
       <NavbarBottom />
       <Main />
-      <Footer />
+      {/* <Footer /> */}
+      <AuthFooter />
     </>
   );
 }

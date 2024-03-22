@@ -1,10 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Footer from '../../sections/Footer';
+// import Footer from '../../sections/Footer';
 import Main from './Main';
 import Navbar from '../../components/Navbar';
 import appName from '../../Constants/constantVariables';
 import NavbarBottom from '../../components/NavbarBottom';
+import AuthFooter from '../../auth/components/AuthFooter';
 
 export default function About() {
   return (
@@ -21,7 +22,8 @@ export default function About() {
       <Navbar />
       <NavbarBottom />
       <Main />
-      <Footer />
+      {/* <Footer /> */}
+      <AuthFooter />
     </>
   );
 }

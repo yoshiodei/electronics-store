@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../../components/Navbar';
-import Footer from '../../sections/Footer';
+// import Footer from '../../sections/Footer';
 import Main from './Main';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import appName from '../../Constants/constantVariables';
 import NavbarBottom from '../../components/NavbarBottom';
+import AuthFooter from '../../auth/components/AuthFooter';
 
 export default function NewItem() {
   const { login: isAnonymous, userInfo: emailVerified } = useSelector(selectAuthState);
@@ -43,7 +44,8 @@ export default function NewItem() {
       <Navbar />
       <NavbarBottom />
       <Main />
-      <Footer />
+      {/* <Footer /> */}
+      <AuthFooter />
     </>
   );
 }

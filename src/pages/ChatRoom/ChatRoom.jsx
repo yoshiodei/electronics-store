@@ -5,10 +5,11 @@ import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-toastify';
 import { selectAuthState } from '../../redux/slice/authSlice';
 import Navbar from '../../components/Navbar';
-import Footer from '../../sections/Footer';
+// import Footer from '../../sections/Footer';
 import Main from './Main';
 import appName from '../../Constants/constantVariables';
 import NavbarBottom from '../../components/NavbarBottom';
+import AuthFooter from '../../auth/components/AuthFooter';
 
 export default function ChatRoom() {
   const { loginInfo } = useSelector(selectAuthState);
@@ -44,7 +45,8 @@ export default function ChatRoom() {
       <Navbar />
       <NavbarBottom />
       <Main uid={uid} />
-      <Footer />
+      {/* <Footer /> */}
+      <AuthFooter />
     </>
   );
 }
