@@ -34,6 +34,10 @@
         height: 100%;
         object-fit: contain;
     }
+
+    &__text {
+        text-align: center;
+    }
 }
 
 @include mobileScreen {
@@ -42,14 +46,14 @@
         gap: 15px;
     
         &__image-div {
-            width: 70px;
-            height: 70px;
+            width: 55px;
+            height: 55px;
             margin-bottom: 5px;
             padding: 5px;
         }
 
         &__text {
-            font-size: 0.9em;
+            font-size: 0.8em;
         }
     }
 }

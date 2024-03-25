@@ -38,6 +38,57 @@ export default function ProductDetail() {
     return (<ProductDetailLoading />);
   }
 
+  if (product.itemType === 'vehicles') {
+    return (
+      <div className="product-detail">
+        <div className="product-detail__product-name-div">
+          <h6 className="product-detail__title">Product</h6>
+          <h3 className="product-detail__name">
+            {`${product.year} ${product.make} ${product.model}`}
+          </h3>
+        </div>
+        <div className="product-detail__product-price-div">
+          <h6 className="product-detail__title">Price</h6>
+          <h3 className="product-detail__price">
+            {`$ ${product.price}.00`}
+          </h3>
+        </div>
+        { product?.vin && (
+        <div className="product-detail__product-condition-div">
+          <h6 className="product-detail__title">VIN</h6>
+          <h3 className="product-detail__condition">{product.vin}</h3>
+        </div>
+        ) }
+        <div className="product-detail__product-condition-div">
+          <h6 className="product-detail__title">Item Condition</h6>
+          <h3 className="product-detail__condition">{product.condition}</h3>
+        </div>
+        { product?.mileage && (
+        <div className="product-detail__product-condition-div">
+          <h6 className="product-detail__title">Mileage</h6>
+          <h3 className="product-detail__condition">{product.mileage}</h3>
+        </div>
+        ) }
+        <div className="product-detail__product-details-div">
+          <h6 className="product-detail__title">Item Type</h6>
+          <p className="product-detail__detail">
+            {product.mainCategory}
+          </p>
+        </div>
+        <div className="product-detail__product-condition-div">
+          <h6 className="product-detail__title">Date Posted</h6>
+          <h3 className="product-detail__condition">{`posted on ${postDate}`}</h3>
+        </div>
+        <div className="product-detail__product-details-div">
+          <h6 className="product-detail__title">Description</h6>
+          <p className="product-detail__detail">
+            {product.details}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="product-detail">
       <div className="product-detail__product-name-div">
@@ -67,7 +118,7 @@ export default function ProductDetail() {
         <h3 className="product-detail__condition">{`posted on ${postDate}`}</h3>
       </div>
       <div className="product-detail__product-details-div">
-        <h6 className="product-detail__title">Details</h6>
+        <h6 className="product-detail__title">Description</h6>
         <p className="product-detail__detail">
           {product.details}
         </p>

@@ -1,10 +1,13 @@
 .navbar-custom {
-  background-color: #2a027d;
+  background-color: #511989;
   position: relative;
 }
 .navbar-custom__app-logo {
   width: 50px;
   margin-right: 10px;
+}
+.navbar-custom__mobile-search-div {
+  display: none;
 }
 .navbar-custom__top-div {
   background-color: rgba(255, 255, 255, 0.1254901961);
@@ -76,13 +79,16 @@
   cursor: pointer;
   padding-top: 5px;
 }
+.navbar-custom__brand-text--small {
+  display: none;
+}
 .navbar-custom bottom-brand-logo {
   display: none;
 }
 .navbar-custom__pop-over {
   position: absolute;
   top: 25px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   border-radius: 5px;
   background-color: white;
 }
@@ -93,7 +99,7 @@
   position: absolute;
   top: 60px;
   left: 9px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   border-radius: 5px;
   background-color: white;
   width: 150px !important;
@@ -127,12 +133,12 @@
   padding-right: 0.8em;
 }
 .navbar-custom__user-account-div__pop-over-button i {
-  color: #2a027d;
+  color: #511989;
   font-size: 0.9em;
   margin-right: 12px;
 }
 .navbar-custom__user-account-div__pop-over-button h6 {
-  color: #2a027d;
+  color: #511989;
   font-size: 0.9em;
   margin: 0;
 }
@@ -241,7 +247,7 @@
 .bottom-nav {
   width: 100%;
   height: 5.3em;
-  background-color: #2a027d;
+  background-color: #511989;
   position: fixed;
   top: -5.5em;
   z-index: 10;
@@ -284,7 +290,7 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  background-color: #280278;
+  background-color: #4e1885;
   border-radius: 4px;
   width: 55px;
   height: 55px;
@@ -306,7 +312,7 @@
   position: absolute;
   top: 0.2em;
   right: 0.2em;
-  background-color: #2a027d;
+  background-color: #511989;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -409,7 +415,7 @@
     right: 0;
     height: 100%;
     padding: 0 0.5em;
-    background-color: #2a027d;
+    background-color: #511989;
     color: #ffffff;
     border-radius: 5px;
     border: none;
@@ -463,7 +469,7 @@
     height: 100%;
   }
   .navbar-custom .drawer-button__menu-div h5 {
-    color: #2a027d;
+    color: #511989;
     font-weight: 700;
   }
   .navbar-custom .drawer-button__input-div {
@@ -476,7 +482,7 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     padding-left: 1em;
     padding-right: 1em;
   }
@@ -491,7 +497,7 @@
     margin-right: 20px;
     height: 100%;
     border-radius: 5px;
-    background-color: #2a027d;
+    background-color: #511989;
     color: white;
     border: none;
     flex: 1;
@@ -502,9 +508,9 @@
     flex: 1;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     background-color: transparent;
-    color: #2a027d;
+    color: #511989;
     font-weight: 700;
     letter-spacing: 0.8px;
   }
@@ -517,7 +523,7 @@
     height: 100%;
     color: white;
     border: none;
-    background-color: #2a027d;
+    background-color: #511989;
     width: 100%;
     border-radius: 5px;
     font-weight: 700;
@@ -537,6 +543,39 @@
     top: 0;
     right: 0;
     left: 0;
+  }
+  .navbar-custom__mobile-search-div {
+    display: block;
+    margin-right: 15px;
+    flex: 1;
+    position: relative;
+    height: 2.1em;
+  }
+  .navbar-custom__mobile-search-input {
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding: 0 15px;
+  }
+  .navbar-custom__mobile-search-button {
+    height: 1.8em;
+    width: 1.8em;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-color: #511989;
+    position: absolute;
+    top: 0.15em;
+    right: 0.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar-custom__mobile-search-button i {
+    font-size: 0.7em;
+    color: #ffffff;
   }
   .navbar-custom__top-div {
     display: none;
@@ -573,20 +612,36 @@
     align-self: center;
   }
   .navbar-custom__brand {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin: 0;
+  }
+  .navbar-custom__brand-text--small {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0;
+    color: #ffffff;
+    font-size: 0.6em;
+    margin: 0;
+    margin-top: 3px;
+    cursor: pointer;
+    padding-top: 0;
   }
   .navbar-custom .drawer-button {
     display: flex;
-    width: 30px;
+    width: 2.1em;
+    border-radius: 50%;
     border: none;
     outline: none;
-    background-color: transparent;
-    height: 22px;
+    background-color: #fff;
+    height: 2.1em;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0.5em;
   }
   .navbar-custom .drawer-button__line {
-    background-color: white;
+    background-color: #511989;
     width: 100%;
     height: 3px;
   }
@@ -627,7 +682,7 @@
     right: 0;
     height: 100%;
     padding: 0 0.5em;
-    background-color: #2a027d;
+    background-color: #511989;
     color: #ffffff;
     border-radius: 5px;
     border: none;
@@ -681,7 +736,7 @@
     height: 100%;
   }
   .navbar-custom .drawer-button__menu-div h5 {
-    color: #2a027d;
+    color: #511989;
     font-weight: 700;
   }
   .navbar-custom .drawer-button__input-div {
@@ -694,7 +749,7 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     padding-left: 1em;
     padding-right: 1em;
   }
@@ -709,7 +764,7 @@
     margin-right: 20px;
     height: 100%;
     border-radius: 5px;
-    background-color: #2a027d;
+    background-color: #511989;
     color: white;
     border: none;
     flex: 1;
@@ -720,9 +775,9 @@
     flex: 1;
     height: 100%;
     border-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     background-color: transparent;
-    color: #2a027d;
+    color: #511989;
     font-weight: 700;
     letter-spacing: 0.8px;
   }
@@ -736,7 +791,7 @@
     height: 100%;
     color: white;
     border: none;
-    background-color: #2a027d;
+    background-color: #511989;
     width: 100%;
     border-radius: 5px;
     font-weight: 700;
@@ -854,7 +909,7 @@ a {
   outline: none;
   font-weight: 700;
   text-align: left;
-  color: #2a027d;
+  color: #511989;
 }
 .auth-form__forgot-password-button:hover {
   text-decoration: underline;
@@ -891,7 +946,7 @@ a {
   letter-spacing: 1px;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #2a027d;
+  background-color: #511989;
   border: none;
   outline: none;
 }
@@ -918,7 +973,7 @@ a {
   border: none;
   background-color: transparent;
   outline: none;
-  color: #2a027d;
+  color: #511989;
   font-weight: 700;
 }
 .auth-form__switch-to-sign-in__button:hover {
@@ -939,7 +994,7 @@ a {
 }
 .auth-form__check-box-div span {
   font-weight: 700;
-  color: #2a027d;
+  color: #511989;
 }
 .auth-form__check-box-div span:hover {
   text-decoration: underline;
@@ -1009,7 +1064,7 @@ a {
   color: white;
   border: none;
   outline: none;
-  background-color: #2a027d;
+  background-color: #511989;
 }
 .verify-email-box__resend-email-button--success {
   background-color: rgb(53, 188, 53);
@@ -1187,7 +1242,7 @@ a {
   width: 80%;
   font-size: 1.8em;
   font-weight: 700;
-  color: #2a027d;
+  color: #511989;
   margin-bottom: 5px;
 }
 .hero__main-div p {
@@ -1216,11 +1271,11 @@ a {
   height: 2.5em;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   padding: 0 8em 0 1em;
 }
 .hero__search-div__input:focus {
-  outline: 2px solid #4c04e1;
+  outline: 2px solid #842fd9;
 }
 .hero__search-div__button {
   border: none;
@@ -1232,7 +1287,7 @@ a {
   position: absolute;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #2a027d;
+  background-color: #511989;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -1296,7 +1351,7 @@ a {
     width: 80%;
     font-weight: 700;
     font-size: 1.2em;
-    color: #2a027d;
+    color: #511989;
     margin-bottom: 5px;
   }
   .hero__main-div p {
@@ -1320,12 +1375,12 @@ a {
     width: 80%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     padding-left: 1em;
     padding-right: 1em;
   }
   .hero__search-div__input:focus {
-    outline: 2px solid #4c04e1;
+    outline: 2px solid #842fd9;
   }
   .hero__search-div__button {
     border: none;
@@ -1335,7 +1390,7 @@ a {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #ffffff;
-    background-color: #2a027d;
+    background-color: #511989;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -1366,7 +1421,7 @@ a {
   color: #ffffff;
   padding-left: 1em;
   padding-right: 1em;
-  background-color: #2a027d;
+  background-color: #511989;
   border-radius: 5px;
   border-bottom-right-radius: 0;
 }
@@ -1376,7 +1431,7 @@ a {
 }
 .section-header__line {
   height: 3px;
-  background-color: #2a027d;
+  background-color: #511989;
   flex: 1;
 }
 
@@ -1393,7 +1448,7 @@ a {
   height: 35px;
   justify-content: center;
   align-items: center;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   border: 1px solid white;
   position: absolute;
   top: 100px;
@@ -1403,7 +1458,7 @@ a {
 }
 .product-card__add-to-wish-list:hover {
   color: white;
-  background-color: #2a027d;
+  background-color: #511989;
   background-color: #fac007;
 }
 .product-card__add-to-wish-list:hover .product-card__add-to-wish-list__icon {
@@ -1428,7 +1483,7 @@ a {
   background-color: rgb(243, 243, 243);
 }
 .product-card__link:focus {
-  outline: 2px solid #3b03af;
+  outline: 2px solid #6b21b4;
 }
 .product-card__image-div {
   border-radius: 5px;
@@ -1446,7 +1501,7 @@ a {
      object-fit: cover;
 }
 .product-card__product-price {
-  color: #2a027d;
+  color: #511989;
   font-size: 1em;
   font-weight: 700;
   margin-bottom: 5px;
@@ -1635,7 +1690,7 @@ a {
   transition: all 0.3s;
 }
 .pagination__page-item button:hover {
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
 }
 
@@ -1755,7 +1810,7 @@ a {
   right: 25%;
   position: absolute;
   border-radius: 5px;
-  background: #2a027d;
+  background: #511989;
 }
 .filter-card__range-input {
   position: relative;
@@ -1777,7 +1832,7 @@ a {
   height: 17px;
   width: 17px;
   border-radius: 50%;
-  background: #2a027d;
+  background: #511989;
   pointer-events: auto;
   -webkit-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -1787,7 +1842,7 @@ a {
   width: 17px;
   border: none;
   border-radius: 50%;
-  background: #2a027d;
+  background: #511989;
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -1816,7 +1871,7 @@ a {
 }
 .filter-card__filter-button {
   height: 2em;
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   border-radius: 5px;
   text-align: center;
@@ -1870,7 +1925,7 @@ a {
      object-fit: cover;
 }
 .item-image-box__bottom-div__image-div:hover {
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
 }
 .item-image-box__bottom-div__image-div:last-child {
   margin: 0;
@@ -2008,7 +2063,7 @@ a {
   background-color: rgb(243, 243, 243);
 }
 .product-detail__title {
-  color: #2a027d;
+  color: #511989;
   margin-bottom: 2px;
   font-weight: 700;
 }
@@ -2048,7 +2103,7 @@ a {
   margin-bottom: 20px;
 }
 .product-location__title {
-  color: #2a027d;
+  color: #511989;
   margin-bottom: 2px;
   font-weight: 700;
 }
@@ -2114,7 +2169,7 @@ a {
      object-fit: cover;
 }
 .vendor-details__profile-title {
-  color: #2a027d;
+  color: #511989;
   margin-bottom: 4px;
   font-weight: 700;
 }
@@ -2130,7 +2185,7 @@ a {
   border-radius: 50%;
   position: absolute;
   background-color: #7AFF4B;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   left: 3px;
   top: 6px;
 }
@@ -2140,7 +2195,7 @@ a {
 .vendor-details__button-div {
   display: block;
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 8px;
@@ -2316,7 +2371,7 @@ a {
 }
 .chat-wall__header h3 {
   font-weight: 700;
-  color: #2a027d;
+  color: #511989;
 }
 .chat-wall__main {
   height: 60vh;
@@ -2342,7 +2397,7 @@ a {
   border: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   padding-left: 1em;
   padding-right: 1em;
   width: 80%;
@@ -2362,7 +2417,7 @@ a {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #ffffff;
-  background-color: #2a027d;
+  background-color: #511989;
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
@@ -2398,8 +2453,8 @@ a {
   display: inline-flex;
   flex-direction: column;
   padding: 1em;
-  border: 1px solid #2a027d;
-  background-color: #2a027d;
+  border: 1px solid #511989;
+  background-color: #511989;
   border-radius: 30px;
   border-top-left-radius: 10px;
   box-sizing: border-box;
@@ -2421,7 +2476,7 @@ a {
   margin-top: 8px;
   border-radius: 4px;
   border-bottom-left-radius: 10px;
-  background-color: #4c04e1;
+  background-color: #842fd9;
   text-align: left;
   display: inline-block;
   cursor: pointer;
@@ -2489,10 +2544,10 @@ a {
     max-width: 70vw;
     display: inline-block;
     padding: 10px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     background-color: rgba(255, 255, 102, 0);
-    border: 1px solid #2a027d;
-    background-color: #2a027d;
+    border: 1px solid #511989;
+    background-color: #511989;
     border-radius: 18px;
     border-top-left-radius: 6px;
     box-sizing: border-box;
@@ -2534,7 +2589,7 @@ a {
 }
 .chat-list__header h3 {
   font-weight: 700;
-  color: #2a027d;
+  color: #511989;
   margin: 0;
   margin-right: 30px;
 }
@@ -2560,7 +2615,7 @@ a {
   min-width: 20px;
   padding: 3px;
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2789,7 +2844,7 @@ a {
   outline: none;
   border-radius: 50px;
   color: white;
-  background-color: #2a027d;
+  background-color: #511989;
 }
 
 @media (max-width: 430px) {
@@ -2886,12 +2941,12 @@ a {
   width: 80%;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   padding-left: 1em;
   padding-right: 1em;
 }
 .search-bar__input:focus {
-  outline: 2px solid #4c04e1;
+  outline: 2px solid #842fd9;
 }
 .search-bar__button {
   border: none;
@@ -2901,7 +2956,7 @@ a {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #ffffff;
-  background-color: #2a027d;
+  background-color: #511989;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -2916,7 +2971,7 @@ a {
   height: auto;
   padding: 20px 15px;
   border-radius: 5px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   border: 1px solid lightgrey;
   background-color: rgb(243, 243, 243);
   margin-bottom: 15px;
@@ -2925,7 +2980,7 @@ a {
   text-transform: capitalize;
 }
 .search-info-box h4 {
-  color: #2a027d;
+  color: #511989;
   font-size: 1.3em;
   margin: 0;
 }
@@ -2951,7 +3006,7 @@ a {
   margin-bottom: 20px;
 }
 .content-info-box__text {
-  color: #2a027d;
+  color: #511989;
   margin: 0;
   font-weight: 600;
 }
@@ -2982,18 +3037,18 @@ a {
 .add-post-card__icon {
   padding: 1em;
   border-radius: 50px;
-  border: 2px solid #2a027d;
-  color: #2a027d;
+  border: 2px solid #511989;
+  color: #511989;
   margin-bottom: 0.5em;
 }
 .add-post-card__text {
   margin: 0;
-  color: #2a027d;
+  color: #511989;
   text-align: center;
 }
 
 form input:focus-visible, form textarea:focus-visible {
-  outline-color: #2a027d !important;
+  outline-color: #511989 !important;
 }
 
 .new-item-form__posted-items-count {
@@ -3007,17 +3062,17 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   border: none;
   outline: none;
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   font-weight: 600;
 }
 .new-item-form__posted-items-count__progress-bar {
   height: 100%;
   border-radius: 50px;
-  background-color: #2a027d;
+  background-color: #511989;
 }
 .new-item-form__posted-items-count__progress-bar-div {
-  border: 2px solid #2a027d;
+  border: 2px solid #511989;
   height: 0.7em;
   width: 700px;
   border-radius: 50px;
@@ -3037,7 +3092,7 @@ form input:focus-visible, form textarea:focus-visible {
   display: none;
 }
 .new-item-form__label {
-  color: #2a027d;
+  color: #511989;
   font-weight: 700;
   margin-bottom: 5px;
 }
@@ -3054,7 +3109,7 @@ form input:focus-visible, form textarea:focus-visible {
 .new-item-form__label span {
   font-weight: 500;
   margin-left: 10px;
-  color: #2a027d;
+  color: #511989;
 }
 .new-item-form__label span.new-item-form__span--alt {
   font-weight: 500;
@@ -3096,11 +3151,11 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .new-item-form__file-input-div label i, .new-item-form__file-input-div label h6 {
   font-size: 0.9em;
-  color: #2a027d;
+  color: #511989;
 }
 .new-item-form__file-input-div label h6 span {
   display: block;
-  color: #2a027d;
+  color: #511989;
   margin-top: 1px;
   font-size: 0.75em;
 }
@@ -3174,7 +3229,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .new-item-form__radio-label {
   font-weight: 600;
-  color: #2a027d;
+  color: #511989;
 }
 .new-item-form__upload-image-div {
   flex-direction: column;
@@ -3188,7 +3243,7 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   font-weight: 700;
   color: white;
-  background-color: #2a027d;
+  background-color: #511989;
   text-transform: capitalize;
 }
 .new-item-form__post-item-button:active {
@@ -3200,7 +3255,7 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   font-weight: 700;
   color: white;
-  background-color: #2a027d;
+  background-color: #511989;
 }
 .new-item-form__radio-inner-button-div {
   display: flex;
@@ -3214,7 +3269,7 @@ form input:focus-visible, form textarea:focus-visible {
   height: 15px;
   top: -7.5px;
   left: -7.5px;
-  background-color: #651dfb;
+  background-color: #9e5ae1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3235,11 +3290,11 @@ form input:focus-visible, form textarea:focus-visible {
   position: relative;
 }
 .new-item-form__radio-inner-button-div__radio-button.active {
-  border: 2px solid #651dfb;
+  border: 2px solid #9e5ae1;
   background-color: rgb(245, 245, 245);
 }
 .new-item-form__radio-inner-button-div__radio-button h6 {
-  color: #2a027d;
+  color: #511989;
 }
 .new-item-form__radio-inner-button-div__radio-button h4 {
   color: rgb(117, 117, 117);
@@ -3299,11 +3354,11 @@ form input:focus-visible, form textarea:focus-visible {
     position: relative;
   }
   .new-item-form__radio-inner-button-div__radio-button.active {
-    border: 2px solid #651dfb;
+    border: 2px solid #9e5ae1;
     background-color: rgb(245, 245, 245);
   }
   .new-item-form__radio-inner-button-div__radio-button h6 {
-    color: #2a027d;
+    color: #511989;
     text-align: left;
     font-size: 0.9em;
   }
@@ -3356,11 +3411,11 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .new-item-form__file-input-div label i, .new-item-form__file-input-div label h6 {
     font-size: 0.8em;
-    color: #2a027d;
+    color: #511989;
   }
   .new-item-form__file-input-div label h6 span {
     display: block;
-    color: #2a027d;
+    color: #511989;
     margin-top: 1px;
     font-size: 0.75em;
   }
@@ -3371,7 +3426,7 @@ form input:focus-visible, form textarea:focus-visible {
     font-weight: 600;
     color: white;
     margin: 10px 0 30px;
-    background-color: #2a027d;
+    background-color: #511989;
   }
 }
 .modal {
@@ -3386,14 +3441,14 @@ form input:focus-visible, form textarea:focus-visible {
   padding: 0;
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.062745098);
 }
 
 .modal__custom-content-left {
   min-height: 300px;
   flex: 4;
-  background-color: #2a027d;
+  background-color: #511989;
   padding: 4em 1.5em;
 }
 .modal__custom-content-left h2 {
@@ -3431,7 +3486,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 100%;
   height: 2.5em;
   border-radius: 5px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   margin-bottom: 10px;
   padding: 0 1em;
 }
@@ -3448,7 +3503,7 @@ form input:focus-visible, form textarea:focus-visible {
   height: 1em;
   margin: 0;
   margin-right: 12px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
 }
 .modal__custom-content-right .check-box-div h6 {
   margin: 0;
@@ -3459,7 +3514,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 100%;
   height: 2.5em;
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   display: block;
   font-weight: 700;
@@ -3474,7 +3529,7 @@ form input:focus-visible, form textarea:focus-visible {
   text-align: center;
 }
 .modal__custom-content-right .register-button:hover {
-  background-color: #320296;
+  background-color: #5e1d9f;
 }
 .modal__custom-content-right .switch-to-signin {
   font-size: 0.95em;
@@ -3484,7 +3539,7 @@ form input:focus-visible, form textarea:focus-visible {
 .modal__custom-content-right .switch-to-signin__button {
   outline: none;
   border: none;
-  color: #2a027d;
+  color: #511989;
   cursor: pointer;
   background-color: transparent;
   font-weight: 600;
@@ -3520,7 +3575,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: none;
   background-color: transparent;
   font-weight: 600;
-  color: #2a027d;
+  color: #511989;
 }
 .modal__custom-content__terms-body {
   height: 50vh;
@@ -3540,7 +3595,7 @@ form input:focus-visible, form textarea:focus-visible {
 .modal-body__left-inner-div {
   height: 100%;
   width: 100%;
-  background-color: #2a027d;
+  background-color: #511989;
 }
 
 .modal-body__left, .modal-body__right {
@@ -3601,7 +3656,7 @@ form input:focus-visible, form textarea:focus-visible {
     width: 100%;
     height: 2.5em;
     border-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     margin-bottom: 15px;
     padding: 0 1em;
   }
@@ -3618,7 +3673,7 @@ form input:focus-visible, form textarea:focus-visible {
     height: 1em;
     margin: 0;
     margin-right: 12px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
   }
   .modal__custom-content-right .check-box-div h6 {
     margin: 0;
@@ -3627,7 +3682,7 @@ form input:focus-visible, form textarea:focus-visible {
   .modal__custom-content-right .register-button {
     height: 2.5em;
     border-radius: 5px;
-    background-color: #2a027d;
+    background-color: #511989;
     color: #ffffff;
     display: block;
     font-weight: 700;
@@ -3637,7 +3692,7 @@ form input:focus-visible, form textarea:focus-visible {
     margin-bottom: 15px;
   }
   .modal__custom-content-right .register-button:hover {
-    background-color: #320296;
+    background-color: #5e1d9f;
   }
   .modal__custom-content-right .switch-to-signin {
     font-size: 0.95em;
@@ -3647,7 +3702,7 @@ form input:focus-visible, form textarea:focus-visible {
   .modal__custom-content-right .switch-to-signin__button {
     outline: none;
     border: none;
-    color: #2a027d;
+    color: #511989;
     cursor: pointer;
     background-color: transparent;
     font-weight: 600;
@@ -3667,7 +3722,7 @@ form input:focus-visible, form textarea:focus-visible {
   .modal-body__left-inner-div {
     height: 100%;
     width: 100%;
-    background-color: #2a027d;
+    background-color: #511989;
   }
   .modal-body__left, .modal-body__right {
     padding: 0;
@@ -3676,7 +3731,7 @@ form input:focus-visible, form textarea:focus-visible {
 .terms-and-conditions {
   text-transform: capitalize;
   font-weight: 600;
-  color: #2a027d;
+  color: #511989;
 }
 .terms-and-conditions:hover {
   text-decoration: underline;
@@ -3748,7 +3803,7 @@ form input:focus-visible, form textarea:focus-visible {
   font-size: 0.9em;
 }
 .user-detail-box__user-rating-div i.active {
-  color: #2a027d;
+  color: #511989;
 }
 .user-detail-box__user-info-value--bio {
   font-weight: 400;
@@ -3757,7 +3812,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .user-detail-box__start-chat-div {
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   border: none;
   outline: none;
   width: 100%;
@@ -3779,7 +3834,7 @@ form input:focus-visible, form textarea:focus-visible {
   padding: 5px 10px;
   color: #fff;
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 8px;
@@ -3985,7 +4040,7 @@ form input:focus-visible, form textarea:focus-visible {
     height: 80px;
     border-radius: 5px;
     padding: 0.5em 0.3em;
-    background-color: #2a027d;
+    background-color: #511989;
   }
   .user-detail-box__user-info-outer-div .user-detail-box__user-info-div .user-detail-box__user-info-title {
     color: #ffffff;
@@ -3996,11 +4051,11 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .user-detail-box__user-info-title, .user-detail-box__user-info-value {
     font-weight: 700;
-    color: #2a027d;
+    color: #511989;
     margin: 0;
   }
   .user-detail-box__user-info-div--bio {
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     border-radius: 5px;
     background-color: rgba(255, 255, 102, 0);
     padding: 0.5em;
@@ -4014,7 +4069,7 @@ form input:focus-visible, form textarea:focus-visible {
   .user-detail-box__start-chat-div {
     display: block;
     border-radius: 5px;
-    background-color: #2a027d;
+    background-color: #511989;
     padding-top: 8px;
     padding-bottom: 8px;
     margin-top: 8px;
@@ -4296,7 +4351,7 @@ form input:focus-visible, form textarea:focus-visible {
   z-index: 4;
   bottom: 25px;
   right: 50px;
-  background-color: #2a027d;
+  background-color: #511989;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4317,7 +4372,7 @@ form input:focus-visible, form textarea:focus-visible {
   margin-top: 5px;
 }
 .start-chat-button:hover {
-  background-color: #3b03af;
+  background-color: #6b21b4;
 }
 
 @media (max-width: 430px) {
@@ -4351,7 +4406,7 @@ form input:focus-visible, form textarea:focus-visible {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  background-color: #2a027d;
+  background-color: #511989;
   color: white;
   gap: 10px;
   border: none;
@@ -4451,14 +4506,14 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .buttons-box__share-modal__copy-link-button {
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   border: none;
   padding: 0.5em 2em;
   font-weight: 600;
 }
 .buttons-box__sold-button {
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   padding: 8px 10px;
   width: 60%;
@@ -4479,12 +4534,12 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   border: none;
   font-weight: 600;
-  background-color: #a981fd;
+  background-color: #d1b0f1;
   cursor: not-allowed;
   margin-bottom: 20px;
 }
 .buttons-box__register-button {
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   padding: 8px 10px;
   width: 60%;
@@ -4505,13 +4560,13 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   border: none;
   font-weight: 600;
-  background-color: #a981fd;
+  background-color: #d1b0f1;
   cursor: not-allowed;
   margin-bottom: 0;
 }
 .buttons-box__verify-button {
   width: 100%;
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
@@ -4641,7 +4696,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: 1px solid grey;
 }
 .buttons-box__input-div input:focus {
-  outline: 1px solid #2a027d;
+  outline: 1px solid #511989;
 }
 .buttons-box__inner-input-div {
   position: relative;
@@ -4678,7 +4733,7 @@ form input:focus-visible, form textarea:focus-visible {
   color: lightgrey;
 }
 .buttons-box__phone-input-div input:focus {
-  outline: 1px solid #2a027d;
+  outline: 1px solid #511989;
 }
 .buttons-box__inner-phone-input-div {
   display: flex;
@@ -4744,7 +4799,7 @@ form input:focus-visible, form textarea:focus-visible {
   outline: none;
   padding: 0 10px;
   border-radius: 4px;
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
 }
 .buttons-box__verify-phone-number-button--mobile {
@@ -4813,7 +4868,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .buttons-box__forgot-password-div h6 {
   margin: 0;
-  color: #2a027d;
+  color: #511989;
 }
 .buttons-box__forgot-password-div h6:hover {
   text-decoration: underline;
@@ -4832,13 +4887,13 @@ form input:focus-visible, form textarea:focus-visible {
   margin: 0;
 }
 .buttons-box__check-box-text-div span.buttons-box__terms-button {
-  color: #2a027d;
+  color: #511989;
 }
 .buttons-box__check-box-text-div span.buttons-box__terms-button:hover {
   text-decoration: underline;
 }
 .buttons-box__switch-to-login-button {
-  color: #2a027d;
+  color: #511989;
 }
 .buttons-box__switch-to-login-button:hover {
   text-decoration: underline;
@@ -4856,12 +4911,12 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   height: 100%;
   flex: 1;
-  background-color: #2a027d;
+  background-color: #511989;
   margin-right: 12px;
   transition: background-color 0.3s;
 }
 .buttons-box button:hover {
-  background-color: #3b03af;
+  background-color: #6b21b4;
 }
 .buttons-box button:last-child {
   margin-right: 0;
@@ -4909,7 +4964,7 @@ form input:focus-visible, form textarea:focus-visible {
   outline: none;
   margin-bottom: 20px;
   border-radius: 4px;
-  background-color: #2a027d;
+  background-color: #511989;
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -4945,7 +5000,7 @@ form input:focus-visible, form textarea:focus-visible {
   transition: color 0.3s;
 }
 .buttons-box__star-rating-icon-div i.active {
-  color: #2a027d;
+  color: #511989;
 }
 .buttons-box__review-text-area {
   border: 1px solid lightgrey;
@@ -5003,7 +5058,7 @@ form input:focus-visible, form textarea:focus-visible {
     outline: none;
     padding: 0 10px;
     border-radius: 4px;
-    background-color: #2a027d;
+    background-color: #511989;
     color: #ffffff;
     margin-top: 8px;
     height: 2em;
@@ -5037,7 +5092,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: 4px solid white;
   border-radius: 50%;
   padding: 0.5em;
-  background-color: #2a027d;
+  background-color: #511989;
   position: absolute;
   opacity: 1;
   left: -20px;
@@ -5049,7 +5104,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: 4px solid white;
   border-radius: 50%;
   padding: 0.5em;
-  background-color: #2a027d;
+  background-color: #511989;
   position: absolute;
   opacity: 1;
   right: -20px;
@@ -5101,7 +5156,7 @@ form input:focus-visible, form textarea:focus-visible {
     border: 4px solid white;
     border-radius: 50%;
     padding: 0.5em;
-    background-color: #2a027d;
+    background-color: #511989;
     position: absolute;
     opacity: 1;
     left: -20px;
@@ -5113,7 +5168,7 @@ form input:focus-visible, form textarea:focus-visible {
     border: 4px solid white;
     border-radius: 50%;
     padding: 0.5em;
-    background-color: #2a027d;
+    background-color: #511989;
     position: absolute;
     opacity: 1;
     right: -20px;
@@ -5300,7 +5355,7 @@ form input:focus-visible, form textarea:focus-visible {
   font-size: 5em;
 }
 .tabs-custom__reload {
-  background-color: #2a027d;
+  background-color: #511989;
   margin-top: 30px;
   border: none;
   border-radius: 5px;
@@ -5313,7 +5368,7 @@ form input:focus-visible, form textarea:focus-visible {
   outline: none;
   border: none;
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   margin-right: 12px;
   padding: 0.5em 1em;
   transition: background-color 0.3s;
@@ -5321,7 +5376,7 @@ form input:focus-visible, form textarea:focus-visible {
   font-size: 0.95em;
 }
 .tabs-custom__button:hover {
-  background-color: #3b03af;
+  background-color: #6b21b4;
 }
 
 @media (max-width: 430px) {
@@ -5355,7 +5410,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  background-color: #2a027d;
+  background-color: #511989;
   margin: 35px 5px;
 }
 .loader__div span:nth-child(1) {
@@ -5388,7 +5443,7 @@ form input:focus-visible, form textarea:focus-visible {
   border: 1px solid lightgrey;
   padding: 0.5em 1em;
   border-radius: 50px;
-  color: #2a027d;
+  color: #511989;
   font-weight: 700;
   letter-spacing: 0.8px;
   margin: 0.3em;
@@ -5448,7 +5503,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .find-closer-items__icon-div i {
   font-size: 1.3em;
-  color: #2a027d;
+  color: #511989;
 }
 
 .mile-range__div {
@@ -5472,7 +5527,7 @@ form input:focus-visible, form textarea:focus-visible {
   width: 20px;
   border: none;
   border-radius: 50%;
-  background: #2a027d;
+  background: #511989;
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5482,7 +5537,7 @@ form input:focus-visible, form textarea:focus-visible {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #2a027d;
+  background: #511989;
   pointer-events: auto;
   -webkit-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -5490,7 +5545,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .mile-range__info span {
   font-weight: 700;
-  color: #2a027d;
+  color: #511989;
 }
 .mile-range__input-div {
   width: 100%;
@@ -5515,7 +5570,7 @@ form input:focus-visible, form textarea:focus-visible {
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: #2a027d;
+  background-color: #511989;
   border-radius: 5px;
   z-index: 1;
 }
@@ -5605,19 +5660,19 @@ form input:focus-visible, form textarea:focus-visible {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #3a7aa2, #2a027d);
-  background-image: linear-gradient(to bottom right, #2a027d, #3a7aa2);
+  background: linear-gradient(90deg, #3a7aa2, #511989);
+  background-image: linear-gradient(to bottom right, #511989, #3a7aa2);
 }
 .contain-div h1 {
   font-family: "Julius Sans One", sans-serif;
   font-size: 1.2em;
-  color: #2a027d;
+  color: #511989;
   margin-bottom: 30px;
 }
 .contain-div__home-button {
   border: none;
   border-radius: 4px;
-  background-color: #2a027d;
+  background-color: #511989;
   margin-top: 12px;
   padding: 0.4em 0.7em;
 }
@@ -5653,7 +5708,7 @@ form input:focus-visible, form textarea:focus-visible {
   background: #fff;
   text-align: center;
   font-size: 2em;
-  color: #2a027d;
+  color: #511989;
   padding: 0.65em;
 }
 
@@ -5759,7 +5814,7 @@ form input:focus-visible, form textarea:focus-visible {
 .pulse {
   height: 100px;
   width: 100px;
-  background-color: #2a027d;
+  background-color: #511989;
   z-index: 2;
   position: relative;
   border-radius: 50%;
@@ -5781,7 +5836,7 @@ form input:focus-visible, form textarea:focus-visible {
   left: 0;
   height: 100px;
   width: 100px;
-  background-color: #2a027d;
+  background-color: #511989;
   border-radius: 50%;
   z-index: -1;
   opacity: 0.7;
@@ -5807,7 +5862,7 @@ form input:focus-visible, form textarea:focus-visible {
 .settings__title-header {
   margin: 0;
   font-weight: 700;
-  color: #2a027d;
+  color: #511989;
 }
 .settings__account-info {
   background-color: rgb(225, 225, 225);
@@ -5832,7 +5887,7 @@ form input:focus-visible, form textarea:focus-visible {
 
 .footer {
   height: auto;
-  background-color: #2a027d;
+  background-color: #511989;
   padding-top: 30px;
 }
 .footer__top-div {
@@ -5913,7 +5968,7 @@ form input:focus-visible, form textarea:focus-visible {
 }
 .footer__social-icon {
   font-size: 1.4em;
-  color: #2a027d;
+  color: #511989;
 }
 .footer__bottom-div {
   height: 60px;
@@ -6034,7 +6089,7 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .footer__social-icon {
     font-size: 1.4em;
-    color: #2a027d;
+    color: #511989;
   }
   .footer__bottom-div {
     height: 60px;
@@ -6108,7 +6163,7 @@ form input:focus-visible, form textarea:focus-visible {
   }
   .footer__social-icon {
     font-size: 1.4em;
-    color: #2a027d;
+    color: #511989;
   }
   .footer__bottom-div {
     height: 60px;
@@ -6238,7 +6293,7 @@ form input:focus-visible, form textarea:focus-visible {
   border-radius: 5px;
   display: block;
   margin: 0 auto;
-  background-color: #2a027d;
+  background-color: #511989;
   color: white;
   font-weight: 700;
 }
@@ -6370,7 +6425,7 @@ button.checkout__buttom:disabled {
   height: 100%;
 }
 .about__heading {
-  color: #2a027d;
+  color: #511989;
 }
 .about__button {
   margin: 2.5em 0;
@@ -6379,7 +6434,7 @@ button.checkout__buttom:disabled {
   border-radius: 5px;
   font-weight: 700;
   color: white;
-  background-color: #2a027d;
+  background-color: #511989;
   text-transform: capitalize;
 }
 
@@ -6411,7 +6466,7 @@ button.checkout__buttom:disabled {
   border-radius: 50px;
   color: #ffffff;
   font-weight: 700;
-  background-color: #2a027d;
+  background-color: #511989;
   right: 45%;
   transition: right 0.9s;
 }
@@ -6485,6 +6540,9 @@ button.checkout__buttom:disabled {
   -o-object-fit: contain;
      object-fit: contain;
 }
+.top-brands__text {
+  text-align: center;
+}
 
 @media (max-width: 430px) {
   .top-brands {
@@ -6492,13 +6550,13 @@ button.checkout__buttom:disabled {
     gap: 15px;
   }
   .top-brands__image-div {
-    width: 70px;
-    height: 70px;
+    width: 55px;
+    height: 55px;
     margin-bottom: 5px;
     padding: 5px;
   }
   .top-brands__text {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
 }
 .welcome-page__right-div {
@@ -6517,7 +6575,7 @@ button.checkout__buttom:disabled {
   border-radius: 5px;
   display: flex;
   gap: 15px;
-  background-color: #2a027d;
+  background-color: #511989;
   padding: 0 20px;
   height: 2.8em;
   align-items: center;
@@ -6528,8 +6586,8 @@ button.checkout__buttom:disabled {
   margin: 0;
 }
 .welcome-page__hero__new-arrivals-button.shiny {
-  background: #2a027d;
-  background: linear-gradient(-45deg, #2a027d 50%, #b2b3e5 60%, #2a027d 70%);
+  background: #511989;
+  background: linear-gradient(-45deg, #511989 50%, #b2b3e5 60%, #511989 70%);
   background-size: 600% 100%;
   animation: shine 20s infinite;
   animation-delay: 0s;
@@ -6589,7 +6647,7 @@ button.checkout__buttom:disabled {
   top: 0;
   left: 0;
   color: #ffffff;
-  background-color: #2a027d;
+  background-color: #511989;
   padding: 5px 15px;
   border-bottom-right-radius: 5px;
 }
@@ -6608,7 +6666,7 @@ button.checkout__buttom:disabled {
   font-size: 1.8em;
   font-weight: 700;
   width: 50%;
-  color: #2a027d;
+  color: #511989;
   margin-bottom: 5px;
   text-align: left;
 }
@@ -6638,11 +6696,11 @@ button.checkout__buttom:disabled {
   height: 2.5em;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   padding: 0 8em 0 1em;
 }
 .welcome-page__hero__search-div__input:focus {
-  outline: 2px solid #4c04e1;
+  outline: 2px solid #842fd9;
 }
 .welcome-page__hero__search-div__button {
   border: none;
@@ -6654,7 +6712,7 @@ button.checkout__buttom:disabled {
   position: absolute;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #2a027d;
+  background-color: #511989;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -6720,12 +6778,12 @@ button.checkout__buttom:disabled {
     width: 80%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     padding-left: 1em;
     padding-right: 1em;
   }
   .welcome-page__hero__search-div__input:focus {
-    outline: 2px solid #4c04e1;
+    outline: 2px solid #842fd9;
   }
   .welcome-page__hero__search-div__button {
     border: none;
@@ -6735,7 +6793,7 @@ button.checkout__buttom:disabled {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #ffffff;
-    background-color: #2a027d;
+    background-color: #511989;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -6801,12 +6859,12 @@ button.checkout__buttom:disabled {
     width: 80%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border: 1px solid #2a027d;
+    border: 1px solid #511989;
     padding-left: 1em;
     padding-right: 1em;
   }
   .welcome-page__hero__search-div__input:focus {
-    outline: 2px solid #4c04e1;
+    outline: 2px solid #842fd9;
   }
   .welcome-page__hero__search-div__button {
     border: none;
@@ -6816,7 +6874,7 @@ button.checkout__buttom:disabled {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #ffffff;
-    background-color: #2a027d;
+    background-color: #511989;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -6871,7 +6929,7 @@ button.checkout__buttom:disabled {
   top: 0;
   left: 0;
   color: #ffffff;
-  background-color: #2a027d;
+  background-color: #511989;
   padding: 5px 15px;
   border-bottom-right-radius: 5px;
 }
@@ -6901,7 +6959,7 @@ button.checkout__buttom:disabled {
   bottom: 15px;
 }
 .welcome-page__shop-card__button {
-  background-color: #2a027d;
+  background-color: #511989;
   border: none;
   outline: none;
   border-radius: 50px;
@@ -6927,7 +6985,7 @@ button.checkout__buttom:disabled {
 .welcome-page__shop-card__shop-name {
   margin-bottom: 5px;
   text-transform: capitalize;
-  color: #2a027d;
+  color: #511989;
   font-weight: 700;
 }
 .welcome-page__shop-card__shop-description {
@@ -7006,9 +7064,9 @@ button.checkout__buttom:disabled {
 .welcome-page__form {
   width: 100%;
   height: 100%;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
   border-radius: 8px;
-  background-color: #a981fd;
+  background-color: #d1b0f1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7021,13 +7079,13 @@ button.checkout__buttom:disabled {
   padding: 5px 10px;
   outline: none;
   height: 2.3em;
-  border: 1px solid #2a027d;
+  border: 1px solid #511989;
 }
 .welcome-page__search-button {
   width: 120px;
   color: #ffffff;
   border-radius: 5px;
-  background-color: #2a027d;
+  background-color: #511989;
   border: none;
   height: 2.3em;
 }
@@ -7049,7 +7107,7 @@ button.checkout__buttom:disabled {
     width: 70px;
     color: #ffffff;
     border-radius: 5px;
-    background-color: #2a027d;
+    background-color: #511989;
     border: none;
     height: 2.3em;
   }
@@ -7071,7 +7129,7 @@ button.checkout__buttom:disabled {
     width: 70px;
     color: #ffffff;
     border-radius: 5px;
-    background-color: #2a027d;
+    background-color: #511989;
     border: none;
     height: 2.3em;
   }
@@ -7085,7 +7143,7 @@ button.checkout__buttom:disabled {
   border-right: 1px solid lightgrey;
 }
 .welcome-page__filter-by-distance__caption * {
-  color: #2a027d;
+  color: #511989;
   color: rgb(83, 83, 83);
   margin-bottom: 0;
   font-size: 1.1em;
@@ -7107,7 +7165,7 @@ button.checkout__buttom:disabled {
   padding-right: 30px;
   height: 50px;
   border-radius: 50px;
-  background-color: #ddccfe;
+  background-color: #f7f1fc;
 }
 .welcome-page__filter-by-distance__div.alt .caption {
   display: flex;
@@ -7116,7 +7174,7 @@ button.checkout__buttom:disabled {
   height: 100%;
   padding: 0 20px;
   min-width: 200px;
-  background-color: #2a027d;
+  background-color: #511989;
   border-radius: 50px;
 }
 .welcome-page__filter-by-distance__div.alt h5 {
@@ -7139,7 +7197,7 @@ button.checkout__buttom:disabled {
   width: 20px;
   border: none;
   border-radius: 50%;
-  background: #2a027d;
+  background: #511989;
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -7149,7 +7207,7 @@ button.checkout__buttom:disabled {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #2a027d;
+  background: #511989;
   pointer-events: auto;
   -webkit-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -7157,7 +7215,7 @@ button.checkout__buttom:disabled {
 }
 .welcome-page__filter-by-distance__info span {
   font-weight: 700;
-  color: #2a027d;
+  color: #511989;
 }
 .welcome-page__filter-by-distance__input-div {
   flex: 1;
@@ -7187,7 +7245,7 @@ button.checkout__buttom:disabled {
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: #2a027d;
+  background-color: #511989;
   border-radius: 5px;
   z-index: 1;
 }
@@ -7208,7 +7266,7 @@ button.checkout__buttom:disabled {
     width: 20px;
     border: none;
     border-radius: 50%;
-    background: #2a027d;
+    background: #511989;
     pointer-events: auto;
     -moz-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -7218,7 +7276,7 @@ button.checkout__buttom:disabled {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #2a027d;
+    background: #511989;
     pointer-events: auto;
     -webkit-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -7226,7 +7284,7 @@ button.checkout__buttom:disabled {
   }
   .welcome-page__filter-by-distance__info span {
     font-weight: 700;
-    color: #2a027d;
+    color: #511989;
   }
   .welcome-page__filter-by-distance__input-div {
     width: 100%;
@@ -7251,7 +7309,7 @@ button.checkout__buttom:disabled {
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: #2a027d;
+    background-color: #511989;
     border-radius: 5px;
     z-index: 1;
   }
@@ -7286,7 +7344,7 @@ button.checkout__buttom:disabled {
     padding-right: 30px;
     height: 50px;
     border-radius: 50px;
-    background-color: #ddccfe;
+    background-color: #f7f1fc;
   }
   .welcome-page__filter-by-distance__div.alt .caption {
     display: flex;
@@ -7295,7 +7353,7 @@ button.checkout__buttom:disabled {
     height: 100%;
     padding: 0 20px;
     min-width: 200px;
-    background-color: #2a027d;
+    background-color: #511989;
     border-radius: 50px;
   }
   .welcome-page__filter-by-distance__div.alt h5 {
@@ -7318,7 +7376,7 @@ button.checkout__buttom:disabled {
     width: 20px;
     border: none;
     border-radius: 50%;
-    background: #2a027d;
+    background: #511989;
     pointer-events: auto;
     -moz-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
@@ -7328,7 +7386,7 @@ button.checkout__buttom:disabled {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #2a027d;
+    background: #511989;
     pointer-events: auto;
     -webkit-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
