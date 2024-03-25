@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { signOut } from 'firebase/auth';
 import { selectAuthState, setUserInfo } from '../redux/slice/authSlice';
 import { auth } from '../config/firebaseConfig';
-import ItemTypeToggleButton from '../pages/WelcomePage/components/ItemTypeToggleButton';
+// import ItemTypeToggleButton from '../pages/WelcomePage/components/ItemTypeToggleButton';
 import DrawerButtonCategories from './DrawerButtonCategories';
+import SellNowButtonBoxMobile from '../pages/WishList/components/SellNowButtonBoxMobile';
 
 export default function DrawerButton({
   toggleDrawer, setToggleDrawer, notificationCount, wishListCount,
   messageCount,
 }) {
   const navigate = useNavigate();
-  const [search, setSearch] = useState('');
+  // const [search, setSearch] = useState('');
   const { loginInfo } = useSelector(selectAuthState);
   const { isAnonymous, uid } = loginInfo;
   const dispatch = useDispatch();
@@ -110,13 +111,13 @@ export default function DrawerButton({
     setToggleDrawer(false);
   };
 
-  const handleSearch = () => {
-    if (search.trim().length > 0) {
-      navigate(`/search/${search}`);
-    }
-    setSearch('');
-    setToggleDrawer(false);
-  };
+  // const handleSearch = () => {
+  //   if (search.trim().length > 0) {
+  //     navigate(`/search/${search}`);
+  //   }
+  //   setSearch('');
+  //   setToggleDrawer(false);
+  // };
 
   return (
     <>
@@ -126,10 +127,8 @@ export default function DrawerButton({
         <div className="drawer-button__line" />
       </button>
       <div className={toggleDrawer ? 'drawer-button__div' : 'drawer-button__div__hide'}>
-        <div className="main-section__mobile-div">
-          <ItemTypeToggleButton />
-        </div>
-        <div className="drawer-button__input-div">
+        <SellNowButtonBoxMobile />
+        {/* <div className="drawer-button__input-div">
           <input
             value={search}
             className="drawer-button__input"
@@ -143,7 +142,7 @@ export default function DrawerButton({
           >
             Search
           </button>
-        </div>
+        </div> */}
         {isAnonymous && (
         <div className="drawer-button__sign-in-div">
           <button type="button" className="drawer-button__sign-in-button" onClick={handleShowSignIn}>Sign In</button>

@@ -24,7 +24,8 @@ export default function DisplaySearchItems() {
   } = useSelector(selectProductsState);
 
   const {
-    updateTime: time, minPrice, maxPrice, condition, itemType,
+    updateTime: time, minPrice, maxPrice, condition,
+    itemType,
   } = filterObject;
 
   useEffect(() => {
@@ -103,7 +104,7 @@ export default function DisplaySearchItems() {
             item.price >= minPrice
         && item.price <= maxPrice
         && (item.condition === condition || condition === 'all')
-        && (item.itemType === itemType || itemType === 'all')
+        && (item.itemType.toLowerCase() === itemType.toLowerCase() || itemType.toLowerCase() === 'all')
           ),
         );
 

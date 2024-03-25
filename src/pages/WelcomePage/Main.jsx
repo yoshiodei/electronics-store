@@ -10,7 +10,7 @@ import SearchCategoriesBox from '../SearchResult/components/CategoriesBox';
 // import useTopScroll from '../../Hooks/useTopScroll';
 import { setFilter } from '../../redux/slice/productsSlice';
 // import HorizontalAdPanel from '../../components/HorizontalAdPanel';
-import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
+// import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
 // import Hero from './components/Hero';
 import TopBrands from './components/TopBrands';
 import ExploreShops from './components/ExploreShops';
@@ -50,7 +50,10 @@ export default function Main() {
           {/* <AdPanel /> */}
         </div>
         <div className="main-section__right-div welcome-page__right-div">
-          <SellNowButtonBoxMobile />
+          <div className="main-section__mobile-div">
+            <ItemTypeToggleButton />
+          </div>
+          {/* <SellNowButtonBoxMobile /> */}
           <SearchCategoriesBox itemType={itemType} />
           <ExploreShops />
           {/* <Hero /> */}
