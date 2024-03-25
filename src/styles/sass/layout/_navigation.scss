@@ -7,6 +7,10 @@
         margin-right: 10px;
     }
 
+    &__mobile-search-div {
+        display: none;
+    }
+
     &__top-div{
         background-color: #ffffff20;
         @include paddingVertical(0.5em);
@@ -88,6 +92,10 @@
             margin: 0;
             cursor: pointer;
             padding-top: 5px;
+
+            &--small {
+                display: none;
+            }
         }
     }
 
@@ -631,6 +639,43 @@
             left: 0;
         }
 
+        &__mobile-search-div {
+            display: block;
+            margin-right: 15px;
+            flex: 1;
+            position: relative;
+            height: 2.1em;
+        }
+
+        &__mobile-search-input {
+            border-radius: 50px;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: 1px solid $primaryGreyColour;
+            padding: 0 15px;
+        }
+
+        &__mobile-search-button {
+            height: 1.8em;
+            width: 1.8em;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            background-color: $secondaryColour;
+            position: absolute;
+            top: 0.15em;
+            right: 0.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & i {
+                font-size: 0.7em;
+                color: $lightFont;
+            }
+        }
+
         &__top-div{
             display: none;
 
@@ -672,21 +717,42 @@
         }
     
         &__brand {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
             margin: 0;
+    
+            &-text {
+                
+    
+                &--small {
+                    display: block;
+                    font-family: Arial, Helvetica, sans-serif;
+                    letter-spacing: 0;
+                    color: $lightFont;
+                    font-size: 0.6em;
+                    margin: 0;
+                    margin-top: 3px;
+                    cursor: pointer;
+                    padding-top: 0;
+                }
+            }
         }
     
         & .drawer-button {
             display: flex;
-            width: 30px;
+            width: 2.1em;
+            border-radius: 50%;
             border: none;
             outline: none;
-            background-color: transparent;
-            height: 22px;
+            background-color: #fff;
+            height: 2.1em;
             flex-direction: column;
             justify-content: space-between;
+            padding: 0.5em;
 
             &__line {
-                background-color: white;
+                background-color: $secondaryColour;
                 width: 100%;
                 height: 3px;
             }

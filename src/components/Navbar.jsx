@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { selectAuthState, setUserId, setUserInfo } from '../redux/slice/authSlice';
 // import RegisterModal from './RegisterModal';
 import appName from '../Constants/constantVariables';
-import appLogo from '../assets/images/electrotossLogoWhite.png';
+import appLogo from '../assets/images/electrotoss.png';
 import { doc, getDoc, onSnapshot } from '@firebase/firestore';
 import { auth, db } from '../config/firebaseConfig';
 import { selectWishListState, setWishlistIds } from '../redux/slice/wishListSlice';
@@ -319,11 +319,11 @@ function Navbar() {
               <span>
                 <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
               </span>
-              <span className="h2 navbar-custom__brand-text">
+              <span className="h2 navbar-custom__brand-text--small">
               { appName }
               </span>
             </Link>
-            <p>Electronic Gadgets Marketplace</p>
+            {/* <p>Electronic Gadgets Marketplace</p> */}
           </div>
           <div className="bottom-nav__content-search-div navbar-custom__search-div">
           <input
@@ -340,6 +340,21 @@ function Navbar() {
           </button>
         </div>
           <SellNowButton />
+          <div className="navbar-custom__mobile-search-div">
+              <input
+                className="navbar-custom__mobile-search-input"
+                placeholder="Search Electrotoss"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button
+                className="navbar-custom__mobile-search-button"
+                onClick={() => handleSubmit()}
+                type="button"
+              >
+                <i className="fa-solid fa-magnifying-glass" />
+              </button>
+          </div>
           <DrawerButton
             setToggleDrawer={setToggleDrawer}
             toggleDrawer={toggleDrawer}
