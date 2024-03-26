@@ -38,7 +38,7 @@ export default function CarsFormItems() {
     price: '',
     details: '',
     brand: '',
-    VIN: '',
+    vin: '',
     year: '',
     status: 'pending',
     viewCount: [],
@@ -247,12 +247,12 @@ export default function CarsFormItems() {
     }
 
     const {
-      price, details, images, condition, year, VIN,
+      price, details, images, condition, year, vin,
     } = vehicleData;
 
     setIsPosting(true);
 
-    if (!price.trim() || !details.trim() || !year.trim() || !VIN.trim()) {
+    if (!price.trim() || !details.trim() || !year.trim() || !vin.trim()) {
       errorToast('Found empty text fields');
       setIsPosting(false);
       return;
@@ -301,6 +301,7 @@ export default function CarsFormItems() {
         status: 'pending',
         category: vehicleCategory,
         condition,
+        vin,
         lastEdited: new Date(),
         location: {
           locationIsSet: (userCoordinate?.longitude !== 0) || location.locationIsSet,
@@ -455,10 +456,10 @@ export default function CarsFormItems() {
             <input
               id="VIN-input"
               className="new-item-form__input"
-              value={vehicleData.VIN}
+              value={vehicleData.vin}
               onChange={handleVehicleDataChange}
-              placeholder="1HGBH41JXMN109186"
-              name="VIN"
+              placeholder="eg. 1HGBH41JXMN109186"
+              name="vin"
             />
           </div>
         </div>
