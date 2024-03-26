@@ -687,6 +687,10 @@
             &.alt {
                 display: block;
                 width: 100%;
+
+                & p {
+                    display: none;
+                }
             }
         }
 
@@ -725,7 +729,7 @@
             &-text {
                 
     
-                &--small {
+                &--small, &.alt {
                     display: block;
                     font-family: Arial, Helvetica, sans-serif;
                     letter-spacing: 0;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import appName from '../../Constants/constantVariables';
-import appLogo from '../../assets/images/electrotossLogoWhite.png';
+import appLogo from '../../assets/images/electrotoss.png';
 
 export default function AuthNav() {
   return (
@@ -13,7 +13,7 @@ export default function AuthNav() {
               <span>
                 <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
               </span>
-              <span className="h2 navbar-custom__brand-text">
+              <span className="h2 navbar-custom__brand-text alt">
                 { appName }
               </span>
             </Link>
