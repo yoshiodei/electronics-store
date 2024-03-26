@@ -8,12 +8,12 @@ export default function DrawerButtonCategories({ setToggleDrawer }) {
   const navigate = useNavigate();
 
   const handleCategoryClick = (category) => {
-    navigate(`/category/${category.toLowerCase()}`);
+    navigate(`/category/${category}`);
     setToggleDrawer(false);
   };
 
   const handleCarCategoryClick = (category) => {
-    navigate(`/category/cars/${category.toLowerCase()}`);
+    navigate(`/category/cars/${category}`);
     setToggleDrawer(false);
   };
 
