@@ -6,6 +6,7 @@ import SellNowButton from '../components/SellNowButton';
 import appName, { helpEmail, marketingAndPartnershipEmail } from '../Constants/constantVariables';
 // import appLogo from '../assets/images/electrotossLogoWhite.png';
 import appleLogo from '../assets/images/apple-logo-small.png';
+import gplay from '../assets/images/Google-play.png';
 import appLogo from '../assets/images/nudianceImages/nudiance log with type.png';
 
 export default function Footer() {
@@ -44,24 +45,53 @@ export default function Footer() {
                   </Link>
                 </div>
               </div>
+
               <div className="footer__info footer__info--get-the-app">
                 <h5 className="footer__info--get-the-app__title">Get the App Today</h5>
-                <button className="footer__info--get-the-app__button" type="button">
-                  <div className="footer__info--get-the-app__button-div">
-                    <div className="footer__info--get-the-app__button-image-div">
-                      <img
-                        src={appleLogo}
-                        alt="apple logo"
-                        className="footer__info--get-the-app__button-image"
-                      />
-                    </div>
-                    <div className="footer__info--get-the-app__button-info-div">
-                      <p>Download on the</p>
-                      <h3>App Store</h3>
-                    </div>
+                <a href="https://apps.apple.com/us/app/electrotoss/id6473089394" target="_blank" rel="noopener noreferrer">
+                  <div style={{ marginBottom: 20 }}>
+                    <button className="footer__info--get-the-app__button" type="button">
+                      <div className="footer__info--get-the-app__button-div">
+                        <div className="footer__info--get-the-app__button-image-div">
+                          <img
+                            src={appleLogo}
+                            alt="apple logo"
+                            className="footer__info--get-the-app__button-image"
+                          />
+                        </div>
+                        <div className="footer__info--get-the-app__button-info-div">
+                          <p>Download on the</p>
+                          <h3>App Store (Apple)</h3>
+                        </div>
+                      </div>
+                    </button>
                   </div>
-                </button>
+                </a>
+
+                <div>
+                  {' '}
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.tektoss.electrotoss" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <button className="footer__info--get-the-app__button" type="button">
+                      <div className="footer__info--get-the-app__button-div">
+                        <div className="footer__info--get-the-app__button-image-div">
+                          <img
+                            src={gplay}
+                            alt="apple logo"
+                            className="footer__info--get-the-app__button-image"
+                          />
+                        </div>
+                        <div className="footer__info--get-the-app__button-info-div">
+                          <p>Download on the</p>
+                          <h3>Play Store (Android)</h3>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </a>
               </div>
+
             </div>
           </div>
           {/* <div className="col-md-4 footer__categories">
