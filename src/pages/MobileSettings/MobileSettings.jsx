@@ -12,8 +12,8 @@ export default function MobileSettings() {
         <title>{`Chat List | ${appName}`}</title>
         <meta
           name="description"
-          content={`Your One-Stop Electronic Gadget Marketplace.
-                  Discover the Best Deals, Connect with Sellers, and Trade Gadgets with Ease right here on ${appName}.`}
+          content={`Your Marketplace for Vehicles and Electronic Gadgets.
+                  Discover the Best Deals, Connect with Sellers, and Trade with Ease right here on ${appName}.`}
         />
         <link rel="canonical" href="/chatlist/mobile" />
       </Helmet>

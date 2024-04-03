@@ -8,7 +8,8 @@ export default function TermsOfService() {
         Welcome to
         {' '}
         {appName}
-        , an online marketplace for buying and selling electronic items. By using this platform, you
+        , an online marketplace for buying and selling vehicles and electronic items.
+        By using this platform, you
         agree to the following terms and conditions:
       </h5>
       <div className="terms-and-conditions__line" />
@@ -44,7 +45,7 @@ export default function TermsOfService() {
         <p>
           {appName}
           {' '}
-          provides a platform for users to list and sell electronic items.
+          provides a platform for users to list and sell vehicles and electronic items.
           Sellers must ensure that the items listed are accurate, legal,
           {' '}
           and within their possession to sell.
@@ -80,7 +81,7 @@ export default function TermsOfService() {
         <h6>Content Guidelines:</h6>
         <p>
           Users must not post misleading, offensive, or fraudulent content on the platform.
-          Electrotoss reserves the right to remove any listings or content
+          Nudiance reserves the right to remove any listings or content
           {' '}
           that violate our guidelines or infringe upon others&apos; rights.
         </p>

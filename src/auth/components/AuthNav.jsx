@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import appName from '../../Constants/constantVariables';
-import appLogo from '../../assets/images/electrotoss.png';
+import appLogo from '../../assets/images/nudianceImages/nudiance log with type.png';
 
 export default function AuthNav() {
   return (
@@ -11,13 +11,13 @@ export default function AuthNav() {
           <div className="navbar-custom__top-brand-div">
             <Link to="/" className="navbar-custom__brand">
               <span>
-                <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
+                <img className="footer__app-logo" src={appLogo} alt={appName} style={{ width: '70px', height: '55px' }} />
               </span>
-              <span className="h2 navbar-custom__brand-text alt">
+              {/* <span className="h2 navbar-custom__brand-text alt">
                 { appName }
-              </span>
+              </span> */}
             </Link>
-            <p>Electronic Gadgets Marketplace</p>
+            <p>Your Marketplace for Vehicles and Electronic Gadgets</p>
           </div>
         </div>
       </div>

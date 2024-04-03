@@ -101,7 +101,7 @@ export default function PaymentSuccessCard() {
         <button
           className="contain-div__home-button"
           type="button"
-          onClick={() => navigate('https://www.electrotoss.com')}
+          onClick={() => navigate('https://www.Nudiance.com')}
         >
           <h6>Back to Home</h6>
         </button>

@@ -41,7 +41,7 @@ export default function Main() {
   }, []);
 
   const handleNavigate = () => {
-    window.location.href = 'https://www.electrotoss.com';
+    window.location.href = 'https://www.nudiance.com';
   };
 
   return (

@@ -17,7 +17,7 @@ const handleRegisterUser = async (registerFormData, navigate) => {
     const initialUserObject = {
       firstName,
       lastName,
-      bio: 'Hi there, welcome to my Electrotoss profile!',
+      bio: 'Hi there, welcome to my Nudiance profile!',
       createdAt: Date(),
       displayName: lastName ? `${firstName} ${lastName}` : `${firstName}`,
       email,

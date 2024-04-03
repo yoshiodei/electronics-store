@@ -15,7 +15,7 @@ const createNewUser = async (user) => {
   const newUserObject = {
     firstName,
     lastName,
-    bio: 'Hi there, welcome to my Electrotoss profile!',
+    bio: 'Hi there, welcome to my Nudiance profile!',
     createdAt: Date(),
     displayName,
     email,

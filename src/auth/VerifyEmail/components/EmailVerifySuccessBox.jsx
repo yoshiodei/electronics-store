@@ -17,7 +17,7 @@ export default function EmailVerifySuccessBox({ navigate }) {
                 className="verify-email-box__resend-email-button verify-email-box__resend-email-button--success"
                 onClick={() => navigate('/')}
               >
-                Welcome to Electrotoss
+                Welcome to Nudiance
               </button>
             </div>
           </div>

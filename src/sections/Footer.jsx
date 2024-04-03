@@ -24,13 +24,13 @@ export default function Footer() {
           <div className="col-md-4">
             <Link to="/" className="footer__brand">
               <span>
-                <img className="footer__app-logo" src={appLogo} alt={appName} />
+                <img className="footer__app-logo" src={appLogo} alt={appName} style={{ width: '70px', height: '55px' }} />
               </span>
-              <h4 className="footer__heading">
+              {/* <h4 className="footer__heading">
                 { appName }
-              </h4>
+              </h4> */}
             </Link>
-            <p className="footer__brand-info">{`Connect, Buy, and Sell Your Favorite Gadgets right here on ${appName}.`}</p>
+            <p className="footer__brand-info">{`Connect, Buy, and Sell Your Favorite Vehicles and Gadgets right here on ${appName}.`}</p>
             <SellNowButton />
             <div className="footer__info-div">
               <div className="footer__info">
@@ -56,7 +56,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="col-md-4 footer__categories">
+          {/* <div className="col-md-4 footer__categories">
             <h4 className="footer__heading">Categories</h4>
             <ul className="footer__category-list">
               <li className="footer__category-list-item">
@@ -78,7 +78,7 @@ export default function Footer() {
                 <Link to="/category/Car Electronics">Car Electronics</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/Cameras, Drones & Accessories">Cameras, Drones &amp; Accessories</Link>
+                <Link to="/category/Cameras, Drones & Accessories">
               </li>
               <li className="footer__category-list-item">
                 <Link to="/category/Home Appliances">Home Appliances</Link>
@@ -90,7 +90,7 @@ export default function Footer() {
                 <Link to="/category/Televisions">Televisions</Link>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="col-md-4">
             <h4 className="footer__heading">Contact Us</h4>
 

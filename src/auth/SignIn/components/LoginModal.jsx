@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 import { handleSwitchToForgotPassword, handleSwitchToSignUp } from '../../utils/SwitchModals';
 // import PhoneNumberVerifyInput from './PhoneNumberInput';
 import { signInFormValidated } from '../../utils/FormValidated';
-import logo from '../../../assets/images/electrotossLogoBlue.png';
+// import logo from '../../../assets/images/electrotossLogoBlue.png';
+import logo from '../../../assets/images/nudianceImages/nudiance log with type.png';
 import { signInUserWithPhoneAndPassword, handleSignInWithGoogle } from '../../utils/authenticateUser';
 
 export default function LoginModal(
@@ -74,7 +75,8 @@ export default function LoginModal(
               <div />
             </button>
             <div className="buttons-box__modal-logo-div">
-              <img src={logo} className="buttons-box__modal-logo" alt="electrotoss logo" />
+              {/* <img src={logo} className="buttons-box__modal-logo" alt="electrotoss logo" /> */}
+              <img className="buttons-box__modal-logo" src={logo} alt="Nudiance logo" style={{ width: '70px', height: '55px' }} />
             </div>
             <div className="buttons-box__modal-title-div sign-in">
               <h4 className="buttons-box__modal-title">Sign In</h4>

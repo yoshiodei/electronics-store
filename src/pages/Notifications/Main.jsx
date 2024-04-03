@@ -71,8 +71,12 @@ export default function Main({ uid }) {
           {loading && (<Loader />)}
           {!loading && (
           <>
-            {(notificationsList.length > 0) && <MessagesList data={notificationsList} />}
-            {(notificationsList.length === 0) && <NotificationsEmpty />}
+            {/* {(notificationsList.length > 0) && <MessagesList data={notificationsList} />}
+            {(notificationsList.length === 0) && <NotificationsEmpty />} */}
+
+            {(notificationsList && notificationsList.length > 0)
+            && <MessagesList data={notificationsList} />}
+            {(notificationsList && notificationsList.length === 0) && <NotificationsEmpty />}
           </>
           )}
         </div>

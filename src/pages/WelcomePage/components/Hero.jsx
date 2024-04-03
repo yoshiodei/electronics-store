@@ -14,10 +14,10 @@ export default function Hero() {
           in Electronic Gadgets.
         </h1>
         <p className="welcome-page__hero__text-large">
-          {`Unleash the Power of Possibilities with the Latest Electronic Gadgets right here at ${appName}.`}
+          {`Unleash the Power of Possibilities with the Latest Vehicles and Electronic Gadgets right here at ${appName}.`}
         </p>
         <p className="welcome-page__hero__text-small">
-          {`Unleash the Power of Possibilities with the Latest Electronic Gadgets right here at ${appName}.`}
+          {`Unleash the Power of Possibilities with the Latest Vehicles and Electronic Gadgets right here at ${appName}.`}
         </p>
         <NewArrivals />
         <div className="welcome-page__hero__image-div">

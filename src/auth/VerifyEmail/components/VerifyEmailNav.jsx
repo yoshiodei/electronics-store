@@ -1,6 +1,7 @@
 import React from 'react';
 import appName from '../../../Constants/constantVariables';
-import appLogo from '../../../assets/images/electrotossLogoWhite.png';
+// import appLogo from '../../../assets/images/electrotossLogoWhite.png';
+import appLogo from '../../../assets/images/nudianceImages/nudiance log with type.png';
 
 export default function VerifyEmailNav() {
   return (
@@ -10,13 +11,13 @@ export default function VerifyEmailNav() {
           <div className="navbar-custom__top-brand-div">
             <div className="navbar-custom__brand">
               <span>
-                <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
+                <img className="footer__app-logo" src={appLogo} alt={appName} style={{ width: '70px', height: '55px' }} />
               </span>
-              <span className="h2 navbar-custom__brand-text">
+              {/* <span className="h2 navbar-custom__brand-text">
                 { appName }
-              </span>
+              </span> */}
             </div>
-            <p>Electronic Gadgets Marketplace</p>
+            <p>Your Marketplace for Vehicles and Electronic Gadgets</p>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <div className="hero hero-hidden">
       {/* <div className="hero__main-div">
-        <h1>Your One-Stop Electronic Gadget Marketplace.</h1>
+        <h1>Your Marketplace for Vehicles and Electronic Gadgets.</h1>
         <p className="hero__text-large">
           {`Discover the Best Deals, Connect with Sellers,
           and Trade Gadgets with Ease right here on ${appName}.`}

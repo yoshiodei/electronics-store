@@ -141,7 +141,7 @@ export default function SignInModal({
       } else {
         const vendorData = {
           displayName,
-          bio: 'Hi there, this is my Electrotoss shop page.',
+          bio: 'Hi there, this is my Nudiance shop page.',
           followers: 0,
           status: 'active',
           photoURL: photoURL || '',
@@ -165,7 +165,7 @@ export default function SignInModal({
           emailVerified,
           userInfoIsSet: true,
           displayName,
-          bio: 'Hi there, this is my Electrotoss shop page.',
+          bio: 'Hi there, this is my Nudiance shop page.',
           userEmail,
           followers: 0,
           rating: 1,
