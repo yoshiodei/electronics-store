@@ -4,8 +4,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SellNowButton from '../components/SellNowButton';
 import appName, { helpEmail, marketingAndPartnershipEmail } from '../Constants/constantVariables';
-import appLogo from '../assets/images/electrotossLogoWhite.png';
+// import appLogo from '../assets/images/electrotossLogoWhite.png';
 import appleLogo from '../assets/images/apple-logo-small.png';
+import appLogo from '../assets/images/nudianceImages/nudiance log with type.png';
 
 export default function Footer() {
   const handleEmailClick = (emailAddress) => {
@@ -35,6 +36,13 @@ export default function Footer() {
             <div className="footer__info-div">
               <div className="footer__info">
                 <Link to="/termsAndConditions">Terms and Conditions</Link>
+              </div>
+              <div className="footer__supportPage-div">
+                <div className="footer__supportPage">
+                  <Link to="/supportPage">
+                    <h6 style={{ color: 'white' }}>Support Page</h6>
+                  </Link>
+                </div>
               </div>
               <div className="footer__info footer__info--get-the-app">
                 <h5 className="footer__info--get-the-app__title">Get the App Today</h5>

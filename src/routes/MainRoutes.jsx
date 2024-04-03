@@ -35,6 +35,7 @@ import VerifyEmailPageforSignIn from '../auth/SignIn/VerifyEmailPage';
 import NewShop from '../pages/NewShop/NewShop';
 import CarsCategory from '../pages/CarsCategory/CarsCategory';
 import ProcessPayment from '../pages/ProcessPaymentPage/ProcessPayment';
+import SupportPage from '../pages/SupportPage/SupportPage';
 
 export default function MainRoutes() {
   useEffect(() => {
@@ -89,6 +90,7 @@ export default function MainRoutes() {
         <Route path="/create-shop" element={<NewShop />} />
         <Route path="/process-payment/:purpose" element={<ProcessPayment />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/supportPage" element={<SupportPage />} />
       </Routes>
     </BrowserRouter>
   );

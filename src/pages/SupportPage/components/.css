@@ -1,0 +1,21 @@
+/* Add your CSS styles here */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  
+  h1, h3 {
+    color:white;
+  }
+  
+  ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Add more styles as needed */
+  
