@@ -28,6 +28,18 @@
         margin-bottom: 0;
     }
 
+    &__email-div {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__email-inner-div {
+        & h5, & p {
+            margin-bottom: 2px;
+            color: $lightFont;
+        }
+    }
+
     &__category-list {
         margin: 0;
         padding: 0;
@@ -300,6 +312,11 @@
             font-size: 1em;
             width: 75%;
             margin-bottom: 20px;
+        }
+
+        &__email-div {
+            justify-content: flex-start;
+            margin-top: 50px;
         }
     
         &__category-list-item {

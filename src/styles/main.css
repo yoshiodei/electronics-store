@@ -5914,6 +5914,14 @@ form input:focus-visible, form textarea:focus-visible {
   width: 300px;
   margin-bottom: 0;
 }
+.footer__email-div {
+  display: flex;
+  justify-content: flex-end;
+}
+.footer__email-inner-div h5, .footer__email-inner-div p {
+  margin-bottom: 2px;
+  color: #ffffff;
+}
 .footer__category-list {
   margin: 0;
   padding: 0;
@@ -6133,6 +6141,10 @@ form input:focus-visible, form textarea:focus-visible {
     font-size: 1em;
     width: 75%;
     margin-bottom: 20px;
+  }
+  .footer__email-div {
+    justify-content: flex-start;
+    margin-top: 50px;
   }
   .footer__category-list-item {
     margin-bottom: 6px;
@@ -6531,8 +6543,8 @@ button.checkout__buttom:disabled {
 .top-brands__image-div {
   border-radius: 50%;
   border: 1px solid lightgrey;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   margin-bottom: 5px;
   padding: 5px;
 }
@@ -6545,6 +6557,7 @@ button.checkout__buttom:disabled {
 }
 .top-brands__text {
   text-align: center;
+  font-size: 0.9em;
 }
 
 @media (max-width: 430px) {
