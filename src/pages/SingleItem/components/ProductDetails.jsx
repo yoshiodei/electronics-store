@@ -53,6 +53,12 @@ export default function ProductDetail() {
             {`$ ${product.price}.00`}
           </h3>
         </div>
+        { product?.mileage && (
+        <div className="product-detail__product-condition-div">
+          <h6 className="product-detail__title">Mileage</h6>
+          <h3 className="product-detail__condition">{product.mileage}</h3>
+        </div>
+        ) }
         { product?.vin && (
         <div className="product-detail__product-condition-div">
           <h6 className="product-detail__title">VIN</h6>

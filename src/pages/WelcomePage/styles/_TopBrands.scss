@@ -22,8 +22,8 @@
     &__image-div {
         border-radius: 50%;
         border: 1px solid $primaryGreyColour;
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         margin-bottom: 5px;
         padding: 5px;
     }
@@ -37,6 +37,7 @@
 
     &__text {
         text-align: center;
+        font-size: 0.9em;
     }
 }
 

@@ -51,6 +51,7 @@ export default function CarsFormItems() {
     postedFrom: 'web',
     itemType: 'vehicles',
     isPromoted: false,
+    mileage: '',
     vendor: {},
     location: {
       locationIsSet: false,
@@ -143,10 +144,10 @@ export default function CarsFormItems() {
     setIsCheckingOut(true);
 
     const {
-      name, price, details, images, condition,
+      name, price, details, images, condition, mileage,
     } = vehicleData;
 
-    if (!name.trim() || !price.trim() || !details.trim()) {
+    if (!name.trim() || !price.trim() || !details.trim() || !mileage.trim()) {
       errorToast('Found empty text fields');
 
       setIsCheckingOut(false);
@@ -156,6 +157,12 @@ export default function CarsFormItems() {
     if (isNaN(price.trim())) {
       errorToast('Price must be a number');
 
+      setIsPosting(false);
+      return;
+    }
+
+    if (isNaN(mileage.trim())) {
+      errorToast('Mileage must be a number');
       setIsPosting(false);
       return;
     }
@@ -213,6 +220,7 @@ export default function CarsFormItems() {
           //     latitude: userCoordinate?.latitude || location.latitude,
           //   },
           // },
+          mileage,
           images: imageUrls,
           viewCount: [],
           isPromoted: true,
@@ -247,12 +255,12 @@ export default function CarsFormItems() {
     }
 
     const {
-      price, details, images, condition, year, vin,
+      price, details, images, condition, year, vin, mileage,
     } = vehicleData;
 
     setIsPosting(true);
 
-    if (!price.trim() || !details.trim() || !year.trim() || !vin.trim()) {
+    if (!price.trim() || !details.trim() || !year.trim() || !vin.trim() || !mileage.trim()) {
       errorToast('Found empty text fields');
       setIsPosting(false);
       return;
@@ -266,6 +274,12 @@ export default function CarsFormItems() {
 
     if (isNaN(price.trim())) {
       errorToast('Price must be a number');
+      setIsPosting(false);
+      return;
+    }
+
+    if (isNaN(mileage.trim())) {
+      errorToast('Mileage must be a number');
       setIsPosting(false);
       return;
     }
@@ -300,6 +314,7 @@ export default function CarsFormItems() {
         details: details.trim(),
         status: 'pending',
         category: vehicleCategory,
+        mileage,
         condition,
         vin,
         lastEdited: new Date(),
@@ -460,6 +475,19 @@ export default function CarsFormItems() {
               onChange={handleVehicleDataChange}
               placeholder="eg. 1HGBH41JXMN109186"
               name="vin"
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="new-item-form__input-div">
+            <label htmlFor="mileage-input" className="new-item-form__label">Mileage (miles)</label>
+            <input
+              id="mileage-input"
+              className="new-item-form__input"
+              value={vehicleData.mileage}
+              onChange={handleVehicleDataChange}
+              placeholder="eg. 15000"
+              name="mileage"
             />
           </div>
         </div>
