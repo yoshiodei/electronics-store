@@ -473,7 +473,7 @@ export default function CarsFormItems() {
               className="new-item-form__input"
               value={vehicleData.vin}
               onChange={handleVehicleDataChange}
-              placeholder="eg. 1HGBH41JXMN109186"
+              placeholder="eg. 1HGBH41JXMN108186"
               name="vin"
             />
           </div>
