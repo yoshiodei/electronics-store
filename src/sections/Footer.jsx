@@ -4,7 +4,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SellNowButton from '../components/SellNowButton';
 import appName, { helpEmail, marketingAndPartnershipEmail } from '../Constants/constantVariables';
-import appLogo from '../assets/images/electrotossLogoWhite.png';
+import appLogo from '../assets/images/nudianceImages/nudiance log with type.png';
+import gplay from '../assets/images/Google-play.png';
 import appleLogo from '../assets/images/apple-logo-small.png';
 
 export default function Footer() {
@@ -24,39 +25,75 @@ export default function Footer() {
           <div className="col-md-4">
             <Link to="/" className="footer__brand">
               <span>
-                <img className="footer__app-logo" src={appLogo} alt={appName} />
+                <img className="footer__app-logo" src={appLogo} alt={appName} style={{ width: '70px', height: '55px' }} />
               </span>
-              <h4 className="footer__heading">
+              {/* <h4 className="footer__heading">
                 { appName }
-              </h4>
+              </h4> */}
             </Link>
-            <p className="footer__brand-info">{`Connect, Buy, and Sell Your Favorite Gadgets right here on ${appName}.`}</p>
+            <p className="footer__brand-info">{`Connect, Buy, and Sell Your Favorite Vehicles and Gadgets right here on ${appName}.`}</p>
             <SellNowButton />
             <div className="footer__info-div">
               <div className="footer__info">
                 <Link to="/termsAndConditions">Terms and Conditions</Link>
               </div>
+              <div className="footer__supportPage-div">
+                <div className="footer__supportPage">
+                  <Link to="/supportPage">
+                    <h6 style={{ color: 'white' }}>Support Page</h6>
+                  </Link>
+                </div>
+              </div>
+
               <div className="footer__info footer__info--get-the-app">
                 <h5 className="footer__info--get-the-app__title">Get the App Today</h5>
-                <button className="footer__info--get-the-app__button" type="button">
-                  <div className="footer__info--get-the-app__button-div">
-                    <div className="footer__info--get-the-app__button-image-div">
-                      <img
-                        src={appleLogo}
-                        alt="apple logo"
-                        className="footer__info--get-the-app__button-image"
-                      />
-                    </div>
-                    <div className="footer__info--get-the-app__button-info-div">
-                      <p>Download on the</p>
-                      <h3>App Store</h3>
-                    </div>
+                <a href="https://apps.apple.com/us/app/electrotoss/id6473089394" target="_blank" rel="noopener noreferrer">
+                  <div style={{ marginBottom: 20 }}>
+                    <button className="footer__info--get-the-app__button" type="button">
+                      <div className="footer__info--get-the-app__button-div">
+                        <div className="footer__info--get-the-app__button-image-div">
+                          <img
+                            src={appleLogo}
+                            alt="apple logo"
+                            className="footer__info--get-the-app__button-image"
+                          />
+                        </div>
+                        <div className="footer__info--get-the-app__button-info-div">
+                          <p>Download on the</p>
+                          <h3>App Store (Apple)</h3>
+                        </div>
+                      </div>
+                    </button>
                   </div>
-                </button>
+                </a>
+
+                <div>
+                  {' '}
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.tektoss.electrotoss" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <button className="footer__info--get-the-app__button" type="button">
+                      <div className="footer__info--get-the-app__button-div">
+                        <div className="footer__info--get-the-app__button-image-div">
+                          <img
+                            src={gplay}
+                            alt="apple logo"
+                            className="footer__info--get-the-app__button-image"
+                          />
+                        </div>
+                        <div className="footer__info--get-the-app__button-info-div">
+                          <p>Download on the</p>
+                          <h3>Play Store (Android)</h3>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </a>
               </div>
+
             </div>
           </div>
-          <div className="col-md-4 footer__categories">
+          {/* <div className="col-md-4 footer__categories">
             <h4 className="footer__heading">Categories</h4>
             <ul className="footer__category-list">
               <li className="footer__category-list-item">
@@ -78,7 +115,7 @@ export default function Footer() {
                 <Link to="/category/Car Electronics">Car Electronics</Link>
               </li>
               <li className="footer__category-list-item">
-                <Link to="/category/Cameras, Drones & Accessories">Cameras, Drones &amp; Accessories</Link>
+                <Link to="/category/Cameras, Drones & Accessories">
               </li>
               <li className="footer__category-list-item">
                 <Link to="/category/Home Appliances">Home Appliances</Link>
@@ -90,7 +127,7 @@ export default function Footer() {
                 <Link to="/category/Televisions">Televisions</Link>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="col-md-4">
             <h4 className="footer__heading">Contact Us</h4>
 

@@ -746,7 +746,6 @@
 
     &__modal-title-div {
         padding: 40px 0 10px;
-        // background-color: lightblue;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -756,6 +755,15 @@
         &.sign-in {
             padding-top: 10px;
         }
+    }
+
+    &__modal-title-div-alt {
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        // border-bottom: 1px solid lightgrey;
+        // margin-bottom: 15px;
     }
 
     &__modal-logo-div {

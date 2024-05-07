@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { selectAuthState, setUserId, setUserInfo } from '../redux/slice/authSlice';
 // import RegisterModal from './RegisterModal';
 import appName from '../Constants/constantVariables';
-import appLogo from '../assets/images/electrotoss.png';
+import appLogo from '../assets/images/nudianceImages/nudiance log with type.png';
 import { doc, getDoc, onSnapshot } from '@firebase/firestore';
 import { auth, db } from '../config/firebaseConfig';
 import { selectWishListState, setWishlistIds } from '../redux/slice/wishListSlice';
@@ -236,13 +236,13 @@ function Navbar() {
         <div className="navbar-custom__top-brand-div">
             <Link to="/" className="navbar-custom__brand">
               <span>
-                <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
+                <img className="navbar-custom__app-logo" src={appLogo} alt={appName} style={{ width: '70px', height: '55px' }} />
               </span>
-              <span className="h2 navbar-custom__brand-text">
+              {/* <span className="h2 navbar-custom__brand-text">
               { appName }
-              </span>
+              </span> */}
             </Link>
-            <p>Electronic Gadgets Marketplace</p>
+            <p style={{ fontSize: '11px' }}>Your Marketplace for Vehicles and Electronic Gadgets</p>
           </div>
           <ul className="d-flex justify-content-end align-items-center">
             { !isAnonymous && <li>
@@ -319,9 +319,9 @@ function Navbar() {
               <span>
                 <img className="navbar-custom__app-logo" src={appLogo} alt={appName} />
               </span>
-              <span className="h2 navbar-custom__brand-text--small">
+              {/* <span className="h2 navbar-custom__brand-text--small">
               { appName }
-              </span>
+              </span> */}
             </Link>
             {/* <p>Electronic Gadgets Marketplace</p> */}
           </div>
@@ -343,7 +343,7 @@ function Navbar() {
           <div className="navbar-custom__mobile-search-div">
               <input
                 className="navbar-custom__mobile-search-input"
-                placeholder="Search Electrotoss"
+                placeholder="Search Nudiance"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />

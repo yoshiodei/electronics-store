@@ -5,12 +5,13 @@ import AdPanel from '../../components/AdPanel';
 import UserDetailBox from './component/UserDetailBox';
 import ProductsTab from './component/ProductsTab';
 import { selectAuthState } from '../../redux/slice/authSlice';
+import BuyerRequests from './component/BuyerRequests';
 // import VerifyCard from './component/VerifyCard';
 
 export default function Main() {
   const { id } = useParams();
   const { loginInfo } = useSelector(selectAuthState);
-  const { uid } = loginInfo;
+  const { isAnonymous, uid } = loginInfo;
 
   const [userProductIds, setUserProductIds] = useState([]);
 
@@ -19,12 +20,14 @@ export default function Main() {
       <main className="main-section d-flex justify-content-between">
         <div className="main-section__left-div">
           <UserDetailBox userProductIds={userProductIds} />
+          {!(isAnonymous || uid !== id) && (<BuyerRequests />)}
           <AdPanel />
         </div>
         <div className="main-section__right-div">
           {/* <VerifyCard /> */}
           <div className="main-section__mobile-div">
             <UserDetailBox />
+            <BuyerRequests />
           </div>
           <ProductsTab uid={uid} id={id} setUserProductIds={setUserProductIds} />
         </div>

@@ -35,6 +35,10 @@ import VerifyEmailPageforSignIn from '../auth/SignIn/VerifyEmailPage';
 import NewShop from '../pages/NewShop/NewShop';
 import CarsCategory from '../pages/CarsCategory/CarsCategory';
 import ProcessPayment from '../pages/ProcessPaymentPage/ProcessPayment';
+import AddNewItemRequest from '../pages/AddNewItemRequest/AddNewItemRequest';
+import ItemRequestList from '../pages/ItemRequestList/ItemRequestList';
+import SingleItemRequest from '../pages/SingleItemRequest/SingleItemRequest';
+import SupportPage from '../pages/SupportPage/SupportPage';
 
 export default function MainRoutes() {
   useEffect(() => {
@@ -87,7 +91,11 @@ export default function MainRoutes() {
         <Route path="/sign-in-verify-email/:id" element={<VerifyEmailPageforSignIn />} />
         <Route path="/verify-email/:id" element={<VerifyEmailPage />} />
         <Route path="/create-shop" element={<NewShop />} />
+        <Route path="/add-request-item" element={<AddNewItemRequest />} />
+        <Route path="/request-item-list" element={<ItemRequestList />} />
+        <Route path="/single-request/:id" element={<SingleItemRequest />} />
         <Route path="/process-payment/:purpose" element={<ProcessPayment />} />
+        <Route path="/supportPage" element={<SupportPage />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>

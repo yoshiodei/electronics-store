@@ -48,6 +48,16 @@
         }
     }
 
+    &__empty-div__button {
+        padding: 8px 20px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: $secondaryColour;
+        font-weight: 600;
+        color: $lightFont;
+    }
+
     &__reload {
         background-color: $secondaryColour;
         margin-top: 30px;

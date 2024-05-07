@@ -48,6 +48,28 @@ form input:focus-visible, form textarea:focus-visible  {
         &--none {
             display: none;
         }
+
+        &__input-inner-div--alt {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            &__sub-div {
+                display: flex;
+                flex: 1;
+                gap: 10px;
+                align-items: center;
+
+                &--alt {
+                    display: flex;
+                    align-items: center;
+                }
+
+                & input {
+                    width: 100%;
+                }
+            }
+        }
     }
 
     &__label {
@@ -254,6 +276,10 @@ form input:focus-visible, form textarea:focus-visible  {
         padding: 10px;
         gap: 20px;
 
+        &.alt {
+            padding: 10px 0;
+        }
+
         &__button-icon {
             position: absolute;
             border-radius: 50%;
@@ -282,6 +308,56 @@ form input:focus-visible, form textarea:focus-visible  {
             flex-direction: column;
             transition: all 0.3s;
             position: relative;
+
+            &--item-type {
+                width: 120px;
+                height: 45px;
+                background-color: transparent;
+                border: 2px solid $primaryGreyColour;
+                border-radius: 8px;
+                display: flex;
+                gap: 5px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.3s;
+                position: relative;
+
+                & .active-spot {
+                    display: none;
+                }
+
+                &:hover {
+                    border: 2px solid $secondaryColour !important;
+
+                    & h6 {
+                        color: $secondaryColour;
+                    }
+                }
+
+                &.active {
+                    border: 2px solid $secondaryColour !important;
+
+                    & .active-spot {
+                        display: block;
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 50%;
+                        position: absolute;
+                        background-color: $secondaryColour;
+                        top: 5px;
+                        left: 5px;
+                    }
+
+                    & h6 {
+                        color: $secondaryColour;
+                    }
+                }
+                & h6 {
+                    margin-bottom: 0;
+                    font-weight: 700;
+                }
+            }
 
             &.active {
                 border: 2px solid lighten($secondaryColour, 30%);
@@ -323,6 +399,17 @@ form input:focus-visible, form textarea:focus-visible  {
     .new-item-form {
         width: 100%;
 
+        &__input-div {
+            &__input-inner-div--alt {
+                flex-direction: column;
+                gap: 3px;
+
+                &__sub-div {
+                    width: 100%;
+                }
+            }
+        }
+
         &__posted-items-count {
             &__upgrade-button {
                 padding: 8px 15px;
@@ -361,6 +448,19 @@ form input:focus-visible, form textarea:focus-visible  {
                 flex-direction: column;
                 transition: all 0.3s;
                 position: relative;
+
+                &--item-type {
+                    flex: 1;
+                    padding: 25px 12px 18px;
+                    background-color: transparent;
+                    border: 2px solid $primaryGreyColour;
+                    border-radius: 8px;
+                    display: flex;
+                    gap: 2px;
+                    flex-direction: column;
+                    transition: all 0.3s;
+                    position: relative;
+                }
     
                 &.active {
                     border: 2px solid lighten($secondaryColour, 30%);
