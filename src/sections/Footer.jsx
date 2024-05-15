@@ -34,13 +34,24 @@ export default function Footer() {
             <p className="footer__brand-info">{`Connect, Buy, and Sell Your Favorite Vehicles and Gadgets right here on ${appName}.`}</p>
             <SellNowButton />
             <div className="footer__info-div">
-              <div className="footer__info">
-                <Link to="/termsAndConditions">Terms and Conditions</Link>
+              <div className="footer__supportPage-div">
+                <div className="footer__supportPage">
+                  <Link to="/termsAndConditions">
+                    <h6 style={{ color: 'white' }}>Terms and Conditions</h6>
+                  </Link>
+                </div>
               </div>
               <div className="footer__supportPage-div">
                 <div className="footer__supportPage">
                   <Link to="/supportPage">
                     <h6 style={{ color: 'white' }}>Support Page</h6>
+                  </Link>
+                </div>
+              </div>
+              <div className="footer__supportPage-div">
+                <div className="footer__supportPage">
+                  <Link to="/privacyPolicyPage">
+                    <h6 style={{ color: 'white' }}>Privacy Policy</h6>
                   </Link>
                 </div>
               </div>

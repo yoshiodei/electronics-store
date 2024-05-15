@@ -1,4 +1,23 @@
 .request {
+    &__hero-section-outer-div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+    }
+
+    &__hero-section-div {
+        border: 2px solid $primaryGreyColour;
+        background-color: $primaryMidGreyColour;
+        border-radius: 4px;
+        width: 70%;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
     &__item-card {
         border: 1px solid $primaryGreyColour;
         border-radius: 4px;
@@ -172,6 +191,10 @@
             width: 100%;
             border: none;
             outline: none;
+
+            &.home {
+                width: 180px;
+            }
         }
     }
 }

@@ -5986,6 +5986,22 @@ form input:focus-visible, form textarea:focus-visible {
   font-weight: 700;
 }
 
+.request__hero-section-outer-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.request__hero-section-div {
+  border: 2px solid lightgrey;
+  background-color: rgb(243, 243, 243);
+  border-radius: 4px;
+  width: 70%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .request__item-card {
   border: 1px solid lightgrey;
   border-radius: 4px;
@@ -6133,6 +6149,9 @@ form input:focus-visible, form textarea:focus-visible {
   width: 100%;
   border: none;
   outline: none;
+}
+.request__section__button.home {
+  width: 180px;
 }
 
 @media (max-width: 430px) {
@@ -7243,6 +7262,13 @@ button.checkout__buttom:disabled {
   flex: 1;
   margin-bottom: 20px;
 }
+.welcome-page__explore-shops__shop-outer-div {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  padding: 8px;
+  margin-bottom: 15px;
+}
 .welcome-page__explore-shops__main-div {
   display: flex;
   justify-content: center;
@@ -7281,17 +7307,20 @@ button.checkout__buttom:disabled {
   margin-bottom: 0;
 }
 .welcome-page__shop-card {
-  background-color: white;
   display: flex;
   flex-direction: column;
   border: 1px solid lightgrey;
   border-radius: 5px;
-  padding: 10px;
-  width: 230px;
+  padding: 5px;
+  width: 180px;
   flex-shrink: 0;
   height: 100%;
-  position: relative;
   overflow: hidden;
+  background-color: white;
+  transition: background-color 0.4s;
+}
+.welcome-page__shop-card:hover {
+  background-color: rgb(243, 243, 243);
 }
 .welcome-page__shop-card__image {
   -o-object-fit: cover;
@@ -7302,25 +7331,9 @@ button.checkout__buttom:disabled {
 .welcome-page__shop-card:hover .welcome-page__shop-card__button {
   bottom: 15px;
 }
-.welcome-page__shop-card__button {
-  background-color: #511989;
-  border: none;
-  outline: none;
-  border-radius: 50px;
-  color: #ffffff;
-  padding: 1px 5px;
-  font-size: 0.95em;
-  font-weight: 500;
-  width: 100px;
-  align-self: center;
-  position: absolute;
-  bottom: -30px;
-  transition: bottom 0.3s;
-  box-shadow: 5px 5px 10px white, -5px -5px 10px white;
-}
 .welcome-page__shop-card__image-div {
   width: 100%;
-  height: 130px;
+  height: 120px;
   border: 1px solid rgb(243, 243, 243);
   overflow: hidden;
   border-radius: 4px;
@@ -7331,6 +7344,8 @@ button.checkout__buttom:disabled {
   text-transform: capitalize;
   color: #511989;
   font-weight: 700;
+  text-align: center;
+  width: 100%;
 }
 .welcome-page__shop-card__shop-description {
   font-size: 0.95em;

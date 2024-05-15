@@ -13,9 +13,10 @@ import { setFilter } from '../../redux/slice/productsSlice';
 import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
 // import Hero from './components/Hero';
 import TopBrands from './components/TopBrands';
-import ExploreShops from './components/ExploreShops';
+// import ExploreShops from './components/ExploreShops';
 import { selectItemTypeState, setItemType } from '../../redux/slice/itemTypeSlice';
 import ItemTypeToggleButton from './components/ItemTypeToggleButton';
+import StoreList from './components/StoreList';
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -55,7 +56,8 @@ export default function Main() {
             <ItemTypeToggleButton />
           </div>
           <SearchCategoriesBox itemType={itemType} />
-          <ExploreShops />
+          {/* <ExploreShops /> */}
+          <StoreList />
           {/* <Hero /> */}
           {/* <HorizontalAdPanel /> */}
           <div className="main-section__mobile-div">

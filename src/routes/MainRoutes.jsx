@@ -39,6 +39,7 @@ import AddNewItemRequest from '../pages/AddNewItemRequest/AddNewItemRequest';
 import ItemRequestList from '../pages/ItemRequestList/ItemRequestList';
 import SingleItemRequest from '../pages/SingleItemRequest/SingleItemRequest';
 import SupportPage from '../pages/SupportPage/SupportPage';
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage/PrivacyPolicyPage';
 
 export default function MainRoutes() {
   useEffect(() => {
@@ -96,6 +97,7 @@ export default function MainRoutes() {
         <Route path="/single-request/:id" element={<SingleItemRequest />} />
         <Route path="/process-payment/:purpose" element={<ProcessPayment />} />
         <Route path="/supportPage" element={<SupportPage />} />
+        <Route path="/privacyPolicyPage" element={<PrivacyPolicyPage />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>

@@ -4,25 +4,22 @@ import profile from '../../../assets/images/profile.jpg';
 
 export default function ShopCard({ store }) {
   const {
-    firstName, uid, photoURL, bio,
+    firstName, uid, photoURL,
   } = store;
 
   const navigate = useNavigate();
 
   return (
-    <div className="welcome-page__shop-card" key={uid}>
+    <button
+      type="button"
+      className="welcome-page__shop-card"
+      key={uid}
+      onClick={() => navigate(`/user-account/${uid}`)}
+    >
       <div className="welcome-page__shop-card__image-div">
         <img src={photoURL || profile} className="welcome-page__shop-card__image" alt="shop logo" />
       </div>
       <h6 className="welcome-page__shop-card__shop-name">{firstName}</h6>
-      <p className="welcome-page__shop-card__shop-description">{bio}</p>
-      <button
-        className="welcome-page__shop-card__button"
-        type="button"
-        onClick={() => navigate(`/user-account/${uid}`)}
-      >
-        View Shop
-      </button>
-    </div>
+    </button>
   );
 }

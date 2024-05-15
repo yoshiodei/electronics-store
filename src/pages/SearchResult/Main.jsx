@@ -10,8 +10,9 @@ import { setFilter } from '../../redux/slice/productsSlice';
 import SellNowButtonBoxMobile from '../WishList/components/SellNowButtonBoxMobile';
 // import HeroSectionBrands from './components/HeroSectionBrands';
 // import ItemTypeToggleButton from '../WelcomePage/components/ItemTypeToggleButton';
-import ExploreShops from '../WelcomePage/components/ExploreShops';
+// import ExploreShops from '../WelcomePage/components/ExploreShops';
 import SearchBoxFilter from './components/SearchBoxFilter';
+import StoreList from '../WelcomePage/components/StoreList';
 // import Hero from '../../components/Hero';
 
 export default function Main({ searchName }) {
@@ -47,7 +48,8 @@ export default function Main({ searchName }) {
           <SellNowButtonBoxMobile />
           <SearchInfoBox />
           {/* <CategoriesBox /> */}
-          <ExploreShops />
+          {/* <ExploreShops /> */}
+          <StoreList />
           {/* <Hero /> */}
           {/* <div>
             <SectionHeader>Top Brands</SectionHeader>
